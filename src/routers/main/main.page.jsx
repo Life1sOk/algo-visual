@@ -1,14 +1,14 @@
 import React from "react";
 
 import './main.page.style.scss';
-import ProfileSection from "../../sections/profile/profile.section";
-import DisplaySection from "../../sections/display/display.section";
+import ProfileContainer from "../../containers/profile/profile.container";
+import DisplayContainer from "../../containers/display/display.container";
 
 const MainPage = () => {
     return (
         <div className="main-page-container">
-            <ProfileSection />
-            <DisplaySection />
+            <ProfileContainer />
+            <DisplayContainer />
         </div>
     )
 }

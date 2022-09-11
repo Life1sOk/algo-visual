@@ -1,0 +1,25 @@
+.display-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .nav-section {
+        width: 100%;
+        height: 60px;
+        background-color: lightsteelblue;
+    }
+
+    .display-section {
+        width: 100%;
+        height: 500px;
+        background-color: lightyellow;
+    }
+
+    .smth-section {
+        width: 100%;
+        height: 200px;
+        background-color: lightseagreen;
+    }
+}
