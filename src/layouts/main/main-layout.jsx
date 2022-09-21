@@ -1,11 +1,10 @@
 import React from "react";
 
-import './display.container.style.scss';
+import './main-layout.style.scss';
 
-const DisplayContainer = () => {
+const MainLayout = () => {
     return (
         <main className="display-container">
-            <div className="nav-section">nav-section</div>
             <div className="display-section">display-section</div>
             <div className="smth-section">smth-section one</div>
             <div className="smth-section">smth-section two</div>
@@ -13,4 +12,4 @@ const DisplayContainer = () => {
     )
 }
 
-export default DisplayContainer;
+export default MainLayout;

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import './App.css';
-import MainPage from './routers/main/main.page';
+import ProfilePage from './routers/profile/profile-page';
 
 function App() {
   return (
     <div className="app">
-      <MainPage />
+      <ProfilePage />
     </div>
   );
 }
