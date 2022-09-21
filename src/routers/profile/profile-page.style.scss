@@ -2,8 +2,17 @@
     width: 100%;
     max-width: 1280px;
     height: 100%;
-    background-color: wheat;
+    background-color: rgb(240, 194, 240);
     margin: 20px auto 0 auto;
 
     display: flex;
+
+    .profile-wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 }
