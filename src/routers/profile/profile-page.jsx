@@ -1,19 +1,33 @@
 import React from "react";
 
-import './profile-page.style.scss';
-import AsideLayout from '../../layouts/aside/aside-layout';
-import MainLayout from '../../layouts/main/main-layout';
-import Navigation from "../../sections/navigation/navigation.section";
+// ------------- Top level - Containers / Layouts -------------- //
+import AsideLayoutContainer from "../../Layouts/aside-container.layout";
+import PageLayoutContainer from "../../Layouts/page-container.layout";
+import MainLayoutContainer from "../../Layouts/main-container.layout";
 
+// ------------- React's Common Components ------------------- //
+import Navigation from "../../Components/navigation/navigation.component";
+
+// ------------ React's Page Components ----------------- //
+import ProfileImg from "./components/profile-img.component";
+import UserInfo from "./components/user-info.component";
+import DailyDisplay from "./components/daily-display.component";
+import GoalsDisplay from "./components/goals-display.component";
+
+// ------------- Lego --------------- //
 const ProfilePage = () => {
     return (
-        <div className="main-page-container">
-            <AsideLayout />
-            <div className="profile-wrapper">
+        <PageLayoutContainer>
+            <AsideLayoutContainer >
+                <ProfileImg />
+                <UserInfo />
+            </AsideLayoutContainer>
+            <MainLayoutContainer>
                 <Navigation />
-                <MainLayout />
-            </div>
-        </div>
+                <DailyDisplay />
+                <GoalsDisplay />
+            </MainLayoutContainer>
+        </PageLayoutContainer>
     )
 }
 

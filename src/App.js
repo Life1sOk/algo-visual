@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import ProfilePage from './routers/profile/profile-page';
-import DailyPage from './routers/daily/daily-page';
-import AreaPage from './routers/area/area-page';
-import PostsPage from './routers/posts/posts-page';
-import StatisticPage from './routers/statistic/statistic-page';
+import DailyPage from './Routers/daily/daily-page';
+import AreaPage from './Routers/area/area-page';
+import PostsPage from './Routers/posts/posts-page';
+import StatisticPage from './Routers/statistic/statistic-page';
+import ProfilePage from './Routers/profile/profile-page';
 
 function App() {
   return (

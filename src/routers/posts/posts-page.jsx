@@ -1,14 +1,25 @@
 import React from "react";
 
-import './posts-page.style.scss';
-import Navigation from "../../sections/navigation/navigation.section";
+// ------------- Containers / Layouts -------------- //
+import AsideLayoutContainer from "../../Layouts/aside-container.layout";
+import PageLayoutContainer from "../../Layouts/page-container.layout";
+import MainLayoutContainer from "../../Layouts/main-container.layout";
 
+// ------------- React's Components ------------------- //
+import Navigation from "../../Components/navigation/navigation.component";
+import TitlePage from "../../Components/title-page/title-page.component";
+
+// ------------- Lego --------------- //
 const PostsPage = () => {
     return (
-        <div className="posts-page">
-            <Navigation />
-            POSTS PAGE
-        </div>
+        <PageLayoutContainer>
+            <AsideLayoutContainer >
+                <TitlePage titleName='Posts' />
+            </AsideLayoutContainer>
+            <MainLayoutContainer>
+                <Navigation />
+            </MainLayoutContainer>
+        </PageLayoutContainer>
     )
 }
 

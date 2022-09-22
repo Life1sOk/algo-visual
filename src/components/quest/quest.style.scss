@@ -1,0 +1,15 @@
+.quest-wrapper {
+    width: 90%;
+    height: 40px;
+    border-bottom: 1px solid grey;
+    margin: 0 auto;
+    padding: 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .quest {
+        margin-left: 30px;
+    }
+}

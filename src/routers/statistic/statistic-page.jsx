@@ -1,14 +1,25 @@
 import React from "react";
 
-import './statistic-page.style.scss';
-import Navigation from "../../sections/navigation/navigation.section";
+// ------------- Containers / Layouts -------------- //
+import AsideLayoutContainer from "../../Layouts/aside-container.layout";
+import PageLayoutContainer from "../../Layouts/page-container.layout";
+import MainLayoutContainer from "../../Layouts/main-container.layout";
 
+// ------------- React's Components ------------------- //
+import Navigation from "../../Components/navigation/navigation.component";
+import TitlePage from "../../Components/title-page/title-page.component";
+
+// ------------- Lego --------------- //
 const StatisticPage = () => {
     return (
-        <div className="statistic-page">
-            <Navigation />
-            STATISTIC PAGE
-        </div>
+        <PageLayoutContainer>
+            <AsideLayoutContainer >
+                <TitlePage titleName='Statistic' />
+            </AsideLayoutContainer>
+            <MainLayoutContainer>
+                <Navigation />
+            </MainLayoutContainer>
+        </PageLayoutContainer>
     )
 }
 

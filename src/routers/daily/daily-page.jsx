@@ -1,14 +1,25 @@
 import React from "react";
 
-import './daily-page.style.scss';
-import Navigation from "../../sections/navigation/navigation.section";
+// ------------- Containers / Layouts -------------- //
+import AsideLayoutContainer from "../../Layouts/aside-container.layout";
+import PageLayoutContainer from "../../Layouts/page-container.layout";
+import MainLayoutContainer from "../../Layouts/main-container.layout";
 
+// ------------- React's Components ------------------- //
+import Navigation from "../../Components/navigation/navigation.component";
+import TitlePage from "../../Components/title-page/title-page.component";
+
+// ------------- Lego --------------- //
 const DailyPage = () => {
     return (
-        <div className="check-page">
-            <Navigation />
-            DAILY  PAGE CHECK
-        </div>
+        <PageLayoutContainer>
+            <AsideLayoutContainer >
+                <TitlePage titleName='Daily' />
+            </AsideLayoutContainer>
+            <MainLayoutContainer>
+                <Navigation />
+            </MainLayoutContainer>
+        </PageLayoutContainer>
     )
 }
 
