@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-import './quest.style.scss';
+import { QuestContainer, QuestWrapper, DiscriptionBox } from './quest.style.js';
 
-const Quest = ({ questName }) => {
+const Quest = ({ quest }) => {
+    const { questName, discription } = quest;
+    const [state, setState] = useState(false);
+
     return (
-        <div className="quest-wrapper">
-            <input type="checkbox" />
-            <span className="quest">{questName}</span>
-        </div>
+        <QuestWrapper>
+            <QuestContainer>
+                <input type="checkbox" />
+                <h3 className="quest" onClick={() => setState(!state)}>{questName}</h3>
+            </QuestContainer>
+            <DiscriptionBox state={state}>{discription}</DiscriptionBox>
+        </QuestWrapper>
     )
 }
 

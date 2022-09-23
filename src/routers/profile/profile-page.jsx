@@ -11,7 +11,7 @@ import Navigation from "../../Components/navigation/navigation.component";
 // ------------ React's Page Components ----------------- //
 import ProfileImg from "./components/profile-img.component";
 import UserInfo from "./components/user-info.component";
-import DailyDisplay from "./components/daily-display.component";
+import MainDisplay from "./components/main-display.component";
 import GoalsDisplay from "./components/goals-display.component";
 
 // ------------- Lego --------------- //
@@ -24,7 +24,7 @@ const ProfilePage = () => {
             </AsideLayoutContainer>
             <MainLayoutContainer>
                 <Navigation />
-                <DailyDisplay />
+                <MainDisplay />
                 <GoalsDisplay />
             </MainLayoutContainer>
         </PageLayoutContainer>

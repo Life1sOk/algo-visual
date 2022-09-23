@@ -1,7 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
 
-import logo from '../assets/ai mechanic2_RF_RMPL-01.svg';
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../App/slices/user.slice";
 
 //----------------- Styled ---------------------//
 const Img = styled.img`
@@ -12,8 +13,10 @@ const Img = styled.img`
 //----------------------------------------------//
 
 const ProfileImg = () => {
+    const { userImage } = useSelector(selectUser)
+
     return (
-        <Img alt="logo" src={logo} />
+        <Img alt="logo" src={userImage} />
     )
 }
 

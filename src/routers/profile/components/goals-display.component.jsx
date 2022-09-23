@@ -12,7 +12,6 @@ const DisplaySection = styled.section`
 const GoalsDisplay = () => {
     return (
         <DisplaySection>
-
         </DisplaySection>
     )
 }

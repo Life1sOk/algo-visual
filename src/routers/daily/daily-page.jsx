@@ -1,5 +1,7 @@
 import React from "react";
 
+import QuestCard from "../../Components/quest-card/quest-card.component";
+
 // ------------- Containers / Layouts -------------- //
 import AsideLayoutContainer from "../../Layouts/aside-container.layout";
 import PageLayoutContainer from "../../Layouts/page-container.layout";
@@ -14,7 +16,7 @@ const DailyPage = () => {
     return (
         <PageLayoutContainer>
             <AsideLayoutContainer >
-                <TitlePage titleName='Daily' />
+                <TitlePage titleName='Tomorrow' />
             </AsideLayoutContainer>
             <MainLayoutContainer>
                 <Navigation />

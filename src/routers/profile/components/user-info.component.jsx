@@ -1,6 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
 
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../App/slices/user.slice";
+
 //----------------- Styled ---------------------//
 const UserSection = styled.section`
     width: 100%;
@@ -12,10 +15,12 @@ const UserSection = styled.section`
 //----------------------------------------------//
 
 const UserInfo = () => {
+    const { userName, userPhrase } = useSelector(selectUser);
+
     return (
         <UserSection>
-            <h2>Andrew Tsoy</h2>
-            <p>Find your lovely phrase which motivates you to do your best every day!</p>
+            <h2>{userName}</h2>
+            <p>{userPhrase}</p>
         </UserSection>
     )
 }
