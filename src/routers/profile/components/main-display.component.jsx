@@ -24,8 +24,8 @@ const MainDisplay = () => {
 
     return (
         <DisplaySection>
-            <QuestCard type='Today' color='rgb(224, 62, 26)' quests={tomorrow} />
-            <QuestCard type='Out plan' color='rgb(138, 56, 245)' quests={outOfPlan} />
+            <QuestCard title='Today' color='rgb(224, 62, 26)' quests={tomorrow} />
+            <QuestCard title='Out plan' color='rgb(138, 56, 245)' quests={outOfPlan} />
         </DisplaySection>
     )
 }

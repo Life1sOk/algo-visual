@@ -7,7 +7,7 @@ export const QuestCardContainer = styled.div`
     background-color: white;
     border: 3px solid ${props => props.color};
     border-radius: 20px;
-    overflow: scroll;
+    overflow: hidden;
 `;
 
 export const QuestTitle = styled.h2`

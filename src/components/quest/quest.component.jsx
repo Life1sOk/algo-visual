@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { QuestContainer, QuestWrapper, DiscriptionBox } from './quest.style.js';
 
 const Quest = ({ quest }) => {
-    const { questName, discription } = quest;
+    const { questName, description } = quest;
     const [state, setState] = useState(false);
 
     return (
@@ -12,7 +12,7 @@ const Quest = ({ quest }) => {
                 <input type="checkbox" />
                 <h3 className="quest" onClick={() => setState(!state)}>{questName}</h3>
             </QuestContainer>
-            <DiscriptionBox state={state}>{discription}</DiscriptionBox>
+            <DiscriptionBox state={state}>{description}</DiscriptionBox>
         </QuestWrapper>
     )
 }
