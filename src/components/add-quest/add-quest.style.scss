@@ -1,88 +1,61 @@
+@keyframes example {
+    0% {
+        transform: scale(1)
+    }
+
+    25% {
+        transform: scale(.99)
+    }
+
+    50% {
+        transform: scale(.98)
+    }
+
+    75% {
+        transform: scale(.97)
+    }
+
+    100% {
+        transform: scale(.96)
+    }
+}
+
 .addquest-container {
     position: relative;
-    border: 1px solid rgb(224, 62, 26);
-    margin: 25px 10px 10px 10px;
-    padding: 10px;
+    height: 100px;
+    margin: 10px;
+    background-color: black;
+    opacity: .2;
+    border-radius: 10px;
+    animation-name: example;
+    animation-duration: 1.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 
-    display: flex;
-    flex-direction: column;
+    &:hover {
+        cursor: pointer;
+    }
 
-    .label {
-        color: white;
-        padding: 4px 17px;
-        margin-left: 10px;
-        font-size: 14px;
-        width: fit-content;
-        background-color: rgb(224, 62, 26);
-
+    .one-line {
         position: absolute;
-        right: 0;
-        top: -20px;
+        top: 15px;
+        left: calc(50% - 5px);
+
+        height: 70px;
+        width: 10px;
+        background-color: rgb(215, 215, 215);
+        border-radius: 6px;
     }
 
-    .input {
-        padding: 5px;
-        font-size: 18.73px;
-        border: none;
-        border-bottom: 1px solid grey;
-    }
+    .two-line {
+        position: absolute;
+        top: calc(50% - 5px);
+        left: calc(50% - 35px);
 
-    .add-text {
-        font-size: 16px;
-        font-style: italic;
-        opacity: .7;
-        min-height: 110px;
-        resize: none;
-        border: none;
-        border-bottom: 1px solid grey;
-    }
-
-    .buttons {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3px;
-        margin-top: 10px;
-        min-height: 28px;
-
-        .all {
-            padding: 4px;
-            color: rgb(68, 61, 61);
-            cursor: pointer;
-            border: 1px solid rgba(27, 31, 35, .15);
-            border-radius: 3px;
-            box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .green {
-            background-color: rgb(51, 255, 51);
-
-            &:hover {
-                color: rgb(51, 255, 51);
-                border: 2px solid rgb(51, 255, 51);
-                background-color: rgb(68, 61, 61);
-            }
-        }
-
-        .yellow {
-            background-color: rgb(255, 255, 51);
-
-            &:hover {
-                color: rgb(255, 255, 51);
-                border: 2px solid rgb(255, 255, 51);
-                background-color: rgb(68, 61, 61);
-            }
-        }
-
-        .red {
-            background-color: rgb(255, 51, 51);
-
-            &:hover {
-                color: rgb(255, 51, 51);
-                border: 2px solid rgb(255, 51, 51);
-                background-color: rgb(68, 61, 61);
-            }
-        }
+        height: 10px;
+        width: 70px;
+        background-color: rgb(215, 215, 215);
+        border-radius: 6px;
     }
 }

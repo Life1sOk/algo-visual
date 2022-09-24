@@ -6,7 +6,7 @@ const PageLayout = styled.div`
     width: 100%;
     width: 1280px;
     height: 100%;
-    height: 1500px;
+    min-height: 1000px;
     background-color: rgb(240, 194, 240);
     margin: 20px auto 0 auto;
 

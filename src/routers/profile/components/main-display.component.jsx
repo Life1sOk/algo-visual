@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 
 import { useSelector } from "react-redux";
-import { selectTomorrow, selectOutOfPlan } from '../../../App/slices/tomorrow.slice';
+import { selectFixPlan, selectOutOfPlan } from '../../../App/slices/tomorrow.slice';
 
 import QuestCard from "../../../Components/quest-card/quest-card.component";
 //----------------- Styled ---------------------//
@@ -19,7 +19,7 @@ const DisplaySection = styled.section`
 
 
 const MainDisplay = () => {
-    const tomorrow = useSelector(selectTomorrow);
+    const tomorrow = useSelector(selectFixPlan);
     const outOfPlan = useSelector(selectOutOfPlan);
 
     return (

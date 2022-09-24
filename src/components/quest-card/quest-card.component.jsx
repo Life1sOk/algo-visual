@@ -2,6 +2,7 @@ import React from "react";
 
 import { QuestCardContainer, QuestTitle, ProgressBar } from './quest-card.style';
 import Quest from "../quest/quest.component";
+import FixQuest from "../fix-quest/fix-quest.component";
 import AddQuest from "../add-quest/add-quest.component";
 
 const QuestCard = ({ title, color, quests, type }) => {
@@ -11,7 +12,7 @@ const QuestCard = ({ title, color, quests, type }) => {
             {type === 'add' ?
                 quests &&
                 quests.map(quest =>
-                    <AddQuest quest={quest} />
+                    <FixQuest key={quest.id} quest={quest} />
                 )
                 :
                 quests &&
@@ -20,7 +21,7 @@ const QuestCard = ({ title, color, quests, type }) => {
                 )
             }
             {
-                type === 'add' ? null : <ProgressBar>Progress bar</ProgressBar>
+                type === 'add' ? <AddQuest /> : <ProgressBar>Progress bar</ProgressBar>
             }
         </QuestCardContainer>
     )
