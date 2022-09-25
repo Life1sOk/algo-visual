@@ -72,30 +72,29 @@ export const tomorrowSlice = createSlice({
     name: 'tomorrow',
     initialState,
     reducers: {
-        accept: (state, { type, payload }) => {
-            if (type === 'accept') {
-                console.log('accept')
-                state.tomorrowPlan = state.tomorrowPlan.map(quest => {
-                    if (quest.id === payload.id) {
-                        quest = { ...payload };
-                    }
-                    return quest;
-                })
-            }
+        accept: function (state, { payload }) {
+            state.fixPlan = state.fixPlan.map(quest => {
+                if (quest.id === payload.id) {
+                    quest = { ...payload };
+                }
+                return quest;
+            })
+            state.tomorrowPlan.push(payload);
         },
         addQuest: (state) => {
-            let lastId = state.tomorrowPlan.length;
-            const checkObject = state.tomorrowPlan[lastId - 1]?.questName;
+            let lastId = state.fixPlan.length;
+            const checkObject = state.fixPlan[lastId - 1]?.questName;
 
-            if (state.tomorrowPlan[0] && checkObject.length < 3) {
+            if (state.fixPlan[0] && checkObject.length < 3) {
                 alert('u already have to add');
                 return;
             }
 
-            state.tomorrowPlan.push({ id: lastId + 1, ...state.blankQuest })
+            state.fixPlan.push({ id: lastId + 1, ...state.blankQuest })
         },
         remove: (state, { payload }) => {
-            state.tomorrowPlan = state.tomorrowPlan.filter(quest => quest.id !== payload);
+            state.fixPlan = state.fixPlan.filter(quest => quest.id !== payload);
+            state.tomorrowPlan = state.fixPlan;
         },
     }
 });
@@ -104,6 +103,6 @@ export const selectTomorrow = (state) => state.tomorrow.tomorrowPlan;
 export const selectFixPlan = (state) => state.tomorrow.fixPlan;
 export const selectOutOfPlan = (state) => state.tomorrow.outOfPlan;
 
-export const { remove, accept, addQuest } = tomorrowSlice.actions;
+export const { remove, accept, addQuest, saveChanges } = tomorrowSlice.actions;
 
 export default tomorrowSlice.reducer;

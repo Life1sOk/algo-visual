@@ -5,14 +5,15 @@ import AsideLayoutContainer from "../../Layouts/aside-container.layout";
 import PageLayoutContainer from "../../Layouts/page-container.layout";
 import MainLayoutContainer from "../../Layouts/main-container.layout";
 
-// ------------- React's Common Components ------------------- //
+// ------------- Top level React Components ------------------- //
 import Navigation from "../../Components/navigation/navigation.component";
 
-// ------------ React's Page Components ----------------- //
-import ProfileImg from "./components/profile-img.component";
-import UserInfo from "./components/user-info.component";
-import MainDisplay from "./components/main-display.component";
-import GoalsDisplay from "./components/goals-display.component";
+// ------------ Page's Sections ----------------- //
+import MainDisplaySection from "./sections/main-display/main-display.section";
+
+// ------------ Page's React Components ----------------- //
+import ProfileImg from "./components/profile-img/profile-img.component";
+import UserInfo from "./components/user-info/user-info.component";
 
 // ------------- Lego --------------- //
 const ProfilePage = () => {
@@ -24,8 +25,7 @@ const ProfilePage = () => {
             </AsideLayoutContainer>
             <MainLayoutContainer>
                 <Navigation />
-                <MainDisplay />
-                <GoalsDisplay />
+                <MainDisplaySection />
             </MainLayoutContainer>
         </PageLayoutContainer>
     )
