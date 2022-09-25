@@ -4,10 +4,11 @@ import { useDispatch } from "react-redux";
 import { remove, accept } from "../../../../App/slices/tomorrow.slice";
 import Button from "../button/button.component";
 
-import { FixQuestContainer, FixLabel, TitleInput, TextInput, ButtonWrapper } from './fix-quest.style';
+import { FixQuestContainer, FixLabel, TitleInput, TextInput, ButtonWrapper, DoneTitle } from './fix-quest.style';
 
-const FixQuest = ({ quest }) => {
+const FixQuest = ({ quest, order }) => {
     const dispatch = useDispatch();
+    const [state, setState] = useState(false);
     const [blank, setBlank] = useState(quest);
     const { id, questName, description } = blank;
 
@@ -28,16 +29,25 @@ const FixQuest = ({ quest }) => {
             return;
         }
         dispatch(accept(blank));
+        setState(!state);
     }
 
     return (
-        <FixQuestContainer>
-            <FixLabel> quest {id} </FixLabel>
-            <TitleInput placeholder="title" id="fix" value={questName}
-                onChange={(e) => titleHandler(e)} />
-            <TextInput type='text' placeholder="discription" value={description}
+        <FixQuestContainer state={state}>
+            <FixLabel> quest {order + 1} </FixLabel>
+            {
+                !state ?
+                    <TitleInput placeholder="title" id="fix" value={questName}
+                        onChange={(e) => titleHandler(e)} />
+                    :
+                    <DoneTitle>
+                        <h3 className="quest-title">{questName}</h3>
+                        <Button name='fix' type='yellow' onClick={() => setState(!state)} />
+                    </DoneTitle>
+            }
+            <TextInput state={state} type='text' placeholder="discription" value={description}
                 onChange={(e) => descriptionHandler(e)} />
-            <ButtonWrapper>
+            <ButtonWrapper state={state}>
                 <Button name='Accept' type='green' onClick={acceptHandler} />
                 <Button name='Clear' type='yellow' onClick={() => setBlank({ id: id, questName: '', description: '' })} />
                 <Button name='Delete' type='red' onClick={() => dispatch(remove(id))} />

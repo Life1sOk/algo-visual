@@ -79,7 +79,10 @@ export const tomorrowSlice = createSlice({
                 }
                 return quest;
             })
-            state.tomorrowPlan.push(payload);
+
+            if (state.tomorrowPlan.length < state.fixPlan.length) {
+                state.tomorrowPlan.push(payload);
+            }
         },
         addQuest: (state) => {
             let lastId = state.fixPlan.length;

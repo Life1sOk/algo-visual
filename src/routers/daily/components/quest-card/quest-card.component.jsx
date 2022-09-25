@@ -12,7 +12,7 @@ const QuestCard = ({ title, color, quests }) => {
             {
                 quests &&
                 quests.map(quest =>
-                    <FixQuest key={quest.id} quest={quest} />
+                    <FixQuest key={quest.id} quest={quest} order={quests.indexOf(quest)} />
                 )
             }
             <AddQuest />

@@ -5,9 +5,29 @@ export const FixQuestContainer = styled.div`
     border: 1px solid rgb(224, 62, 26);
     margin: 25px 10px 10px 10px;
     padding: 10px;
+    background-color: ${props => props.state ? 'rgb(153, 255, 51)' : null};
 
     display: flex;
     flex-direction: column;
+
+    .quest-title {
+        padding: 5px;
+    }
+`;
+
+export const DoneTitle = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+
+    button {
+
+        &:hover {
+        color: black;
+        border: 2px solid red;
+        background-color: white;
+        }
+    }
 `;
 
 export const FixLabel = styled.label`
@@ -28,10 +48,10 @@ export const TitleInput = styled.input`
     font-size: 18.73px;
     border: none;
     margin-bottom: 5px;
-
 `;
 
 export const TextInput = styled.textarea`
+    display: ${props => props.state ? 'none' : null};
     padding: 5px;
     font-size: 16px;
     font-style: italic;
@@ -44,7 +64,7 @@ export const TextInput = styled.textarea`
 `;
 
 export const ButtonWrapper = styled.div`
-    display: grid;
+    display: ${props => props.state ? 'none' : 'grid'};
     grid-template-columns: repeat(3, 1fr);
     gap: 3px;
     margin-top: 10px;
