@@ -1,10 +1,18 @@
 import React from "react";
 
-import { ButtonStyle } from './button.style';
+import { ButtonStyle, ButtonSwitch } from './button.style';
 
-const Button = ({ name, type, color, ...other }) => {
+const Button = ({ name, type, color, on, ...other }) => {
+
     return (
-        <ButtonStyle color={color} {...other}>{name}</ButtonStyle>
+        <>
+            {
+                type ?
+                    <ButtonSwitch on={on} color={color} type={type} {...other}>{name}</ButtonSwitch>
+                    :
+                    <ButtonStyle color={color} {...other}>{name}</ButtonStyle>
+            }
+        </>
     )
 }
 
