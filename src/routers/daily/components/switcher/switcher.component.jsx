@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { SwitcherContainer } from './switcher.style';
+import { SwitcherContainer, Button } from './switcher.style';
 
-const Switcher = () => {
+const Switcher = ({ setDisplay, colors }) => {
+    const { red, purple, orange } = colors;
+    const [on, setOn] = useState(false);
+
+    const switchHanlder = (type) => {
+        setDisplay(type);
+        setOn(!on);
+    }
+
     return (
         <SwitcherContainer>
-            <button className="buttons one">one</button>
-            <button className="buttons two">two</button>
-            <button className="buttons three">three</button>
+            <Button on={on} color={red} type='left' onClick={() => switchHanlder('main')}>Main</Button>
+            <Button on={on} color={purple} type='middle' onClick={() => switchHanlder('out')}>Out</Button>
+            <Button on={on} color={orange} type='right' onClick={() => switchHanlder('notes')}>Notes</Button>
         </SwitcherContainer>
     )
 }

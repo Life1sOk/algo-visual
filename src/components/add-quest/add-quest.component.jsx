@@ -1,15 +1,16 @@
 import React from "react";
 
 import { useDispatch } from "react-redux";
-import { addQuest } from "../../App/slices/tomorrow.slice";
+import { addQuest, addQuestOut } from "../../App/slices/tomorrow-red.slice";
 
 import './add-quest.style.scss';
 
-const AddQuest = () => {
+const AddQuest = ({ type }) => {
     const dispatch = useDispatch();
 
     const addHandler = () => {
-        dispatch(addQuest())
+        if (type === 'main') dispatch(addQuest());
+        if (type === 'out') dispatch(addQuestOut());
     }
 
     return (

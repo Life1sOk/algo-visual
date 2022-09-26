@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './slices/user.slice';
-import tomorrowReducer from './slices/tomorrow.slice';
+import tomorrowReducer from './slices/tomorrow-red.slice';
 
 const store = configureStore({
     middleware: (getDefaultMiddleware) =>

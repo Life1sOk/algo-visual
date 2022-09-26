@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FixQuestContainer = styled.div`
     position: relative;
-    border: 1px solid rgb(224, 62, 26);
+    border: 1px solid ${props => props.color};
     margin: 25px 10px 10px 10px;
     padding: 10px;
     background-color: ${props => props.state ? 'rgb(153, 255, 51)' : null};
@@ -36,7 +36,7 @@ export const FixLabel = styled.label`
     margin-left: 10px;
     font-size: 14px;
     width: fit-content;
-    background-color: rgb(224, 62, 26);
+    background-color: ${props => props.color};
 
     position: absolute;
     right: -1px;

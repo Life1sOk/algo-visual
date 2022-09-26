@@ -4,7 +4,7 @@ import { QuestCardContainer, QuestTitle } from './quest-card.style';
 import FixQuest from "../fix-quest/fix-quest.component";
 import AddQuest from '../../../../Components/add-quest/add-quest.component';
 
-const QuestCard = ({ title, color, quests }) => {
+const QuestCard = ({ title, color, quests, type }) => {
 
     return (
         <QuestCardContainer color={color}>
@@ -12,10 +12,10 @@ const QuestCard = ({ title, color, quests }) => {
             {
                 quests &&
                 quests.map(quest =>
-                    <FixQuest key={quest.id} quest={quest} order={quests.indexOf(quest)} />
+                    <FixQuest key={quest.id} quest={quest} order={quests.indexOf(quest)} color={color} type={type} />
                 )
             }
-            <AddQuest />
+            <AddQuest type={type} />
         </QuestCardContainer>
     )
 }

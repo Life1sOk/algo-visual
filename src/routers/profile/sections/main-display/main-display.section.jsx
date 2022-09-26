@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { selectTomorrow, selectOutOfPlan } from '../../../../App/slices/tomorrow.slice';
+import { selectTomorrow, selectOutOfPlan } from '../../../../App/slices/tomorrow-red.slice';
 
 import { DisplaySection } from './main-display.style';
 import QuestCard from "../../components/quest-card/quest-card.component";
