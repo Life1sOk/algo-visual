@@ -49,7 +49,7 @@ const FixQuest = ({ quest, order, color, type }) => {
                     :
                     <DoneTitle>
                         <h3 className="quest-title">{questName}</h3>
-                        <Button name='fix' type='yellow' onClick={() => setState(!state)} />
+                        <Button name='fix' color='yellow' onClick={() => setState(!state)} />
                     </DoneTitle>
             }
             <TextInput state={state} type='text' placeholder="discription" value={description}

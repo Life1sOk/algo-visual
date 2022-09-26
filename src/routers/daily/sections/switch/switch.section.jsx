@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectFixPlan, selectFixOutOfPlan } from "../../../../App/slices/tomorrow-red.slice";
 
 import QuestCard from "../../components/quest-card/quest-card.component";
-import './switch.style';
+import { Yellow } from './switch.style';
 import Switcher from "../../components/switcher/switcher.component";
 
 const colors = {
@@ -27,7 +27,7 @@ const SwitchSection = () => {
                     display === 'out' ?
                         <QuestCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='out' /> :
                         display === 'notes' ?
-                            <div>Notes</div> : null
+                            <Yellow>Notes</Yellow> : null
             }
         </>
     )

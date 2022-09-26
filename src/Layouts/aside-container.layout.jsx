@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 //----------------- Styled ---------------------//
 const AsideLayout = styled.div`
-    width: 400px;
+    width: 350px;
     padding: 10px;
     border-right: 2px solid green;
 
