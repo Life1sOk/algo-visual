@@ -2,9 +2,9 @@ import React from "react";
 
 import { YearGoalContainer } from './year-goal.style';
 
-const YearGoal = () => {
+const YearGoal = ({ color }) => {
     return (
-        <YearGoalContainer>
+        <YearGoalContainer color={color}>
 
         </YearGoalContainer>
     )
