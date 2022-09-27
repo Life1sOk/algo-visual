@@ -1,7 +1,4 @@
-// dailyPlan id: 50-100;
-
 export const initialState = {
-    outOfPlan: [],
     mainGoals: [
         {
             currentGoal: '',
