@@ -14,7 +14,7 @@ const GoalsSection = () => {
 
     return (
         <GoalsSectionContainer>
-            <YearGoal color={mainColor} />
+            <YearGoal color={mainColor} title={title} />
         </GoalsSectionContainer>
     )
 }
