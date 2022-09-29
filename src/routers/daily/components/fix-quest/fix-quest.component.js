@@ -8,7 +8,7 @@ import { FixQuestContainer, FixLabel, TitleInput, TextInput, ButtonWrapper, Done
 
 const FixQuest = ({ quest, order, color, type }) => {
     const dispatch = useDispatch();
-    const [state, setState] = useState(false);
+    const [state, setState] = useState(true);
     const [blank, setBlank] = useState(quest);
     const { id, questName, description } = blank;
 
@@ -44,21 +44,22 @@ const FixQuest = ({ quest, order, color, type }) => {
             <FixLabel color={color}> quest {order + 1} </FixLabel>
             {
                 !state ?
-                    <TitleInput placeholder="title" id="fix" value={questName}
-                        onChange={(e) => titleHandler(e)} />
-                    :
+                    <>
+                        <TitleInput placeholder="title" id="fix" value={questName}
+                            onChange={(e) => titleHandler(e)} />
+                        <TextInput state={state} type='text' placeholder="discription" value={description}
+                            onChange={(e) => descriptionHandler(e)} />
+                        <ButtonWrapper state={state}>
+                            <Button name='Accept' color='green' onClick={acceptHandler} />
+                            <Button name='Clear' color='yellow' onClick={() => setBlank({ id: id, questName: '', description: '' })} />
+                            <Button name='Delete' color='red' onClick={deleteHandler} />
+                        </ButtonWrapper>
+                    </> :
                     <DoneTitle>
                         <h3 className="quest-title">{questName}</h3>
                         <Button name='fix' color='yellow' onClick={() => setState(!state)} />
                     </DoneTitle>
             }
-            <TextInput state={state} type='text' placeholder="discription" value={description}
-                onChange={(e) => descriptionHandler(e)} />
-            <ButtonWrapper state={state}>
-                <Button name='Accept' color='green' onClick={acceptHandler} />
-                <Button name='Clear' color='yellow' onClick={() => setBlank({ id: id, questName: '', description: '' })} />
-                <Button name='Delete' color='red' onClick={deleteHandler} />
-            </ButtonWrapper>
         </FixQuestContainer>
     )
 }

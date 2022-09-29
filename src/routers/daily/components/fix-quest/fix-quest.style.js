@@ -30,7 +30,7 @@ export const DoneTitle = styled.div`
     }
 `;
 
-export const FixLabel = styled.label`
+export const FixLabel = styled.div`
     color: white;
     padding: 4px 17px;
     margin-left: 10px;
@@ -51,7 +51,6 @@ export const TitleInput = styled.input`
 `;
 
 export const TextInput = styled.textarea`
-    display: ${props => props.state ? 'none' : null};
     padding: 5px;
     font-size: 16px;
     font-style: italic;
@@ -64,7 +63,7 @@ export const TextInput = styled.textarea`
 `;
 
 export const ButtonWrapper = styled.div`
-    display: ${props => props.state ? 'none' : 'grid'};
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3px;
     margin-top: 10px;

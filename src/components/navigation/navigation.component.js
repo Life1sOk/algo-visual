@@ -11,6 +11,7 @@ const Navigation = () => {
             <NavLink to='/area'>Areas</NavLink>
             <NavLink to='/posts'>Posts</NavLink>
             <NavLink to='/statistic'>Statistic</NavLink>
+            <NavLink to='/authorization'>Sign In</NavLink>
         </nav>
     )
 }
