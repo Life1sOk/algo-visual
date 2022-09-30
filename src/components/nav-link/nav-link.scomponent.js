@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 import './nav-link.style.scss';
 
-const NavLink = ({ children, to }) => {
+const NavLink = ({ children, to, ...others }) => {
     return (
         <Link to={to}>
-            <span className="nav-link">{children}</span>
+            <span className="nav-link" {...others}>{children}</span>
         </Link>
     )
 }
