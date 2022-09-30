@@ -10,4 +10,11 @@ export const SignInContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 65px;
+`;
+
+export const FormContainer = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
 `;

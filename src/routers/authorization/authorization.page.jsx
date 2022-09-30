@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createUserWithEaP } from '../../utils/firebase';
+import { createUserWithEaP, signInWithEaP, signOutHandler } from '../../utils/firebase';
 
 // ------------- Top level - Containers / Layouts -------------- //
 import CenterLayoutContainer from "../../Layouts/center-container";
@@ -20,6 +20,8 @@ const AuthorizationPage = () => {
             <Navigation />
             <SignInSection />
             <button onClick={async () => await createUserWithEaP('123123123@gmail.com', 123123123)}>autho</button>
+            <button onClick={async () => await signInWithEaP('123123123@gmail.com', 123123123)}>sign in</button>
+            <button onClick={signOutHandler}>out</button>
         </CenterLayoutContainer>
     )
 }

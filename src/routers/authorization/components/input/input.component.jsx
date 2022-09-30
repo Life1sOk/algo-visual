@@ -1,10 +1,14 @@
 import React from "react";
 
-import { } from './input.style';
+import { InputContainer, CurrentInput } from './input.style';
 
-const Input = () => {
+const Input = ({ name, id, ...others }) => {
+
     return (
-        <div></div>
+        <InputContainer>
+            <label htmlFor={id}>{name}</label>
+            <CurrentInput id={id} {...others} />
+        </InputContainer>
     )
 }
 

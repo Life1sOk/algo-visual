@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB4KW3hNs1uaX28D1uIMB98rWj_w-KSTJM",
@@ -26,3 +26,17 @@ export const createUserWithEaP = async (email, password) => {
         console.log('ooops, errors', error)
     }
 }
+
+export const signInWithEaP = async (email, password) => {
+    try {
+        const { user } = await signInWithEmailAndPassword(auth, email, password);
+        console.log(user)
+    } catch (error) {
+        console.log('ooops, errors', error)
+    }
+}
+
+export const signOutHandler = async () => {
+    const resp = await signOut(auth);
+    console.log(resp, 'out')
+} 
