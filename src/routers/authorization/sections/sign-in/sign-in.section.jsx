@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { signInWithEaP } from "../../../../utils/firebase";
+import { signInWithEaP } from "../../../../utils/firebase/firebase";
 
 import { SignInContainer, FormContainer } from './sign-in.section.style';
 import AuthTitle from "../../components/auth-title/auth-title.component";

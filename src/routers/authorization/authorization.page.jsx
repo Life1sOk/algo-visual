@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import { createUserWithEaP, signInWithEaP, signOutHandler } from '../../utils/firebase';
+import { signInUser } from '../../App/slices/user.slice';
+
+import { createUserWithEaP, signInWithEaP, signOutHandler, onAuthStateChangedListener, createUsersDocumentsFromAuth } from '../../utils/firebase/firebase';
 
 // ------------- Top level - Containers / Layouts -------------- //
 import CenterLayoutContainer from "../../Layouts/center-container";
@@ -15,13 +18,32 @@ import SignInSection from "./sections/sign-in/sign-in.section";
 
 // ------------- Lego --------------- //
 const AuthorizationPage = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        onAuthStateChangedListener((user) => {
+            if (user) {
+                // const uid = user.uid;
+                createUsersDocumentsFromAuth(user);
+                dispatch(signInUser(true))
+            } else {
+                console.log('no user in')
+            }
+        })
+    }, [])
+
+    const signOut = () => {
+        dispatch(signInUser(false));
+        signOutHandler();
+    }
+
     return (
         <CenterLayoutContainer>
             <Navigation />
             <SignInSection />
             <button onClick={async () => await createUserWithEaP('123123123@gmail.com', 123123123)}>autho</button>
             <button onClick={async () => await signInWithEaP('123123123@gmail.com', 123123123)}>sign in</button>
-            <button onClick={signOutHandler}>out</button>
+            <button onClick={signOut}>out</button>
         </CenterLayoutContainer>
     )
 }
