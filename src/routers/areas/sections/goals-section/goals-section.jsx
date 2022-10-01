@@ -10,7 +10,7 @@ const GoalsSection = () => {
     const currentSection = useSelector(selectDisplaySection);
     const { title, mainColor, parts } = currentSection;
 
-    console.log(currentSection)
+    // console.log(currentSection)
 
     return (
         <GoalsSectionContainer>

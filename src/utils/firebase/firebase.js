@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, collection } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB4KW3hNs1uaX28D1uIMB98rWj_w-KSTJM",
@@ -46,23 +46,23 @@ export const onAuthStateChangedListener = (callback) => {
 // ---------------- ------------------ ---------------- //
 
 
-// ---------------- Firebase Authentication ---------------- //
+// ---------------- Firebase Firestore ---------------- //
 const db = getFirestore(firebaseApp);
 
 export const createUsersDocumentsFromAuth = async (userAuth) => {
     if (!userAuth) return;
+    const { email, uid } = userAuth;
 
-    const getDocRef = doc(db, 'users', userAuth.uid);
+    const getDocRef = doc(db, 'users', uid);
     const checkUser = await getDoc(getDocRef);
 
     if (!checkUser.exists()) {
-        const { email } = userAuth;
         const createdAt = new Date();
 
         const userToAdd = {
             createdAt,
             email,
-            test: 'test'
+            uid,
         }
 
         try {
@@ -74,4 +74,13 @@ export const createUsersDocumentsFromAuth = async (userAuth) => {
     }
 }
 
+export const getUsersDocs = async (uid, collection, document) => {
+    if (!uid) return;
+
+    const getDocRef = doc(db, 'users', uid, collection, document);
+    const datas = await getDoc(getDocRef);
+
+    console.log(datas.data().quests)
+}
 // ---------------- ------------------ ---------------- //
+

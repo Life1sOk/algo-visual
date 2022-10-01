@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { signOutHandler } from "../../utils/firebase/firebase";
 
-import { signInUser } from "../../App/slices/user.slice";
+import { signOut } from "../../App/slices/auth.slice";
 
 import './navigation.style.scss';
 import NavLink from "../nav-link/nav-link.scomponent";
@@ -11,9 +11,9 @@ import NavLink from "../nav-link/nav-link.scomponent";
 const Navigation = () => {
     const dispatch = useDispatch();
 
-    const signOut = () => {
+    const signOutHanlder = () => {
         signOutHandler();
-        dispatch(signInUser(false));
+        dispatch(signOut());
     }
 
     return (
@@ -23,7 +23,7 @@ const Navigation = () => {
             <NavLink to='/area'>Areas</NavLink>
             <NavLink to='/posts'>Posts</NavLink>
             <NavLink to='/statistic'>Statistic</NavLink>
-            <button onClick={signOut}>Sign Out</button>
+            <button onClick={signOutHanlder}>Sign Out</button>
         </nav>
     )
 }

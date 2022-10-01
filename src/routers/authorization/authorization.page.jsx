@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { signInUser } from '../../App/slices/user.slice';
+import { signInUser } from '../../App/slices/auth.slice';
 
 import { createUserWithEaP, signInWithEaP, onAuthStateChangedListener, createUsersDocumentsFromAuth } from '../../utils/firebase/firebase';
 
@@ -24,9 +24,11 @@ const AuthorizationPage = () => {
     useEffect(() => {
         onAuthStateChangedListener((user) => {
             if (user) {
-                // const uid = user.uid;
                 createUsersDocumentsFromAuth(user);
-                dispatch(signInUser(true));
+                dispatch(signInUser({
+                    loggedIn: true,
+                    uid: user.uid,
+                }));
                 navigate('/profile');
             } else {
                 console.log('no user in')

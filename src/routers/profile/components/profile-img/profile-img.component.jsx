@@ -6,10 +6,10 @@ import { selectUser } from "../../../../App/slices/user.slice";
 import { Img } from "./profile-img.style";
 
 const ProfileImg = () => {
-    const { userImage } = useSelector(selectUser)
+    const zero = useSelector(selectUser);
 
     return (
-        <Img alt="logo" src={userImage} />
+        <Img alt="logo" src={zero.userImage} />
     )
 }
 

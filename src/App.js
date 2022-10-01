@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Protected from './utils/protected-route/protected-route';
 
 import { useSelector } from 'react-redux';
-import { selectUserLoggedIn } from './App/slices/user.slice';
+import { selectAuthLoggedIn } from './App/slices/auth.slice';
 
 import './App.css';
 import DailyPage from './Routers/daily/daily-page';
@@ -15,7 +15,7 @@ import ProfilePage from './Routers/profile/profile-page';
 import AuthorizationPage from './Routers/authorization/authorization.page';
 
 function App() {
-  const loggedIn = useSelector(selectUserLoggedIn)
+  const loggedIn = useSelector(selectAuthLoggedIn);
 
   return (
     <>

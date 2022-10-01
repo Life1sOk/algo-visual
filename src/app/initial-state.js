@@ -82,3 +82,13 @@ export const initialAreas = {
         ]
     }
 }
+
+export const initialAuthState = {
+    loggedIn: false,
+    userEmail: null,
+    userUid: null
+}
+
+export const initialCurrentUserState = {
+
+}

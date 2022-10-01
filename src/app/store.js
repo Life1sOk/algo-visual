@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './slices/user.slice';
 import tomorrowReducer from './slices/tomorrow-red.slice';
 import areasReducer from './slices/areas-slice';
+import authReducer from './slices/auth.slice';
 
 const store = configureStore({
     middleware: (getDefaultMiddleware) =>
@@ -17,6 +18,7 @@ const store = configureStore({
         }),
 
     reducer: {
+        auth: authReducer,
         user: userReducer,
         tomorrow: tomorrowReducer,
         areas: areasReducer,

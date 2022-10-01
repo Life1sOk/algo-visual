@@ -1,5 +1,10 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
+import { selectAuthUid } from "../../App/slices/auth.slice";
+
+import { getUsersDocs } from "../../utils/firebase/firebase";
+
 // ------------- Top level - Containers / Layouts -------------- //
 import AsideLayoutContainer from "../../Layouts/aside-container.layout";
 import PageLayoutContainer from "../../Layouts/page-container.layout";
@@ -17,11 +22,14 @@ import UserInfo from "./components/user-info/user-info.component";
 
 // ------------- Lego --------------- //
 const ProfilePage = () => {
+    const current = useSelector(selectAuthUid);
+
     return (
         <PageLayoutContainer>
             <AsideLayoutContainer >
                 <ProfileImg />
                 <UserInfo />
+                <button onClick={async () => await getUsersDocs(current, 'quests', 'daily')}>CheckUser</button>
             </AsideLayoutContainer>
             <MainLayoutContainer>
                 <Navigation />
