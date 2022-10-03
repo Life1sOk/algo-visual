@@ -52,3 +52,6 @@ function App() {
 }
 
 export default App;
+
+// Next to DO 
+// Card logic and state this how to do!

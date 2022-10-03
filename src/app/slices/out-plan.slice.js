@@ -38,8 +38,6 @@ export const outPlanSlice = createSlice({
                 return quest;
             });
 
-            state.outOfPlan = state.fixOutOfPlan;
-
             if (state.outOfPlan.length < state.fixOutOfPlan.length) {
                 state.outOfPlan.push(payload);
             }

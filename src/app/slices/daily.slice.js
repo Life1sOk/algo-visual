@@ -37,7 +37,6 @@ export const dailySlice = createSlice({
                 }
                 return quest;
             })
-            state.dailyPlan = state.fixPlan;
 
             if (state.dailyPlan.length < state.fixPlan.length) {
                 state.dailyPlan.push(payload);
