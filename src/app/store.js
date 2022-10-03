@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './slices/user.slice';
-import tomorrowReducer from './slices/tomorrow-red.slice';
+import outPlanReducer from './slices/out-plan.slice';
+import dailyReducer from './slices/daily.slice';
 import areasReducer from './slices/areas-slice';
 import authReducer from './slices/auth.slice';
 
@@ -20,7 +21,8 @@ const store = configureStore({
     reducer: {
         auth: authReducer,
         user: userReducer,
-        tomorrow: tomorrowReducer,
+        daily: dailyReducer,
+        outPlan: outPlanReducer,
         areas: areasReducer,
     }
 })

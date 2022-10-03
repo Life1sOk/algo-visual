@@ -1,10 +1,11 @@
 import React from "react";
 
-import { QuestCardContainer, QuestTitle } from './quest-card.style';
+import { QuestCardContainer, QuestTitle, QuestFooter } from './quest-card.style';
 import FixQuest from "../fix-quest/fix-quest.component";
 import AddQuest from '../../../../Components/add-quest/add-quest.component';
+import Button from "../button/button.component";
 
-const QuestCard = ({ title, color, quests, type }) => {
+const QuestCard = ({ title, color, quests, type, addDatasHandler, drainDatasHandler }) => {
 
     const newQuestHandler = (questState) => {
         questState();
@@ -20,6 +21,10 @@ const QuestCard = ({ title, color, quests, type }) => {
                 )
             }
             <AddQuest type={type} onClick={newQuestHandler} />
+            <QuestFooter>
+                <Button name='Ready' color='green' onClick={addDatasHandler} />
+                <Button name='Yesterday' color='yellow' onClick={drainDatasHandler} />
+            </QuestFooter>
         </QuestCardContainer>
     )
 }

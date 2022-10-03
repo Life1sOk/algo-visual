@@ -25,10 +25,15 @@ export const QuestContainer = styled.div`
     }
 `;
 
-export const DiscriptionBox = styled.span`
+export const DiscriptionBox = styled.textarea`
     display: ${props => props.state ? 'initial' : 'none'};
 
-    margin-left: 10px;
+    padding: 10px 5px 5px 25px;
+    font-size: 16px;
     font-style: italic;
     opacity: .7;
+    min-height: 110px;
+    resize: none;
+    border: none;
+    border-top: 1px solid grey;
 `;

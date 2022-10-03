@@ -19,3 +19,10 @@ export const QuestTitle = styled.h2`
     justify-content: center;
     align-items: center;
 `;
+
+export const QuestFooter = styled.div`
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+`;

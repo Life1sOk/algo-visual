@@ -12,7 +12,7 @@ const Quest = ({ quest }) => {
                 <input type="checkbox" />
                 <h3 className="quest" onClick={() => setState(!state)}>{questName}</h3>
             </QuestContainer>
-            <DiscriptionBox state={state}>{description}</DiscriptionBox>
+            <DiscriptionBox state={state} readOnly disabled defaultValue={description} />
         </QuestWrapper>
     )
 }

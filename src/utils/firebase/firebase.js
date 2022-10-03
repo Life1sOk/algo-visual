@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc, collection } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB4KW3hNs1uaX28D1uIMB98rWj_w-KSTJM",
@@ -74,13 +74,52 @@ export const createUsersDocumentsFromAuth = async (userAuth) => {
     }
 }
 
-export const getUsersDocs = async (uid, collection, document) => {
+export const getUsersDocsDaily = async (uid) => {
     if (!uid) return;
 
-    const getDocRef = doc(db, 'users', uid, collection, document);
+    const getDocRef = doc(db, 'users', uid, 'quests', 'daily');
     const datas = await getDoc(getDocRef);
 
-    console.log(datas.data().quests)
+    return datas.data().quests;
+}
+
+export const getUsersDocsOutPlan = async (uid) => {
+    if (!uid) return;
+
+    const getDocRef = doc(db, 'users', uid, 'quests', 'outDaily');
+    const datas = await getDoc(getDocRef);
+
+    return datas.data().quests;
+}
+
+export const setUsersDatasDaily = async (uid, datasToAdd) => {
+    if (!uid) return;
+
+    const docRef = (db, doc(db, 'users', uid, 'quests', 'daily'))
+
+    try {
+        await setDoc(docRef, {
+            quests: datasToAdd,
+        });
+        console.log('datas ready')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+}
+
+export const setUsersDatasOutDaily = async (uid, datasToAdd) => {
+    if (!uid) return;
+
+    const docRef = (db, doc(db, 'users', uid, 'quests', 'outDaily'))
+
+    try {
+        await setDoc(docRef, {
+            quests: datasToAdd,
+        });
+        console.log('datas ready')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
 }
 // ---------------- ------------------ ---------------- //
 

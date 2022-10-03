@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { remove, accept, removeOut, acceptOut } from "../../../../App/slices/tomorrow-red.slice";
+import { remove, accept } from "../../../../App/slices/daily.slice";
+import { removeOut, acceptOut } from "../../../../App/slices/out-plan.slice";
 import Button from "../button/button.component";
 
 import { FixQuestContainer, FixLabel, TitleInput, TextInput, ButtonWrapper, DoneTitle } from './fix-quest.style';
 
 const FixQuest = ({ quest, order, color, type }) => {
     const dispatch = useDispatch();
-    const [state, setState] = useState(true);
+    const [state, setState] = useState(false);
     const [blank, setBlank] = useState(quest);
     const { id, questName, description } = blank;
 

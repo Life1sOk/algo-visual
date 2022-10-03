@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
+import { getDailyInitialData } from '../../App/slices/daily.slice.js';
+import { getOutInitialData } from "../../App/slices/out-plan.slice";
 
-import { getUsersDocs } from "../../utils/firebase/firebase";
 
 // ------------- Top level - Containers / Layouts -------------- //
 import AsideLayoutContainer from "../../Layouts/aside-container.layout";
@@ -22,14 +23,19 @@ import UserInfo from "./components/user-info/user-info.component";
 
 // ------------- Lego --------------- //
 const ProfilePage = () => {
+    const dispatch = useDispatch();
     const current = useSelector(selectAuthUid);
+
+    useEffect(() => {
+        dispatch(getDailyInitialData(current));
+        dispatch(getOutInitialData(current));
+    }, [dispatch, current]);
 
     return (
         <PageLayoutContainer>
             <AsideLayoutContainer >
                 <ProfileImg />
                 <UserInfo />
-                <button onClick={async () => await getUsersDocs(current, 'quests', 'daily')}>CheckUser</button>
             </AsideLayoutContainer>
             <MainLayoutContainer>
                 <Navigation />
