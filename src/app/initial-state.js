@@ -3,6 +3,11 @@ import people from '../Routers/areas/assets/people.png';
 import environment from '../Routers/areas/assets/environment.png';
 import growth from '../Routers/areas/assets/growth.png';
 
+import healthImg from '../Routers/areas/assets/page-img/running.png';
+import peopleImg from '../Routers/areas/assets/page-img/networking.png';
+import environmentImg from '../Routers/areas/assets/page-img/environment.png';
+import growthImg from '../Routers/areas/assets/page-img/growth.png';
+
 export const initialAreas = {
     sections: [
         {
@@ -10,6 +15,7 @@ export const initialAreas = {
             title: 'Health',
             mainColor: 'rgb(204,255,229)',
             icon: health,
+            previewImg: healthImg,
             parts: ['Physical Health', 'Emotion and Spiritual Health', 'Financial Health'],
             mainGoals: [
                 {
@@ -25,6 +31,7 @@ export const initialAreas = {
             title: 'People',
             mainColor: 'rgb(255,204,229)',
             icon: people,
+            previewImg: peopleImg,
             parts: ['Home People', 'Work People', 'Wider Community'],
             mainGoals: [
                 {
@@ -40,6 +47,7 @@ export const initialAreas = {
             title: 'Environment',
             mainColor: 'rgb(204,229,255)',
             icon: environment,
+            previewImg: environmentImg,
             parts: ['Home Environment', 'Work Environment', 'Adventures'],
             mainGoals: [
                 {
@@ -55,6 +63,7 @@ export const initialAreas = {
             title: 'Growth',
             mainColor: 'rgb(255,229,204)',
             icon: growth,
+            previewImg: growthImg,
             parts: ['Learning', 'Career', 'Rest, Play and Creativity'],
             mainGoals: [
                 {

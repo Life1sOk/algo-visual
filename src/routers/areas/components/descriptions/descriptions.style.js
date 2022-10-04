@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DescriptionContainer = styled.article`
-    max-width: 500px;
+    ${'' /* max-width: 500px; */}
     color: white;
     line-height: 27px;
 
