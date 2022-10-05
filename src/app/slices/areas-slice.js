@@ -9,12 +9,15 @@ export const areasSlice = createSlice({
         changeDisplay: (state, { payload }) => {
             state.displaySection = state.sections.find(sec => sec.id === payload)
         },
+        currentStateOpen: (state) => {
+            state.displaySection.stateOpen = !state.displaySection.stateOpen;
+        }
     }
 });
 
 export const selectAreas = (state) => state.areas.sections;
 export const selectDisplaySection = (state) => state.areas.displaySection;
 
-export const { changeDisplay } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen } = areasSlice.actions;
 
 export default areasSlice.reducer;

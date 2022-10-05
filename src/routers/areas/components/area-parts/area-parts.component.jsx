@@ -1,14 +1,14 @@
 import React from "react";
 
-import './area-parts.style.scss';
+import { AreaPartContainer, CurrentPart } from './area-parts.style';
 
-const AreaParts = () => {
+const AreaParts = ({ parts }) => {
     return (
-        <div className="area-container">
-            <div className="part one">Emotion & Spiritual</div>
-            <div className="part two">Physical</div>
-            <div className="part three">Financial</div>
-        </div>
+        <AreaPartContainer>
+            {parts &&
+                parts.map(part => <CurrentPart>{part}</CurrentPart>)
+            }
+        </AreaPartContainer>
     )
 }
 

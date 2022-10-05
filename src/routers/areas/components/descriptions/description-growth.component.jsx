@@ -5,7 +5,6 @@ import { DescriptionContainer } from './descriptions.style';
 const DescriptionGrowth = () => {
     return (
         <DescriptionContainer>
-            <h2>Your Growth</h2>
             <p>In our lifetime, we will be faced with many obstacles and challenges. <br />
                 We have a choice to embrace these as opportunities to learn and grow, no matter what our age or personal circumstances may be.
             </p>

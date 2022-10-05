@@ -4,7 +4,7 @@ import styled from 'styled-components';
 //----------------- Styled ---------------------//
 const PageLayout = styled.div`
     width: 100%;
-    width: 1280px;
+    width: 1380px;
     height: 100%;
     min-height: 1000px;
     background-color: rgb(240, 194, 240);
