@@ -42,6 +42,12 @@ export const initialAreas = {
                     tier: 1,
                     needToDo: [],
                 },
+                {
+                    currentGoal: '',
+                    id: '',
+                    tier: 2,
+                    needToDo: [],
+                },
             ]
         },
         {

@@ -1,0 +1,51 @@
+.create-todo-container {
+    width: 322px;
+    height: 400px;
+
+    color: white;
+    border: 7px solid rgb(98, 98, 98);
+    border-radius: 20px;
+    background-color: rgba(169, 169, 169, .5);
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        background-color: rgb(98, 98, 98);
+        text-align: center;
+        padding-bottom: 5px;
+        height: 8%;
+    }
+
+    .text {
+        width: 100%;
+        height: 80%;
+    }
+
+    textarea {
+        height: 84%;
+        width: 100%;
+        padding: 5px;
+        font-size: 16px;
+        font-style: italic;
+        opacity: .7;
+        resize: none;
+        border: none;
+        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .footer {
+        height: 8%;
+        width: 100%;
+        background-color: rgb(98, 98, 98);
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
