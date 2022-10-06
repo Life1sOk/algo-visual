@@ -17,15 +17,29 @@ export const initialAreas = {
             mainColor: 'rgb(204,255,229)',
             icon: health,
             previewImg: healthImg,
-            parts: ['Physical Health', 'Emotion and Spiritual Health', 'Financial Health'],
-            mainGoals: [
-                {
-                    currentGoal: '',
-                    id: '',
-                    tier: 1,
-                    needToDo: [],
-                },
-            ]
+            parts: {
+                'Physical Health': [
+                    {
+                        id: 1,
+                        name: 'Physical ',
+                        description: '',
+                    }
+                ],
+                'Emotion and Spiritual Health': [
+                    {
+                        id: 2,
+                        name: 'Emotion and Spiritual',
+                        description: '',
+                    }
+                ],
+                'Financial Health': [
+                    {
+                        id: 3,
+                        name: 'Financial',
+                        description: '',
+                    }
+                ],
+            },
         },
         {
             id: 1000,
@@ -34,21 +48,29 @@ export const initialAreas = {
             mainColor: 'rgb(255,204,229)',
             icon: people,
             previewImg: peopleImg,
-            parts: ['Home People', 'Work People', 'Wider Community'],
-            mainGoals: [
-                {
-                    currentGoal: '',
-                    id: '',
-                    tier: 1,
-                    needToDo: [],
-                },
-                {
-                    currentGoal: '',
-                    id: '',
-                    tier: 2,
-                    needToDo: [],
-                },
-            ]
+            parts: {
+                'Home People': [
+                    {
+                        id: 1,
+                        name: 'Home',
+                        description: '',
+                    }
+                ],
+                'Work People': [
+                    {
+                        id: 2,
+                        name: 'Work',
+                        description: '',
+                    }
+                ],
+                'Wider Community': [
+                    {
+                        id: 3,
+                        name: 'Wider',
+                        description: '',
+                    }
+                ],
+            },
         },
         {
             id: 1500,
@@ -57,15 +79,29 @@ export const initialAreas = {
             mainColor: 'rgb(204,229,255)',
             icon: environment,
             previewImg: environmentImg,
-            parts: ['Home Environment', 'Work Environment', 'Adventures'],
-            mainGoals: [
-                {
-                    currentGoal: '',
-                    id: '',
-                    tier: 1,
-                    needToDo: [],
-                },
-            ]
+            parts: {
+                'Home Environment': [
+                    {
+                        id: 1,
+                        name: 'Home E',
+                        description: '',
+                    }
+                ],
+                'Work Environment': [
+                    {
+                        id: 2,
+                        name: 'Work E',
+                        description: '',
+                    }
+                ],
+                'Adventures': [
+                    {
+                        id: 3,
+                        name: 'Advent',
+                        description: '',
+                    }
+                ],
+            },
         },
         {
             id: 2000,
@@ -74,15 +110,29 @@ export const initialAreas = {
             mainColor: 'rgb(255,229,204)',
             icon: growth,
             previewImg: growthImg,
-            parts: ['Learning', 'Career', 'Rest, Play and Creativity'],
-            mainGoals: [
-                {
-                    currentGoal: '',
-                    id: '',
-                    tier: 1,
-                    needToDo: [],
-                },
-            ]
+            parts: {
+                'Learning Growth': [
+                    {
+                        id: 1,
+                        name: 'Learning',
+                        description: '',
+                    }
+                ],
+                'Career Growth': [
+                    {
+                        id: 2,
+                        name: 'Career',
+                        description: '',
+                    }
+                ],
+                'Rest, Play and Creativity': [
+                    {
+                        id: 3,
+                        name: 'RPaC',
+                        description: '',
+                    }
+                ],
+            },
         },
     ],
     displaySection: {
@@ -92,14 +142,28 @@ export const initialAreas = {
         mainColor: 'rgb(204,255,229)',
         icon: health,
         previewImg: healthImg,
-        parts: ['Physical Health', 'Emotion and Spiritual Health', 'Financial Health'],
-        mainGoals: [
-            {
-                currentGoal: '',
-                id: '',
-                tier: 1,
-                needToDo: [],
-            },
-        ]
+        parts: {
+            'Physical Health': [
+                {
+                    id: 1,
+                    name: 'Physical ',
+                    description: '',
+                }
+            ],
+            'Emotion and Spiritual Health': [
+                {
+                    id: 2,
+                    name: 'Emotion and Spiritual',
+                    description: '',
+                }
+            ],
+            'Financial Health': [
+                {
+                    id: 3,
+                    name: 'Financial',
+                    description: '',
+                }
+            ],
+        },
     }
 }

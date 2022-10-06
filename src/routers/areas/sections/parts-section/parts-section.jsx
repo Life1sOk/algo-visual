@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { useSelector } from "react-redux";
 import { selectDisplaySection } from "../../../../App/slices/areas-slice";
@@ -10,15 +10,20 @@ import CreateTodo from "../../components/create-todo/create-todo.component";
 
 const PartsSection = () => {
     const currentSection = useSelector(selectDisplaySection);
-    const { parts, mainColor, mainGoals } = currentSection;
+    const { parts, mainColor } = currentSection;
+    const [currentPart, setCurrentPart] = useState('');
+
+    useEffect(() => {
+        setCurrentPart(Object.keys(parts)[0])
+    }, [parts])
 
     return (
         <PartsSectionContainer>
-            <AreaParts parts={parts} />
+            <AreaParts parts={parts} setCurrentPart={setCurrentPart} />
             <PartsSectionDisplay>
                 <CreateTodo />
-                {
-                    mainGoals.map(num => <YearGoal color={mainColor} key={num} title='Current Goal' />)
+                {parts[currentPart] &&
+                    parts[currentPart].map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} />)
                 }
             </PartsSectionDisplay>
         </PartsSectionContainer>

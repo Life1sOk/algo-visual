@@ -2,11 +2,16 @@ import React from "react";
 
 import { AreaPartContainer, CurrentPart } from './area-parts.style';
 
-const AreaParts = ({ parts }) => {
+const AreaParts = ({ parts, setCurrentPart }) => {
+
+    const changePartHandler = (part) => {
+        setCurrentPart(part)
+    }
+
     return (
         <AreaPartContainer>
             {parts &&
-                parts.map(part => <CurrentPart>{part}</CurrentPart>)
+                Object.keys(parts).map(part => <CurrentPart onClick={() => changePartHandler(part)} key={part}>{part}</CurrentPart>)
             }
         </AreaPartContainer>
     )

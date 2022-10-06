@@ -1,27 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 import './create-todo.style.scss';
 
+const initialState = {
+    name: '',
+    description: '',
+};
+
 const CreateTodo = () => {
+    const [current, setCurrent] = useState(initialState);
+
+    const descriptionChangeHandler = (event) => {
+        setCurrent({ ...current, description: event.target.value })
+    }
+
+    const nameChangeHandler = (event) => {
+        setCurrent({ ...current, name: event.target.value })
+    }
+
     return (
         <div className="create-todo-container">
             <h2 className="title">CreateTodo</h2>
-            <div></div>
-            <textarea>
-                Задача: Требуется сделать рерайт текста.
-                Объем текста: 2500-3000 символов.
-                Ключевые слова:
-                «Купить товар» — употребить 2 раза, можно склонять;
-                «Заказать товар» — употребить 2 раза, можно склонять.
-                Требуемая уникальность: 100% по text.ru
-                Исходник: в прикрепленном файле.
-                Дополнительная информация:
-                Текст должен быть разделен на абзацы, обязательны подзаголовки.
-            </textarea>
+            <input className="input" placeholder="Current Goal Title" onChange={(e) => nameChangeHandler(e)} />
+            <textarea placeholder="Current Goal Description" onChange={(e) => descriptionChangeHandler(e)} />
             <div className="footer">
-                <button>123</button>
-                <button>123</button>
-                <button>123</button>
+                <button onClick={() => console.log(current)}>Add</button>
+                <button>Clear</button>
             </div>
         </div>
     )

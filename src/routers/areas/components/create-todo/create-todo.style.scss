@@ -18,24 +18,30 @@
         height: 8%;
     }
 
-    .text {
-        width: 100%;
-        height: 80%;
+    .input {
+        padding: 10px;
+        font-size: 18.73px;
+        border: none;
+
+        &:focus {
+            background-color: rgb(241, 255, 158);
+            outline: none;
+        }
     }
 
     textarea {
         height: 84%;
         width: 100%;
-        padding: 5px;
+        padding: 10px;
         font-size: 16px;
         font-style: italic;
-        opacity: .7;
         resize: none;
         border: none;
         border-top: 1px solid grey;
         border-bottom: 1px solid grey;
 
         &:focus {
+            background-color: rgb(241, 255, 158);
             outline: none;
         }
     }
@@ -46,6 +52,6 @@
         background-color: rgb(98, 98, 98);
 
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
