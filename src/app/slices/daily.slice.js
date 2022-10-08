@@ -7,7 +7,6 @@ export const getDailyInitialData = createAsyncThunk(
     async (uid, rejectWithValue) => {
         try {
             const response = await getUsersDocsDaily(uid);
-
             return response;
         } catch (error) {
             return rejectWithValue(error.messege);

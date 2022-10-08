@@ -11,7 +11,7 @@ export const areasSlice = createSlice({
         },
         currentStateOpen: (state) => {
             state.displaySection.stateOpen = !state.displaySection.stateOpen;
-        }
+        },
     }
 });
 

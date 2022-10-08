@@ -21,7 +21,7 @@ const PartsSection = () => {
         <PartsSectionContainer>
             <AreaParts parts={parts} setCurrentPart={setCurrentPart} />
             <PartsSectionDisplay>
-                <CreateTodo />
+                <CreateTodo currentPart={currentPart} />
                 {parts[currentPart] &&
                     parts[currentPart].map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} />)
                 }

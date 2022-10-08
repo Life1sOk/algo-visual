@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -49,6 +50,7 @@ export const onAuthStateChangedListener = (callback) => {
 // ---------------- Firebase Firestore ---------------- //
 const db = getFirestore(firebaseApp);
 
+// Auth //
 export const createUsersDocumentsFromAuth = async (userAuth) => {
     if (!userAuth) return;
     const { email, uid } = userAuth;
@@ -117,6 +119,29 @@ export const setUsersDatasOutDaily = async (uid, datasToAdd) => {
             quests: datasToAdd,
         });
         console.log('datas ready')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+}
+
+// Areas //
+export const getUsersDocsAreas = async (uid, type) => {
+    if (!uid) return;
+
+    const getDocRef = doc(db, 'users', uid, 'areas', type)
+    const datas = await getDoc(getDocRef);
+
+    console.log(datas.data());
+}
+
+export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
+    if (!uid) return;
+
+    const docRef = doc(db, 'users', uid, 'areas', type)
+
+    try {
+        await setDoc(docRef, datasToAdd);
+        console.log('done')
     } catch (error) {
         console.log('oops, here is some error', error);
     }
