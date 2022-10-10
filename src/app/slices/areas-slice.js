@@ -50,6 +50,7 @@ export const areasSlice = createSlice({
 
 export const selectAreas = (state) => state.areas.sections;
 export const selectDisplaySection = (state) => state.areas.displaySection;
+export const selectAreasStatus = (state) => state.areas.status;
 
 export const { changeDisplay, currentStateOpen } = areasSlice.actions;
 

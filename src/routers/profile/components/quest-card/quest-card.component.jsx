@@ -2,6 +2,7 @@ import React from "react";
 
 import { QuestCardContainer, QuestTitle, ProgressBar } from './quest-card.style';
 import Quest from "../quest/quest.component";
+import Spinner from "../../../../Components/spinner/spinner.component";
 
 const QuestCard = ({ title, color, quests, state }) => {
     return (
@@ -9,7 +10,7 @@ const QuestCard = ({ title, color, quests, state }) => {
             <QuestTitle color={color}>{title}</QuestTitle>
             {
                 state === 'loading' ?
-                    <div>Loading...</div>
+                    <Spinner />
                     :
                     state === 'resolved' ?
                         quests &&
