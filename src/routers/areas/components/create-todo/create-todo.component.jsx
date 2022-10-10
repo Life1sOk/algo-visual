@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import { useDispatch } from "react-redux";
+import { addNewQuest } from "../../../../App/slices/areas-slice";
+
 import './create-todo.style.scss';
 
 const initialState = {
@@ -8,7 +11,8 @@ const initialState = {
     description: '',
 };
 
-const CreateTodo = ({ currentPart }) => {
+const CreateTodo = ({ currentPart, sectionTitle }) => {
+    const dispatch = useDispatch();
     const [current, setCurrent] = useState(initialState);
 
     const descriptionChangeHandler = (event) => {
@@ -19,6 +23,9 @@ const CreateTodo = ({ currentPart }) => {
         setCurrent({ ...current, name: event.target.value });
     };
 
+    const addNewQuestHandler = () => {
+        dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: current }));
+    }
 
     return (
         <div className="create-todo-container">
@@ -26,7 +33,7 @@ const CreateTodo = ({ currentPart }) => {
             <input className="input" placeholder="Current Goal Title" onChange={(e) => nameChangeHandler(e)} />
             <textarea placeholder="Current Goal Description" onChange={(e) => descriptionChangeHandler(e)} />
             <div className="footer">
-                <button>Add</button>
+                <button onClick={addNewQuestHandler}>Add</button>
                 <button>Clear</button>
             </div>
         </div>

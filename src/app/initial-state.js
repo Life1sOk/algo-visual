@@ -12,7 +12,7 @@ export const initialCurrentState = {
 };
 
 export const initialCheck = {
-    status: '',
+    status: 'reload',
     sections: {},
     displaySection: {
         id: 0,

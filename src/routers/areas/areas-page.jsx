@@ -29,7 +29,9 @@ const AreasPage = () => {
     const status = useSelector(selectAreasStatus);
 
     useEffect(() => {
-        dispatch(getAreasData(current));
+        if (status === 'reload') {
+            dispatch(getAreasData(current))
+        }
     }, [])
 
     return (

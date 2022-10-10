@@ -30,6 +30,13 @@ export const areasSlice = createSlice({
         currentStateOpen: (state) => {
             state.displaySection.stateOpen = !state.displaySection.stateOpen;
         },
+        addNewQuest: (state, { payload }) => {
+            const { part, title, quest } = payload;
+            const generateId = state.displaySection.parts[part]?.length + 1;
+            state.displaySection.parts[part]?.push({ id: generateId, ...quest });
+            state.sections[title]?.parts[part]?.push({ id: generateId, ...quest });
+            // send to the seerver also;
+        }
     },
     extraReducers: {
         [getAreasData.pending]: (state) => {
@@ -52,6 +59,6 @@ export const selectAreas = (state) => state.areas.sections;
 export const selectDisplaySection = (state) => state.areas.displaySection;
 export const selectAreasStatus = (state) => state.areas.status;
 
-export const { changeDisplay, currentStateOpen } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, addNewQuest } = areasSlice.actions;
 
 export default areasSlice.reducer;

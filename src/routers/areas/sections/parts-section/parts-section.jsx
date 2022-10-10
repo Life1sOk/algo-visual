@@ -10,19 +10,19 @@ import CreateTodo from "../../components/create-todo/create-todo.component";
 
 const PartsSection = () => {
     const currentSection = useSelector(selectDisplaySection);
-    const { parts, mainColor } = currentSection;
+    const { parts, mainColor, title } = currentSection;
     const [currentPart, setCurrentPart] = useState('');
 
     useEffect(() => {
         setCurrentPart(Object.keys(parts)[0])
-    }, [parts])
+    }, [title])
 
     return (
         <PartsSectionContainer>
             <AreaParts parts={parts} setCurrentPart={setCurrentPart} />
             <PartsSectionDisplay>
-                <CreateTodo currentPart={currentPart} />
-                {parts[currentPart] &&
+                <CreateTodo currentPart={currentPart} sectionTitle={title} />
+                {
                     parts[currentPart]?.map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} />)
                 }
             </PartsSectionDisplay>
