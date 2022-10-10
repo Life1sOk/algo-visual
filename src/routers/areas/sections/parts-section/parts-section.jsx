@@ -23,7 +23,7 @@ const PartsSection = () => {
             <PartsSectionDisplay>
                 <CreateTodo currentPart={currentPart} />
                 {parts[currentPart] &&
-                    parts[currentPart].map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} />)
+                    parts[currentPart]?.map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} />)
                 }
             </PartsSectionDisplay>
         </PartsSectionContainer>

@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -128,10 +127,10 @@ export const setUsersDatasOutDaily = async (uid, datasToAdd) => {
 export const getUsersDocsAreas = async (uid, type) => {
     if (!uid) return;
 
-    const getDocRef = doc(db, 'users', uid, 'areas', type)
+    const getDocRef = doc(db, 'users', uid, 'areas', type);
     const datas = await getDoc(getDocRef);
 
-    console.log(datas.data());
+    return datas.data();
 }
 
 export const setUsersDatasAreas = async (uid, type, datasToAdd) => {

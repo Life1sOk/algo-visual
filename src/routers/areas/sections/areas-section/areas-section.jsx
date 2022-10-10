@@ -12,7 +12,7 @@ const AreasSection = () => {
     return (
         <>
             {
-                areas.map(area => <Area key={area.id} area={area} state={state} setState={setState} />)
+                Object.keys(areas).map(area => <Area key={area} area={area} state={state} setState={setState} />)
             }
         </>
     )

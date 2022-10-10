@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { selectAuthUid } from "../../App/slices/auth.slice";
+import { getAreasData } from "../../App/slices/areas-slice";
 
 // ------------- Top level - Containers / Layouts -------------- //
 import AsideLayoutContainer from "../../Layouts/aside-container.layout";
@@ -18,6 +22,13 @@ import PartsSection from "./sections/parts-section/parts-section";
 
 // ------------- Lego --------------- //
 const AreasPage = () => {
+    const dispatch = useDispatch();
+    const current = useSelector(selectAuthUid);
+
+    useEffect(() => {
+        dispatch(getAreasData(current));
+    }, [])
+
     return (
         <PageLayoutContainer>
             <AsideLayoutContainer >

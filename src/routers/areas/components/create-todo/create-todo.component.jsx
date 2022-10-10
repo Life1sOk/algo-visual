@@ -19,6 +19,7 @@ const CreateTodo = ({ currentPart }) => {
         setCurrent({ ...current, name: event.target.value });
     };
 
+
     return (
         <div className="create-todo-container">
             <h2 className="title">CreateTodo</h2>
