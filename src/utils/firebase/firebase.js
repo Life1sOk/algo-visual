@@ -133,8 +133,17 @@ export const getUsersDocsAreas = async (uid, type) => {
     return datas.data();
 }
 
-export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
+export const checkUsersDocsAreas = async (uid, type) => {
     if (!uid) return;
+
+    const getDocRef = doc(db, 'users', uid, 'areas', type);
+    const datas = await getDoc(getDocRef);
+
+    console.log(datas.data());
+}
+
+export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
+    if (!uid || !type) return;
 
     const docRef = doc(db, 'users', uid, 'areas', type)
 

@@ -35,7 +35,9 @@ export const areasSlice = createSlice({
             const generateId = state.displaySection.parts[part]?.length + 1;
             state.displaySection.parts[part]?.push({ id: generateId, ...quest });
             state.sections[title]?.parts[part]?.push({ id: generateId, ...quest });
-            // send to the seerver also;
+        },
+        changeStatusToReload: (state) => {
+            state.status = 'reload';
         }
     },
     extraReducers: {
@@ -59,6 +61,6 @@ export const selectAreas = (state) => state.areas.sections;
 export const selectDisplaySection = (state) => state.areas.displaySection;
 export const selectAreasStatus = (state) => state.areas.status;
 
-export const { changeDisplay, currentStateOpen, addNewQuest } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload } = areasSlice.actions;
 
 export default areasSlice.reducer;

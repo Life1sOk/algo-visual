@@ -13,25 +13,16 @@ const FixQuest = ({ quest, order, color, type }) => {
     const [blank, setBlank] = useState(quest);
     const { id, questName, description } = blank;
 
-    const titleHandler = (event) => {
-        setBlank({ ...blank, questName: event.target.value });
-    }
-
-    const descriptionHandler = (event) => {
-        setBlank({ ...blank, description: event.target.value });
-    }
+    const titleHandler = (event) => setBlank({ ...blank, questName: event.target.value });
+    const descriptionHandler = (event) => setBlank({ ...blank, description: event.target.value });
 
     const acceptHandler = () => {
-        if (blank.questName.length < 3) {
-            alert('very small quest title, should be 3+ symbols!');
-            return;
-        } else if (blank.description.length < 10) {
-            alert('pls add description!');
-            return;
-        }
+        if (blank.questName.length < 3) alert('very small quest title, should be 3+ symbols!');
+        if (blank.description.length < 10) alert('pls add description!');
 
         if (type === 'main') dispatch(accept(blank));
         if (type === 'out') dispatch(acceptOut(blank));
+        console.log('check')
         setState(!state);
     }
 
@@ -55,7 +46,8 @@ const FixQuest = ({ quest, order, color, type }) => {
                             <Button name='Clear' color='yellow' onClick={() => setBlank({ id: id, questName: '', description: '' })} />
                             <Button name='Delete' color='red' onClick={deleteHandler} />
                         </ButtonWrapper>
-                    </> :
+                    </>
+                    :
                     <DoneTitle>
                         <h3 className="quest-title">{questName}</h3>
                         <Button name='fix' color='yellow' onClick={() => setState(!state)} />

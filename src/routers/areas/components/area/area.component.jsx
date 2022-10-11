@@ -24,7 +24,6 @@ const Area = ({ area, state, setState }) => {
         dispatch(changeDisplay(area));
     }
 
-
     return (
         <AreaContainer current={current} color={mainColor} onClick={changeSectionHandler}>
             <h3>{area}</h3>

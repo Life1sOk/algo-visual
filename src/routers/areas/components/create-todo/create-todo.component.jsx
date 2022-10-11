@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { addNewQuest } from "../../../../App/slices/areas-slice";
+import { addNewQuest, changeStatusToReload } from "../../../../App/slices/areas-slice";
 
 import './create-todo.style.scss';
 
@@ -25,6 +25,7 @@ const CreateTodo = ({ currentPart, sectionTitle }) => {
 
     const addNewQuestHandler = () => {
         dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: current }));
+        dispatch(changeStatusToReload());
     }
 
     return (

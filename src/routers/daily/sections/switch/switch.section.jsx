@@ -24,21 +24,11 @@ const SwitchSection = () => {
     const uid = useSelector(selectAuthUid);
     const [display, setDisplay] = useState('main');
 
-    const addDatasDailyHandler = async () => {
-        await setUsersDatasDaily(uid, questsFix);
-    }
+    const addDatasDailyHandler = async () => await setUsersDatasDaily(uid, questsFix);
+    const addDatasOutDailyHandler = async () => await setUsersDatasOutDaily(uid, questsFixOut);
 
-    const addDatasOutDailyHandler = async () => {
-        await setUsersDatasOutDaily(uid, questsFixOut);
-    }
-
-    const drainDailyHandler = () => {
-        dispatch(drainDaily());
-    }
-
-    const draitnOutDailyHandler = () => {
-        dispatch(drainOutDaily())
-    }
+    const drainDailyHandler = () => dispatch(drainDaily());
+    const draitnOutDailyHandler = () => dispatch(drainOutDaily());
 
     return (
         <>

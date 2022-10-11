@@ -53,7 +53,7 @@ const AreasPage = () => {
                             <MainLayoutContainer>
                                 <Navigation />
                                 <DescriptionSection />
-                                <PartsSection />
+                                <PartsSection uid={current} />
                             </MainLayoutContainer>
                         </PageLayoutContainer>
 
