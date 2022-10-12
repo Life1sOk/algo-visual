@@ -1,4 +1,4 @@
-export const initialCheck = {
+export const initialAreas = {
     status: 'reload',
     sections: {},
     displaySection: {
@@ -10,4 +10,15 @@ export const initialCheck = {
         previewImg: '',
         parts: {},
     },
+}
+
+export const initialPlan = {
+    status: null,
+    error: null,
+    dailyPlan: [],
+    fixPlan: [],
+    blankQuest: {
+        questName: '',
+        description: ''
+    }
 }

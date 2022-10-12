@@ -21,7 +21,7 @@ const PartsSection = ({ uid }) => {
     useEffect(() => {
         const currentTitle = title.toLowerCase();
         setUsersDatasAreas(uid, currentTitle, currentSection);
-    }, [parts])
+    }, [parts]);
 
     return (
         <PartsSectionContainer>

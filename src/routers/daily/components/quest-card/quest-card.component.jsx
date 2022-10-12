@@ -5,7 +5,7 @@ import FixQuest from "../fix-quest/fix-quest.component";
 import AddQuest from '../../../../Components/add-quest/add-quest.component';
 import Button from "../button/button.component";
 
-const QuestCard = ({ title, color, quests, type, addDatasServer, drainDatasHandler, filterHandler }) => {
+const QuestCard = ({ title, color, quests, type, addDatasServer, drainDatasHandler }) => {
     const [cardReady, setCardReady] = useState(false);
     const [questCount, setQuestCount] = useState(0);
 
@@ -33,7 +33,7 @@ const QuestCard = ({ title, color, quests, type, addDatasServer, drainDatasHandl
                         <FixQuest key={quest.id} quest={quest} order={quests.indexOf(quest)} color={color} type={type} changeCountHandler={changeCountHandler} />
                     )
                 }
-                <AddQuest type={type} filterHandler={filterHandler} />
+                <AddQuest type={type} />
                 <QuestFooter>
                     <Button name='Ready' color='green' onClick={addDatasHandler} />
                     <Button name='Yesterday' color='yellow' onClick={drainDatasHandler} />

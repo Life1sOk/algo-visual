@@ -15,13 +15,8 @@ const CreateTodo = ({ currentPart, sectionTitle }) => {
     const dispatch = useDispatch();
     const [current, setCurrent] = useState(initialState);
 
-    const descriptionChangeHandler = (event) => {
-        setCurrent({ ...current, description: event.target.value });
-    };
-
-    const nameChangeHandler = (event) => {
-        setCurrent({ ...current, name: event.target.value });
-    };
+    const descriptionChangeHandler = (event) => setCurrent({ ...current, description: event.target.value });
+    const nameChangeHandler = (event) => setCurrent({ ...current, name: event.target.value });
 
     const addNewQuestHandler = () => {
         dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: current }));

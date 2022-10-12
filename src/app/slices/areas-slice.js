@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { initialCheck } from "../initial-state";
+import { initialAreas } from "../initial-state";
 
 import { getUsersDocsAreas } from "../../utils/firebase/firebase";
 
@@ -22,7 +22,7 @@ export const getAreasData = createAsyncThunk(
 
 export const areasSlice = createSlice({
     name: 'areas',
-    initialState: initialCheck,
+    initialState: initialAreas,
     reducers: {
         changeDisplay: (state, { payload }) => {
             state.displaySection = state.sections[payload];
@@ -33,8 +33,8 @@ export const areasSlice = createSlice({
         addNewQuest: (state, { payload }) => {
             const { part, title, quest } = payload;
             const generateId = state.displaySection.parts[part]?.length + 1;
-            state.displaySection.parts[part]?.push({ id: generateId, ...quest });
-            state.sections[title]?.parts[part]?.push({ id: generateId, ...quest });
+            state.displaySection.parts[part]?.unshift({ id: generateId, ...quest });
+            state.sections[title]?.parts[part]?.unshift({ id: generateId, ...quest });
         },
         changeStatusToReload: (state) => {
             state.status = 'reload';

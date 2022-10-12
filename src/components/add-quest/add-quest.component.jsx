@@ -6,7 +6,7 @@ import { addQuestOut } from "../../App/slices/out-plan.slice";
 
 import './add-quest.style.scss';
 
-const AddQuest = ({ type, filterHandler }) => {
+const AddQuest = ({ type }) => {
     const dispatch = useDispatch();
 
     const addHandler = () => {

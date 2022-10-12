@@ -4,9 +4,7 @@ import { AreaPartContainer, CurrentPart } from './area-parts.style';
 
 const AreaParts = ({ parts, setCurrentPart }) => {
 
-    const changePartHandler = (part) => {
-        setCurrentPart(part)
-    }
+    const changePartHandler = (part) => setCurrentPart(part);
 
     return (
         <AreaPartContainer>

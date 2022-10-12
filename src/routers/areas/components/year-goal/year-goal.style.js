@@ -5,7 +5,7 @@ export const YearGoalContainer = styled.div`
     height: 400px;
     border: 10px solid ${props => props.color};
     border-radius: 20px;
-    background-color: white;
+    background-color: ${props => props.color};
 `;
 
 export const YearGoalTitle = styled.h2`
@@ -15,4 +15,17 @@ export const YearGoalTitle = styled.h2`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+export const YearGoalText = styled.textarea`
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    font-size: 16px;
+    font-style: italic;
+    opacity: .7;
+    min-height: 110px;
+    resize: none;
+    border: none;
+    border-top: 1px solid grey;
 `;

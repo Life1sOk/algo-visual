@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getUsersDocsDaily } from '../../utils/firebase/firebase';
+import { initialPlan } from "../initial-state";
 
 export const getDailyInitialData = createAsyncThunk(
     'daily/getDailyInitialData',
@@ -14,20 +15,9 @@ export const getDailyInitialData = createAsyncThunk(
     }
 )
 
-const initialState = {
-    status: null,
-    error: null,
-    dailyPlan: [],
-    fixPlan: [],
-    blankQuest: {
-        questName: '',
-        description: ''
-    }
-}
-
 export const dailySlice = createSlice({
     name: 'daily',
-    initialState,
+    initialState: initialPlan,
     reducers: {
         accept: (state, { payload }) => {
             state.fixPlan = state.fixPlan.map(quest => {

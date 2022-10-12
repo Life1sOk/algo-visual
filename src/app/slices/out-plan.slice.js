@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getUsersDocsOutPlan } from '../../utils/firebase/firebase';
+import { initialPlan } from "../initial-state";
 
 export const getOutInitialData = createAsyncThunk(
     'outPlan/getInitialData',
@@ -15,20 +16,9 @@ export const getOutInitialData = createAsyncThunk(
     }
 )
 
-const initialState = {
-    status: null,
-    error: null,
-    outOfPlan: [],
-    fixOutOfPlan: [],
-    blankQuest: {
-        questName: '',
-        description: ''
-    }
-}
-
 export const outPlanSlice = createSlice({
     name: 'outPlan',
-    initialState,
+    initialState: initialPlan,
     reducers: {
         acceptOut: (state, { payload }) => {
             state.fixOutOfPlan = state.fixOutOfPlan.map(quest => {
