@@ -4,7 +4,7 @@ import { setUsersDatasDaily, setUsersDatasOutDaily } from "../../../../utils/fir
 //Redux:
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
-import { selectFixPlan, drainDaily, filterBlank } from "../../../../App/slices/daily.slice";
+import { selectFixPlan, drainDaily } from "../../../../App/slices/daily.slice";
 import { selectFixOutOfPlan, drainOutDaily } from "../../../../App/slices/out-plan.slice";
 //Components:
 import QuestCard from "../../components/quest-card/quest-card.component";
@@ -30,15 +30,13 @@ const SwitchSection = () => {
     const drainDailyHandler = () => dispatch(drainDaily());
     const draitnOutDailyHandler = () => dispatch(drainOutDaily());
 
-    const filterDailyHandler = () => dispatch(filterBlank());
-
     return (
         <>
             <Switcher setDisplay={setDisplay} colors={colors} />
             {
                 display === 'main' ?
                     <QuestCard title='Will need to do!' color={colors.red} quests={questsFix} type='main'
-                        addDatasServer={addDatasDailyServer} drainDatasHandler={drainDailyHandler} filterHandler={filterDailyHandler} /> :
+                        addDatasServer={addDatasDailyServer} drainDatasHandler={drainDailyHandler} /> :
                     display === 'out' ?
                         <QuestCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='out'
                             addDatasServer={addDatasOutDailyServer} drainDatasHandler={draitnOutDailyHandler} /> :

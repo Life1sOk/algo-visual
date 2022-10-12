@@ -58,10 +58,10 @@ export const dailySlice = createSlice({
         },
         drainDaily: (state) => {
             const drain = [...state.dailyPlan, ...state.fixPlan];
-            const answ = drain.map(quest => {
+            const newId = drain.map(quest => {
                 return { ...quest, id: drain.indexOf(quest) };
             })
-            state.fixPlan = answ;
+            state.fixPlan = newId;
         },
     },
     extraReducers: {
@@ -84,6 +84,6 @@ export const selectDaily = (state) => state.daily.dailyPlan;
 export const selectFixPlan = (state) => state.daily.fixPlan;
 export const selectDailyState = (state) => state.daily.status;
 
-export const { remove, accept, addQuest, drainDaily, filterBlank } = dailySlice.actions;
+export const { remove, accept, addQuest, drainDaily } = dailySlice.actions;
 
 export default dailySlice.reducer;

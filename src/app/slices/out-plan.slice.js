@@ -58,7 +58,11 @@ export const outPlanSlice = createSlice({
             state.outOfPlan = state.fixOutOfPlan;
         },
         drainOutDaily: (state) => {
-            state.fixOutOfPlan = state.outOfPlan;
+            const drain = [...state.outOfPlan, ...state.fixOutOfPlan];
+            const newId = drain.map(quest => {
+                return { ...quest, id: drain.indexOf(quest) };
+            })
+            state.fixOutOfPlan = newId;
         }
     },
     extraReducers: {
