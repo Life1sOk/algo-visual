@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-
+//Firebase:
 import { setUsersDatasDaily, setUsersDatasOutDaily } from "../../../../utils/firebase/firebase";
-
+//Redux:
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
-import { selectFixPlan, drainDaily } from "../../../../App/slices/daily.slice";
+import { selectFixPlan, drainDaily, filterBlank } from "../../../../App/slices/daily.slice";
 import { selectFixOutOfPlan, drainOutDaily } from "../../../../App/slices/out-plan.slice";
-
+//Components:
 import QuestCard from "../../components/quest-card/quest-card.component";
 import { Yellow } from './switch.style';
 import Switcher from "../../components/switcher/switcher.component";
@@ -24,11 +24,13 @@ const SwitchSection = () => {
     const uid = useSelector(selectAuthUid);
     const [display, setDisplay] = useState('main');
 
-    const addDatasDailyHandler = async () => await setUsersDatasDaily(uid, questsFix);
-    const addDatasOutDailyHandler = async () => await setUsersDatasOutDaily(uid, questsFixOut);
+    const addDatasDailyServer = async () => await setUsersDatasDaily(uid, questsFix);
+    const addDatasOutDailyServer = async () => await setUsersDatasOutDaily(uid, questsFixOut);
 
     const drainDailyHandler = () => dispatch(drainDaily());
     const draitnOutDailyHandler = () => dispatch(drainOutDaily());
+
+    const filterDailyHandler = () => dispatch(filterBlank());
 
     return (
         <>
@@ -36,10 +38,10 @@ const SwitchSection = () => {
             {
                 display === 'main' ?
                     <QuestCard title='Will need to do!' color={colors.red} quests={questsFix} type='main'
-                        addDatasHandler={addDatasDailyHandler} drainDatasHandler={drainDailyHandler} /> :
+                        addDatasServer={addDatasDailyServer} drainDatasHandler={drainDailyHandler} filterHandler={filterDailyHandler} /> :
                     display === 'out' ?
                         <QuestCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='out'
-                            addDatasHandler={addDatasOutDailyHandler} drainDatasHandler={draitnOutDailyHandler} /> :
+                            addDatasServer={addDatasOutDailyServer} drainDatasHandler={draitnOutDailyHandler} /> :
                         display === 'notes' ?
                             <Yellow>Notes</Yellow> : null
             }

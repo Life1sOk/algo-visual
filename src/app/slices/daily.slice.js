@@ -50,15 +50,19 @@ export const dailySlice = createSlice({
                 return;
             }
 
-            state.fixPlan.push({ id: lastId + 1, ...state.blankQuest })
+            state.fixPlan.push({ id: lastId + 1, ...state.blankQuest });
         },
         remove: (state, { payload }) => {
             state.fixPlan = state.fixPlan.filter(quest => quest.id !== payload);
             state.tomorrowPlan = state.fixPlan;
         },
         drainDaily: (state) => {
-            state.fixPlan = state.dailyPlan;
-        }
+            const drain = [...state.dailyPlan, ...state.fixPlan];
+            const answ = drain.map(quest => {
+                return { ...quest, id: drain.indexOf(quest) };
+            })
+            state.fixPlan = answ;
+        },
     },
     extraReducers: {
         [getDailyInitialData.pending]: (state) => {
@@ -80,6 +84,6 @@ export const selectDaily = (state) => state.daily.dailyPlan;
 export const selectFixPlan = (state) => state.daily.fixPlan;
 export const selectDailyState = (state) => state.daily.status;
 
-export const { remove, accept, addQuest, drainDaily } = dailySlice.actions;
+export const { remove, accept, addQuest, drainDaily, filterBlank } = dailySlice.actions;
 
 export default dailySlice.reducer;

@@ -64,7 +64,7 @@ export const TextInput = styled.textarea`
 
 export const ButtonWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 3px;
     margin-top: 10px;
     min-height: 28px;

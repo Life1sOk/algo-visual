@@ -7,7 +7,7 @@ import Button from "../button/button.component";
 
 import { FixQuestContainer, FixLabel, TitleInput, TextInput, ButtonWrapper, DoneTitle } from './fix-quest.style';
 
-const FixQuest = ({ quest, order, color, type }) => {
+const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
     const dispatch = useDispatch();
     const [state, setState] = useState(false);
     const [blank, setBlank] = useState(quest);
@@ -17,18 +17,23 @@ const FixQuest = ({ quest, order, color, type }) => {
     const descriptionHandler = (event) => setBlank({ ...blank, description: event.target.value });
 
     const acceptHandler = () => {
-        if (blank.questName.length < 3) alert('very small quest title, should be 3+ symbols!');
-        if (blank.description.length < 10) alert('pls add description!');
+        if (blank.questName.length < 3) return alert('very small quest title, should be 3+ symbols!');
+        if (blank.description.length < 10) return alert('pls add description!');
 
         if (type === 'main') dispatch(accept(blank));
         if (type === 'out') dispatch(acceptOut(blank));
-        console.log('check')
         setState(!state);
+        changeCountHandler('increase');
     }
 
     const deleteHandler = () => {
         if (type === 'main') dispatch(remove(id));
         if (type === 'out') dispatch(removeOut(id));
+    }
+
+    const fixHandler = () => {
+        setState(!state)
+        changeCountHandler('decrease');
     }
 
     return (
@@ -43,14 +48,13 @@ const FixQuest = ({ quest, order, color, type }) => {
                             onChange={(e) => descriptionHandler(e)} />
                         <ButtonWrapper state={state}>
                             <Button name='Accept' color='green' onClick={acceptHandler} />
-                            <Button name='Clear' color='yellow' onClick={() => setBlank({ id: id, questName: '', description: '' })} />
                             <Button name='Delete' color='red' onClick={deleteHandler} />
                         </ButtonWrapper>
                     </>
                     :
                     <DoneTitle>
                         <h3 className="quest-title">{questName}</h3>
-                        <Button name='fix' color='yellow' onClick={() => setState(!state)} />
+                        <Button name='fix' color='yellow' onClick={fixHandler} />
                     </DoneTitle>
             }
         </FixQuestContainer>
