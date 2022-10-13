@@ -8,7 +8,8 @@ const YearGoal = ({ color, goal }) => {
     return (
         <YearGoalContainer color={color}>
             <YearGoalTitle color={color}>{name}</YearGoalTitle>
-            <YearGoalText readOnly disabled>{description}</YearGoalText>
+            <YearGoalText readOnly disabled defaultValue={description} />
+            <div>Footer</div>
         </YearGoalContainer>
     )
 }

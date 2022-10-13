@@ -6,6 +6,7 @@ export const YearGoalContainer = styled.div`
     border: 10px solid ${props => props.color};
     border-radius: 20px;
     background-color: ${props => props.color};
+    overflow: hidden;
 `;
 
 export const YearGoalTitle = styled.h2`
