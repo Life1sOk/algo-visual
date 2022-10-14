@@ -3,23 +3,35 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteQuest } from "../../../../App/slices/areas-slice";
 
-import { YearGoalContainer, YearGoalTitle, YearGoalText } from './year-goal.style';
+import { YearGoalContainer, YearGoalTitle, GoalItemTime, GoalItemMain } from './year-goal.style';
+import ItemsItem from "../items-item/items-item.component";
 
-const YearGoal = ({ color, goal, currentPart, sectionTitle, setUsersDatasAreasHandler }) => {
+const YearGoal = ({ color, goal, currentPart, sectionTitle, }) => {
     const dispatch = useDispatch();
-    const { name, description, id } = goal;
+    const { id, name, createdTime, untilTime, needForAchive } = goal;
 
-    const deleteQuestHandler = () => {
+    const deleteQuestHandler = async () => {
         dispatch(deleteQuest({ part: currentPart, title: sectionTitle, questId: id }));
-        setUsersDatasAreasHandler();
     }
+
+    console.log(goal)
 
     return (
         <YearGoalContainer color={color}>
-            <button onClick={deleteQuestHandler}>X</button>
             <YearGoalTitle color={color}>{name}</YearGoalTitle>
-            <YearGoalText readOnly disabled defaultValue={description} />
-            <div>Footer</div>
+            <GoalItemTime>
+                <p>{createdTime}</p>
+                <p>{untilTime}</p>
+            </GoalItemTime>
+            <GoalItemMain>
+                {
+                    needForAchive?.map(item => <ItemsItem key={item.id} item={item} />)
+                }
+            </GoalItemMain>
+            <div>
+                progres bar
+                <button onClick={deleteQuestHandler}>X</button>
+            </div>
         </YearGoalContainer>
     )
 }

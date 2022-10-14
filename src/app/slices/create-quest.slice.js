@@ -10,7 +10,7 @@ const initialState = {
     blank: {
         name: '',
         createdTime: '',
-        untileTime: '',
+        untilTime: '',
         needForAchive: [],
     }
 }
@@ -37,6 +37,15 @@ export const createQuestSlice = createSlice({
                 description: '',
             })
         },
+        changeItemValue: (state, { payload }) => {
+            state.main.needForAchive = state.main.needForAchive.map(item => {
+                if (item.id === payload.id) {
+                    return { ...item, description: payload.value }
+                } else {
+                    return item;
+                }
+            })
+        },
         deleteItem: (state, { payload }) => {
             state.main.needForAchive = state.main.needForAchive.filter(item => item.id !== payload);
             state.main.needForAchive = state.main.needForAchive.map(item => {
@@ -52,6 +61,6 @@ export const createQuestSlice = createSlice({
 export const selectQuest = (state) => state.createQuest.main;
 export const selectNeedForAchive = (state) => state.createQuest.main.needForAchive;
 
-export const { nameHandler, createdTimeHandler, untilTimeHandler, addNewItem, deleteItem, defaultState } = createQuestSlice.actions;
+export const { nameHandler, createdTimeHandler, untilTimeHandler, addNewItem, deleteItem, defaultState, changeItemValue } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

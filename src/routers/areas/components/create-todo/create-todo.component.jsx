@@ -8,7 +8,7 @@ import { CreateTodoContainer, CardTitle, QuestTitle, TimeContainer, Main, Footer
 import CreateInput from "../create-input/create-input.component";
 
 
-const CreateTodo = ({ currentPart, sectionTitle, setUsersDatasAreasHandler }) => {
+const CreateTodo = ({ currentPart, sectionTitle }) => {
     const dispatch = useDispatch();
     const main = useSelector(selectQuest);
     const mainArray = useSelector(selectNeedForAchive);
@@ -32,7 +32,7 @@ const CreateTodo = ({ currentPart, sectionTitle, setUsersDatasAreasHandler }) =>
         dispatch(createdTimeHandler(currentDate));
     };
 
-    const untilTimeChangeHandler = (event) => {
+    const timeChangeHandler = (event) => {
         let date = event.target.value;
 
         let day = '';
@@ -48,17 +48,17 @@ const CreateTodo = ({ currentPart, sectionTitle, setUsersDatasAreasHandler }) =>
         let untilDate = `${day}.${month}.${year}`;
 
         dispatch(untilTimeHandler(untilDate));
+
+        createdTimeChangeHandler();
     };
 
     const addNewItemHandler = () => dispatch(addNewItem());
 
     const addNewQuestHandler = () => {
-        createdTimeChangeHandler();
         dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: main }));
         dispatch(changeStatusToReload());
         dispatch(defaultState());
         setTitleValue('');
-        setUsersDatasAreasHandler();
     }
 
     return (
@@ -67,7 +67,7 @@ const CreateTodo = ({ currentPart, sectionTitle, setUsersDatasAreasHandler }) =>
             <QuestTitle placeholder="Current Goal Title" onChange={(e) => nameChangeHandler(e)} value={titleValue} />
             <TimeContainer>
                 <p>Deadline:</p>
-                <input type='date' onChange={(e) => untilTimeChangeHandler(e)} />
+                <input type='date' onChange={(e) => timeChangeHandler(e)} />
             </TimeContainer>
             <Main>
                 {

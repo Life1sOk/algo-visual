@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { useDispatch } from "react-redux";
-import { deleteItem } from "../../../../App/slices/create-quest.slice";
+import { deleteItem, changeItemValue } from "../../../../App/slices/create-quest.slice";
 
 import useAutosizeTextArea from "../../../../Hooks/useAutosizeTextArea";
 import { CreateInputContainer, TextArea } from './create-input.style';
@@ -13,7 +13,13 @@ const CreateInput = ({ item }) => {
     const textAreaRef = useRef();
 
     useAutosizeTextArea(textAreaRef.current, value);
-    const handleChange = (event) => setValue(event.target?.value);
+    const handleChange = (event) => {
+        setValue(event.target?.value);
+    };
+
+    useEffect(() => {
+        dispatch(changeItemValue({ id, value }));
+    }, [value, dispatch, id]);
 
     return (
         <CreateInputContainer>
