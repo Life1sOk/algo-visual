@@ -13,7 +13,7 @@ const CreateTodo = ({ currentPart, sectionTitle }) => {
     const main = useSelector(selectQuest);
     const mainArray = useSelector(selectNeedForAchive);
     const [titleValue, setTitleValue] = useState('');
-    const [smallToBig, setSmallToBig] = useState(false);
+    const [smallToBig, setSmallToBig] = useState(true);
 
     const nameChangeHandler = (event) => {
         setTitleValue(event.target.value);
@@ -55,10 +55,14 @@ const CreateTodo = ({ currentPart, sectionTitle }) => {
     const addNewItemHandler = () => dispatch(addNewItem());
 
     const addNewQuestHandler = () => {
-        dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: main }));
-        dispatch(changeStatusToReload());
-        dispatch(defaultState());
-        setTitleValue('');
+        if (titleValue.length <= 0) {
+            alert('need title');
+        } else {
+            dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: main }));
+            dispatch(changeStatusToReload());
+            dispatch(defaultState());
+            setTitleValue('');
+        }
     }
 
     return (

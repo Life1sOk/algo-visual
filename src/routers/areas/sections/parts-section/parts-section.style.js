@@ -7,7 +7,7 @@ export const PartsSectionContainer = styled.div`
 export const PartsSectionDisplay = styled.div`
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 13px;
 `;
