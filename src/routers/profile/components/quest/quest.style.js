@@ -32,7 +32,7 @@ export const DiscriptionBox = styled.textarea`
     font-size: 16px;
     font-style: italic;
     opacity: .7;
-    min-height: 110px;
+    height: 110px;
     resize: none;
     border: none;
     border-top: 1px solid grey;

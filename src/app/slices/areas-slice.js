@@ -36,6 +36,11 @@ export const areasSlice = createSlice({
             state.displaySection.parts[part]?.unshift({ id: generateId, ...quest });
             state.sections[title]?.parts[part]?.unshift({ id: generateId, ...quest });
         },
+        deleteQuest: (state, { payload }) => {
+            const { part, title, questId } = payload;
+            state.displaySection.parts[part] = state.displaySection.parts[part]?.filter(quest => quest.id !== questId);
+            state.sections[title].parts[part] = state.sections[title]?.parts[part]?.filter(quest => quest.id !== questId);
+        },
         changeStatusToReload: (state) => {
             state.status = 'reload';
         }
@@ -61,6 +66,6 @@ export const selectAreas = (state) => state.areas.sections;
 export const selectDisplaySection = (state) => state.areas.displaySection;
 export const selectAreasStatus = (state) => state.areas.status;
 
-export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload, deleteQuest } = areasSlice.actions;
 
 export default areasSlice.reducer;

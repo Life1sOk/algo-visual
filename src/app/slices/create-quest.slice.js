@@ -36,6 +36,15 @@ export const createQuestSlice = createSlice({
                 status: false,
                 description: '',
             })
+        },
+        deleteItem: (state, { payload }) => {
+            state.main.needForAchive = state.main.needForAchive.filter(item => item.id !== payload);
+            state.main.needForAchive = state.main.needForAchive.map(item => {
+                return { ...item, id: state.main.needForAchive.indexOf(item) + 1 };
+            })
+        },
+        defaultState: (state) => {
+            state.main = state.blank;
         }
     }
 });
@@ -43,6 +52,6 @@ export const createQuestSlice = createSlice({
 export const selectQuest = (state) => state.createQuest.main;
 export const selectNeedForAchive = (state) => state.createQuest.main.needForAchive;
 
-export const { nameHandler, createdTimeHandler, untilTimeHandler, addNewItem } = createQuestSlice.actions;
+export const { nameHandler, createdTimeHandler, untilTimeHandler, addNewItem, deleteItem, defaultState } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

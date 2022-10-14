@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { useDispatch } from "react-redux";
 import { remove, accept } from "../../../../App/slices/daily.slice";
 import { removeOut, acceptOut } from "../../../../App/slices/out-plan.slice";
 import Button from "../button/button.component";
 
-import { FixQuestContainer, FixLabel, TitleInput, TextInput, ButtonWrapper, DoneTitle } from './fix-quest.style';
+import useAutosizeTextArea from "../../../../Hooks/useAutosizeTextArea";
+import { FixQuestContainer, FixLabel, TitleInput, TextArea, ButtonWrapper, DoneTitle } from './fix-quest.style';
 
 const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
+    const fixTextAreaRef = useRef();
     const dispatch = useDispatch();
     const [state, setState] = useState(false);
     const [blank, setBlank] = useState(quest);
     const { id, questName, description } = blank;
+
+    useAutosizeTextArea(fixTextAreaRef.current, description);
 
     const titleHandler = (event) => setBlank({ ...blank, questName: event.target.value });
     const descriptionHandler = (event) => setBlank({ ...blank, description: event.target.value });
@@ -44,8 +48,8 @@ const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
                     <>
                         <TitleInput placeholder="title" id="fix" value={questName}
                             onChange={(e) => titleHandler(e)} />
-                        <TextInput state={state} type='text' placeholder="discription" value={description}
-                            onChange={(e) => descriptionHandler(e)} />
+                        <TextArea state={state} type='text' placeholder="discription" value={description}
+                            onChange={(e) => descriptionHandler(e)} ref={fixTextAreaRef} />
                         <ButtonWrapper state={state}>
                             <Button name='Accept' color='green' onClick={acceptHandler} />
                             <Button name='Delete' color='red' onClick={deleteHandler} />

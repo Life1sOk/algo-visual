@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CreateInputContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     width: 100%;
     margin-top: 5px;
@@ -11,7 +11,7 @@ export const CreateInputContainer = styled.div`
 
 export const TextArea = styled.textarea`
     width: 80%;
-    height: ${props => `${props.fixedHeight}px`};
+    height: 30px;
     padding: 5px;
     font-size: 17px;
     font-style: italic;

@@ -50,7 +50,7 @@ export const TitleInput = styled.input`
     margin-bottom: 5px;
 `;
 
-export const TextInput = styled.textarea`
+export const TextArea = styled.textarea`
     padding: 5px;
     font-size: 16px;
     font-style: italic;

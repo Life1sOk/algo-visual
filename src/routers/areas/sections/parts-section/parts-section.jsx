@@ -18,18 +18,18 @@ const PartsSection = ({ uid }) => {
         setCurrentPart(Object.keys(parts)[0]);
     }, [title]);
 
-    useEffect(() => {
+    const setUsersDatasAreasHandler = async () => {
         const currentTitle = title.toLowerCase();
-        setUsersDatasAreas(uid, currentTitle, currentSection);
-    }, [parts]);
+        await setUsersDatasAreas(uid, currentTitle, currentSection);
+    }
 
     return (
         <PartsSectionContainer>
             <AreaParts parts={parts} setCurrentPart={setCurrentPart} />
             <PartsSectionDisplay>
-                <CreateTodo currentPart={currentPart} sectionTitle={title} />
+                <CreateTodo currentPart={currentPart} sectionTitle={title} setUsersDatasAreasHandler={setUsersDatasAreasHandler} />
                 {
-                    parts[currentPart]?.map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} />)
+                    parts[currentPart]?.map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} currentPart={currentPart} sectionTitle={title} setUsersDatasAreasHandler={setUsersDatasAreasHandler} />)
                 }
             </PartsSectionDisplay>
         </PartsSectionContainer>

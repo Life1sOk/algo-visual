@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectQuest, nameHandler, createdTimeHandler, untilTimeHandler, addNewItem, selectNeedForAchive } from "../../../../App/slices/create-quest.slice";
+import { selectQuest, nameHandler, createdTimeHandler, untilTimeHandler, addNewItem, selectNeedForAchive, defaultState } from "../../../../App/slices/create-quest.slice";
 import { addNewQuest, changeStatusToReload } from "../../../../App/slices/areas-slice";
 
-import './create-todo.style.scss';
+import { CreateTodoContainer, CardTitle, QuestTitle, TimeContainer, Main, Footer } from './create-todo.style';
 import CreateInput from "../create-input/create-input.component";
 
 
-const CreateTodo = ({ currentPart, sectionTitle }) => {
+const CreateTodo = ({ currentPart, sectionTitle, setUsersDatasAreasHandler }) => {
     const dispatch = useDispatch();
     const main = useSelector(selectQuest);
     const mainArray = useSelector(selectNeedForAchive);
+    const [titleValue, setTitleValue] = useState('');
+    const [smallToBig, setSmallToBig] = useState(false);
 
-    const nameChangeHandler = (event) => dispatch(nameHandler(event.target.value));
+    const nameChangeHandler = (event) => {
+        setTitleValue(event.target.value);
+        dispatch(nameHandler(event.target.value));
+    };
+
     const createdTimeChangeHandler = () => {
         const date = new Date();
 
@@ -24,7 +30,8 @@ const CreateTodo = ({ currentPart, sectionTitle }) => {
         let currentDate = `${day}.${month}.${year}`;
 
         dispatch(createdTimeHandler(currentDate));
-    }
+    };
+
     const untilTimeChangeHandler = (event) => {
         let date = event.target.value;
 
@@ -41,33 +48,38 @@ const CreateTodo = ({ currentPart, sectionTitle }) => {
         let untilDate = `${day}.${month}.${year}`;
 
         dispatch(untilTimeHandler(untilDate));
-    }
+    };
+
     const addNewItemHandler = () => dispatch(addNewItem());
 
-    // const addNewQuestHandler = () => {
-    //     dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: current }));
-    //     dispatch(changeStatusToReload());
-    // }
+    const addNewQuestHandler = () => {
+        createdTimeChangeHandler();
+        dispatch(addNewQuest({ part: currentPart, title: sectionTitle, quest: main }));
+        dispatch(changeStatusToReload());
+        dispatch(defaultState());
+        setTitleValue('');
+        setUsersDatasAreasHandler();
+    }
 
     return (
-        <div className="create-todo-container">
-            <h2 className="title">CreateTodo</h2>
-            <input className="input" placeholder="Current Goal Title" onChange={(e) => nameChangeHandler(e)} />
-            <div className="time">
+        <CreateTodoContainer smallToBig={smallToBig}>
+            <CardTitle>CreateTodo</CardTitle>
+            <QuestTitle placeholder="Current Goal Title" onChange={(e) => nameChangeHandler(e)} value={titleValue} />
+            <TimeContainer>
                 <p>Deadline:</p>
                 <input type='date' onChange={(e) => untilTimeChangeHandler(e)} />
-            </div>
-            <div className="main">
+            </TimeContainer>
+            <Main>
                 {
                     mainArray?.map(item => <CreateInput key={item.id} item={item} />)
                 }
-            </div>
-            <button onClick={addNewItemHandler}>Add new item</button>
-            <div className="footer">
-                <button onClick={() => console.log(main)}>Add</button>
-                <button onClick={createdTimeChangeHandler}>Clear</button>
-            </div>
-        </div>
+            </Main>
+            <Footer>
+                <button onClick={addNewItemHandler}>Add new item</button>
+                <button onClick={() => setSmallToBig(!smallToBig)}>Make {!smallToBig ? 'bigger' : 'smaller'}</button>
+            </Footer>
+            <button onClick={addNewQuestHandler}>Add</button>
+        </CreateTodoContainer>
     )
 }
 
