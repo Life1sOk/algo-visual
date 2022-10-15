@@ -22,3 +22,14 @@ export const initialPlan = {
         description: ''
     }
 }
+
+export const initialPlanOut = {
+    status: null,
+    error: null,
+    outOfPlan: [],
+    fixOutOfPlan: [],
+    blankQuest: {
+        questName: '',
+        description: ''
+    }
+}

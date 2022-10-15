@@ -30,6 +30,9 @@ const SwitchSection = () => {
     const drainDailyHandler = () => dispatch(drainDaily());
     const draitnOutDailyHandler = () => dispatch(drainOutDaily());
 
+    console.log(questsFixOut)
+    console.log(questsFix)
+
     return (
         <>
             <Switcher setDisplay={setDisplay} colors={colors} />

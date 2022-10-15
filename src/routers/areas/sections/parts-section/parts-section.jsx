@@ -25,7 +25,7 @@ const PartsSection = ({ uid }) => {
 
     return (
         <PartsSectionContainer>
-            <AreaParts parts={parts} setCurrentPart={setCurrentPart} />
+            <AreaParts parts={parts} setCurrentPart={setCurrentPart} currentPart={currentPart} />
             <PartsSectionDisplay>
                 <CreateTodo currentPart={currentPart} sectionTitle={title} />
                 {

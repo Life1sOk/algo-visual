@@ -56,7 +56,6 @@ const AreasPage = () => {
                                 <PartsSection uid={current} />
                             </MainLayoutContainer>
                         </PageLayoutContainer>
-
             }
         </>
     )

@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getUsersDocsOutPlan } from '../../utils/firebase/firebase';
-import { initialPlan } from "../initial-state";
+import { initialPlanOut } from "../initial-state";
 
 export const getOutInitialData = createAsyncThunk(
     'outPlan/getInitialData',
-    async (uid, { rejectWithValue }) => {
+    async (uid, rejectWithValue) => {
         try {
             const response = await getUsersDocsOutPlan(uid);
-
             return response;
         } catch (error) {
             return rejectWithValue(error.messege);
@@ -18,12 +17,12 @@ export const getOutInitialData = createAsyncThunk(
 
 export const outPlanSlice = createSlice({
     name: 'outPlan',
-    initialState: initialPlan,
+    initialState: initialPlanOut,
     reducers: {
         acceptOut: (state, { payload }) => {
             state.fixOutOfPlan = state.fixOutOfPlan.map(quest => {
                 if (quest.id === payload.id) {
-                    quest = { ...payload };
+                    return quest = { ...payload };
                 }
                 return quest;
             });

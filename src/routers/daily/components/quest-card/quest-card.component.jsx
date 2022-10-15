@@ -26,7 +26,7 @@ const QuestCard = ({ title, color, quests, type, addDatasServer, drainDatasHandl
     return (
         <QuestCardWrapper cardReady={cardReady}>
             <QuestCardContainer color={color}>
-                <QuestTitle color={color}>{title} {`${questCount}/${quests.length}`}</QuestTitle>
+                <QuestTitle color={color}>{title} {`${questCount}/${quests?.length}`}</QuestTitle>
                 {
                     quests &&
                     quests.map(quest =>
