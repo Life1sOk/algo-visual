@@ -11,7 +11,6 @@ import MainLayoutContainer from "../../Layouts/main-container.layout";
 import CenterLayoutContainer from "../../Layouts/center-container";
 
 // -------------  Top level React Components ------------------- //
-import Navigation from "../../Components/navigation/navigation.component";
 import TitlePage from "../../Components/title-page/title-page.component";
 import Spinner from "../../Components/spinner/spinner.component";
 
@@ -51,7 +50,6 @@ const AreasPage = () => {
                                 <AreasSection />
                             </AsideLayoutContainer>
                             <MainLayoutContainer>
-                                <Navigation />
                                 <DescriptionSection />
                                 <PartsSection uid={current} />
                             </MainLayoutContainer>

@@ -13,6 +13,7 @@ import PostsPage from './Routers/posts/posts-page';
 import StatisticPage from './Routers/statistic/statistic-page';
 import ProfilePage from './Routers/profile/profile-page';
 import AuthorizationPage from './Routers/authorization/authorization.page';
+import Navigation from './Components/navigation/navigation.component';
 
 function App() {
   const loggedIn = useSelector(selectAuthLoggedIn);
@@ -20,32 +21,34 @@ function App() {
   return (
     <>
       <Routes>
-        <Route index element={<AuthorizationPage />} />
-        <Route path='/profile' element={
-          <Protected isLoggedIn={loggedIn}>
-            <ProfilePage />
-          </Protected>
-        } />
-        <Route path='/daily' element={
-          <Protected isLoggedIn={loggedIn}>
-            <DailyPage />
-          </Protected>
-        } />
-        <Route path='/area' element={
-          <Protected isLoggedIn={loggedIn}>
-            <AreasPage />
-          </Protected>
-        } />
-        <Route path='/posts' element={
-          <Protected isLoggedIn={loggedIn}>
-            <PostsPage />
-          </Protected>
-        } />
-        <Route path='/statistic' element={
-          <Protected isLoggedIn={loggedIn}>
-            <StatisticPage />
-          </Protected>
-        } />
+        <Route path='/' element={<Navigation />}>
+          <Route index element={<AuthorizationPage />} />
+          <Route path='/profile' element={
+            <Protected isLoggedIn={loggedIn}>
+              <ProfilePage />
+            </Protected>
+          } />
+          <Route path='/daily' element={
+            <Protected isLoggedIn={loggedIn}>
+              <DailyPage />
+            </Protected>
+          } />
+          <Route path='/area' element={
+            <Protected isLoggedIn={loggedIn}>
+              <AreasPage />
+            </Protected>
+          } />
+          <Route path='/posts' element={
+            <Protected isLoggedIn={loggedIn}>
+              <PostsPage />
+            </Protected>
+          } />
+          <Route path='/statistic' element={
+            <Protected isLoggedIn={loggedIn}>
+              <StatisticPage />
+            </Protected>
+          } />
+        </Route>
       </Routes>
     </>
   );

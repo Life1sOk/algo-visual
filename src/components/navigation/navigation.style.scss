@@ -1,9 +1,32 @@
+.nav-wrapper {
+    width: 100%;
+    border-bottom: 2px solid #30363d;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-wrapper {
+    width: 1380px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 200px;
+}
+
+.left {
+    width: 350px;
+}
+
 .nav-container {
     width: 100%;
     height: 39px;
-    background-color: lightcoral;
+    color: white;
+    margin-bottom: 5px;
 
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    gap: 30px;
 }

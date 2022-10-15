@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const DisplaySection = styled.section`
     width: 100%;
     padding: 10px;
-    background-color: lightyellow;
+    ${'' /* background-color: lightyellow; */}
+    border: 2px solid #30363d;
 
     display: flex;
     align-items: flex-start;

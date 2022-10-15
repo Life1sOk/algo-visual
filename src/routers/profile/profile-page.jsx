@@ -12,7 +12,6 @@ import PageLayoutContainer from "../../Layouts/page-container.layout";
 import MainLayoutContainer from "../../Layouts/main-container.layout";
 
 // ------------- Top level React Components ------------------- //
-import Navigation from "../../Components/navigation/navigation.component";
 
 // ------------ Page's Sections ----------------- //
 import MainDisplaySection from "./sections/main-display/main-display.section";
@@ -38,7 +37,6 @@ const ProfilePage = () => {
                 <UserInfo />
             </AsideLayoutContainer>
             <MainLayoutContainer>
-                <Navigation />
                 <MainDisplaySection />
             </MainLayoutContainer>
         </PageLayoutContainer>

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 //----------------- Styled ---------------------//
 const AsideLayout = styled.div`
     width: 350px;
-    padding: 10px;
-    border-right: 2px solid green;
+    padding: 0 10px;
+    border-right: 2px solid #30363d;
 
     display: flex;
     flex-direction: column;

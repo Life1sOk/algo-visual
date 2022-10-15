@@ -7,8 +7,7 @@ const PageLayout = styled.div`
     width: 1380px;
     height: 100%;
     min-height: 1000px;
-    background-color: rgb(240, 194, 240);
-    margin: 20px auto 0 auto;
+    margin: 7px auto 0 auto;
 
     display: flex;
 `;

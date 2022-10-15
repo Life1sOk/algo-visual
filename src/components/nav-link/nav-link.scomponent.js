@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import './nav-link.style.scss';
+import { NavLinkContainer } from './nav-link.style.js';
 
-const NavLink = ({ children, to, ...others }) => {
+const NavLink = ({ name, to, id, status, setStatus }) => {
+    const [active, setActive] = useState(false);
+
+    useEffect(() => {
+        if (status === id) return setActive(true);
+        if (status !== id) return setActive(false);
+    }, [id, status]);
+
+    const statusChangeHandler = () => setStatus(id);
+
     return (
-        <Link to={to}>
-            <span className="nav-link" {...others}>{children}</span>
+        <Link to={to} onClick={statusChangeHandler}>
+            <NavLinkContainer active={active}>{name}</NavLinkContainer>
         </Link>
     )
 }

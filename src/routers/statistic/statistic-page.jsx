@@ -6,7 +6,6 @@ import PageLayoutContainer from "../../Layouts/page-container.layout";
 import MainLayoutContainer from "../../Layouts/main-container.layout";
 
 // ------------- React's Components ------------------- //
-import Navigation from "../../Components/navigation/navigation.component";
 import TitlePage from "../../Components/title-page/title-page.component";
 
 // ------------- Lego --------------- //
@@ -17,7 +16,6 @@ const StatisticPage = () => {
                 <TitlePage titleName='Statistic' />
             </AsideLayoutContainer>
             <MainLayoutContainer>
-                <Navigation />
             </MainLayoutContainer>
         </PageLayoutContainer>
     )
