@@ -15,7 +15,7 @@ const QuestCard = ({ title, color, quests, state }) => {
                     state === 'resolved' ?
                         quests &&
                         quests.map(quest =>
-                            <Quest key={quest.id} quest={quest} />
+                            <Quest key={quest.id} quest={quest} color={color} />
                         )
                         :
                         state === 'rejected' ?

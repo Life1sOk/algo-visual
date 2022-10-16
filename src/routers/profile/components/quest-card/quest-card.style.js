@@ -5,7 +5,7 @@ export const QuestCardContainer = styled.div`
     width: 322px;
     height: auto;
     background-color: white;
-    border: 3px solid ${props => props.color};
+    ${'' /* border: 3px solid ${props => props.color}; */}
     border-radius: 20px;
     overflow: hidden;
 `;
@@ -14,7 +14,6 @@ export const QuestTitle = styled.h2`
     background-color: ${props => props.color};
     height: 40px;
     color: white;
-    margin-bottom: 15px;
 
     display: flex;
     justify-content: center;
@@ -22,10 +21,7 @@ export const QuestTitle = styled.h2`
 `;
 
 export const ProgressBar = styled.div`
-    position: sticky;
-    bottom: 0;
-    right: 0;
-    left: 0;
+   text-align: center;
 
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0;
 `;

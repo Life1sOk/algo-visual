@@ -21,8 +21,8 @@ function App() {
   return (
     <>
       <Routes>
+        <Route index element={<AuthorizationPage />} />
         <Route path='/' element={<Navigation />}>
-          <Route index element={<AuthorizationPage />} />
           <Route path='/profile' element={
             <Protected isLoggedIn={loggedIn}>
               <ProfilePage />
@@ -55,6 +55,3 @@ function App() {
 }
 
 export default App;
-
-// Next to DO 
-// Card logic and state this how to do!
