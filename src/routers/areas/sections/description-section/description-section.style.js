@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const DescriptionSectionContainer = styled.div`
     margin: 27px 30px 0 30px;
+    width: 90%;
     height: ${props => props.open ? '440px' : '50px'};
     transition: height 0.4s ease-in-out;
     overflow: hidden;

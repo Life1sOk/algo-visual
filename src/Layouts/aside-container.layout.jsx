@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 //----------------- Styled ---------------------//
 const AsideLayout = styled.div`
-    width: 350px;
+    position: relative;
+    width: auto;
     padding: 0 10px;
     border-right: 2px solid #30363d;
 
@@ -11,12 +12,14 @@ const AsideLayout = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-
 //----------------------------------------------//
 
 const AsideLayoutContainer = ({ children }) => {
+
     return (
-        <AsideLayout>{children}</AsideLayout>
+        <AsideLayout>
+            {children}
+        </AsideLayout>
     )
 }
 

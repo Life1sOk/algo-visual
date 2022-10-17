@@ -5,6 +5,7 @@ import dailyReducer from './slices/daily.slice';
 import areasReducer from './slices/areas-slice';
 import authReducer from './slices/auth.slice';
 import createQuestReducer from "./slices/create-quest.slice";
+import asideMenuReducer from "./slices/aside-menu.slice";
 
 const store = configureStore({
     middleware: (getDefaultMiddleware) =>
@@ -26,6 +27,7 @@ const store = configureStore({
         outPlan: outPlanReducer,
         areas: areasReducer,
         createQuest: createQuestReducer,
+        aside: asideMenuReducer,
     }
 })
 

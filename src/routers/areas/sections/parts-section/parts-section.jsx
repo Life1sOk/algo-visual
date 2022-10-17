@@ -7,7 +7,7 @@ import { setUsersDatasAreas } from "../../../../utils/firebase/firebase";
 import { PartsSectionContainer, PartsSectionDisplay } from './parts-section.style';
 import AreaParts from "../../components/area-parts/area-parts.component";
 import YearGoal from "../../components/year-goal/year-goal.component";
-import CreateTodo from "../../components/create-todo/create-todo.component";
+// import CreateTodo from "../../components/create-todo/create-todo.component";
 
 const PartsSection = ({ uid }) => {
     const currentSection = useSelector(selectDisplaySection);
@@ -27,7 +27,7 @@ const PartsSection = ({ uid }) => {
         <PartsSectionContainer>
             <AreaParts parts={parts} setCurrentPart={setCurrentPart} currentPart={currentPart} />
             <PartsSectionDisplay>
-                <CreateTodo currentPart={currentPart} sectionTitle={title} />
+                {/* <CreateTodo currentPart={currentPart} sectionTitle={title} /> */}
                 {
                     parts[currentPart]?.map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} currentPart={currentPart} sectionTitle={title} />)
                 }

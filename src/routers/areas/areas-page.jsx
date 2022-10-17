@@ -5,19 +5,20 @@ import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getAreasData, selectAreasStatus } from "../../App/slices/areas-slice";
 
 // ------------- Top level - Containers / Layouts -------------- //
-import AsideLayoutContainer from "../../Layouts/aside-container.layout";
 import PageLayoutContainer from "../../Layouts/page-container.layout";
 import MainLayoutContainer from "../../Layouts/main-container.layout";
 import CenterLayoutContainer from "../../Layouts/center-container";
+import AsideLayoutContainer from "../../Layouts/aside-container.layout";
 
 // -------------  Top level React Components ------------------- //
-import TitlePage from "../../Components/title-page/title-page.component";
 import Spinner from "../../Components/spinner/spinner.component";
+import TitlePage from "../../Components/title-page/title-page.component";
 
 // ------------ Page's Sections ----------------- //
 import AreasSection from "./sections/areas-section/areas-section";
 import DescriptionSection from "./sections/description-section/description-section";
 import PartsSection from "./sections/parts-section/parts-section";
+import PlanSection from "./sections/plan-section/plan-section";
 
 // ------------ Page's React Components ----------------- //
 
@@ -52,6 +53,7 @@ const AreasPage = () => {
                             <MainLayoutContainer>
                                 <DescriptionSection />
                                 <PartsSection uid={current} />
+                                <PlanSection />
                             </MainLayoutContainer>
                         </PageLayoutContainer>
             }

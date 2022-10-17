@@ -2,9 +2,10 @@ import React from "react";
 
 import './title-page.style.scss';
 
-const TitlePage = ({ titleName }) => {
+const TitlePage = ({ titleName, ...others }) => {
+
     return (
-        <div className="title-page">{titleName}</div>
+        <span className="title" {...others}>{titleName}</span>
     )
 }
 
