@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export const CurrentPartContainer = styled.div`
     width: 100%;
-    height: 70px;
-    border: 3px solid ${props => props.active ? 'white' : 'initial'};
+    height: 50px;
+    border: 3px solid ${props => props.active ? 'rgb(255, 98, 0)' : 'initial'};
     margin-bottom: 10px;
-    background-color: rgba(0, 102, 255, 0.7);
+    color: ${props => props.active ? 'rgb(255, 98, 0)' : 'white'};
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     &:hover {
-        border: 3px solid white;
+        border: 3px solid ${props => props.active ? 'initial' : 'white'};;
         cursor: pointer;
     }
 `;

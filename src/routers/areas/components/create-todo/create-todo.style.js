@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const CreateTodoContainer = styled.div`
-    width: ${props => props.smallToBig ? '644px' : '322px'};
-    ${'' /* width: 322px; */}
+    width: 322px;
     color: white;
     border: 7px solid rgb(98, 98, 98);
     border-radius: 20px;
@@ -44,21 +43,4 @@ export const TimeContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-`;
-
-export const Main = styled.div`
-    width: 100%;
-    height: 289px;
-    padding: 10px;
-    background-color: lightgreen;
-    overflow: scroll;
-`;
-
-export const Footer = styled.div`
-    height: 30px;
-    width: 100%;
-    background-color: rgb(98, 98, 98);
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
 `;

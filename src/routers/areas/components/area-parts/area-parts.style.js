@@ -6,5 +6,7 @@ export const AreaPartContainer = styled.div`
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-items: cetner;
+    justify-items: cetner;
     gap: 2px;
 `;

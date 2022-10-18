@@ -1,17 +1,25 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
-import { selectDisplaySection } from "../../../../App/slices/areas-slice";
-
-import { PlanSectionContainer, PlanMenu } from './plan-section.style';
+import TextArea from "../../components/textarea/textarea.component";
+import Input from "../../components/input/input.component";
+import CreateTodo from "../../components/create-todo/create-todo.component";
+import { PlanSectionContainer, SectionOne, SectionTwo, SectionThree } from './plan-section.style';
 
 const PlanSection = () => {
-    const currentSection = useSelector(selectDisplaySection);
-    const { mainColor } = currentSection;
 
     return (
-        <PlanSectionContainer mainColor={mainColor}>
-            <PlanMenu></PlanMenu>
+        <PlanSectionContainer>
+            <SectionOne>
+                <h2>Main</h2>
+                <Input />
+                <TextArea type='normal' label='Current state:' />
+                <TextArea type='normal' label='Want to:' />
+                <TextArea type='big' label='Description / Why?:' />
+            </SectionOne>
+            <SectionTwo>
+                <CreateTodo />
+            </SectionTwo>
+            <SectionThree />
         </PlanSectionContainer>
     )
 }

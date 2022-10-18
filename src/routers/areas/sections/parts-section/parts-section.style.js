@@ -7,8 +7,6 @@ export const PartsSectionContainer = styled.div`
 
 export const PartsSectionDisplay = styled.div`
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 13px;
 `;
