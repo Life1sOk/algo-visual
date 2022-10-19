@@ -1,37 +1,20 @@
 import styled from 'styled-components';
 
 export const CreateTodoContainer = styled.div`
-    width: 322px;
+    width: 100%;
+    min-width: 218.5px;
     color: white;
-    border: 7px solid rgb(98, 98, 98);
+    border: 2px solid rgb(98, 98, 98);
     border-radius: 20px;
-    background-color: rgba(169, 169, 169, .5);
+    background-color: rgba(51, 51, 255, .5);
     overflow: hidden;
     z-index: 10;
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     ${'' /* transform: scale(1.5); */}
-    transition: all 2s ease-in-out;
-`;
-
-export const CardTitle = styled.h2`
-    height: 35px;
-    background-color: rgb(98, 98, 98);
-    text-align: center;
-    padding-bottom: 5px;
-`;
-
-export const QuestTitle = styled.input`
-    height: 41px;
-    padding: 10px;
-    font-size: 18.73px;
-    border: none;
-
-    &:focus {
-        background-color: rgb(241, 255, 158);
-        outline: none;
-    }
+    transition: all 1s ease-in-out;
 `;
 
 export const TimeContainer = styled.div`

@@ -2,10 +2,10 @@ import React from "react";
 
 import { TitleInput, TitleInputContainer } from './input.style';
 
-const Input = () => {
+const Input = ({ label }) => {
     return (
         <TitleInputContainer>
-            <label htmlFor='addTitle'>Goal Title:</label>
+            <label htmlFor='addTitle'>{label}</label>
             <TitleInput id='addTitle' />
         </TitleInputContainer>
     )

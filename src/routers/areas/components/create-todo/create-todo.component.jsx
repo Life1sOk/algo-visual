@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-
 import Input from "../input/input.component";
-import { CreateTodoContainer, QuestTitle, TimeContainer } from './create-todo.style';
+import TextArea from "../textarea/textarea.component";
+import { CreateTodoContainer, TimeContainer } from './create-todo.style';
 
 
 const CreateTodo = ({ currentPart, sectionTitle }) => {
@@ -34,6 +34,7 @@ const CreateTodo = ({ currentPart, sectionTitle }) => {
                 <p>Deadline:</p>
                 <input type='date' onChange={(e) => timeChangeHandler(e)} />
             </TimeContainer>
+            <TextArea type='big' label={false} />
         </CreateTodoContainer>
     )
 }

@@ -2,11 +2,11 @@ import React from "react";
 
 import { TextAreaDescription, TextAreaContainer } from './textarea.style';
 
-const TextArea = ({ type, label }) => {
+const TextArea = ({ type, label, ...others }) => {
     return (
         <TextAreaContainer>
-            <label htmlFor={type}>{label}</label>
-            <TextAreaDescription id={type} type={type} />
+            {label ? <label htmlFor={type}>{label}</label> : null}
+            <TextAreaDescription id={type} type={type} {...others} />
         </TextAreaContainer>
     )
 }

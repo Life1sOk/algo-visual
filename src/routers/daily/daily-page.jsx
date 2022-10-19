@@ -21,6 +21,7 @@ const DailyPage = () => {
                 <SwitchSection />
             </AsideLayoutContainer>
             <MainLayoutContainer>
+                <button>Count</button>
             </MainLayoutContainer>
         </PageLayoutContainer>
     )
