@@ -1,12 +1,18 @@
 import React from "react";
 
+import { useSelector } from "react-redux";
+import { selectSlideOne } from "../../../../App/slices/quest-slides";
+
 import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Quote, Ul, Buttons } from './slide-quest-one.style';
 import Input from "../input/input.component";
 import TextArea from "../textarea/textarea.component";
 
 const SlideQuestOne = () => {
+    const slidesState = useSelector(selectSlideOne);
+    const { active, done } = slidesState;
+
     return (
-        <SlideSectionContainer>
+        <SlideSectionContainer active={active}>
             <h2>Main</h2>
             <SlideWrapper>
                 <SlideInContainer>
