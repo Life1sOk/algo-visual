@@ -1,10 +1,14 @@
 import React from "react";
 
-import { PointsContainer } from './points.style';
+import { PointsContainer, Main } from './points.style';
 
 const Points = () => {
     return (
-        <PointsContainer></PointsContainer>
+        <PointsContainer>
+            <h2>English</h2>
+            <p>Date</p>
+            <Main readOnly disabled defaultValue='DescriptionDescription Description Description Description' />
+        </PointsContainer>
     )
 }
 
