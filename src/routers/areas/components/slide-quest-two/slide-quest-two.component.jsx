@@ -3,10 +3,20 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectSlideTwo } from "../../../../App/slices/quest-slides";
 
+import Ulist from "../u-list/u-list.component";
+import Quote from "../quote/quote.component";
 import Input from "../input/input.component";
 import TextArea from "../textarea/textarea.component";
 import Points from "../points/points.component";
-import { SlideSectionContainer, InDescWrapper, SlideIn, DisplayPoints, SlideDescription, Quote, Ul, Buttons, Date } from './slide-quest-two.style';
+import { SlideSectionContainer, InDescWrapper, SlideIn, DisplayPoints, SlideDescription, Buttons, Date } from './slide-quest-two.style';
+
+const slideState = {
+    id: 1,
+    title: 'B2',
+    createdTime: 'today',
+    untilTime: '',
+    description: 'Find some date with examse',
+}
 
 const SlideQuestTwo = () => {
     const slidesState = useSelector(selectSlideTwo);
@@ -26,20 +36,16 @@ const SlideQuestTwo = () => {
                     <button>Add</button>
                 </SlideIn>
                 <SlideDescription>
-                    <Quote>Success is steady progress toward one’s personal goals. — Jim Rohn</Quote>
-                    <Ul>
-                        <li>Create milestones to track progress. <br />
-                            (Add some explanation)
-                        </li>
-                    </Ul>
+                    <Quote slide='two' />
+                    <Ulist slide='two' />
+                    <Buttons>
+                        <button>Accept</button>
+                    </Buttons>
                 </SlideDescription>
             </InDescWrapper>
             <DisplayPoints>
                 <Points />
             </DisplayPoints>
-            <Buttons>
-                <button>Accept</button>
-            </Buttons>
         </SlideSectionContainer>
     )
 }

@@ -27,10 +27,6 @@ const PartsSection = ({ uid }) => {
         <PartsSectionContainer>
             <AreaParts parts={parts} setCurrentPart={setCurrentPart} currentPart={currentPart} />
             <PartsSectionDisplay>
-                {/* <CreateTodo currentPart={currentPart} sectionTitle={title} /> */}
-                {/* {
-                    parts[currentPart]?.map(goal => <YearGoal color={mainColor} key={goal.id} goal={goal} currentPart={currentPart} sectionTitle={title} />)
-                } */}
             </PartsSectionDisplay>
         </PartsSectionContainer>
     )

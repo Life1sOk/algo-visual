@@ -2,16 +2,38 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     main: {
-        name: '',
-        createdTime: '',
-        untilTime: '',
-        needForAchive: [],
+        title: '',
+        description: '',
+        mainGoal: '',
+        current: '',
+        achieve: [
+
+        ],
+        everyDayTo: [
+
+        ],
     },
     blank: {
-        name: '',
-        createdTime: '',
-        untilTime: '',
-        needForAchive: [],
+        title: '',
+        description: '',
+        mainGoal: '',
+        current: '',
+        achieve: [
+            {
+                id: 1,
+                title: 'B2',
+                createdTime: 'today',
+                untilTime: '',
+                description: 'Find some date with examse',
+            }
+        ],
+        everyDayTo: [
+            {
+                id: 1,
+                questName: '',
+                description: '',
+            },
+        ],
     }
 }
 
@@ -19,48 +41,9 @@ export const createQuestSlice = createSlice({
     name: 'createQuest',
     initialState,
     reducers: {
-        nameHandler: (state, { payload }) => {
-            state.main.name = payload;
-        },
-        createdTimeHandler: (state, { payload }) => {
-            state.main.createdTime = payload;
-        },
-        untilTimeHandler: (state, { payload }) => {
-            state.main.untilTime = payload;
-        },
-        addNewItem: (state) => {
-            const createId = state.main.needForAchive.length + 1;
-
-            state.main.needForAchive.push({
-                id: createId,
-                status: false,
-                description: '',
-            })
-        },
-        changeItemValue: (state, { payload }) => {
-            state.main.needForAchive = state.main.needForAchive.map(item => {
-                if (item.id === payload.id) {
-                    return { ...item, description: payload.value }
-                } else {
-                    return item;
-                }
-            })
-        },
-        deleteItem: (state, { payload }) => {
-            state.main.needForAchive = state.main.needForAchive.filter(item => item.id !== payload);
-            state.main.needForAchive = state.main.needForAchive.map(item => {
-                return { ...item, id: state.main.needForAchive.indexOf(item) + 1 };
-            })
-        },
-        defaultState: (state) => {
-            state.main = state.blank;
-        }
     }
 });
 
-export const selectQuest = (state) => state.createQuest.main;
-export const selectNeedForAchive = (state) => state.createQuest.main.needForAchive;
-
-export const { nameHandler, createdTimeHandler, untilTimeHandler, addNewItem, deleteItem, defaultState, changeItemValue } = createQuestSlice.actions;
+export const { } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

@@ -15,6 +15,10 @@ export const SlideSectionContainer = styled.div`
 
     transform: ${props => props.active ? 'none' : 'translateX(1000px)'};
     transition: transform 1s ease-in-out;
+
+    h2 {
+        padding: 10px 0 0 0;
+    }
 `;
 
 export const InDescWrapper = styled.div`
@@ -46,7 +50,7 @@ export const Date = styled.div`
 export const DisplayPoints = styled.div`
     width: 90%;
     margin-top: 15px;
-    padding: 15px 0;
+    padding: 15px 0 0 0;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     overflow: auto;
@@ -59,24 +63,6 @@ export const DisplayPoints = styled.div`
 export const SlideDescription = styled.div`
     width: 400px;
     padding: 7px;
-`;
-
-export const Quote = styled.q`
-    height: 70px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid grey;
-`;
-
-export const Ul = styled.ul`
-    padding: 10px;
-    margin-left: 15px;
-
-    li {
-        padding: 5px;
-    }
 `;
 
 export const Buttons = styled.div`

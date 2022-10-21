@@ -41,23 +41,6 @@ export const SlideDescription = styled.div`
     padding: 7px;
 `;
 
-export const Quote = styled.q`
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    border-bottom: 1px solid grey;
-`;
-
-export const Ul = styled.ul`
-    padding: 10px;
-
-    li {
-        padding: 5px;
-    }
-`;
-
 export const Buttons = styled.div`
     height: 90px;
     padding: 20px 20px 0 0;
