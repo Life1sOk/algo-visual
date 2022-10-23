@@ -7,7 +7,7 @@ export const SlideSectionContainer = styled.div`
     border-right: 2px solid rgba(255,255,102);
     width: 800px;
     height: 100%;
-    background-color: rgb(6, 34, 60);
+    background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,153,0)'};
 
     display: flex;
     flex-direction: column;

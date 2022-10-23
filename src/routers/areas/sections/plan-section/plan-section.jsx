@@ -25,9 +25,9 @@ const PlanSection = () => {
             <SlideQuestThree />
             <PlanNavigation>
                 <h2>Menu-navigation</h2>
-                <NavButton active={oneState.active} onClick={oneSlideChangeHandler}>Main</NavButton>
-                <NavButton active={twoState.active} onClick={twoSlideChangeHandler}>Points</NavButton>
-                <NavButton active={threeState.active} onClick={threeSlideChangeHandler}>Daily</NavButton>
+                <NavButton active={oneState?.active} onClick={oneSlideChangeHandler}>Main</NavButton>
+                <NavButton active={twoState?.active} onClick={twoSlideChangeHandler}>Points</NavButton>
+                <NavButton active={threeState?.active} onClick={threeSlideChangeHandler}>Daily</NavButton>
                 <BigButton>Ready To Go</BigButton>
             </PlanNavigation>
         </PlanSectionContainer>

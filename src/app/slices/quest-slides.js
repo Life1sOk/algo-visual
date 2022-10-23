@@ -35,16 +35,25 @@ const questSlideSlice = createSlice({
             state.three.active = true;
         },
         oneDone: (state, { payload }) => {
-            if (payload === 'fix') return state.one.done = false;
-            if (payload === 'done') return state.one.done = true;
+            if (payload === 'fix') {
+                state.one.done = false;
+            } else {
+                state.one.done = true;
+            }
         },
         twoDone: (state, { payload }) => {
-            if (payload === 'fix') return state.two.done = false;
-            if (payload === 'done') return state.two.done = true;
+            if (payload === 'fix') {
+                state.two.done = false;
+            } else {
+                state.two.done = true;
+            }
         },
         threeDone: (state, { payload }) => {
-            if (payload === 'fix') return state.three.done = false;
-            if (payload === 'done') return state.three.done = true;
+            if (payload === 'fix') {
+                state.three.done = false;
+            } else {
+                state.three.done = true;
+            }
         },
     },
 });
