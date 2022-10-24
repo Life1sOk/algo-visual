@@ -12,7 +12,7 @@ import Points from "../points/points.component";
 import { SlideSectionContainer, SlideWrapper, SlideInContainer, SlideDescription, SlideInWrapper, DisplayPoints, Buttons } from './slide-quest-three.style';
 
 const slideState = {
-    questName: '',
+    title: '',
     description: '',
 }
 
@@ -25,7 +25,7 @@ const SlideQuestThree = () => {
 
     const [state, setState] = useState(slideState);
 
-    const titleChangeHandler = (event) => setState({ ...state, questName: event.target.value });
+    const titleChangeHandler = (event) => setState({ ...state, title: event.target.value });
     const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
 
     const addChangeHandler = () => {
@@ -66,7 +66,7 @@ const SlideQuestThree = () => {
             <DisplayPoints>
                 {
                     slideData[0] &&
-                    slideData.map(toDo => <Points key={toDo.id} />)
+                    slideData.map(toDo => <Points key={toDo.id} data={toDo} />)
                 }
             </DisplayPoints>
         </SlideSectionContainer>

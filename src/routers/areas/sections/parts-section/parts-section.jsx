@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import { useSelector } from "react-redux";
 import { selectDisplaySection } from "../../../../App/slices/areas-slice";
-import { setUsersDatasAreas, checkUsersDocsAreas } from "../../../../utils/firebase/firebase";
+import { setUsersDatasAreas } from "../../../../utils/firebase/firebase";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
 
 import { PartsSectionContainer, PartsSectionDisplay } from './parts-section.style';
 import AreaParts from "../../components/area-parts/area-parts.component";
 import PlanSection from "../plan-section/plan-section";
-// import CreateTodo from "../../components/create-todo/create-todo.component";
+import QuestDisplay from "../../components/quest-display/quest-display.component";
 
 const PartsSection = () => {
     const uid = useSelector(selectAuthUid);
@@ -30,7 +30,9 @@ const PartsSection = () => {
             <AreaParts parts={parts} setCurrentPart={setCurrentPart} currentPart={currentPart} />
             <PlanSection title={title} part={currentPart} />
             <PartsSectionDisplay>
-                <button onClick={() => console.log(currentSection)}>Check</button>
+                {
+                    parts[currentPart]?.map(part => <QuestDisplay key={part.id} part={part} />)
+                }
             </PartsSectionDisplay>
         </PartsSectionContainer>
     )
