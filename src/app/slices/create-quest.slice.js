@@ -1,12 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    main: {
-        title: '',
-        description: '',
-        mainGoal: '',
-        current: '',
-    },
+    createdTime: '',
+    main: {},
     achieve: [],
     daily: [],
 }
@@ -28,6 +24,7 @@ export const createQuestSlice = createSlice({
     }
 });
 
+export const selectCreateQuest = (state) => state.createQuest;
 export const selectCreateQuestMain = (state) => state.createQuest.main;
 export const selectCreateQuestAchieve = (state) => state.createQuest.achieve;
 export const selectCreateQuestDaily = (state) => state.createQuest.daily;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideOne, oneDone } from "../../../../App/slices/quest-slides";
-import { selectCreateQuestMain, mainAccept } from "../../../../App/slices/create-quest.slice";
+import { mainAccept } from "../../../../App/slices/create-quest.slice";
 
 import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons } from './slide-quest-one.style';
 import Input from "../input/input.component";
@@ -10,14 +10,19 @@ import TextArea from "../textarea/textarea.component";
 import Quote from "../quote/quote.component";
 import Ulist from "../u-list/u-list.component";
 
+const slideState = {
+    title: '',
+    description: '',
+    mainGoal: '',
+    current: '',
+}
 
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
     const slidesState = useSelector(selectSlideOne);
     const { active, done } = slidesState;
 
-    const slideData = useSelector(selectCreateQuestMain);
-    const [state, setState] = useState(slideData);
+    const [state, setState] = useState(slideState);
 
     const titleChangeHandler = (event) => setState({ ...state, title: event.target.value });
     const currentStateChangeHandler = (event) => setState({ ...state, current: event.target.value });
@@ -26,7 +31,7 @@ const SlideQuestOne = () => {
 
     const slideOneDoneHandler = () => {
         dispatch(oneDone('done'));
-        dispatch(mainAccept(state))
+        dispatch(mainAccept(state));
     }
 
     const slideOneFixHandler = () => {

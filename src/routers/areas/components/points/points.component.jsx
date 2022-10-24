@@ -2,12 +2,14 @@ import React from "react";
 
 import { PointsContainer, Main } from './points.style';
 
-const Points = () => {
+const Points = ({ data }) => {
+    const { title, untilTime, description } = data;
+
     return (
         <PointsContainer>
-            <h2>English</h2>
-            <p>Date</p>
-            <Main readOnly disabled defaultValue='DescriptionDescription Description Description Description' />
+            <h2>{title}</h2>
+            <p>{`Date: ${untilTime}`}</p>
+            <Main readOnly disabled defaultValue={description} />
         </PointsContainer>
     )
 }

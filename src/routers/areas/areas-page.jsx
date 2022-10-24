@@ -18,7 +18,6 @@ import TitlePage from "../../Components/title-page/title-page.component";
 import AreasSection from "./sections/areas-section/areas-section";
 import DescriptionSection from "./sections/description-section/description-section";
 import PartsSection from "./sections/parts-section/parts-section";
-import PlanSection from "./sections/plan-section/plan-section";
 
 // ------------ Page's React Components ----------------- //
 
@@ -52,8 +51,7 @@ const AreasPage = () => {
                             </AsideLayoutContainer>
                             <MainLayoutContainer>
                                 <DescriptionSection />
-                                <PartsSection uid={current} />
-                                <PlanSection />
+                                <PartsSection />
                             </MainLayoutContainer>
                         </PageLayoutContainer>
             }

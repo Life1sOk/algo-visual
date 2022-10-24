@@ -145,11 +145,11 @@ export const checkUsersDocsAreas = async (uid, type) => {
 export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
     if (!uid || !type) return;
 
-    const docRef = doc(db, 'users', uid, 'areas', type)
+    const docRef = doc(db, 'users', uid, 'areas', type);
 
     try {
         await setDoc(docRef, datasToAdd);
-        console.log('done')
+        console.log('done');
     } catch (error) {
         console.log('oops, here is some error', error);
     }
