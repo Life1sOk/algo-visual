@@ -8,11 +8,9 @@ const Points = ({ data }) => {
     return (
         <PointsContainer>
             <h2>{title}</h2>
-            {
-                untilTime &&
-                <p>{`Date: ${untilTime}`}</p>
-            }
-            <Main readOnly disabled defaultValue={description} />
+            <span>{`Date: ${untilTime}`}</span>
+            {/* <Main readOnly disabled defaultValue={description} /> */}
+            <Main>{description}</Main>
         </PointsContainer>
     )
 }

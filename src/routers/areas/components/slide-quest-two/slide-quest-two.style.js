@@ -50,7 +50,7 @@ export const Date = styled.div`
 export const DisplayPoints = styled.div`
     width: 90%;
     margin-top: 15px;
-    padding: 15px 0 0 0;
+    padding: 15px 0;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     overflow: auto;

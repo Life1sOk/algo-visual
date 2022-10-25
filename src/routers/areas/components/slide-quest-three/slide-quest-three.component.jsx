@@ -64,10 +64,10 @@ const SlideQuestThree = () => {
                 </SlideDescription>
             </SlideWrapper>
             <DisplayPoints>
-                {
+                {/* {
                     slideData[0] &&
                     slideData.map(toDo => <Points key={toDo.id} data={toDo} />)
-                }
+                } */}
             </DisplayPoints>
         </SlideSectionContainer>
     )

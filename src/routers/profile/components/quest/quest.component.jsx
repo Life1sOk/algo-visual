@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, memo } from "react";
 
 import useAutosizeTextArea from "../../../../Hooks/useAutosizeTextArea.js";
 import { QuestContainer, QuestWrapper, DiscriptionBox, Done, Label } from './quest.style.js';

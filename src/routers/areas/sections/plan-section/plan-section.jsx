@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount } from "../../../../App/slices/quest-slides";
@@ -10,7 +10,7 @@ import SlideQuestOne from "../../components/slide-quest-one/slide-quest-one.comp
 import SlideQuestTwo from "../../components/slide-quest-two/slide-quest-two.component";
 import SlideQuestThree from "../../components/slide-quest-three/slide-quest-three.component";
 
-const PlanSection = memo(({ title, part }) => {
+const PlanSection = ({ title, part }) => {
     const dispatch = useDispatch();
 
     const currentQuest = useSelector(selectCreateQuest);
@@ -46,6 +46,6 @@ const PlanSection = memo(({ title, part }) => {
             </PlanNavigation>
         </PlanSectionContainer>
     )
-})
+}
 
 export default PlanSection;

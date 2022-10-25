@@ -33,8 +33,8 @@ export const areasSlice = createSlice({
         addNewQuest: (state, { payload }) => {
             const { part, title, quest } = payload;
             const generateId = state.displaySection.parts[part]?.length + 1;
-            state.displaySection.parts[part]?.unshift({ id: generateId, ...quest });
-            state.sections[title]?.parts[part]?.unshift({ id: generateId, ...quest });
+            state.displaySection.parts[part]?.push({ id: generateId, ...quest });
+            state.sections[title]?.parts[part]?.push({ id: generateId, ...quest });
         },
         deleteQuest: (state, { payload }) => {
             const { part, title, questId } = payload;
