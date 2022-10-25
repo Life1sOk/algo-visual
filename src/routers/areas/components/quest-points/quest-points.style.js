@@ -23,7 +23,7 @@ export const QuestPointsDisplay = styled.div`
 
 export const QuestPoint = styled.div`
     width: 100%;
-    max-height: 159px;
+    height: 119.5px;
     padding: 5px;
     border: 1px solid white;
     text-align: center;

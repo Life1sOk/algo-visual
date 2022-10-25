@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const QuestMainContainer = styled.div`
     width: 300px;
     height: 100%;
-    border-right: 2px solid lightgreen;
+    ${'' /* border-right: 2px solid lightgreen; */}
     color: white;
     flex-shrink: 0;
 
