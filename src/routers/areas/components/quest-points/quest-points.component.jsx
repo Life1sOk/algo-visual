@@ -11,11 +11,7 @@ const QuestPoints = ({ data }) => {
                 {
                     data[0] &&
                     data.map(point =>
-                        <QuestPoint key={point.id}>
-                            <h2 className="point-title">{point.title}</h2>
-                            <p>Date: {point.untilTime}</p>
-                            <p className="point-description">{point.description}</p>
-                        </QuestPoint>
+                        <Points key={point.id} data={point} />
                     )
                 }
             </QuestPointsDisplay>

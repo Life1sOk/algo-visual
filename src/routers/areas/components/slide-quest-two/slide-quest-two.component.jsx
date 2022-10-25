@@ -38,6 +38,10 @@ const SlideQuestTwo = () => {
     const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
 
     const addChangeHandler = () => {
+        if (state.title.length < 1) return alert('title to add!');
+        if (state.untilTime.length < 1) return alert('date to add!');
+        if (state.description.length < 1) return alert('description to add!');
+
         let generateId = slideData.length + 1;
         dispatch(addAchieve({ ...state, id: generateId }));
         setState(slideState);
@@ -48,17 +52,15 @@ const SlideQuestTwo = () => {
             <h2>Create Steps Points</h2>
             <InDescWrapper>
                 <SlideIn>
-                    <Input label='Point Title:' onChange={titleStateChangeHandler} readOnly={done} />
+                    <Input label='Point Title:' onChange={titleStateChangeHandler} readOnly={done} required value={state.title} />
                     <Date>
                         <span>Date:</span>
-                        <input type='date' onChange={(e) => checkTime(e)} readOnly={done} />
+                        <input type='date' onChange={(e) => checkTime(e)} readOnly={done} required />
                     </Date>
-                    <TextArea type='normal' label='Need to do!' onChange={descriptionChangeHandler} readOnly={done} />
+                    <TextArea type='normal' label='Need to do!' onChange={descriptionChangeHandler} readOnly={done} required value={state.description} />
                     {
-                        !done ?
-                            <button onClick={addChangeHandler}>Add</button>
-                            :
-                            null
+                        !done &&
+                        <button onClick={addChangeHandler}>Add</button>
                     }
                 </SlideIn>
                 <SlideDescription>

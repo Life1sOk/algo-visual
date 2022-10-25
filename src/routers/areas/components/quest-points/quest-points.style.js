@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const QuestPointsContainer = styled.div`
     width: 465px;
+    border-left: 2px solid lightgreen;
+    border-right: 2px solid lightgreen;
 
     .quest-points {
         text-align: center;
@@ -13,10 +15,12 @@ export const QuestPointsContainer = styled.div`
 export const QuestPointsDisplay = styled.div`
     width: 100%;
     height: calc(100% - 56.5px);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    grid-gap: 15px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 
     overflow: scroll;
 `;

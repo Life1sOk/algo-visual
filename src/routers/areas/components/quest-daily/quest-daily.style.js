@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const QuestDailyContainer = styled.div`
     width: 253px;
-    border-left: 2px solid lightgreen;
     flex-shrink: 0;
 
     .quest-time {

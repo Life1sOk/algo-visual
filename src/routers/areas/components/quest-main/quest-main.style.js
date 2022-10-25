@@ -43,6 +43,7 @@ export const QuestMainTitle = styled.div`
 export const QuestRoad = styled.div`
     width: 100%;
     margin-top: 20px;
+    margin-left: 34px;
     font-size: 16px;
 
     p {

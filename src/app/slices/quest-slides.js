@@ -61,7 +61,7 @@ const questSlideSlice = createSlice({
                 state.three.done = true;
                 state.count = state.count + 1;
             }
-        },
+        }
     },
 });
 

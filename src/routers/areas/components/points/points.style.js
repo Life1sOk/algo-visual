@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const PointsContainer = styled.div`
     height: 150px;
-    ${'' /* padding: 7px; */}
     flex-shrink: 0;
     border: 1px solid blue;
     border-radius: 12px;
     overflow: hidden;
     text-align: center;
+    background-color: white;
 
     display: flex;
     flex-direction: column;
@@ -21,7 +21,9 @@ export const PointsContainer = styled.div`
     .points-date {
         font-size: 14px;
         padding: 3px;
-        border-bottom: 1px solid grey;
+        border-bottom: 1px solid blue;
+        color: blue;
+        margin: 0 10px;
     }
 `;
 
@@ -35,4 +37,5 @@ export const Main = styled.span`
     border: none;
     background-color: initial;
     text-align: center;
+    color: blue;
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PlanSectionContainer = styled.div`
     position: relative;
     width: 1068px;
-    height: 497px;
+    height: 467px;
     border-radius: 20px;
     color: white;
     background-color: rgba(0,0,0, .1);

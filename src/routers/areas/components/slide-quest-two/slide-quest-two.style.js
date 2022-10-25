@@ -49,8 +49,9 @@ export const Date = styled.div`
 
 export const DisplayPoints = styled.div`
     width: 90%;
-    margin-top: 15px;
-    padding: 15px 0;
+    min-height: 152px;
+    margin-top: 10px;
+    padding: 10px 0;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     overflow: auto;

@@ -5,13 +5,15 @@ export const SlideSectionContainer = styled.div`
     top: 0;
     left: 0;
     height: 100%;
-    border-right: 2px solid rgba(255,255,102);
+    border-right:2px solid rgba(255,255,102);
+    padding-top: 10px;
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    ${'' /* justify-content: center; */}
     align-items: center;
+    gap: 8px;
 
     transform: ${props => props.active ? 'none' : 'translateX(1000px)'};
     transition: transform 1s ease-in-out;
@@ -33,7 +35,7 @@ export const SlideInContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
+    gap: 7px;
 `;
 
 export const SlideDescription = styled.div`
@@ -42,8 +44,8 @@ export const SlideDescription = styled.div`
 `;
 
 export const Buttons = styled.div`
-    height: 90px;
-    padding: 20px 20px 0 0;
+    height: 70px;
+    padding: 0px 20px 0 0;
 
     display: flex;
     justify-content: flex-end;

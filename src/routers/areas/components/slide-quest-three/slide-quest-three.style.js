@@ -58,8 +58,9 @@ export const SlideDescription = styled.div`
 
 export const DisplayPoints = styled.div`
     width: 90%;
+    min-height: 152px;
     margin-top: 15px;
-    padding: 7px 0 0 0;
+    padding: 7px 0;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     overflow: auto;

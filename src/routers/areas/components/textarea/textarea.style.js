@@ -9,7 +9,7 @@ export const TextAreaContainer = styled.div`
 `;
 
 export const TextAreaDescription = styled.textarea`
-    min-height: ${props => props.type === 'big' ? '110px' : '50px'};
+    min-height: ${props => props.type === 'big' ? '87px' : '50px'};
     padding: 5px;
     font-size: 16px;
     font-style: italic;

@@ -23,6 +23,7 @@ const SlideQuestOne = () => {
     const { active, done } = slidesState;
 
     const [state, setState] = useState(slideState);
+    const { title, description, mainGoal, current } = state;
 
     const titleChangeHandler = (event) => setState({ ...state, title: event.target.value });
     const currentStateChangeHandler = (event) => setState({ ...state, current: event.target.value });
@@ -30,6 +31,11 @@ const SlideQuestOne = () => {
     const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
 
     const slideOneDoneHandler = () => {
+        if (title.length < 1) return alert('need add title');
+        if (current.length < 1) return alert('add current state');
+        if (mainGoal.length < 1) return alert('u need your goal');
+        if (description.length < 1) return alert('add why?');
+
         dispatch(oneDone('done'));
         dispatch(mainAccept(state));
     }
@@ -43,10 +49,10 @@ const SlideQuestOne = () => {
             <h2>Main</h2>
             <SlideWrapper>
                 <SlideInContainer>
-                    <Input label='Goal Title:' readOnly={done} onChange={titleChangeHandler} />
-                    <TextArea type='normal' label='Current state:' readOnly={done} onChange={currentStateChangeHandler} />
-                    <TextArea type='normal' label='Want to:' readOnly={done} onChange={wantChangeHandler} />
-                    <TextArea type='big' label='Description / Why?:' readOnly={done} onChange={descriptionChangeHandler} />
+                    <Input label='Goal Title:' readOnly={done} onChange={titleChangeHandler} value={title} />
+                    <TextArea type='normal' label='Current state:' readOnly={done} onChange={currentStateChangeHandler} value={current} />
+                    <TextArea type='normal' label='Want to:' readOnly={done} onChange={wantChangeHandler} value={mainGoal} />
+                    <TextArea type='big' label='Description / Why?:' readOnly={done} onChange={descriptionChangeHandler} value={description} />
                 </SlideInContainer>
                 <SlideDescription>
                     <Quote slide='one' />

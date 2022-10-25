@@ -8,7 +8,7 @@ import Ulist from "../u-list/u-list.component";
 import Quote from "../quote/quote.component";
 import Input from "../input/input.component";
 import TextArea from "../textarea/textarea.component";
-import Points from "../points/points.component";
+import DailyAdd from "../daily-add/daily-add.component";
 import { SlideSectionContainer, SlideWrapper, SlideInContainer, SlideDescription, SlideInWrapper, DisplayPoints, Buttons } from './slide-quest-three.style';
 
 const slideState = {
@@ -24,11 +24,15 @@ const SlideQuestThree = () => {
     const { active, done } = slidesState;
 
     const [state, setState] = useState(slideState);
+    const { title, description } = state;
 
     const titleChangeHandler = (event) => setState({ ...state, title: event.target.value });
     const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
 
     const addChangeHandler = () => {
+        if (title.length < 1) return alert('add title');
+        if (description.length < 1) return alert('add description');
+
         let generateId = slideData.length + 1;
         dispatch(addDaily({ ...state, id: generateId }));
         setState(slideState);
@@ -40,13 +44,11 @@ const SlideQuestThree = () => {
             <SlideWrapper>
                 <SlideInContainer>
                     <SlideInWrapper>
-                        <Input label='Title:' onChange={titleChangeHandler} readOnly={done} />
-                        <TextArea type='normal' label='Description:' onChange={descriptionChangeHandler} readOnly={done} />
+                        <Input label='Title:' onChange={titleChangeHandler} readOnly={done} value={title} />
+                        <TextArea type='normal' label='Description:' onChange={descriptionChangeHandler} readOnly={done} value={description} />
                         {
-                            !done ?
-                                <button onClick={addChangeHandler}>Add</button>
-                                :
-                                null
+                            !done &&
+                            <button onClick={addChangeHandler}>Add</button>
                         }
                     </SlideInWrapper>
                 </SlideInContainer>
@@ -64,10 +66,10 @@ const SlideQuestThree = () => {
                 </SlideDescription>
             </SlideWrapper>
             <DisplayPoints>
-                {/* {
+                {
                     slideData[0] &&
-                    slideData.map(toDo => <Points key={toDo.id} data={toDo} />)
-                } */}
+                    slideData.map(toDo => <DailyAdd key={toDo.id} data={toDo} />)
+                }
             </DisplayPoints>
         </SlideSectionContainer>
     )
