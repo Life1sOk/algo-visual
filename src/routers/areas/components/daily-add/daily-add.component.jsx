@@ -5,8 +5,6 @@ import { DailyAddContainer, DailyAddTitle, DailyAddDescription } from './daily-a
 const DailyAdd = ({ data }) => {
     const { title, description } = data;
 
-    console.log(data)
-
     return (
         <DailyAddContainer>
             <DailyAddTitle>{title}</DailyAddTitle>

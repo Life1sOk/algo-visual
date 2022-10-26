@@ -10,8 +10,9 @@ export const TitleInputContainer = styled.div`
 
 export const TitleInput = styled.input`
     padding: 5px;
-    font-size: 18.73px;
+    font-size: 18px;
     border: none;
+    border-bottom: 1px solid grey;
     margin-bottom: 5px;
     background-color: rgba(255,255,255, .5);
 

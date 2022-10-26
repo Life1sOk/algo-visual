@@ -1,5 +1,6 @@
 import React from "react";
 
+import DailyAdd from "../daily-add/daily-add.component";
 import { QuestDailyContainer, QuestDailyDatas, QuestDay } from './quest-daily.style';
 
 const QuestDaily = ({ createdTime, data }) => {
@@ -10,10 +11,7 @@ const QuestDaily = ({ createdTime, data }) => {
                 {
                     data[0] &&
                     data.map(day =>
-                        <QuestDay key={day.id}>
-                            <h2>{day.title}</h2>
-                            <h3>{day.description}</h3>
-                        </QuestDay>)
+                        <DailyAdd key={day.id} data={day} />)
                 }
             </QuestDailyDatas>
         </QuestDailyContainer>

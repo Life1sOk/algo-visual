@@ -5,7 +5,7 @@ import { TextAreaDescription, TextAreaContainer } from './textarea.style';
 const TextArea = ({ type, label, ...others }) => {
     return (
         <TextAreaContainer>
-            {label ? <label htmlFor={type}>{label}</label> : null}
+            {label ? <span htmlFor={type}>{label}</span> : null}
             <TextAreaDescription id={type} type={type} {...others} />
         </TextAreaContainer>
     )
