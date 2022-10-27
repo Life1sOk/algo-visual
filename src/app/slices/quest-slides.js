@@ -61,6 +61,12 @@ const questSlideSlice = createSlice({
                 state.three.done = true;
                 state.count = state.count + 1;
             }
+        },
+        resetAll: (state) => {
+            state.one = initialState.one;
+            state.two = initialState.two;
+            state.three = initialState.three;
+            state.count = 0;
         }
     },
 });
@@ -70,6 +76,6 @@ export const selectSlideTwo = (state) => state.questSlide.two;
 export const selectSlideThree = (state) => state.questSlide.three;
 export const selectSlidesCount = (state) => state.questSlide.count;
 
-export const { oneActive, twoActive, threeActive, oneDone, twoDone, threeDone } = questSlideSlice.actions;
+export const { oneActive, twoActive, threeActive, oneDone, twoDone, threeDone, resetAll } = questSlideSlice.actions;
 
 export default questSlideSlice.reducer;

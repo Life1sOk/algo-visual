@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount } from "../../../../App/slices/quest-slides";
-import { selectCreateQuest } from "../../../../App/slices/create-quest.slice";
+import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../App/slices/quest-slides";
+import { selectCreateQuest, selectCreateQuestState, setOpen, setReset } from "../../../../App/slices/create-quest.slice";
 import { addNewQuest } from "../../../../App/slices/areas-slice";
 
 import { PlanSectionContainer, PlanNavigation, BigButton } from './plan-section.style';
@@ -14,8 +14,8 @@ import SlideSwitcher from "../../components/slide-switcher/slide-switcher.compon
 
 const PlanSection = ({ title, part }) => {
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
 
+    const currentQuestState = useSelector(selectCreateQuestState);
     const currentQuest = useSelector(selectCreateQuest);
     const oneState = useSelector(selectSlideOne);
     const twoState = useSelector(selectSlideTwo);
@@ -29,6 +29,9 @@ const PlanSection = ({ title, part }) => {
     const readyHandler = () => {
         if (slidesCount === 3) {
             dispatch(addNewQuest({ part, title, quest: currentQuest }));
+            dispatch(resetAll());
+            dispatch(setOpen());
+            dispatch(setReset('yes'));
             console.log('ready', part, title);
         } else {
             console.log('not all done', currentQuest);
@@ -36,14 +39,14 @@ const PlanSection = ({ title, part }) => {
     }
 
     return (
-        <PlanSectionContainer open={open}>
-            <NavButtons open={open} setOpen={setOpen} />
+        <PlanSectionContainer open={currentQuestState}>
+            <NavButtons />
             <SlideQuestOne />
             <SlideQuestTwo />
             <SlideQuestThree />
             <PlanNavigation>
                 <h2>Menu-navigation</h2>
-                <SlideSwitcher name='Add new quest' active={oneState?.active} done={oneState?.done} onClick={oneSlideChangeHandler} />
+                <SlideSwitcher name='Main' active={oneState?.active} done={oneState?.done} onClick={oneSlideChangeHandler} />
                 <SlideSwitcher name='Points' active={twoState?.active} done={twoState?.done} onClick={twoSlideChangeHandler} />
                 <SlideSwitcher name='Daily' active={threeState?.active} done={threeState?.done} onClick={threeSlideChangeHandler} />
                 <BigButton onClick={readyHandler}>Ready To Go</BigButton>

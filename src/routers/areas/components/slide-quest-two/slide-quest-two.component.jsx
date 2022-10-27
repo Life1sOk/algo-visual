@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectSlideTwo, twoDone } from "../../../../App/slices/quest-slides";
+import { selectSlideTwo, twoDone, threeActive } from "../../../../App/slices/quest-slides";
 import { selectCreateQuestAchieve, addAchieve } from "../../../../App/slices/create-quest.slice";
 
 import Ulist from "../u-list/u-list.component";
@@ -47,6 +47,15 @@ const SlideQuestTwo = () => {
         setState(slideState);
     }
 
+    const slideTwoDoneHandler = (type) => {
+        if (type === 'done') {
+            dispatch(threeActive());
+            dispatch(twoDone('done'));
+        } else if (type === 'fix') {
+            dispatch(twoDone('fix'));
+        }
+    }
+
     return (
         <SlideSectionContainer active={active} done={done}>
             <h2>Create Steps Points</h2>
@@ -69,9 +78,9 @@ const SlideQuestTwo = () => {
                     <Buttons>
                         {
                             !done ?
-                                <button onClick={() => dispatch(twoDone('done'))}>Accept</button>
+                                <button onClick={() => slideTwoDoneHandler('done')}>Accept</button>
                                 :
-                                <button onClick={() => dispatch(twoDone('fix'))}>Fix</button>
+                                <button onClick={() => slideTwoDoneHandler('fix')}>Fix</button>
                         }
                     </Buttons>
                 </SlideDescription>

@@ -1,8 +1,8 @@
-import React, { useState, memo } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectSlideOne, oneDone } from "../../../../App/slices/quest-slides";
-import { mainAccept } from "../../../../App/slices/create-quest.slice";
+import { selectSlideOne, oneDone, twoActive } from "../../../../App/slices/quest-slides";
+import { mainAccept, selectCreateQuestReset } from "../../../../App/slices/create-quest.slice";
 
 import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons } from './slide-quest-one.style';
 import Input from "../input/input.component";
@@ -19,6 +19,7 @@ const slideState = {
 
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
+    const resetState = useSelector(selectCreateQuestReset);
     const slidesState = useSelector(selectSlideOne);
     const { active, done } = slidesState;
 
@@ -37,16 +38,19 @@ const SlideQuestOne = () => {
         if (description.length < 1) return alert('add why?');
 
         dispatch(oneDone('done'));
+        dispatch(twoActive());
         dispatch(mainAccept(state));
     }
 
-    const slideOneFixHandler = () => {
-        dispatch(oneDone('fix'));
-    }
+    const slideOneFixHandler = () => dispatch(oneDone('fix'));
+
+    useEffect(() => {
+        if (resetState === 'yes') setState(slideState);
+    }, [resetState]);
 
     return (
         <SlideSectionContainer active={active} done={done}>
-            <h2>Main</h2>
+            <h2>Add new quest</h2>
             <SlideWrapper>
                 <SlideInContainer>
                     <Input label='Goal Title:' readOnly={done} onChange={titleChangeHandler} value={title} />
