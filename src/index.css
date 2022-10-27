@@ -19,6 +19,7 @@ body {
   overflow-x: hidden;
   background-color: rgb(6, 34, 60);
   font-family: 'Arvo', serif;
+  /* background-color: rgb(3, 25, 46); */
 }
 
 a:link {

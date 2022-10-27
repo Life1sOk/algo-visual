@@ -12,13 +12,10 @@ export const QuestDailyContainer = styled.div`
 `;
 
 export const QuestDailyDatas = styled.div`
+    margin-top: 30px;
+
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
-`;
-
-export const QuestDay = styled.div`
-    margin: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid white;
 `;
