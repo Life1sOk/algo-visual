@@ -4,7 +4,7 @@ export const SlideSectionContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 465px;
     border-right:2px solid rgba(255,255,102);
     padding-top: 10px;
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};

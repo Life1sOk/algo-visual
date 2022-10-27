@@ -3,12 +3,13 @@ import styled from 'styled-components';
 export const PlanSectionContainer = styled.div`
     position: relative;
     width: 1068px;
-    height: 467px;
     border-radius: 20px;
     color: white;
     background-color: rgba(0,0,0, .1);
     border: 1px solid white;
+    height: ${props => !props.open ? '57px' : '467px'};
     overflow: hidden;
+    transition: height 1.2s ease-in-out;
 `;
 
 export const PlanNavigation = styled.div`
@@ -17,7 +18,7 @@ export const PlanNavigation = styled.div`
     right: 0;
 
     width: 268px;
-    height: 100%;
+    height: 467px;
     padding: 7px;
     background-color: rgb(0,33,66);
     border-left: 1px solid white;
@@ -27,32 +28,16 @@ export const PlanNavigation = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    ${'' /* gap: 10px;   */}
+    justify-content: center;
+    gap: 20px;
 
     h2 {
         padding: 10px;
     }
 `;
 
-export const NavButton = styled.span`
-    width: 80%;
-    text-align: center;
-    font-size: 22px;
-    padding: 5px;
-    margin: 10px 0;
-    border-right: 1px solid ${props => props.active ? 'rgb(255, 98, 0)' : props.done ? 'rgba(0,153,0)' : 'white'};
-    border-left: 1px solid ${props => props.active ? 'rgb(255, 98, 0)' : props.done ? 'rgba(0,153,0)' : 'white'};
-    color: ${props => props.active ? 'rgb(255, 98, 0)' : props.done ? 'rgba(0,153,0)' : 'white'};
-
-    &:hover {
-        cursor: pointer;
-    }
-`;
-
 export const BigButton = styled.button`
     width: 80%;
     height: 60px;
-
     margin-bottom: 20px;
 `;

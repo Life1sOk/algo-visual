@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideOne, oneDone } from "../../../../App/slices/quest-slides";

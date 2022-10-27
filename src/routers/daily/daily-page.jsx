@@ -7,6 +7,7 @@ import MainLayoutContainer from "../../Layouts/main-container.layout";
 
 // -------------  Top level React Components ------------------- //
 import TitlePage from "../../Components/title-page/title-page.component";
+import ButtonSd from "../../Components/button-sd/button-sd.component";
 
 // ------------ Page's Sections ----------------- //
 import SwitchSection from "./sections/switch/switch.section";
@@ -21,7 +22,9 @@ const DailyPage = () => {
                 <SwitchSection />
             </AsideLayoutContainer>
             <MainLayoutContainer>
-                <button>Count</button>
+                <ButtonSd type='delete' />
+                <ButtonSd type='shrink' />
+                <ButtonSd type='fix' />
             </MainLayoutContainer>
         </PageLayoutContainer>
     )

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { QuoteContainer } from './quote.style';
 
@@ -8,7 +8,7 @@ const quotes = {
     three: `We Are What We Repeatedly Do. – Aristotle`,
 }
 
-const Quote = ({ slide }) => {
+const Quote = memo(({ slide }) => {
     return (
         <>
             {
@@ -16,6 +16,6 @@ const Quote = ({ slide }) => {
             }
         </>
     )
-}
+})
 
 export default Quote;

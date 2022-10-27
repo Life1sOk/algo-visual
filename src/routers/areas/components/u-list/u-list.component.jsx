@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { Ul } from './u-list.style';
 
@@ -19,7 +19,7 @@ const lists = {
     ],
 }
 
-const Ulist = ({ slide }) => {
+const Ulist = memo(({ slide }) => {
     return (
         <Ul>
             {
@@ -27,6 +27,6 @@ const Ulist = ({ slide }) => {
             }
         </Ul>
     )
-}
+})
 
 export default Ulist;
