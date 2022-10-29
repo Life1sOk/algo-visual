@@ -43,7 +43,8 @@ export const areasSlice = createSlice({
         },
         changeStatusToReload: (state) => {
             state.status = 'reload';
-        }
+        },
+
     },
     extraReducers: {
         [getAreasData.pending]: (state) => {

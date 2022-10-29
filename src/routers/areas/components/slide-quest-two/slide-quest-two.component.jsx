@@ -88,7 +88,7 @@ const SlideQuestTwo = () => {
             <DisplayPoints>
                 {
                     slideData[0] &&
-                    slideData.map(quest => <Points key={quest.id} data={quest} />)
+                    slideData.map(quest => <Points key={quest.id} data={quest} show />)
                 }
             </DisplayPoints>
         </SlideSectionContainer>

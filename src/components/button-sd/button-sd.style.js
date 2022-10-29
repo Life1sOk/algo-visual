@@ -4,11 +4,11 @@ export const ButtonSdDelete = styled.button`
     position: relative;
     width: 25px;
     height: 25px;
-    background-color: rgb(255, 51, 51);
+    background-color: ${props => props.background ? props.background : 'rgb(255, 51, 51)'};
     border: none;
     padding: 0;
     border-radius: 50%;
-    transform: scale(.9);
+    transform: ${props => props.scale ? `scale(.${props.scale})` : 'scale(.9)'};
 
     &:hover {
         cursor: pointer;
@@ -16,13 +16,14 @@ export const ButtonSdDelete = styled.button`
 
     &:active {
         background-color: rgb(255, 102, 102);
+        opacity: ${props => props.background ? '.9' : 'initial'};
     }
 
     &::after {
         content: '';
         width: 15px;
         height: 2px;
-        background-color: black;
+        background-color: ${props => props.color ? props.color : 'black'};
         border-radius: 5px;
         transform: rotate(45deg);
 
@@ -35,7 +36,7 @@ export const ButtonSdDelete = styled.button`
         content: '';
         width: 15px;
         height: 2px;
-        background-color: black;
+        background-color: ${props => props.color ? props.color : 'black'};
         border-radius: 5px;
         transform: rotate(-45deg);
 

@@ -1,5 +1,9 @@
 import React from "react";
 
+import { setAllQuests, getAllQuests } from "../../utils/firebase/firebase";
+import { useSelector } from "react-redux";
+import { selectAuthUid } from "../../App/slices/auth.slice";
+
 // ------------- Top level - Containers / Layouts -------------- //
 import AsideLayoutContainer from "../../Layouts/aside-container.layout";
 import PageLayoutContainer from "../../Layouts/page-container.layout";
@@ -14,6 +18,7 @@ import SwitchSection from "./sections/switch/switch.section";
 
 // ------------- Lego --------------- //
 const DailyPage = () => {
+    const uid = useSelector(selectAuthUid);
 
     return (
         <PageLayoutContainer>
@@ -22,8 +27,8 @@ const DailyPage = () => {
                 <SwitchSection />
             </AsideLayoutContainer>
             <MainLayoutContainer>
-                <ButtonSd type='delete' />
-                <ButtonSd type='shrink' />
+                <ButtonSd type='delete' onClick={() => setAllQuests(uid, [])} />
+                <ButtonSd type='shrink' onClick={() => getAllQuests(uid)} />
                 <ButtonSd type='fix' />
             </MainLayoutContainer>
         </PageLayoutContainer>

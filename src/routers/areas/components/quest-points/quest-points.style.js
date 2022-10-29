@@ -13,12 +13,12 @@ export const QuestPointsContainer = styled.div`
 `;
 
 export const QuestPointsDisplay = styled.div`
+    margin-top: 10px;
     width: 100%;
     height: calc(100% - 56.5px);
 
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     gap: 15px;
 

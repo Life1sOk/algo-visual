@@ -74,6 +74,9 @@ export const createUsersDocumentsFromAuth = async (userAuth) => {
         }
     }
 }
+// ---------------- ------------------ ---------------- //
+
+// Plan //
 
 export const getUsersDocsDaily = async (uid) => {
     if (!uid) return;
@@ -123,6 +126,32 @@ export const setUsersDatasOutDaily = async (uid, datasToAdd) => {
     }
 }
 
+export const getAllQuests = async (uid) => {
+    if (!uid) return;
+
+    const getDocRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+    const datas = await getDoc(getDocRef);
+
+    console.log(datas.data());
+};
+
+export const setAllQuests = async (uid, datasToAdd) => {
+    if (!uid) return;
+
+    const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+
+    try {
+        await setDoc(docRef, {
+            all: datasToAdd,
+        });
+        console.log('datas ready')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+};
+
+// ---------------- ------------------ ---------------- //
+
 // Areas //
 export const getUsersDocsAreas = async (uid, type) => {
     if (!uid) return;
@@ -131,15 +160,6 @@ export const getUsersDocsAreas = async (uid, type) => {
     const datas = await getDoc(getDocRef);
 
     return datas.data();
-}
-
-export const checkUsersDocsAreas = async (uid, type) => {
-    if (!uid) return;
-
-    const getDocRef = doc(db, 'users', uid, 'areas', type);
-    const datas = await getDoc(getDocRef);
-
-    console.log(datas.data());
 }
 
 export const setUsersDatasAreas = async (uid, type, datasToAdd) => {

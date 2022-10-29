@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const PointsContainer = styled.div`
+    position: relative;
     height: 150px;
     flex-shrink: 0;
     border: 1px solid blue;
@@ -13,8 +14,9 @@ export const PointsContainer = styled.div`
     flex-direction: column;
 
     .points-title {
+        width: 100%;
         font-size: 20px;
-        padding: 4px;
+        padding: 4px 20px;
         background-color: blue;
     }
 
@@ -28,7 +30,7 @@ export const PointsContainer = styled.div`
 `;
 
 export const Main = styled.span`
-    width: 170px;
+    width: 180px;
     padding: 5px;
     margin: auto 0;
     font-size: 16px;
@@ -38,4 +40,10 @@ export const Main = styled.span`
     background-color: initial;
     text-align: center;
     color: blue;
+`;
+
+export const ButtonWrapper = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
 `;
