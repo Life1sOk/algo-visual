@@ -1,5 +1,6 @@
 export const initialAreas = {
     status: 'reload',
+    error: null,
     sections: {},
     displaySection: {
         id: 0,

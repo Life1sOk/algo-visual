@@ -132,7 +132,7 @@ export const getAllQuests = async (uid) => {
     const getDocRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
     const datas = await getDoc(getDocRef);
 
-    console.log(datas.data());
+    return datas.data().all;
 };
 
 export const setAllQuests = async (uid, datasToAdd) => {
@@ -144,7 +144,7 @@ export const setAllQuests = async (uid, datasToAdd) => {
         await setDoc(docRef, {
             all: datasToAdd,
         });
-        console.log('datas ready')
+        console.log('datas combined')
     } catch (error) {
         console.log('oops, here is some error', error);
     }
