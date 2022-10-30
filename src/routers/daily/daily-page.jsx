@@ -46,7 +46,7 @@ const DailyPage = () => {
                                 <SwitchSection />
                             </AsideLayoutContainer>
                             <MainLayoutContainer>
-                                <CombinedQuests uid={uid} />
+                                <CombinedQuests />
                             </MainLayoutContainer>
                         </PageLayoutContainer>
             }

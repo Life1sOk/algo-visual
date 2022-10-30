@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const PlanSectionContainer = styled.div`
     position: relative;
-    width: 1068px;
+    width: 998px;
     border-radius: 20px;
     color: white;
     background-color: rgba(0,0,0, .1);

@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const AreaPartContainer = styled.div`
     width: 100%;
-    margin-top: 20px;
+    margin: 20px 0;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: cetner;
-    justify-items: cetner;
-    gap: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
 `;

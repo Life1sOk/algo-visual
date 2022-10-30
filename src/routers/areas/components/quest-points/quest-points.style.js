@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const QuestPointsContainer = styled.div`
-    width: 465px;
-    border-left: 2px solid lightgreen;
-    border-right: 2px solid lightgreen;
+    width: 405px;
+    border-left: 2px solid grey;
+    border-right: 2px solid grey;
 
     .quest-points {
         text-align: center;

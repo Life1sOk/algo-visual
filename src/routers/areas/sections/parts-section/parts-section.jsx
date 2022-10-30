@@ -31,7 +31,7 @@ const PartsSection = () => {
             <PlanSection title={title} part={currentPart} />
             <PartsSectionDisplay>
                 {
-                    parts[currentPart]?.map(part => <QuestDisplay key={part.id} part={part} />)
+                    parts[currentPart]?.map(part => <QuestDisplay key={part.id} title={title} part={currentPart} data={part} />)
                 }
             </PartsSectionDisplay>
         </PartsSectionContainer>

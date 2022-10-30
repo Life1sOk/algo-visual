@@ -20,7 +20,7 @@ export const SlideSectionContainer = styled.div`
 `;
 
 export const SlideWrapper = styled.div`
-    width: 800px;
+    width: 730px;
     margin-top: 10px;
     display: flex;
     justify-content: space-around;

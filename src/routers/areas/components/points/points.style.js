@@ -4,7 +4,6 @@ export const PointsContainer = styled.div`
     position: relative;
     height: 150px;
     flex-shrink: 0;
-    border: 1px solid blue;
     border-radius: 12px;
     overflow: hidden;
     text-align: center;
@@ -35,8 +34,6 @@ export const Main = styled.span`
     margin: auto 0;
     font-size: 16px;
     font-style: italic;
-    resize: none;
-    border: none;
     background-color: initial;
     text-align: center;
     color: blue;

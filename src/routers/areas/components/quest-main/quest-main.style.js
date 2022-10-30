@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const QuestMainContainer = styled.div`
     width: 300px;
-    height: 100%;
-    ${'' /* border-right: 2px solid lightgreen; */}
+    margin-top: 30px;
     color: white;
     flex-shrink: 0;
 
@@ -43,7 +42,7 @@ export const QuestMainTitle = styled.div`
 export const QuestRoad = styled.div`
     width: 100%;
     margin-top: 20px;
-    margin-left: 34px;
+    ${'' /* margin-left: 34px; */}
     font-size: 16px;
 
     p {

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const CurrentPartContainer = styled.div`
-    width: 100%;
+    width: 270px;
     height: 50px;
-    border: 3px solid ${props => props.active ? 'rgb(255, 98, 0)' : 'initial'};
-    margin-bottom: 10px;
+    border-top: 3px solid ${props => props.active ? 'rgb(255, 98, 0)' : 'initial'};
+    border-bottom: 3px solid ${props => props.active ? 'rgb(255, 98, 0)' : 'initial'};
+    border-radius: 10px;
     color: ${props => props.active ? 'rgb(255, 98, 0)' : 'white'};
 
     display: flex;
@@ -12,7 +13,8 @@ export const CurrentPartContainer = styled.div`
     align-items: center;
 
     &:hover {
-        border: 3px solid ${props => props.active ? 'initial' : 'white'};;
+        border-top: 3px solid ${props => props.active ? 'initial' : 'white'};
+        border-bottom: 3px solid ${props => props.active ? 'initial' : 'white'};
         cursor: pointer;
     }
 `;

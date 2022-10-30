@@ -6,7 +6,7 @@ export const QuestDisplayWrapper = styled.div`
 `;
 
 export const QuestDisplayContainer = styled.div`
-    width: 1068px;
+    width: 988px;
     height: 407px;
     padding: 15px;
     border-radius: 20px;
@@ -16,7 +16,7 @@ export const QuestDisplayContainer = styled.div`
     overflow: hidden;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 `;
 
 export const QuestDisplayButtons = styled.div`
@@ -26,7 +26,6 @@ export const QuestDisplayButtons = styled.div`
 
     border-top: 3px solid white;
     border-radius: 20px 20px 0 0;
-
     background-color: rgb(20, 25, 50);
     padding: 10px 20px;
     z-index: 20;
@@ -35,4 +34,22 @@ export const QuestDisplayButtons = styled.div`
     justify-content: flex-end;
     align-items: center;
     gap: 15px;
+`;
+
+export const QuestDisplayRoadLinks = styled.div`
+    position: absolute;
+    top: -20px;
+    left: 0px;
+
+    min-width: 260px;
+    border-top: 3px solid white;
+    border-left: 1px solid white;
+    border-radius: 20px 20px 0 0;
+    color: rgb(255, 98, 0);
+    background-color: rgb(20, 25, 50);
+    padding: 10px 15px;
+    z-index: 20;
+
+    display: flex;
+    justify-content: space-between;
 `;
