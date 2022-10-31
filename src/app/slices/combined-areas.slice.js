@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAllQuests } from "../../utils/firebase/firebase";
 
 const initialState = {
-    status: 'reload',
+    status: '',
     error: null,
     all: [],
 };
@@ -13,6 +13,7 @@ export const getCombinedAreas = createAsyncThunk(
     async (uid, rejectWithValue) => {
         try {
             const allQuests = await getAllQuests(uid);
+            console.log(allQuests, 'quest')
             return allQuests;
         } catch (error) {
             return rejectWithValue(error.messege)
@@ -28,6 +29,7 @@ const combinedAreasSlice = createSlice({
             const { part, title, quest } = payload;
             let generateNewId = state.all.length + 1;
             state.all.push({ part, title, quest: { ...quest, id: generateNewId } });
+            state.status = 'reload';
         },
     },
     extraReducers: {

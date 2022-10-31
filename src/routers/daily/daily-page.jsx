@@ -26,7 +26,7 @@ const DailyPage = () => {
     const status = useSelector(selectCombinedStatus);
 
     useEffect(() => {
-        if (status === 'reload') dispatch(getCombinedAreas(uid));
+        if (status === '') dispatch(getCombinedAreas(uid));
     }, [])
 
     return (

@@ -7,7 +7,7 @@ import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, sele
 import { selectCreateQuest, selectCreateQuestState, setOpen, setReset } from "../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
 import { addNewQuest } from "../../../../App/slices/areas-slice";
-import { addQuestFromCurrentArea, selectCombinedAll } from "../../../../App/slices/combined-areas.slice";
+import { addQuestFromCurrentArea, selectCombinedAll, selectCombinedStatus } from "../../../../App/slices/combined-areas.slice";
 import { PlanSectionContainer, PlanNavigation, BigButton } from './plan-section.style';
 import SlideQuestOne from "../../components/slide-quest-one/slide-quest-one.component";
 import SlideQuestTwo from "../../components/slide-quest-two/slide-quest-two.component";
@@ -20,6 +20,7 @@ const PlanSection = ({ title, part }) => {
 
     const uid = useSelector(selectAuthUid);
     const allQuests = useSelector(selectCombinedAll);
+    const combinedStatus = useSelector(selectCombinedStatus);
 
     const currentQuestState = useSelector(selectCreateQuestState);
     const currentQuest = useSelector(selectCreateQuest);
@@ -32,7 +33,7 @@ const PlanSection = ({ title, part }) => {
     const twoSlideChangeHandler = () => dispatch(twoActive());
     const threeSlideChangeHandler = () => dispatch(threeActive());
 
-    const readyHandler = async () => {
+    const readyHandler = () => {
         if (slidesCount === 3) {
             dispatch(addNewQuest({ part, title, quest: currentQuest }));
 
@@ -44,11 +45,11 @@ const PlanSection = ({ title, part }) => {
         } else {
             console.log('not all done', currentQuest);
         }
-    }
+    };
 
     useEffect(() => {
-        setAllQuests(uid, allQuests)
-    }, [allQuests, uid])
+        if (combinedStatus === 'reload') setAllQuests(uid, allQuests);
+    }, [allQuests, uid, combinedStatus]);
 
     return (
         <PlanSectionContainer open={currentQuestState}>
