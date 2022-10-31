@@ -27,7 +27,7 @@ const QuestDisplay = ({ title, part, data }) => {
             <QuestDisplayContainer open={open}>
                 <QuestMain id={id} data={main} />
                 <QuestPoints data={achieve} questId={id} />
-                <QuestDaily createdTime={createdTime} data={daily} />
+                <QuestDaily createdTime={createdTime} data={daily} title={main.title} />
             </QuestDisplayContainer>
         </QuestDisplayWrapper>
     )

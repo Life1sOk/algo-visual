@@ -15,7 +15,7 @@ export const PointsContainer = styled.div`
     overflow: hidden;
     text-align: center;
     background-color: white;
-    border: ${props => props.status === 'active' ? '5px solid lightgreen' : '5px solid'};
+    border: ${props => props.status === 'active' ? '5px solid lightgreen' : '5px solid blue'};
 
     display: flex;
     flex-direction: column;

@@ -31,12 +31,17 @@ export const dailySlice = createSlice({
                 state.dailyPlan.push(payload);
             }
         },
-        addQuest: (state) => {
+        addQuest: (state, { payload }) => {
             let lastId = state.fixPlan.length;
             const checkObject = state.fixPlan[lastId - 1]?.questName;
 
-            if (state.fixPlan[0] && checkObject.length < 3) {
+            if (state.fixPlan[0] && checkObject.length < 3 && !payload) {
                 alert('u already have to add');
+                return;
+            }
+
+            if (payload) {
+                state.fixPlan.push({ ...payload, id: lastId + 1 });
                 return;
             }
 
@@ -50,7 +55,7 @@ export const dailySlice = createSlice({
             const drain = [...state.dailyPlan, ...state.fixPlan];
             const newId = drain.map(quest => {
                 return { ...quest, id: drain.indexOf(quest) };
-            })
+            });
             state.fixPlan = newId;
         },
     },

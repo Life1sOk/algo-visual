@@ -12,7 +12,7 @@ import DailyAdd from "../daily-add/daily-add.component";
 import { SlideSectionContainer, SlideWrapper, SlideInContainer, SlideDescription, SlideInWrapper, DisplayPoints, Buttons } from './slide-quest-three.style';
 
 const slideState = {
-    title: '',
+    questName: '',
     description: '',
 }
 
@@ -24,13 +24,13 @@ const SlideQuestThree = () => {
     const { active, done } = slidesState;
 
     const [state, setState] = useState(slideState);
-    const { title, description } = state;
+    const { questName, description } = state;
 
-    const titleChangeHandler = (event) => setState({ ...state, title: event.target.value });
+    const questNameChangeHandler = (event) => setState({ ...state, questName: event.target.value });
     const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
 
     const addChangeHandler = () => {
-        if (title.length < 1) return alert('add title');
+        if (questName.length < 1) return alert('add title');
         if (description.length < 1) return alert('add description');
 
         let generateId = slideData.length + 1;
@@ -44,7 +44,7 @@ const SlideQuestThree = () => {
             <SlideWrapper>
                 <SlideInContainer>
                     <SlideInWrapper>
-                        <Input label='Title:' onChange={titleChangeHandler} readOnly={done} value={title} />
+                        <Input label='Title:' onChange={questNameChangeHandler} readOnly={done} value={questName} />
                         <TextArea type='normal' label='Description:' onChange={descriptionChangeHandler} readOnly={done} value={description} />
                         {
                             !done &&
@@ -68,7 +68,7 @@ const SlideQuestThree = () => {
             <DisplayPoints>
                 {
                     slideData[0] &&
-                    slideData.map(toDo => <DailyAdd key={toDo.id} data={toDo} />)
+                    slideData.map(toDo => <DailyAdd key={toDo.id} data={toDo} show />)
                 }
             </DisplayPoints>
         </SlideSectionContainer>

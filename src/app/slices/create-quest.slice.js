@@ -36,6 +36,9 @@ export const createQuestSlice = createSlice({
         deleteAchieve: (state, { payload }) => {
             state.add.achieve = state.add.achieve.filter(quest => quest.id !== payload);
         },
+        deleteDaily: (state, { payload }) => {
+            state.add.daily = state.add.daily.filter(daily => daily.id !== payload);
+        }
     }
 });
 
@@ -46,6 +49,6 @@ export const selectCreateQuestDaily = (state) => state.createQuest.add.daily;
 export const selectCreateQuestState = (state) => state.createQuest.state;
 export const selectCreateQuestReset = (state) => state.createQuest.reset;
 
-export const { mainAccept, addAchieve, addDaily, setOpen, setReset, deleteAchieve } = createQuestSlice.actions;
+export const { mainAccept, addAchieve, addDaily, setOpen, setReset, deleteAchieve, deleteDaily } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

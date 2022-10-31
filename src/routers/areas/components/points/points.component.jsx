@@ -20,8 +20,6 @@ const Points = ({ data, show, questId }) => {
         dispatch(chageQuestPoint({ questId: questId - 1, pointId: id, status }));
     };
 
-    console.log(data, `${title}`);
-
     return (
         <>
             {
