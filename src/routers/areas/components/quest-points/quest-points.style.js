@@ -2,18 +2,18 @@ import styled from 'styled-components';
 
 export const QuestPointsContainer = styled.div`
     width: 405px;
+    margin-top: 10px;
     border-left: 2px solid grey;
     border-right: 2px solid grey;
 
     .quest-points {
         text-align: center;
         font-size: 30px;
-        padding-bottom: 4px;
     }
 `;
 
 export const QuestPointsDisplay = styled.div`
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
     height: calc(100% - 56.5px);
 

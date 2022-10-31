@@ -13,7 +13,6 @@ export const getCombinedAreas = createAsyncThunk(
     async (uid, rejectWithValue) => {
         try {
             const allQuests = await getAllQuests(uid);
-            console.log(allQuests, 'quest')
             return allQuests;
         } catch (error) {
             return rejectWithValue(error.messege)
@@ -31,6 +30,12 @@ const combinedAreasSlice = createSlice({
             state.all.push({ part, title, quest: { ...quest, id: generateNewId } });
             state.status = 'reload';
         },
+        chageQuestPoint: (state, { payload }) => {
+            const { pointId, questId, status } = payload;
+            state.all[questId].quest.achieve = state.all[questId].quest.achieve.map(point => point.id === pointId ? { ...point, status } : point);
+            state.status = 'reload';
+            // also need send it to the server some where;
+        }
     },
     extraReducers: {
         [getCombinedAreas.pending]: (state) => {
@@ -51,6 +56,6 @@ const combinedAreasSlice = createSlice({
 export const selectCombinedAll = (state) => state.combined.all;
 export const selectCombinedStatus = (state) => state.combined.status;
 
-export const { addQuestFromCurrentArea } = combinedAreasSlice.actions;
+export const { addQuestFromCurrentArea, chageQuestPoint } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;

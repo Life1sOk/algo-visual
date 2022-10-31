@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const QuestMainContainer = styled.div`
     width: 300px;
-    margin-top: 30px;
+    margin-top: 10px;
     color: white;
     flex-shrink: 0;
 
@@ -20,11 +20,11 @@ export const QuestMainTitle = styled.div`
 
     .quest-id {
         position: absolute;
-        top: -5px;
+        top: 0px;
         left: -5px;
 
-        width: 45px;
-        height: 45px;
+        width: 35px;
+        height: 35px;
         font-size: 20px;
         background-color: red;
         border-radius: 50%;

@@ -15,6 +15,7 @@ import { reFormatTime } from "../../../../Hooks/re-format-date";
 
 const slideState = {
     title: '',
+    status: '',
     createdTime: '',
     untilTime: '',
     description: '',

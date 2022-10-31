@@ -7,7 +7,7 @@ export const QuestDisplayWrapper = styled.div`
 
 export const QuestDisplayContainer = styled.div`
     width: 988px;
-    height: 407px;
+    height: ${props => props.open ? '407px' : '82px'};
     padding: 15px;
     border-radius: 20px;
     color: white;

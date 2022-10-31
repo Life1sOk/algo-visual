@@ -12,7 +12,7 @@ export const QuestDailyContainer = styled.div`
 `;
 
 export const QuestDailyDatas = styled.div`
-    margin-top: 30px;
+    margin-top: 66px;
 
     display: flex;
     flex-direction: column;
