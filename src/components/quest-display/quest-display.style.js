@@ -27,7 +27,7 @@ export const QuestDisplayButtons = styled.div`
     border-top: 3px solid white;
     border-radius: 20px 20px 0 0;
     background-color: rgb(20, 25, 50);
-    padding: 10px 20px;
+    padding: 5px 20px 0 20px;
     z-index: 20;
 
     display: flex;

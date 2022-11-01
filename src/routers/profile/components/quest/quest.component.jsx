@@ -1,15 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-import useAutosizeTextArea from "../../../../Hooks/useAutosizeTextArea.js";
 import { QuestContainer, QuestWrapper, DiscriptionBox, Done, Label } from './quest.style.js';
 
 const Quest = ({ quest, color }) => {
     const { questName, description } = quest;
-    const textArea = useRef();
-    const [state, setState] = useState(true);
+    const textAreaRef = useRef();
+    const [generatedHeight, setGeneratedHeight] = useState(null);
+    const [state, setState] = useState(false);
     const [done, setDone] = useState(false);
 
-    useAutosizeTextArea(textArea.current, description);
+    useEffect(() => {
+        const scrollHeight = textAreaRef.current.scrollHeight;
+        setGeneratedHeight(scrollHeight);
+    }, []);
 
     const doneChangeHandler = () => {
         setDone(!done);
@@ -17,6 +20,7 @@ const Quest = ({ quest, color }) => {
     }
 
     const stateChangeHandler = () => {
+        console.log(generatedHeight)
         if (!done) return setState(!state);
     }
 
@@ -26,7 +30,7 @@ const Quest = ({ quest, color }) => {
                 <Done id="quest" color={color} onClick={doneChangeHandler}>D</Done>
                 <Label color={color} htmlFor="quest" onClick={stateChangeHandler} done={done}>{questName}</Label>
             </QuestContainer>
-            <DiscriptionBox ref={textArea} state={state} readOnly disabled value={description} />
+            <DiscriptionBox ref={textAreaRef} state={state} generatedHeight={generatedHeight} readOnly disabled value={description} />
         </QuestWrapper>
     )
 }

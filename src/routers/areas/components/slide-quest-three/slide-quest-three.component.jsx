@@ -8,7 +8,7 @@ import Ulist from "../u-list/u-list.component";
 import Quote from "../quote/quote.component";
 import Input from "../input/input.component";
 import TextArea from "../textarea/textarea.component";
-import DailyAdd from "../daily-add/daily-add.component";
+import DailyAdd from "../../../../Components/daily-add/daily-add.component";
 import { SlideSectionContainer, SlideWrapper, SlideInContainer, SlideDescription, SlideInWrapper, DisplayPoints, Buttons } from './slide-quest-three.style';
 
 const slideState = {

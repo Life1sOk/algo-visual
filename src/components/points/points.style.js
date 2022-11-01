@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const PointsWrapper = styled.div`
     transform-style: preserve-3d;
-    transform: ${props => !props.activate ? 'rotateY(0deg)' : 'rotateY(180deg)'};
+    transform: ${props => !props.activate ? 'rotateX(0deg)' : 'rotateX(180deg)'};
     transition: transform 0.4s ease-in-out;
 `;
 
 export const PointsContainer = styled.div`
     position: relative;
-    width: 180px;
-    height: 150px;
+    width: 300px;
+    height: 130px;
     flex-shrink: 0;
     border-radius: 12px;
     overflow: hidden;
@@ -26,12 +26,12 @@ export const PointsContainer = styled.div`
 `;
 
 export const PointBack = styled.div`
-    width: 180px;
-    height: 150px;
+    width: 300px;
+    height: 130px;
     color: white;
     background-color: blue;
     border-radius: 12px;
-    transform: translateZ( -.1px) rotateY(180deg);
+    transform: translateZ( -.1px) rotateX(180deg);
 
     position: absolute;
     top: 0;
@@ -58,7 +58,6 @@ export const PointsDate = styled.span`
 `;
 
 export const Main = styled.span`
-    width: 180px;
     padding: 5px;
     margin: auto 0;
     font-size: 16px;

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const QuestWrapper = styled.div`
     width: 100%;
-    padding: 5px 0;
-    border-bottom: 1px solid grey;
+    margin: 5px 0;
+    border-bottom: .5px solid grey;
     overflow: hidden;
 
     display: flex;
@@ -37,13 +37,12 @@ export const Done = styled.h2`
 `;
 
 export const DiscriptionBox = styled.textarea`
-    display: ${props => props.state ? 'initial' : 'none'};
-
-    padding: 10px 5px 10px 25px;
+    height: ${props => !props.state ? '0' : `${props.generatedHeight + 20}px`};
+    padding: ${props => !props.state ? '0 5px 0 25px' : '10px 5px 10px 25px'};
     font-size: 16px;
     font-style: italic;
     opacity: .7;
     resize: none;
     border: none;
-    border-top: 1px solid grey;
+    border-top: .5px solid grey;
 `;

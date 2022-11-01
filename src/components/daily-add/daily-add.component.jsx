@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { addQuest } from "../../../../App/slices/daily.slice";
-import { deleteDaily } from "../../../../App/slices/create-quest.slice";
-import ButtonSd from "../../../../Components/button-sd/button-sd.component";
+import { addQuest } from "../../App/slices/daily.slice";
+import { deleteDaily } from "../../App/slices/create-quest.slice";
+import ButtonSd from "../button-sd/button-sd.component";
 
 import { DailyAddContainer, DailyAddTitle, DailyAddDescription, DailyAddWrapper, DailyAddBack, ButtonWrapper } from './daily-add.style';
 

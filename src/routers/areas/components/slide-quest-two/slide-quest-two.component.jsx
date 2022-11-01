@@ -8,7 +8,7 @@ import Ulist from "../u-list/u-list.component";
 import Quote from "../quote/quote.component";
 import Input from "../input/input.component";
 import TextArea from "../textarea/textarea.component";
-import Points from "../points/points.component";
+import Points from "../../../../Components/points/points.component";
 import { SlideSectionContainer, InDescWrapper, SlideIn, DisplayPoints, SlideDescription, Buttons, Date } from './slide-quest-two.style';
 
 import { reFormatTime } from "../../../../Hooks/re-format-date";

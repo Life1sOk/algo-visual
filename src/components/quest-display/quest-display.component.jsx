@@ -4,7 +4,7 @@ import { QuestDisplayWrapper, QuestDisplayContainer, QuestDisplayButtons, QuestD
 import QuestMain from "../quest-main/quest-main.component";
 import QuestPoints from "../quest-points/quest-points.component";
 import QuestDaily from "../quest-daily/quest-daily.component";
-import ButtonSd from "../../../../Components/button-sd/button-sd.component";
+import ButtonSd from "../button-sd/button-sd.component";
 
 const QuestDisplay = ({ title, part, data }) => {
     const { id, main, createdTime, achieve, daily } = data;

@@ -15,6 +15,7 @@ import MainLayoutContainer from "../../Layouts/main-container.layout";
 
 // ------------ Page's Sections ----------------- //
 import MainDisplaySection from "./sections/main-display/main-display.section";
+import PointsDisplay from "./sections/points-display/points-display.section";
 
 // ------------ Page's React Components ----------------- //
 import ProfileImg from "./components/profile-img/profile-img.component";
@@ -38,6 +39,7 @@ const ProfilePage = () => {
             </AsideLayoutContainer>
             <MainLayoutContainer>
                 <MainDisplaySection />
+                <PointsDisplay />
             </MainLayoutContainer>
         </PageLayoutContainer>
     )

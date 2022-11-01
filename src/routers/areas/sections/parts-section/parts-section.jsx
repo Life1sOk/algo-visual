@@ -8,7 +8,7 @@ import { selectAuthUid } from "../../../../App/slices/auth.slice";
 import { PartsSectionContainer, PartsSectionDisplay } from './parts-section.style';
 import AreaParts from "../../components/area-parts/area-parts.component";
 import PlanSection from "../plan-section/plan-section";
-import QuestDisplay from "../../components/quest-display/quest-display.component";
+import QuestDisplay from "../../../../Components/quest-display/quest-display.component";
 
 const PartsSection = () => {
     const uid = useSelector(selectAuthUid);

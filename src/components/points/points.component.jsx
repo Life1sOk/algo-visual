@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { deleteAchieve } from "../../../../App/slices/create-quest.slice";
-import { chageQuestPoint } from '../../../../App/slices/combined-areas.slice';
+import { deleteAchieve } from "../../App/slices/create-quest.slice";
+import { chageQuestPoint } from '../../App/slices/combined-areas.slice';
 
 import { PointsContainer, Main, ButtonWrapper, PointsTitle, PointsDate, PointBack, PointsWrapper } from './points.style';
-import ButtonSd from '../../../../Components/button-sd/button-sd.component';
+import ButtonSd from '../button-sd/button-sd.component';
 
 const Points = ({ data, show, questId }) => {
     const { title, id, untilTime, description, status } = data;
