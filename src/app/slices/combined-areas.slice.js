@@ -33,19 +33,16 @@ const combinedAreasSlice = createSlice({
         },
         chageQuestPoint: (state, { payload }) => {
             const { pointId, questId, status } = payload;
-            state.all[questId].quest.achieve = state.all[questId].quest.achieve.map(point => {
-                if (point.id === pointId) {
-                    let pointToAdd = { ...point, status };
-
-                    state.activePoints.push(pointToAdd);
-                    return pointToAdd;
-                } else {
-                    return point;
-                }
-                // point.id === pointId ? { ...point, status } : point;
-            })
+            state.all[questId].quest.achieve = state.all[questId].quest.achieve.map(point =>
+                point.id === pointId ? { ...point, status } : point)
             state.status = 'reload';
             // also need send it to the server some where;
+        },
+        addPointToActiveAll: (state, { payload }) => {
+            state.all.push(payload);
+        },
+        changeQuestStatus: (state) => {
+            state.status = 'active';
         }
     },
     extraReducers: {
@@ -68,6 +65,6 @@ export const selectCombinedAll = (state) => state.combined.all;
 export const selectCombinedStatus = (state) => state.combined.status;
 export const selectActivePoints = (state) => state.combined.activePoints;
 
-export const { addQuestFromCurrentArea, chageQuestPoint } = combinedAreasSlice.actions;
+export const { addQuestFromCurrentArea, chageQuestPoint, changeQuestStatus } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;

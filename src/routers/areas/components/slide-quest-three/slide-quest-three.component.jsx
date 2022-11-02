@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideThree, threeDone } from "../../../../App/slices/quest-slides";
@@ -11,11 +11,6 @@ import TextArea from "../textarea/textarea.component";
 import DailyAdd from "../../../../Components/daily-add/daily-add.component";
 import { SlideSectionContainer, SlideWrapper, SlideInContainer, SlideDescription, SlideInWrapper, DisplayPoints, Buttons } from './slide-quest-three.style';
 
-const slideState = {
-    questName: '',
-    description: '',
-}
-
 const SlideQuestThree = () => {
     const dispatch = useDispatch();
 
@@ -23,19 +18,24 @@ const SlideQuestThree = () => {
     const slidesState = useSelector(selectSlideThree);
     const { active, done } = slidesState;
 
-    const [state, setState] = useState(slideState);
-    const { questName, description } = state;
-
-    const questNameChangeHandler = (event) => setState({ ...state, questName: event.target.value });
-    const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
+    const dailyTitleRef = useRef();
+    const dailyDescriptionRef = useRef();
 
     const addChangeHandler = () => {
+        const dailySlideState = {
+            questName: dailyTitleRef.current.value,
+            description: dailyDescriptionRef.current.value,
+        }
+        const { questName, description } = dailySlideState;
+
         if (questName.length < 1) return alert('add title');
         if (description.length < 1) return alert('add description');
 
         let generateId = slideData.length + 1;
-        dispatch(addDaily({ ...state, id: generateId }));
-        setState(slideState);
+        dispatch(addDaily({ ...dailySlideState, id: generateId }));
+
+        dailyTitleRef.current.value = '';
+        dailyDescriptionRef.current.value = '';
     }
 
     return (
@@ -44,8 +44,8 @@ const SlideQuestThree = () => {
             <SlideWrapper>
                 <SlideInContainer>
                     <SlideInWrapper>
-                        <Input label='Title:' onChange={questNameChangeHandler} readOnly={done} value={questName} />
-                        <TextArea type='normal' label='Description:' onChange={descriptionChangeHandler} readOnly={done} value={description} />
+                        <Input label='Title:' readOnly={done} ref={dailyTitleRef} />
+                        <TextArea type='normal' label='Description:' readOnly={done} ref={dailyDescriptionRef} />
                         {
                             !done &&
                             <button onClick={addChangeHandler}>Add</button>

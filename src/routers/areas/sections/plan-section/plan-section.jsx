@@ -7,7 +7,7 @@ import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, sele
 import { selectCreateQuest, selectCreateQuestState, setOpen, setReset } from "../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
 import { addNewQuest } from "../../../../App/slices/areas-slice";
-import { addQuestFromCurrentArea, selectCombinedAll, selectCombinedStatus } from "../../../../App/slices/combined-areas.slice";
+import { addQuestFromCurrentArea, changeQuestStatus, selectCombinedAll, selectCombinedStatus } from "../../../../App/slices/combined-areas.slice";
 import { PlanSectionContainer, PlanNavigation, BigButton } from './plan-section.style';
 import SlideQuestOne from "../../components/slide-quest-one/slide-quest-one.component";
 import SlideQuestTwo from "../../components/slide-quest-two/slide-quest-two.component";
@@ -48,8 +48,11 @@ const PlanSection = ({ title, part }) => {
     };
 
     useEffect(() => {
-        if (combinedStatus === 'reload') setAllQuests(uid, allQuests);
-    }, [allQuests, uid, combinedStatus]);
+        if (combinedStatus === 'reload') {
+            setAllQuests(uid, allQuests);
+            dispatch(changeQuestStatus());
+        }
+    }, [allQuests, uid, combinedStatus, dispatch]);
 
     return (
         <PlanSectionContainer open={currentQuestState}>

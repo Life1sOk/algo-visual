@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB4KW3hNs1uaX28D1uIMB98rWj_w-KSTJM",
@@ -176,3 +176,21 @@ export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
 }
 // ---------------- ------------------ ---------------- //
 
+// Update //
+
+export const tryUpdateData = async (uid) => {
+    if (!uid) return;
+
+    const getDocRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+    const datas = await getDoc(getDocRef);
+
+    await updateDoc(getDocRef, {
+        'all': arrayRemove({ bay: 1232, hello: '123' })
+    });
+
+    await updateDoc(getDocRef, {
+        'check': arrayUnion({ hello: 'hello' }, { bay: 'bay' })
+    });
+
+    console.log(datas.data());
+}

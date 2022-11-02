@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideOne, oneDone, twoActive } from "../../../../App/slices/quest-slides";
@@ -10,28 +10,26 @@ import TextArea from "../textarea/textarea.component";
 import Quote from "../quote/quote.component";
 import Ulist from "../u-list/u-list.component";
 
-const slideState = {
-    title: '',
-    description: '',
-    mainGoal: '',
-    current: '',
-}
-
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
     const resetState = useSelector(selectCreateQuestReset);
     const slidesState = useSelector(selectSlideOne);
     const { active, done } = slidesState;
 
-    const [state, setState] = useState(slideState);
-    const { title, description, mainGoal, current } = state;
-
-    const titleChangeHandler = (event) => setState({ ...state, title: event.target.value });
-    const currentStateChangeHandler = (event) => setState({ ...state, current: event.target.value });
-    const wantChangeHandler = (event) => setState({ ...state, mainGoal: event.target.value });
-    const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
+    const goalTitleRef = useRef();
+    const goalCurrentStateRef = useRef();
+    const goalWantToRef = useRef();
+    const goalDesctiptionRef = useRef();
 
     const slideOneDoneHandler = () => {
+        const goalSlideState = {
+            title: goalTitleRef.current.value,
+            current: goalCurrentStateRef.current.value,
+            mainGoal: goalWantToRef.current.value,
+            description: goalDesctiptionRef.current.value,
+        }
+        const { title, current, mainGoal, description } = goalSlideState;
+
         if (title.length < 1) return alert('need add title');
         if (current.length < 1) return alert('add current state');
         if (mainGoal.length < 1) return alert('u need your goal');
@@ -39,24 +37,29 @@ const SlideQuestOne = () => {
 
         dispatch(oneDone('done'));
         dispatch(twoActive());
-        dispatch(mainAccept(state));
+        dispatch(mainAccept(goalSlideState));
     }
 
     const slideOneFixHandler = () => dispatch(oneDone('fix'));
 
     useEffect(() => {
-        if (resetState === 'yes') setState(slideState);
-    }, [resetState]);
+        if (resetState === 'yes') {
+            goalTitleRef.current.value = '';
+            goalCurrentStateRef.current.value = '';
+            goalWantToRef.current.value = '';
+            goalDesctiptionRef.current.value = '';
+        }
+    }, [resetState])
 
     return (
         <SlideSectionContainer active={active} done={done}>
             <h2>Add new quest</h2>
             <SlideWrapper>
                 <SlideInContainer>
-                    <Input label='Goal Title:' readOnly={done} onChange={titleChangeHandler} value={title} />
-                    <TextArea type='normal' label='Current state:' readOnly={done} onChange={currentStateChangeHandler} value={current} />
-                    <TextArea type='normal' label='Want to:' readOnly={done} onChange={wantChangeHandler} value={mainGoal} />
-                    <TextArea type='big' label='Description / Why?:' readOnly={done} onChange={descriptionChangeHandler} value={description} />
+                    <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />
+                    <TextArea type='normal' label='Current state:' readOnly={done} ref={goalCurrentStateRef} />
+                    <TextArea type='normal' label='Want to:' readOnly={done} ref={goalWantToRef} />
+                    <TextArea type='big' label='Description / Why?:' readOnly={done} ref={goalDesctiptionRef} />
                 </SlideInContainer>
                 <SlideDescription>
                     <Quote slide='one' />

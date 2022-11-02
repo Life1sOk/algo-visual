@@ -5,6 +5,7 @@ import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getDailyInitialData } from '../../App/slices/daily.slice.js';
 import { getOutInitialData } from "../../App/slices/out-plan.slice";
 
+import { tryUpdateData } from "../../utils/firebase/firebase";
 
 // ------------- Top level - Containers / Layouts -------------- //
 import AsideLayoutContainer from "../../Layouts/aside-container.layout";
@@ -31,6 +32,10 @@ const ProfilePage = () => {
         dispatch(getOutInitialData(current));
     }, [dispatch, current]);
 
+    const checkHandler = async () => {
+        tryUpdateData(current)
+    }
+
     return (
         <PageLayoutContainer>
             <AsideLayoutContainer >
@@ -40,6 +45,7 @@ const ProfilePage = () => {
             <MainLayoutContainer>
                 <MainDisplaySection />
                 <PointsDisplay />
+                <button onClick={checkHandler}>Check</button>
             </MainLayoutContainer>
         </PageLayoutContainer>
     )

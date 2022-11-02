@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideTwo, twoDone, threeActive } from "../../../../App/slices/quest-slides";
@@ -13,14 +13,6 @@ import { SlideSectionContainer, InDescWrapper, SlideIn, DisplayPoints, SlideDesc
 
 import { reFormatTime } from "../../../../Hooks/re-format-date";
 
-const slideState = {
-    title: '',
-    status: '',
-    createdTime: '',
-    untilTime: '',
-    description: '',
-}
-
 const SlideQuestTwo = () => {
     const dispatch = useDispatch();
 
@@ -28,24 +20,32 @@ const SlideQuestTwo = () => {
     const slidesState = useSelector(selectSlideTwo);
     const { active, done } = slidesState;
 
-    const [state, setState] = useState(slideState);
+    const checkTime = (date) => reFormatTime(date);
 
-    const checkTime = (event) => {
-        const formatedUntil = reFormatTime(event.target.value);
-        setState({ ...state, untilTime: formatedUntil });
-    }
-
-    const titleStateChangeHandler = (event) => setState({ ...state, title: event.target.value });
-    const descriptionChangeHandler = (event) => setState({ ...state, description: event.target.value });
+    const pointTitleRef = useRef();
+    const pointUntilTimeRef = useRef();
+    const pointDescriptionRef = useRef();
 
     const addChangeHandler = () => {
-        if (state.title.length < 1) return alert('title to add!');
-        if (state.untilTime.length < 1) return alert('date to add!');
-        if (state.description.length < 1) return alert('description to add!');
+        const pointSlideState = {
+            title: pointTitleRef.current.value,
+            status: '',
+            untilTime: checkTime(pointUntilTimeRef.current.value),
+            description: pointDescriptionRef.current.value,
+        }
+
+        const { title, untilTime, description } = pointSlideState;
+
+        if (title.length < 1) return alert('title to add!');
+        if (untilTime.length < 1) return alert('date to add!');
+        if (description.length < 1) return alert('description to add!');
 
         let generateId = slideData.length + 1;
-        dispatch(addAchieve({ ...state, id: generateId }));
-        setState(slideState);
+        dispatch(addAchieve({ ...pointSlideState, id: generateId }));
+
+        pointTitleRef.current.value = '';
+        pointUntilTimeRef.current.value = '';
+        pointDescriptionRef.current.value = '';
     }
 
     const slideTwoDoneHandler = (type) => {
@@ -62,12 +62,12 @@ const SlideQuestTwo = () => {
             <h2>Create Steps Points</h2>
             <InDescWrapper>
                 <SlideIn>
-                    <Input label='Point Title:' onChange={titleStateChangeHandler} readOnly={done} required value={state.title} />
+                    <Input label='Point Title:' readOnly={done} required ref={pointTitleRef} />
                     <Date>
                         <span>Date:</span>
-                        <input type='date' onChange={(e) => checkTime(e)} readOnly={done} required />
+                        <input type='date' readOnly={done} required ref={pointUntilTimeRef} />
                     </Date>
-                    <TextArea type='normal' label='Need to do!' onChange={descriptionChangeHandler} readOnly={done} required value={state.description} />
+                    <TextArea type='normal' label='Need to do!' readOnly={done} required ref={pointDescriptionRef} />
                     {
                         !done &&
                         <button onClick={addChangeHandler}>Add</button>

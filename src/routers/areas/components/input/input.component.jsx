@@ -1,12 +1,12 @@
-import React, { memo } from "react";
+import React, { forwardRef } from "react";
 
 import { TitleInput, TitleInputContainer } from './input.style';
 
-const Input = memo(({ label, ...others }) => {
+const Input = forwardRef(({ label, ...others }, ref) => {
     return (
         <TitleInputContainer>
             <span>{label}</span>
-            <TitleInput {...others} />
+            <TitleInput ref={ref} {...others} />
         </TitleInputContainer>
     )
 })
