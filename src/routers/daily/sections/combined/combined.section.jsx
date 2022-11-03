@@ -13,7 +13,7 @@ const CombinedQuests = () => {
         <CombinedQuestsContainer>
             {
                 allQuests[0] &&
-                allQuests.map(quest => <QuestDisplay key={quest.quest.id} title={quest.title} part={quest.part} data={quest.quest} />)
+                allQuests.map((quest, index) => <QuestDisplay key={index} id={quest.id} title={quest.title} data={quest.quest} questId={index + 1} />)
             }
         </CombinedQuestsContainer>
     )

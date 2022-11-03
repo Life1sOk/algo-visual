@@ -1,33 +1,49 @@
 import React, { useState } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+import { selectAuthUid } from "../../App/slices/auth.slice";
+import { deleteQuest } from "../../App/slices/areas-slice";
+import { deleteQuestFromCombined } from "../../App/slices/combined-areas.slice";
+import { deleteCurrentQuestCombined, deleteUsersDatasAreas } from "../../utils/firebase/firebase";
+
 import { QuestDisplayWrapper, QuestDisplayContainer, QuestDisplayButtons, QuestDisplayRoadLinks } from './quest-display.style';
 import QuestMain from "../quest-main/quest-main.component";
 import QuestPoints from "../quest-points/quest-points.component";
 import QuestDaily from "../quest-daily/quest-daily.component";
 import ButtonSd from "../button-sd/button-sd.component";
 
-const QuestDisplay = ({ title, part, data }) => {
-    const { id, main, createdTime, achieve, daily } = data;
+const QuestDisplay = ({ title, data, questId, id }) => {
+    const { main, createdTime, achieve, daily } = data;
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
+    const uid = useSelector(selectAuthUid);
 
     const openChangeHandler = () => setOpen(!open);
+
+    const deleteChangeHandler = () => {
+        const currentQuest = { id, title, quest: data };
+
+        dispatch(deleteQuest(currentQuest));
+        deleteUsersDatasAreas(uid, title.toLowerCase(), currentQuest);
+
+        dispatch(deleteQuestFromCombined(currentQuest));
+        deleteCurrentQuestCombined(uid, currentQuest);
+    };
 
     return (
         <QuestDisplayWrapper>
             <QuestDisplayRoadLinks>
                 <span>{title}</span>
-                <span>{`->`}</span>
-                <span>{part}</span>
             </QuestDisplayRoadLinks>
             <QuestDisplayButtons>
                 <ButtonSd type='fix' />
                 <ButtonSd type='shrink' onClick={openChangeHandler} />
-                <ButtonSd type='delete' />
+                <ButtonSd type='delete' onClick={deleteChangeHandler} />
             </QuestDisplayButtons>
             <QuestDisplayContainer open={open}>
-                <QuestMain id={id} data={main} />
-                <QuestPoints data={achieve} questId={id} />
-                <QuestDaily createdTime={createdTime} data={daily} title={main.title} />
+                <QuestMain id={questId} data={main} />
+                <QuestPoints data={achieve} />
+                <QuestDaily createdTime={createdTime} data={daily} />
             </QuestDisplayContainer>
         </QuestDisplayWrapper>
     )

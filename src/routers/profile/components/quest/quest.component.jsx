@@ -20,7 +20,6 @@ const Quest = ({ quest, color }) => {
     }
 
     const stateChangeHandler = () => {
-        console.log(generatedHeight)
         if (!done) return setState(!state);
     }
 

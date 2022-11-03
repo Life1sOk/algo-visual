@@ -3,7 +3,7 @@ import React from "react";
 import { QuestPointsContainer, QuestPointsDisplay, QuestPoint } from './quest-points.style';
 import Points from "../points/points.component";
 
-const QuestPoints = ({ data, questId }) => {
+const QuestPoints = ({ data }) => {
 
     return (
         <QuestPointsContainer>
@@ -12,7 +12,7 @@ const QuestPoints = ({ data, questId }) => {
                 {
                     data[0] &&
                     data.map(point =>
-                        <Points key={point.id} data={point} questId={questId} />
+                        <Points key={point.id} data={point} />
                     )
                 }
             </QuestPointsDisplay>

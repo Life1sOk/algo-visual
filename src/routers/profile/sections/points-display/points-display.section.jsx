@@ -9,8 +9,6 @@ import Points from "../../../../Components/points/points.component";
 const PointsDisplay = () => {
     const activePoints = useSelector(selectActivePoints);
 
-    console.log(activePoints, 'selectActivePoints')
-
     return (
         <PointsDisplayContainer>
             {

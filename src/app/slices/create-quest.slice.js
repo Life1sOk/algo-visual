@@ -11,7 +11,6 @@ const initialState = {
     },
 }
 
-
 export const createQuestSlice = createSlice({
     name: 'createQuest',
     initialState,

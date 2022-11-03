@@ -31,15 +31,14 @@ export const areasSlice = createSlice({
             state.displaySection.stateOpen = !state.displaySection.stateOpen;
         },
         addNewQuest: (state, { payload }) => {
-            const { part, title, quest } = payload;
-            const generateId = state.displaySection.parts[part]?.length + 1;
-            state.displaySection.parts[part]?.push({ id: generateId, ...quest });
-            state.sections[title]?.parts[part]?.push({ id: generateId, ...quest });
+            const { title } = payload;
+            state.displaySection.quests.push(payload);
+            state.sections[title].quests.push(payload);
         },
         deleteQuest: (state, { payload }) => {
-            const { part, title, questId } = payload;
-            state.displaySection.parts[part] = state.displaySection.parts[part]?.filter(quest => quest.id !== questId);
-            state.sections[title].parts[part] = state.sections[title]?.parts[part]?.filter(quest => quest.id !== questId);
+            const { title, id } = payload;
+            state.displaySection.quests = state.displaySection.quests?.filter(quest => quest.id !== id);
+            state.sections[title].quests = state.sections[title].quests?.filter(quest => quest.id !== id);
         },
         changeStatusToReload: (state) => {
             state.status = 'reload';

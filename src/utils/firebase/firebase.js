@@ -134,17 +134,32 @@ export const getAllQuests = async (uid) => {
 
     return datas.data().all;
 };
-
+// change name
 export const setAllQuests = async (uid, datasToAdd) => {
     if (!uid) return;
 
     const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
 
     try {
-        await setDoc(docRef, {
-            all: datasToAdd,
+        await updateDoc(docRef, {
+            all: arrayUnion(datasToAdd)
         });
         console.log('datas combined')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+};
+
+export const deleteCurrentQuestCombined = async (uid, datasToAdd) => {
+    if (!uid) return;
+
+    const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+
+    try {
+        await updateDoc(docRef, {
+            all: arrayRemove(datasToAdd)
+        });
+        console.log('data deleted')
     } catch (error) {
         console.log('oops, here is some error', error);
     }
@@ -161,15 +176,32 @@ export const getUsersDocsAreas = async (uid, type) => {
 
     return datas.data();
 }
-
+// change name
 export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
     if (!uid || !type) return;
 
     const docRef = doc(db, 'users', uid, 'areas', type);
 
     try {
-        await setDoc(docRef, datasToAdd);
+        await updateDoc(docRef, {
+            'quests': arrayUnion(datasToAdd)
+        });
         console.log('done');
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+}
+
+export const deleteUsersDatasAreas = async (uid, type, datasToAdd) => {
+    if (!uid || !type) return;
+
+    const docRef = doc(db, 'users', uid, 'areas', type);
+
+    try {
+        await updateDoc(docRef, {
+            'quests': arrayRemove(datasToAdd)
+        });
+        console.log('deleted');
     } catch (error) {
         console.log('oops, here is some error', error);
     }
@@ -181,16 +213,16 @@ export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
 export const tryUpdateData = async (uid) => {
     if (!uid) return;
 
-    const getDocRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+    const getDocRef = doc(db, 'users', uid);
     const datas = await getDoc(getDocRef);
 
-    await updateDoc(getDocRef, {
-        'all': arrayRemove({ bay: 1232, hello: '123' })
-    });
+    // await updateDoc(getDocRef, {
+    //     'all': arrayRemove({ bay: 1232, hello: '123' })
+    // });
 
-    await updateDoc(getDocRef, {
-        'check': arrayUnion({ hello: 'hello' }, { bay: 'bay' })
-    });
+    // await updateDoc(getDocRef, {
+    //     'check': arrayUnion({ hello: 'hello' }, { bay: 'bay' })
+    // });
 
     console.log(datas.data());
 }

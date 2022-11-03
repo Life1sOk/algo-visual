@@ -40,12 +40,8 @@ const Points = ({ data, show, questId }) => {
                             <Main>{description}</Main>
                         </PointsContainer>
                         <PointBack onClick={reverseHandler}>
-                            {
-                                !status === 'active' ?
-                                    <button onClick={() => setChangedPointStatus('active')}>Activate</button>
-                                    :
-                                    <button onClick={() => setChangedPointStatus('notActive')}>Deactivate</button>
-                            }
+                            <button onClick={() => setChangedPointStatus('active')}>Activate</button>
+                            <button onClick={() => setChangedPointStatus('notActive')}>Deactivate</button>
                         </PointBack>
                     </PointsWrapper>
             }

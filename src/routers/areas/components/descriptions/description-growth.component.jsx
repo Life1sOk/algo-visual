@@ -10,6 +10,7 @@ const DescriptionGrowth = () => {
             </p>
             <p>Important influences on our growth are creative play, rest and relaxation. These activities reduce anxiety, allow healing and encourage positive neuroplasticity.</p>
             <p>In this final section we review the quality of your personal and professional development, and check in with your levels of creativity, rest and play.</p>
+            <p>Career Growth, Learning Growth, Rest, Play and Creativity</p>
         </DescriptionContainer>
     )
 }

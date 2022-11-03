@@ -26,10 +26,14 @@ const combinedAreasSlice = createSlice({
     initialState,
     reducers: {
         addQuestFromCurrentArea: (state, { payload }) => {
-            const { part, title, quest } = payload;
+            const { title, quest } = payload;
             let generateNewId = state.all.length + 1;
-            state.all.push({ part, title, quest: { ...quest, id: generateNewId } });
+            state.all.push({ title, quest: { ...quest, id: generateNewId } });
             state.status = 'reload';
+        },
+        deleteQuestFromCombined: (state, { payload }) => {
+            const { id } = payload;
+            state.all = state.all.filter(quest => quest.id !== id);
         },
         chageQuestPoint: (state, { payload }) => {
             const { pointId, questId, status } = payload;
@@ -41,9 +45,6 @@ const combinedAreasSlice = createSlice({
         addPointToActiveAll: (state, { payload }) => {
             state.all.push(payload);
         },
-        changeQuestStatus: (state) => {
-            state.status = 'active';
-        }
     },
     extraReducers: {
         [getCombinedAreas.pending]: (state) => {
@@ -65,6 +66,6 @@ export const selectCombinedAll = (state) => state.combined.all;
 export const selectCombinedStatus = (state) => state.combined.status;
 export const selectActivePoints = (state) => state.combined.activePoints;
 
-export const { addQuestFromCurrentArea, chageQuestPoint, changeQuestStatus } = combinedAreasSlice.actions;
+export const { addQuestFromCurrentArea, chageQuestPoint, deleteQuestFromCombined } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;

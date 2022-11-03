@@ -7,6 +7,7 @@ const DescriptionPeople = () => {
         <DescriptionContainer>
             <p>To a large extent, we are the sum of the people we spend the most time with, including our friends, family and work mates. As tribal beings, we seek to be accepted and long for approval.</p>
             <p>In this section we review the quality of your relationships at home, at work and in the greater community. Suggestions are provided for actions to take to improve the quality of relationships that may be lacking.</p>
+            <p>Home People, Wider Community, Work People</p>
         </DescriptionContainer>
     )
 }

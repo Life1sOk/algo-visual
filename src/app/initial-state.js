@@ -9,7 +9,7 @@ export const initialAreas = {
         mainColor: '',
         icon: '',
         previewImg: '',
-        parts: {},
+        quests: [],
     },
 }
 
