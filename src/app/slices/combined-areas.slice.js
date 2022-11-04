@@ -36,11 +36,11 @@ const combinedAreasSlice = createSlice({
             state.all = state.all.filter(quest => quest.id !== id);
         },
         chageQuestPoint: (state, { payload }) => {
-            const { pointId, questId, status } = payload;
-            state.all[questId].quest.achieve = state.all[questId].quest.achieve.map(point =>
-                point.id === pointId ? { ...point, status } : point)
-            state.status = 'reload';
-            // also need send it to the server some where;
+            const { pointId, questIndex, status, data } = payload;
+            state.all[questIndex].quest.achieve = state.all[questIndex].quest.achieve.map(point =>
+                point.id === pointId ? { ...point, status } : point);
+            if (status) state.activePoints.push(data);
+            if (!status) state.activePoints = state.activePoints.filter(point => point.id !== data.id);
         },
         addPointToActiveAll: (state, { payload }) => {
             state.all.push(payload);
@@ -53,7 +53,8 @@ const combinedAreasSlice = createSlice({
         },
         [getCombinedAreas.fulfilled]: (state, { payload }) => {
             state.status = 'resolved';
-            state.all = payload;
+            state.all = payload.all;
+            state.activePoints = payload.activePoints;
         },
         [getCombinedAreas.rejected]: (state, { payload }) => {
             state.status = 'rejected';

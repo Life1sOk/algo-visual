@@ -40,6 +40,11 @@ export const areasSlice = createSlice({
             state.displaySection.quests = state.displaySection.quests?.filter(quest => quest.id !== id);
             state.sections[title].quests = state.sections[title].quests?.filter(quest => quest.id !== id);
         },
+        updateQuestAction: (state, { payload }) => {
+            const { pointId, questIndex, status, data, questTitle } = payload;
+            state.sections[questTitle].quests[questIndex].quest.achieve = state.sections[questTitle].quests[questIndex].quest.achieve?.map(point => point.id === pointId ? { ...point, status } : point);
+            // state.displaySection.quests[questIndex].quest.achieve = state.displaySection.quests[questIndex].quest.achieve?.map(point => point.id === pointId ? { ...point, status } : point);
+        },
         changeStatusToReload: (state) => {
             state.status = 'reload';
         },
@@ -66,6 +71,6 @@ export const selectAreas = (state) => state.areas.sections;
 export const selectDisplaySection = (state) => state.areas.displaySection;
 export const selectAreasStatus = (state) => state.areas.status;
 
-export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload, deleteQuest } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload, deleteQuest, updateQuestAction } = areasSlice.actions;
 
 export default areasSlice.reducer;

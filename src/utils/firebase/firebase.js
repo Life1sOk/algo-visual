@@ -126,15 +126,16 @@ export const setUsersDatasOutDaily = async (uid, datasToAdd) => {
     }
 }
 
+// Combiend //
 export const getAllQuests = async (uid) => {
     if (!uid) return;
 
     const getDocRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
     const datas = await getDoc(getDocRef);
 
-    return datas.data().all;
+    return datas.data();
 };
-// change name
+
 export const setAllQuests = async (uid, datasToAdd) => {
     if (!uid) return;
 
@@ -150,6 +151,21 @@ export const setAllQuests = async (uid, datasToAdd) => {
     }
 };
 
+export const setActivePoint = async (uid, datasToAdd) => {
+    if (!uid) return;
+
+    const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+
+    try {
+        await updateDoc(docRef, {
+            activePoints: arrayUnion(datasToAdd)
+        });
+        console.log('datas combined points')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+};
+
 export const deleteCurrentQuestCombined = async (uid, datasToAdd) => {
     if (!uid) return;
 
@@ -160,6 +176,21 @@ export const deleteCurrentQuestCombined = async (uid, datasToAdd) => {
             all: arrayRemove(datasToAdd)
         });
         console.log('data deleted')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+};
+
+export const deleteActivePoint = async (uid, datasToAdd) => {
+    if (!uid) return;
+
+    const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+
+    try {
+        await updateDoc(docRef, {
+            activePoints: arrayRemove(datasToAdd)
+        });
+        console.log('data deleted point')
     } catch (error) {
         console.log('oops, here is some error', error);
     }

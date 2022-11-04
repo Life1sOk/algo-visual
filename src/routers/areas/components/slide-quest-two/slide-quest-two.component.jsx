@@ -29,7 +29,7 @@ const SlideQuestTwo = () => {
     const addChangeHandler = () => {
         const pointSlideState = {
             title: pointTitleRef.current.value,
-            status: '',
+            status: false,
             untilTime: checkTime(pointUntilTimeRef.current.value),
             description: pointDescriptionRef.current.value,
         }

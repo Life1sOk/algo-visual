@@ -23,25 +23,3 @@ export const QuestPointsDisplay = styled.div`
 
     overflow: scroll;
 `;
-
-export const QuestPoint = styled.div`
-    width: 100%;
-    height: 119.5px;
-    padding: 5px;
-    border: 1px solid white;
-    text-align: center;
-
-    p {
-        padding: 5px;
-    }
-
-    .point-title {
-        text-align: center;
-        padding: 5px;
-        font-size: 24px;
-    }
-
-    .point-description {
-        font-size: 18px;
-    }
-`;
