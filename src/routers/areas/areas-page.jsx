@@ -17,6 +17,7 @@ import TitlePage from "../../Components/title-page/title-page.component";
 // ------------ Page's Sections ----------------- //
 import AreasSection from "./sections/areas-section/areas-section";
 import DescriptionSection from "./sections/description-section/description-section";
+import QuestsSection from "./sections/quests-section/quests-section";
 import PartsSection from "./sections/parts-section/parts-section";
 
 // ------------ Page's React Components ----------------- //
@@ -52,6 +53,7 @@ const AreasPage = () => {
                             <MainLayoutContainer>
                                 <DescriptionSection />
                                 <PartsSection />
+                                <QuestsSection />
                             </MainLayoutContainer>
                         </PageLayoutContainer>
             }

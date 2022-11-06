@@ -1,21 +1,25 @@
 import styled from 'styled-components';
 
 export const PartsSectionContainer = styled.div`
-    margin: 0 15px;
-    width: 100%;
+    width: 93%;
+    ${'' /* height: 300px; */}
+    border: 2px solid lightcoral;
+    border-radius: 20px;
+    padding: 10px 0;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 13px;
 `;
 
-export const PartsSectionDisplay = styled.div`
+export const PartsKolo = styled.div`
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    border-radius: 50%;
+    flex-shrink: 0;
+`;
+
+export const PartsDesc = styled.div`
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 13px;
+    height: 100%;
+    background-color: yellow;
 `;
