@@ -41,7 +41,7 @@ const DailyPage = () => {
                         <div>Error</div>
                         :
                         <PageLayoutContainer>
-                            <AsideLayoutContainer >
+                            <AsideLayoutContainer>
                                 <TitlePage titleName='Tomorrow' />
                                 <SwitchSection />
                             </AsideLayoutContainer>

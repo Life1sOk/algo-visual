@@ -4,7 +4,6 @@ export const PartsSectionContainer = styled.div`
     width: 93%;
     ${'' /* height: 300px; */}
     ${'' /* border: 2px solid lightcoral; */}
-    border-radius: 20px;
     
     display: flex;
 `;
