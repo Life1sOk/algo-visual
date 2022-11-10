@@ -7,9 +7,3 @@ export const PartsSectionContainer = styled.div`
     
     display: flex;
 `;
-
-export const PartsDesc = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: yellow;
-`;

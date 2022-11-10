@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Pie, getElementAtEvent } from 'react-chartjs-2';
+import { Pie, getElementAtEvent, getDatasetAtEvent } from 'react-chartjs-2';
 
 import { PartsCircleContainer } from './parts-circle.style';
 import { Chart, ArcElement, Tooltip } from 'chart.js'
@@ -13,7 +13,7 @@ const dataPie = {
         label: 'My First Dataset',
         data: [10, 10, 10],
         backgroundColor: [
-            'rgb(255, 99, 132)',
+            'rgba(255, 99, 132)',
             'rgb(54, 162, 235)',
             'rgb(255, 205, 86)',
         ],
@@ -26,11 +26,13 @@ const PartsCircle = () => {
     const pie = useRef(null);
 
     const checkHandler = (e) => {
-        const checker = getElementAtEvent(pie.current, e);
+        // const checker = getElementAtEvent(pie.current, e);
 
-        if (checker[0].index === 0) console.log('zero');
-        if (checker[0].index === 1) console.log('one');
-        if (checker[0].index === 2) console.log('two');
+        // if (checker[0].index === 0) console.log('zero');
+        // if (checker[0].index === 1) console.log('one');
+        // if (checker[0].index === 2) console.log('two');
+        const checker = getDatasetAtEvent(pie.current, e);
+        console.log(checker);
     }
 
     return (
