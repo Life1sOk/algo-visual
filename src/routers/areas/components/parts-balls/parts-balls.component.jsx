@@ -1,5 +1,8 @@
 import React from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+import { changeCurrentColor, selectToAddPartColor } from '../../../../App/slices/parts-slice';
+
 import ColorBall from "../../../../Components/color-ball/color-ball.component";
 import { PartsBallsContainer } from './parts-balls.style';
 
@@ -12,11 +15,18 @@ const possibleColors = [
 ];
 
 const PartsBalls = () => {
+    const dispatch = useDispatch();
+    const activeColor = useSelector(selectToAddPartColor);
+
+    const addActiveColorHandler = (color) => dispatch(changeCurrentColor(color));
+
+
     return (
         <PartsBallsContainer>
             <span>Color:</span>
             {
-                possibleColors?.map(ball => <ColorBall key={possibleColors.indexOf(ball)} color={ball} />)
+                possibleColors?.map(ball => <ColorBall key={possibleColors.indexOf(ball)} color={ball}
+                    onClick={() => addActiveColorHandler(ball)} active={ball === activeColor} />)
             }
         </PartsBallsContainer>
     )

@@ -8,6 +8,7 @@ import createQuestReducer from "./slices/create-quest.slice";
 import asideMenuReducer from "./slices/aside-menu.slice";
 import questSlidesReducer from "./slices/quest-slides";
 import combinedAreasReducer from "./slices/combined-areas.slice";
+import partsReducer from './slices/parts-slice';
 
 const store = configureStore({
     middleware: (getDefaultMiddleware) =>
@@ -32,6 +33,7 @@ const store = configureStore({
         aside: asideMenuReducer,
         questSlide: questSlidesReducer,
         combined: combinedAreasReducer,
+        parts: partsReducer,
     }
 })
 

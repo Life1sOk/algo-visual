@@ -1,28 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Pie, getElementAtEvent, getDatasetAtEvent } from 'react-chartjs-2';
+
+import { useSelector } from "react-redux";
+import { selectCircle } from "../../../../App/slices/parts-slice";
 
 import { PartsCircleContainer } from './parts-circle.style';
 import { Chart, ArcElement, Tooltip } from 'chart.js'
 Chart.register(ArcElement, Tooltip);
 
-const dataPie = {
-    labels: [
-        'Emotion and Spiritual Health', 'Financial Health', 'Physical Health'
-    ],
-    datasets: [{
-        label: 'My First Dataset',
-        data: [10, 10, 10],
-        backgroundColor: [
-            'rgba(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-        ],
-        hoverOffset: 0
-    }]
-};
-
 const PartsCircle = () => {
-    const [pieData, setPieData] = useState(dataPie);
+    const circlePieData = useSelector(selectCircle)
     const pie = useRef(null);
 
     const checkHandler = (e) => {
@@ -37,7 +24,7 @@ const PartsCircle = () => {
 
     return (
         <PartsCircleContainer>
-            <Pie datasetIdKey='pie' data={pieData} options ref={pie} onClick={checkHandler} />
+            <Pie datasetIdKey='pie' data={circlePieData} options ref={pie} onClick={checkHandler} />
         </PartsCircleContainer>
     )
 }

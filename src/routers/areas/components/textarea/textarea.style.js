@@ -15,9 +15,8 @@ export const TextAreaDescription = styled.textarea`
     font-style: italic;
     resize: none;
     border: none;
-    ${'' /* border-top: 1px solid grey; */}
-    ${'' /* border-bottom: 1px solid grey; */}
     background-color: rgba(255,255,255, .5);
+    border-radius: 5px;
 
     &:focus {
         outline: none;
