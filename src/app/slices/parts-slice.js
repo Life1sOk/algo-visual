@@ -10,15 +10,11 @@ const initialState = {
     },
     allParts: [],
     circle: {
-        labels: [
-            'Physical Health'
-        ],
+        labels: [],
         datasets: [{
             label: 'My First Dataset',
-            data: [1],
-            backgroundColor: [
-                'rgba(255, 99, 132)',
-            ],
+            data: [],
+            backgroundColor: [],
             hoverOffset: 0
         }]
     }

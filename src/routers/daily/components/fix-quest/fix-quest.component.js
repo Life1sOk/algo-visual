@@ -9,18 +9,23 @@ import useAutosizeTextArea from "../../../../Hooks/useAutosizeTextArea";
 import { FixQuestContainer, FixLabel, TitleInput, TextArea, ButtonWrapper, DoneTitle } from './fix-quest.style';
 
 const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
-    const fixTextAreaRef = useRef();
     const dispatch = useDispatch();
     const [state, setState] = useState(false);
-    const [blank, setBlank] = useState(quest);
-    const { id, questName, description } = blank;
+    const { id, questName, description } = quest;
+
+    const fixTextAreaRef = useRef(null);
+    const fixQuestTitleRef = useRef(null);
+    const fixQuestDescriptionRef = useRef(null);
 
     useAutosizeTextArea(fixTextAreaRef.current, description);
 
-    const titleHandler = (event) => setBlank({ ...blank, questName: event.target.value });
-    const descriptionHandler = (event) => setBlank({ ...blank, description: event.target.value });
-
     const acceptHandler = () => {
+        const blank = {
+            id,
+            questName: fixQuestTitleRef.current.value,
+            description: fixQuestDescriptionRef.current.value,
+        };
+
         if (blank.questName.length < 3) return alert('very small quest title, should be 3+ symbols!');
         if (blank.description.length < 10) return alert('pls add description!');
 
@@ -46,10 +51,9 @@ const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
             {
                 !state ?
                     <>
-                        <TitleInput placeholder="title" id="fix" value={questName}
-                            onChange={(e) => titleHandler(e)} />
-                        <TextArea state={state} type='text' placeholder="discription" value={description}
-                            onChange={(e) => descriptionHandler(e)} ref={fixTextAreaRef} />
+                        <TitleInput placeholder="title" id="fix" defaultValue={questName} ref={fixQuestTitleRef}
+                        />
+                        <TextArea state={state} type='text' placeholder="discription" defaultValue={description} ref={fixQuestDescriptionRef} />
                         <ButtonWrapper state={state}>
                             <Button name='Accept' color='green' onClick={acceptHandler} />
                             <Button name='Delete' color='red' onClick={deleteHandler} />

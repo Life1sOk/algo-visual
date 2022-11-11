@@ -6,11 +6,12 @@ import { selectAllParts, changeToAddData, addToAll } from "../../../../App/slice
 import Input from '../input/input.component';
 import TextArea from '../textarea/textarea.component';
 import PartsBalls from "../parts-balls/parts-balls.component";
+import PartTitleBall from "../../../../Components/part-title-ball/part-title-ball.component";
 import { PartsDisplayAddContainer, PartsDisplayAddLeft, PartsDisplayAddRight } from './parts-display-style';
 
 const PartsDisplayAdd = () => {
     const dispatch = useDispatch();
-    const check = useSelector(selectAllParts);
+    const allParts = useSelector(selectAllParts);
 
     const newPartTitleRef = useRef(null);
     const newPartDescriptionRef = useRef(null);
@@ -25,10 +26,6 @@ const PartsDisplayAdd = () => {
         dispatch(addToAll());
     }
 
-    const checkHandler = () => {
-        console.log(check)
-    }
-
     return (
         <PartsDisplayAddContainer>
             <PartsDisplayAddLeft>
@@ -36,14 +33,13 @@ const PartsDisplayAdd = () => {
                 <PartsBalls />
                 <TextArea type='big' label="What is it about?" ref={newPartDescriptionRef} />
                 <button onClick={addNewPartHandler}>Accept and Add</button>
-                <button onClick={checkHandler}>Check</button>
+                {/* <button onClick={checkHandler}>Check</button> */}
             </PartsDisplayAddLeft>
             <PartsDisplayAddRight>
                 <h2>Existing parts:</h2>
-                <div className="bla" />
-                <div className="bla" />
-                <div className="bla" />
-                <div className="bla" />
+                {
+                    allParts.map(part => <PartTitleBall key={allParts.indexOf(part)} color={part.color} title={part.title} />)
+                }
             </PartsDisplayAddRight>
         </PartsDisplayAddContainer>
     )
