@@ -6,4 +6,5 @@ export const PartsSectionContainer = styled.div`
     ${'' /* border: 2px solid lightcoral; */}
     
     display: flex;
+    align-items: center;
 `;

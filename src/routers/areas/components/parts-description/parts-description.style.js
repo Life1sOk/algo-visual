@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const PartsDescriptionContainer = styled.div`
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    height: 385px;
     color: white;
 
     display: flex;
