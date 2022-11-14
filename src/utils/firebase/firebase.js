@@ -237,6 +237,24 @@ export const deleteUsersDatasAreas = async (uid, type, datasToAdd) => {
         console.log('oops, here is some error', error);
     }
 }
+
+// Parts //
+export const setAreasParts = async (uid, area, datasToAdd) => {
+    if (!uid || !area) return;
+
+    const docRef = doc(db, 'users', uid, 'areas', area);
+
+    try {
+        await updateDoc(docRef, {
+            parts: datasToAdd
+        });
+        console.log('done digi don')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+}
+
+
 // ---------------- ------------------ ---------------- //
 
 // Update //

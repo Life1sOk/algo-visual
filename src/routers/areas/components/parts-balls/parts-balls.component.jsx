@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { changeCurrentColor, selectToAddPartColor } from '../../../../App/slices/parts-slice';
+import { changeCurrentColor, selectToAddPartColor } from '../../../../App/slices/areas-slice';
 
 import ColorBall from "../../../../Components/color-ball/color-ball.component";
 import { PartsBallsContainer } from './parts-balls.style';

@@ -9,6 +9,7 @@ import Input from "../input/input.component";
 import TextArea from "../textarea/textarea.component";
 import Quote from "../quote/quote.component";
 import Ulist from "../u-list/u-list.component";
+import PartsOption from "../parts-option/parts-option.component";
 
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const SlideQuestOne = () => {
             <h2>Add new quest</h2>
             <SlideWrapper>
                 <SlideInContainer>
+                    <PartsOption />
                     <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />
                     <TextArea type='normal' label='Current state:' readOnly={done} ref={goalCurrentStateRef} />
                     <TextArea type='normal' label='Want to:' readOnly={done} ref={goalWantToRef} />

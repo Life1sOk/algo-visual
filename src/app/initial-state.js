@@ -1,7 +1,14 @@
 export const initialAreas = {
     status: 'reload',
+    partStatus: '',
     error: null,
     sections: {},
+    partToAdd: {
+        title: '',
+        description: '',
+        color: '',
+        totalQuests: 0,
+    },
     displaySection: {
         id: 0,
         title: '',
@@ -10,6 +17,18 @@ export const initialAreas = {
         icon: '',
         previewImg: '',
         quests: [],
+        parts: {
+            allParts: [],
+            circle: {
+                labels: [],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [],
+                    backgroundColor: [],
+                    hoverOffset: 0
+                }]
+            }
+        },
     },
 }
 

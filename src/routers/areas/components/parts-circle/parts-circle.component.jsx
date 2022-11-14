@@ -2,8 +2,9 @@ import React, { useRef } from "react";
 import { Pie, getElementAtEvent, getDatasetAtEvent } from 'react-chartjs-2';
 
 import { useSelector } from "react-redux";
-import { selectCircle } from "../../../../App/slices/parts-slice";
+import { selectCircle } from "../../../../App/slices/areas-slice";
 
+import NothingShow from "../../../../Components/nothing-show/nothing-show.component";
 import { PartsCircleContainer } from './parts-circle.style';
 import { Chart, ArcElement, Tooltip } from 'chart.js'
 Chart.register(ArcElement, Tooltip);
@@ -25,6 +26,7 @@ const PartsCircle = () => {
     return (
         <PartsCircleContainer>
             <Pie datasetIdKey='pie' data={circlePieData} options ref={pie} onClick={checkHandler} />
+            {/* <NothingShow name='Add part' /> */}
         </PartsCircleContainer>
     )
 }
