@@ -61,13 +61,24 @@ export const areasSlice = createSlice({
             // Add to all parts array
             let newId = state.displaySection.parts.allParts.length;
             state.displaySection.parts.allParts.push({ ...state.partToAdd, id: newId });
-            state.displaySection.totalParts += 1;
             // Add to circle data
             const { title, color, totalQuests } = state.partToAdd;
             state.displaySection.parts.circle.labels.push(title);
             state.displaySection.parts.circle.datasets[0].data.push(totalQuests);
             state.displaySection.parts.circle.datasets[0].backgroundColor.push(color);
             state.sections[payload] = state.displaySection;
+        },
+        partsQuestCount: (state, { payload }) => {
+            let activeIndex = null;
+            state.displaySection.parts.allParts = state.displaySection.parts.allParts.map((part, index) => {
+                if (part.title === payload.title) {
+                    activeIndex = index;
+                    return { ...part, totalQuests: part.totalQuests + payload.count }
+                } else {
+                    return part
+                }
+            });
+            state.displaySection.parts.circle.datasets[0].data[activeIndex] = state.displaySection.parts.circle.datasets[0].data[activeIndex] + payload.count;
         },
         deletePart: (state, { payload }) => {
             let totalParts = state.displaySection.parts.allParts.length;
@@ -126,6 +137,6 @@ export const selectToAddPartColor = (state) => state.areas.partToAdd.color;
 export const selectAllParts = (state) => state.areas.displaySection.parts.allParts;
 export const selectCircle = (state) => state.areas.displaySection.parts.circle;
 
-export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload, deleteQuest, updateQuestAction, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload, deleteQuest, updateQuestAction, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount } = areasSlice.actions;
 
 export default areasSlice.reducer;

@@ -5,7 +5,7 @@ export const PartsCircleContainer = styled.div`
     width: 350px;
     height: 350px;
     margin: 5px;
-    background-color: white;
+    background-color: lightyellow;
     border-radius: 50%;
     flex-shrink: 0;
 

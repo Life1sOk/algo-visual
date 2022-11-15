@@ -1,21 +1,23 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { useSelector } from "react-redux";
 import { selectAllParts } from "../../../../App/slices/areas-slice";
 
-import { PartsOptionContainer } from './parts-option.style';
+import { PartsOptionContainer, PartsOptionSelect } from './parts-option.style';
 
-const PartsOption = () => {
+const PartsOption = forwardRef((props, ref) => {
     const allParts = useSelector(selectAllParts);
 
     return (
         <PartsOptionContainer>
-            <h3>Pick part: </h3>
-            {
-                allParts.map(option => <option value={option.title}>{option.title}</option>)
-            }
+            <h3>Pick part:</h3>
+            <PartsOptionSelect ref={ref}>
+                {
+                    allParts.map(option => <option key={allParts.indexOf(option)} value={option.title}>{option.title}</option>)
+                }
+            </PartsOptionSelect>
         </PartsOptionContainer>
     )
-}
+})
 
 export default PartsOption;

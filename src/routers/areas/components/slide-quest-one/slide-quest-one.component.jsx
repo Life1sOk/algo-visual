@@ -17,6 +17,7 @@ const SlideQuestOne = () => {
     const slidesState = useSelector(selectSlideOne);
     const { active, done } = slidesState;
 
+    const pickPartRef = useRef();
     const goalTitleRef = useRef();
     const goalCurrentStateRef = useRef();
     const goalWantToRef = useRef();
@@ -24,6 +25,7 @@ const SlideQuestOne = () => {
 
     const slideOneDoneHandler = () => {
         const goalSlideState = {
+            part: pickPartRef.current.value,
             title: goalTitleRef.current.value,
             current: goalCurrentStateRef.current.value,
             mainGoal: goalWantToRef.current.value,
@@ -57,7 +59,7 @@ const SlideQuestOne = () => {
             <h2>Add new quest</h2>
             <SlideWrapper>
                 <SlideInContainer>
-                    <PartsOption />
+                    <PartsOption ref={pickPartRef} />
                     <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />
                     <TextArea type='normal' label='Current state:' readOnly={done} ref={goalCurrentStateRef} />
                     <TextArea type='normal' label='Want to:' readOnly={done} ref={goalWantToRef} />

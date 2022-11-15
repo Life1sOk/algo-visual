@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
-import { deleteQuest } from "../../App/slices/areas-slice";
+import { deleteQuest, partsQuestCount } from "../../App/slices/areas-slice";
 import { deleteQuestFromCombined } from "../../App/slices/combined-areas.slice";
 import { deleteCurrentQuestCombined, deleteUsersDatasAreas } from "../../utils/firebase/firebase";
 
@@ -25,6 +25,7 @@ const QuestDisplay = ({ title, data, questId, id }) => {
 
         dispatch(deleteQuest(currentQuest));
         deleteUsersDatasAreas(uid, title.toLowerCase(), currentQuest);
+        dispatch(partsQuestCount({ title: data.main.part, count: -1 }));
 
         dispatch(deleteQuestFromCombined(currentQuest));
         deleteCurrentQuestCombined(uid, currentQuest);
