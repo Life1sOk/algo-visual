@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
 import { selectCombinedAll } from "../../../../App/slices/combined-areas.slice";
@@ -12,8 +12,7 @@ const CombinedQuests = () => {
     return (
         <CombinedQuestsContainer>
             {
-                allQuests[0] &&
-                allQuests.map((quest, index) => <QuestDisplay key={index} id={quest.id} title={quest.title} data={quest.quest} questId={index + 1} />)
+                allQuests.map((quest, index) => <QuestDisplay page='daily' key={index} id={quest.id} title={quest.title} data={quest.quest} questId={index + 1} />)
             }
         </CombinedQuestsContainer>
     )

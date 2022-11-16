@@ -46,6 +46,14 @@ const PartsDisplayAdd = () => {
         }
         dispatch(deletePart(payload));
         dispatch(changePartStatusToReload('reload'));
+
+        // const dataToAdd = {
+        //     allParts,
+        //     circle: areasCircleData
+        // };
+
+        // setAreasParts(uid, currentAreaTitle.toLowerCase(), dataToAdd);
+        // console.log(dataToAdd);
     };
 
     useEffect(() => {

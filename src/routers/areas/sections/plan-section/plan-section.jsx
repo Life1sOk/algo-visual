@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { setAllQuests, setUsersDatasAreas } from "../../../../utils/firebase/firebase";
+import { setAllQuests, setUsersDatasAreas, setAreasParts } from "../../../../utils/firebase/firebase";
 
 import { useDispatch, useSelector } from "react-redux";
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../App/slices/quest-slides";
 import { selectCreateQuest, selectCreateQuestState, setOpen, setReset } from "../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
-import { addNewQuest, partsQuestCount } from "../../../../App/slices/areas-slice";
+import { addNewQuest, partsQuestCount, selectDisplaySectionTitle, changePartStatusToReload, selectPartStatus, selectDisplayParts } from "../../../../App/slices/areas-slice";
 import { addQuestFromCurrentArea, selectCombinedAll } from "../../../../App/slices/combined-areas.slice";
 import { PlanSectionContainer, PlanNavigation, BigButton } from './plan-section.style';
 import SlideQuestOne from "../../components/slide-quest-one/slide-quest-one.component";
@@ -19,6 +19,8 @@ const PlanSection = ({ title }) => {
     const dispatch = useDispatch();
 
     const uid = useSelector(selectAuthUid);
+    const currentTitle = useSelector(selectDisplaySectionTitle);
+    const partStatus = useSelector(selectPartStatus);
 
     const combinedAllCount = useSelector(selectCombinedAll)?.length;
     const currentQuestState = useSelector(selectCreateQuestState);
@@ -46,10 +48,18 @@ const PlanSection = ({ title }) => {
             dispatch(resetAll());
             dispatch(setOpen());
             dispatch(setReset('yes'));
+            dispatch(changePartStatusToReload('planload'));
         } else {
             console.log('not all done', currentQuest);
         }
     };
+
+    useEffect(() => {
+        if (partStatus === 'planload') {
+            setAreasParts(uid, currentTitle.toLowerCase(), selectDisplayParts);
+            dispatch(changePartStatusToReload(null));
+        }
+    }, [partStatus]);
 
     return (
         <PlanSectionContainer open={currentQuestState}>

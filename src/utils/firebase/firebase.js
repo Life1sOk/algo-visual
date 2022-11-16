@@ -166,20 +166,20 @@ export const setActivePoint = async (uid, datasToAdd) => {
     }
 };
 
-export const deleteCurrentQuestCombined = async (uid, datasToAdd) => {
-    if (!uid) return;
+// export const deleteCurrentQuestCombined = async (uid, datasToAdd) => {
+// if (!uid) return;
 
-    const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+// const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
 
-    try {
-        await updateDoc(docRef, {
-            all: arrayRemove(datasToAdd)
-        });
-        console.log('data deleted')
-    } catch (error) {
-        console.log('oops, here is some error', error);
-    }
-};
+// try {
+//     await updateDoc(docRef, {
+//         all: arrayRemove(datasToAdd)
+//     });
+//     console.log('data deleted')
+// } catch (error) {
+//     console.log('oops, here is some error', error);
+// }
+// };
 
 export const deleteActivePoint = async (uid, datasToAdd) => {
     if (!uid) return;
@@ -233,6 +233,17 @@ export const deleteUsersDatasAreas = async (uid, type, datasToAdd) => {
             'quests': arrayRemove(datasToAdd)
         });
         console.log('deleted');
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+
+    const docRefComb = doc(db, 'users', uid, 'quests', 'combinedAreas');
+
+    try {
+        await updateDoc(docRefComb, {
+            all: arrayRemove(datasToAdd)
+        });
+        console.log('data deleted')
     } catch (error) {
         console.log('oops, here is some error', error);
     }

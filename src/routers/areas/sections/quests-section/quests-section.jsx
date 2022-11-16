@@ -16,7 +16,7 @@ const QuestsSection = () => {
             <PlanSection title={title} />
             <QuestsSectionDisplay>
                 {
-                    quests?.map((quest, index) => <QuestDisplay key={index} id={quest.id} title={title} data={quest.quest} questId={index + 1} />)
+                    quests?.map((quest, index) => <QuestDisplay page='areas' key={index} id={quest.id} title={title} data={quest.quest} questId={index + 1} />)
                 }
             </QuestsSectionDisplay>
         </QuestsSectionContainer>

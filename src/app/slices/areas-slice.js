@@ -37,8 +37,8 @@ export const areasSlice = createSlice({
         },
         deleteQuest: (state, { payload }) => {
             const { title, id } = payload;
-            state.displaySection.quests = state.displaySection.quests?.filter(quest => quest.id !== id);
-            state.sections[title].quests = state.sections[title].quests?.filter(quest => quest.id !== id);
+            state.displaySection.quests = state?.displaySection?.quests?.filter(quest => quest.id !== id);
+            state.sections[title].quests = state?.sections[title]?.quests?.filter(quest => quest.id !== id);
         },
         updateQuestAction: (state, { payload }) => {
             const { pointId, questIndex, status, data, questTitle } = payload;
@@ -73,7 +73,7 @@ export const areasSlice = createSlice({
             state.displaySection.parts.allParts = state.displaySection.parts.allParts.map((part, index) => {
                 if (part.title === payload.title) {
                     activeIndex = index;
-                    return { ...part, totalQuests: part.totalQuests + payload.count }
+                    return { ...part, totalQuests: part.totalQuests += payload.count }
                 } else {
                     return part
                 }
@@ -127,7 +127,13 @@ export const areasSlice = createSlice({
 });
 
 export const selectAreas = (state) => state.areas.sections;
+export const selectAreaHealthQuests = (state) => state.areas.sections['Health'].quests;
+export const selectAreaGrowthQuests = (state) => state.areas.sections['Growth'].quests;
+export const selectAreaPeopleQuests = (state) => state.areas.sections['People'].quests;
+export const selectAreaEnvironmentQuests = (state) => state.areas.sections['Environment'].quests;
+
 export const selectDisplaySection = (state) => state.areas.displaySection;
+export const selectDisplayParts = (state) => state.areas.displaySection.parts;
 export const selectDisplaySectionTitle = (state) => state.areas.displaySection.title;
 export const selectAreasStatus = (state) => state.areas.status;
 
