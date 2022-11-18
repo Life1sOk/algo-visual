@@ -20,8 +20,6 @@ const PartsDisplayAdd = () => {
     const currentAreaTitle = useSelector(selectDisplaySectionTitle);
     const partStatus = useSelector(selectPartStatus);
 
-    const total = allParts.length;
-
     const newPartTitleRef = useRef(null);
     const newPartDescriptionRef = useRef(null);
 
@@ -46,14 +44,6 @@ const PartsDisplayAdd = () => {
         }
         dispatch(deletePart(payload));
         dispatch(changePartStatusToReload('reload'));
-
-        // const dataToAdd = {
-        //     allParts,
-        //     circle: areasCircleData
-        // };
-
-        // setAreasParts(uid, currentAreaTitle.toLowerCase(), dataToAdd);
-        // console.log(dataToAdd);
     };
 
     useEffect(() => {
@@ -74,7 +64,6 @@ const PartsDisplayAdd = () => {
                 <PartsBalls />
                 <TextArea type='big' label="What is it about?" ref={newPartDescriptionRef} />
                 <button onClick={addNewPartHandler}>Accept and Add</button>
-                <button onClick={() => console.log(total)}>check</button>
             </PartsDisplayAddLeft>
             <PartsDisplayAddRight>
                 <h2>Existing parts:</h2>

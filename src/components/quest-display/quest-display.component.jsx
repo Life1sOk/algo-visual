@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
-import { deleteQuest, partsQuestCount } from "../../App/slices/areas-slice";
+import { deleteQuest, partsQuestCount, changePartStatusToReload, selectPartStatus, selectDisplayParts } from "../../App/slices/areas-slice";
 import { deleteQuestFromCombined, changeCombinedStatus } from "../../App/slices/combined-areas.slice";
-import { deleteUsersDatasAreas } from "../../utils/firebase/firebase";
+import { deleteUsersDatasAreas, setAreasParts } from "../../utils/firebase/firebase";
 
 import { QuestDisplayWrapper, QuestDisplayContainer, QuestDisplayButtons, QuestDisplayRoadLinks } from './quest-display.style';
 import QuestMain from "../quest-main/quest-main.component";
@@ -17,6 +17,8 @@ const QuestDisplay = ({ page, title, data, questId, id }) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const uid = useSelector(selectAuthUid);
+    const partStatus = useSelector(selectPartStatus);
+    const partsData = useSelector(selectDisplayParts);
 
     const openChangeHandler = () => setOpen(!open);
 
@@ -26,10 +28,19 @@ const QuestDisplay = ({ page, title, data, questId, id }) => {
         dispatch(deleteQuest(currentQuest));
         dispatch(deleteQuestFromCombined(id));
         dispatch(partsQuestCount({ title: data.main.part, count: -1 }));
+        dispatch(changeCombinedStatus(''));
 
         // deleteCurrentQuestCombined(uid, currentQuest);
         deleteUsersDatasAreas(uid, title.toLowerCase(), currentQuest)
+        dispatch(changePartStatusToReload('delete'));
     };
+
+    useEffect(() => {
+        if (partStatus === 'delete') {
+            setAreasParts(uid, title.toLowerCase(), partsData);
+            dispatch(changePartStatusToReload(null));
+        }
+    }, [partStatus]);
 
     return (
         <QuestDisplayWrapper>
@@ -49,7 +60,7 @@ const QuestDisplay = ({ page, title, data, questId, id }) => {
             <QuestDisplayContainer open={open}>
                 <QuestMain id={questId} data={main} />
                 <QuestPoints data={achieve} questIndex={id - 1} questTitle={title} />
-                <QuestDaily createdTime={createdTime} data={daily} />
+                <QuestDaily createdTime={createdTime} data={daily} title={main.title} />
             </QuestDisplayContainer>
         </QuestDisplayWrapper>
     )

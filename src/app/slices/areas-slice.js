@@ -73,7 +73,7 @@ export const areasSlice = createSlice({
             state.displaySection.parts.allParts = state.displaySection.parts.allParts.map((part, index) => {
                 if (part.title === payload.title) {
                     activeIndex = index;
-                    return { ...part, totalQuests: part.totalQuests += payload.count }
+                    return { ...part, totalQuests: Number(part.totalQuests += payload.count) }
                 } else {
                     return part
                 }

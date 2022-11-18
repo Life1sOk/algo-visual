@@ -21,6 +21,7 @@ const PlanSection = ({ title }) => {
     const uid = useSelector(selectAuthUid);
     const currentTitle = useSelector(selectDisplaySectionTitle);
     const partStatus = useSelector(selectPartStatus);
+    const partsData = useSelector(selectDisplayParts);
 
     const combinedAllCount = useSelector(selectCombinedAll)?.length;
     const currentQuestState = useSelector(selectCreateQuestState);
@@ -56,7 +57,7 @@ const PlanSection = ({ title }) => {
 
     useEffect(() => {
         if (partStatus === 'planload') {
-            setAreasParts(uid, currentTitle.toLowerCase(), selectDisplayParts);
+            setAreasParts(uid, currentTitle.toLowerCase(), partsData);
             dispatch(changePartStatusToReload(null));
         }
     }, [partStatus]);
