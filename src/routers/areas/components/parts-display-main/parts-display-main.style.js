@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 
+export const PartsDisplayMainWrapper = styled.div`
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+`;
+
 export const PartsDisplayMainContainer = styled.div`
     width: 100%;
-    height: 350px;
+    height: 360px;
     padding: 15px;
     border-radius: 20px;
-    overflow: scroll;
+    /* overflow: scroll; */
 
     display: grid;
     grid-template-columns: repeat(2, 290px);

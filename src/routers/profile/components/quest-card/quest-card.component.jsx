@@ -5,6 +5,7 @@ import Quest from "../quest/quest.component";
 import Spinner from "../../../../Components/spinner/spinner.component";
 
 const QuestCard = ({ title, color, quests, state }) => {
+
     return (
         <QuestCardContainer color={color}>
             <QuestTitle color={color}>{title}</QuestTitle>

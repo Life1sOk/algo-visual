@@ -5,13 +5,13 @@ export const PartsDisplayAddContainer = styled.div`
     height: 100%;
 
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
+    gap: 30px;
 `;
 
 export const PartsDisplayAddLeft = styled.div`
-    width: 40%;
+    width: 275px;
     height: 100%;
+    flex-shrink: 0;
 
     display: flex;
     flex-direction: column;
@@ -21,19 +21,28 @@ export const PartsDisplayAddLeft = styled.div`
 `;
 
 export const PartsDisplayAddRight = styled.div`
-    width: 50%;
+    width: 100%;
     height: 100%;
     padding: 0 10px 10px 10px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
 
     .bla {
         height: 50px;
         width: 100%;
         border: 2px solid red;
     }
+`;
+
+export const PartsWrapper = styled.div`
+    width: 100%;
+    height: 360px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 15px;
 `;
