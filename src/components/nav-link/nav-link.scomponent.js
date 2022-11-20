@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { NavLinkContainer } from './nav-link.style.js';
 
-const NavLink = ({ name, to, id, status, setStatus }) => {
+const NavLink = ({ name, to }) => {
     const [active, setActive] = useState(false);
+    let { pathname } = useLocation();
 
     useEffect(() => {
-        if (status === id) return setActive(true);
-        if (status !== id) return setActive(false);
-    }, [id, status]);
+        let currentPage = `/${name.toLowerCase()}`;
 
-    const statusChangeHandler = () => setStatus(id);
+        if (pathname === currentPage) return setActive(true);
+        if (pathname !== currentPage) return setActive(false);
+    }, [name, pathname]);
 
     return (
-        <Link to={to} onClick={statusChangeHandler}>
+        <Link to={to}>
             <NavLinkContainer active={active}>{name}</NavLinkContainer>
         </Link>
     )

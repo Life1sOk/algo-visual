@@ -33,7 +33,7 @@ function App() {
               <DailyPage />
             </Protected>
           } />
-          <Route path='/area' element={
+          <Route path='/areas' element={
             <Protected isLoggedIn={loggedIn}>
               <AreasPage />
             </Protected>

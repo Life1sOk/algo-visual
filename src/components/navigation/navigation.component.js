@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ const navigation = [
     {
         id: 1,
         to: '/profile',
-        name: 'Main/Home',
+        name: 'Profile',
     },
     {
         id: 2,
@@ -22,7 +22,7 @@ const navigation = [
     },
     {
         id: 3,
-        to: '/area',
+        to: '/areas',
         name: 'Areas',
     },
     {
@@ -39,7 +39,6 @@ const navigation = [
 
 const Navigation = () => {
     const dispatch = useDispatch();
-    const [status, setStatus] = useState(1);
 
     const signOutHanlder = () => {
         signOutHandler();
@@ -53,7 +52,7 @@ const Navigation = () => {
                     <div className="left"></div>
                     <nav className="nav-container">
                         {
-                            navigation.map(link => <NavLink key={link.id} to={link.to} id={link.id} name={link.name} status={status} setStatus={setStatus} />)
+                            navigation.map(link => <NavLink key={link.id} to={link.to} id={link.id} name={link.name} />)
                         }
                         <button onClick={signOutHanlder}>Sign Out</button>
                     </nav>
