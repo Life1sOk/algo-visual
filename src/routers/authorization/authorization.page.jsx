@@ -7,7 +7,7 @@ import { signInUser } from '../../App/slices/auth.slice';
 import { createUserWithEaP, signInWithEaP, onAuthStateChangedListener, createUsersDocumentsFromAuth } from '../../utils/firebase/firebase';
 
 // ------------- Top level - Containers / Layouts -------------- //
-import CenterLayoutContainer from "../../Layouts/center-container";
+import { CenterLayout } from "../../Global-style/layouts";
 
 // ------------- Top level React Components ------------------- //
 
@@ -37,11 +37,11 @@ const AuthorizationPage = () => {
     }, [])
 
     return (
-        <CenterLayoutContainer>
+        <CenterLayout>
             <SignInSection />
             <button onClick={async () => await createUserWithEaP('123123123@gmail.com', 123123123)}>autho</button>
             <button onClick={async () => await signInWithEaP('123123123@gmail.com', 123123123)}>sign in</button>
-        </CenterLayoutContainer>
+        </CenterLayout>
     )
 }
 

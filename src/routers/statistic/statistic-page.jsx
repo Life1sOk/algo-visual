@@ -1,9 +1,7 @@
 import React from "react";
 
 // ------------- Containers / Layouts -------------- //
-import AsideLayoutContainer from "../../Layouts/aside-container.layout";
-import PageLayoutContainer from "../../Layouts/page-container.layout";
-import MainLayoutContainer from "../../Layouts/main-container.layout";
+import { AsideLayout, MainLayout, PageLayout } from "../../Global-style/layouts";
 
 // ------------- React's Components ------------------- //
 import TitlePage from "../../Components/title-page/title-page.component";
@@ -11,13 +9,13 @@ import TitlePage from "../../Components/title-page/title-page.component";
 // ------------- Lego --------------- //
 const StatisticPage = () => {
     return (
-        <PageLayoutContainer>
-            <AsideLayoutContainer >
+        <PageLayout>
+            <AsideLayout>
                 <TitlePage titleName='Statistic' />
-            </AsideLayoutContainer>
-            <MainLayoutContainer>
-            </MainLayoutContainer>
-        </PageLayoutContainer>
+            </AsideLayout>
+            <MainLayout>
+            </MainLayout>
+        </PageLayout>
     )
 }
 

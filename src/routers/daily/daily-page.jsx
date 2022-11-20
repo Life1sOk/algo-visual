@@ -6,10 +6,7 @@ import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getCombinedAreas, selectCombinedStatus } from '../../App/slices/combined-areas.slice';
 
 // ------------- Top level - Containers / Layouts -------------- //
-import AsideLayoutContainer from "../../Layouts/aside-container.layout";
-import PageLayoutContainer from "../../Layouts/page-container.layout";
-import MainLayoutContainer from "../../Layouts/main-container.layout";
-import CenterLayoutContainer from "../../Layouts/center-container";
+import { AsideLayout, CenterLayout, MainLayout, PageLayout } from "../../Global-style/layouts";
 
 // -------------  Top level React Components ------------------- //
 import TitlePage from "../../Components/title-page/title-page.component";
@@ -33,22 +30,22 @@ const DailyPage = () => {
         <>
             {
                 status === 'loading' ?
-                    <CenterLayoutContainer>
+                    <CenterLayout>
                         <Spinner />
-                    </CenterLayoutContainer>
+                    </CenterLayout>
                     :
                     status === 'rejected' ?
                         <div>Error</div>
                         :
-                        <PageLayoutContainer>
-                            <AsideLayoutContainer>
+                        <PageLayout>
+                            <AsideLayout>
                                 <TitlePage titleName='Tomorrow' />
                                 <SwitchSection />
-                            </AsideLayoutContainer>
-                            <MainLayoutContainer>
+                            </AsideLayout>
+                            <MainLayout>
                                 <CombinedQuests />
-                            </MainLayoutContainer>
-                        </PageLayoutContainer>
+                            </MainLayout>
+                        </PageLayout>
             }
         </>
     )

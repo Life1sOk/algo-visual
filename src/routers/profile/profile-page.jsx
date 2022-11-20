@@ -8,9 +8,7 @@ import { getOutInitialData } from "../../App/slices/out-plan.slice";
 import { tryUpdateData } from "../../utils/firebase/firebase";
 
 // ------------- Top level - Containers / Layouts -------------- //
-import AsideLayoutContainer from "../../Layouts/aside-container.layout";
-import PageLayoutContainer from "../../Layouts/page-container.layout";
-import MainLayoutContainer from "../../Layouts/main-container.layout";
+import { AsideLayout, MainLayout, PageLayout } from "../../Global-style/layouts";
 
 // ------------- Top level React Components ------------------- //
 
@@ -37,17 +35,17 @@ const ProfilePage = () => {
     }
 
     return (
-        <PageLayoutContainer>
-            <AsideLayoutContainer >
+        <PageLayout>
+            <AsideLayout>
                 <ProfileImg />
                 <UserInfo />
-            </AsideLayoutContainer>
-            <MainLayoutContainer>
+            </AsideLayout>
+            <MainLayout>
                 <MainDisplaySection />
                 <PointsDisplay />
                 <button onClick={checkHandler}>Check</button>
-            </MainLayoutContainer>
-        </PageLayoutContainer>
+            </MainLayout>
+        </PageLayout>
     )
 }
 

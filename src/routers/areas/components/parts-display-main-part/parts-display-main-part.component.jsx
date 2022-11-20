@@ -10,6 +10,7 @@ const PartsDisplayMainPart = ({ data }) => {
         <PartsDisplayMainPartContainer>
             <PartsDisplayMainPartTitle>
                 <span>{title}</span>
+                <button>D</button>
                 <ColorBall color={color} />
             </PartsDisplayMainPartTitle>
             <PartsDisplayMainPartTotal>

@@ -5,10 +5,7 @@ import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getAreasData, selectAreasStatus } from "../../App/slices/areas-slice";
 
 // ------------- Top level - Containers / Layouts -------------- //
-import PageLayoutContainer from "../../Layouts/page-container.layout";
-import MainLayoutContainer from "../../Layouts/main-container.layout";
-import CenterLayoutContainer from "../../Layouts/center-container";
-import AsideLayoutContainer from "../../Layouts/aside-container.layout";
+import { AsideLayout, CenterLayout, MainLayout, PageLayout } from "../../Global-style/layouts";
 
 // -------------  Top level React Components ------------------- //
 import Spinner from "../../Components/spinner/spinner.component";
@@ -38,24 +35,24 @@ const AreasPage = () => {
         <>
             {
                 status === 'loading' ?
-                    <CenterLayoutContainer>
+                    <CenterLayout>
                         <Spinner />
-                    </CenterLayoutContainer>
+                    </CenterLayout>
                     :
                     status === 'rejected' ?
                         <div>Error</div>
                         :
-                        <PageLayoutContainer>
-                            <AsideLayoutContainer >
+                        <PageLayout>
+                            <AsideLayout >
                                 <TitlePage titleName='Areas' />
                                 <AreasSection />
-                            </AsideLayoutContainer>
-                            <MainLayoutContainer>
+                            </AsideLayout>
+                            <MainLayout>
                                 <DescriptionSection />
                                 <PartsSection />
                                 <QuestsSection />
-                            </MainLayoutContainer>
-                        </PageLayoutContainer>
+                            </MainLayout>
+                        </PageLayout>
             }
         </>
     )

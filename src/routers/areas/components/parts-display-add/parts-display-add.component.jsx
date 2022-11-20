@@ -10,7 +10,6 @@ import Input from '../input/input.component';
 import TextArea from '../textarea/textarea.component';
 import PartsBalls from "../parts-balls/parts-balls.component";
 import PartsDisplayMainPart from "../parts-display-main-part/parts-display-main-part.component";
-import PartTitleBall from "../../../../Components/part-title-ball/part-title-ball.component";
 
 import { PartsDisplayAddContainer, PartsDisplayAddLeft, PartsDisplayAddRight, PartsWrapper } from './parts-display-style';
 
@@ -69,9 +68,6 @@ const PartsDisplayAdd = () => {
             </PartsDisplayAddLeft>
             <PartsDisplayAddRight>
                 <h2>Existing parts:</h2>
-                {/* {
-                    allParts.map(part => <PartTitleBall key={allParts.indexOf(part)} index={allParts.indexOf(part)} color={part.color} title={part.title} deleteHandler={deletePartHandler} />)
-                } */}
                 <PartsWrapper>
                     {
                         allParts?.map(part => <PartsDisplayMainPart key={allParts.indexOf(part)} data={part} />)
