@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
-export const QuestCardWrapper = styled.div`
+const DailyStyle = styled.div`
     transform-style: preserve-3d;
     transform: ${props => !props.cardReady ? 'rotateY(0deg)' : 'rotateY(180deg)'};
     transition: transform 0.4s ease-in-out;
 `;
 
-export const QuestCardContainer = styled.div`
+const DailyCardContainer = styled.div`
     width: 292px;
     height: auto;
     background-color: white;
-    border: 3px solid ${props => props.color};
+    border-bottom: 3px solid ${props => props.color};
     border-radius: 20px;
     overflow: hidden;
 `;
 
-export const QuestCardBack = styled.div`
+const DailyCardBackSide = styled.div`
     width: 292px;
     height: 100%;
     color: white;
@@ -31,7 +31,7 @@ export const QuestCardBack = styled.div`
     align-items: center;
 `;
 
-export const QuestTitle = styled.h3`
+const DailyCardTitle = styled.h3`
     background-color: ${props => props.color};
     height: 40px;
     color: white;
@@ -41,9 +41,17 @@ export const QuestTitle = styled.h3`
     align-items: center;
 `;
 
-export const QuestFooter = styled.div`
+const DailyCardButtons = styled.div`
     width: 100%;
 
     display: grid;
     grid-template-columns: repeat(2,1fr);
 `;
+
+DailyStyle.Container = DailyCardContainer;
+DailyStyle.Backside = DailyCardBackSide;
+DailyStyle.Title = DailyCardTitle;
+DailyStyle.Buttons = DailyCardButtons;
+
+
+export default DailyStyle;

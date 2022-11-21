@@ -5,7 +5,7 @@ import { selectDaily, selectDailyState } from "../../../../App/slices/daily.slic
 import { selectOutOfPlan, selectOutStatus } from "../../../../App/slices/out-plan.slice";
 
 import { DisplaySection } from './main-display.style';
-import QuestCard from "../../components/quest-card/quest-card.component";
+import TodoCard from "../../components/todo-card";
 
 const MainDisplaySection = () => {
     const tomorrowQuests = useSelector(selectDaily);
@@ -15,8 +15,8 @@ const MainDisplaySection = () => {
 
     return (
         <DisplaySection>
-            <QuestCard title='Today' color='rgb(224, 62, 26)' quests={tomorrowQuests} state={stateDaily} />
-            <QuestCard title='Out plan' color='rgb(138, 56, 245)' quests={outOfPlan} state={stateOut} />
+            <TodoCard title='Today' color='rgb(224, 62, 26)' quests={tomorrowQuests} state={stateDaily} />
+            <TodoCard title='Out plan' color='rgb(138, 56, 245)' quests={outOfPlan} state={stateOut} />
         </DisplaySection>
     )
 }

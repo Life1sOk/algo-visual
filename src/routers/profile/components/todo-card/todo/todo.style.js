@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const QuestStyle = styled.div`
+const TodoStyle = styled.div`
     position: relative;
     width: 100%;
     margin: 5px 0;
@@ -10,17 +10,18 @@ const QuestStyle = styled.div`
     flex-direction: column;
 `;
 
-export const QuestContainer = styled.div`
+const TodoContainer = styled.div`
     width: 90%;
     min-height: 40px;
     margin: 0 auto;
     color: ${props => props.state ? 'rgb(255,98,0)' : 'initial'};
+    border-bottom: 1px solid grey;
 
     display: flex;
     align-items: center;
 `;
 
-export const Label = styled.span`
+const Title = styled.span`
     font-size: 15px;
     margin: 0 auto;
     cursor: pointer;
@@ -29,7 +30,7 @@ export const Label = styled.span`
     text-decoration-color: ${props => props.color};
 `;
 
-export const Done = styled.h2`
+const Done = styled.h2`
     color: ${props => props.color};
 
     &:hover {
@@ -42,19 +43,22 @@ const DiscriptionBox = styled.textarea`
     top: 40px;
     left: 0;
     width: 100%;
-    height: ${props => !props.state ? '0' : `${props.generatedHeight + 20}px`};
+    height: ${props => !props.state ? '0' : `${props.generatedHeight + 10}px`};
     background-color: white;
-    padding: 0 5px 0 25px;
+    padding: 5px 5px 0 10px;
     font-size: 14px;
     font-style: italic;
-    z-index: 5;
+    z-index: ${props => 10/props.index };
     resize: none;
     border: none;
-    border-bottom: ${props => !props.state ? 'none' : `5px solid rgb(255,98,0)`};
+    border-bottom: ${props => !props.state ? '5px solid rgba(255,98,0, 0)' : `5px solid rgb(255,98,0)`};
     border-radius: 0 0 10px 10px;
     transition: all .2s ease-in-out;
 `;
 
-QuestStyle.Discription = DiscriptionBox;
+TodoStyle.Discription = DiscriptionBox;
+TodoStyle.Container = TodoContainer;
+TodoStyle.Title = Title;
+TodoStyle.Done = Done;
 
-export default QuestStyle;
+export default TodoStyle;

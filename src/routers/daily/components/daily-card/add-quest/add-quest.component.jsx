@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useDispatch } from "react-redux";
-import { addQuest } from "../../App/slices/daily.slice";
-import { addQuestOut } from "../../App/slices/out-plan.slice";
+import { addQuest } from "../../../../../App/slices/daily.slice";
+import { addQuestOut } from "../../../../../App/slices/out-plan.slice";
 
 import './add-quest.style.scss';
 

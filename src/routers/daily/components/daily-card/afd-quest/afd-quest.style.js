@@ -48,7 +48,6 @@ export const TitleInput = styled.input`
     padding: 7px;
     font-size: 16px;
     border: none;
-    /* margin-bottom: 5px; */
 `;
 
 export const TextArea = styled.textarea`
@@ -69,5 +68,4 @@ export const ButtonWrapper = styled.div`
     gap: 3px;
     margin-top: 10px;
     min-height: 28px;
-
 `;

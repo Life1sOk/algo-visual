@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { SwitcherContainer } from './switcher.style';
-import Button from "../button/button.component";
+import Button from "../daily-card/button/button.component";
 
 const currentRed = {
     red: true,

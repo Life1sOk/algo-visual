@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { QuestContainer, Done, Label } from './quest.style.js';
-import QuestStyle from "./quest.style.js";
+// Component Style //
+import TodoStyle from "./todo.style.js";
 
-const Quest = ({ quest, color, currentQuest, setCurrentQuest }) => {
+const Todo = ({ quest, color, currentQuest, setCurrentQuest, index }) => {
     const { questName, description } = quest;
     const textAreaRef = useRef();
     const [generatedHeight, setGeneratedHeight] = useState(null);
@@ -30,16 +30,18 @@ const Quest = ({ quest, color, currentQuest, setCurrentQuest }) => {
     }
 
     return (
-        <QuestStyle>
-            <QuestContainer state={state}>
-                <Done id="quest" color={color} onClick={doneChangeHandler}>D</Done>
-                <Label color={color} htmlFor="quest" onClick={stateChangeHandler} done={done}>{questName}</Label>
-            </QuestContainer>
+        <TodoStyle>
+            <TodoStyle.Container state={state}>
+                <TodoStyle.Done id="todo" color={color} onClick={doneChangeHandler}>D</TodoStyle.Done>
+                <TodoStyle.Title color={color} htmlFor="todo" onClick={stateChangeHandler} done={done}>
+                    {questName}
+                </TodoStyle.Title>
+            </TodoStyle.Container>
             <div onClick={stateChangeHandler}>
-                <QuestStyle.Discription ref={textAreaRef} state={state} generatedHeight={generatedHeight} readOnly disabled value={description} />
+                <TodoStyle.Discription ref={textAreaRef} state={state} generatedHeight={generatedHeight} readOnly disabled value={description} index={index}/>
             </div>
-        </QuestStyle>
+        </TodoStyle>
     )
 }
 
-export default Quest;
+export default Todo;

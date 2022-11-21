@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
 
 import { useDispatch } from "react-redux";
-import { remove, accept } from "../../../../App/slices/daily.slice";
-import { removeOut, acceptOut } from "../../../../App/slices/out-plan.slice";
+import { remove, accept } from "../../../../../App/slices/daily.slice";
+import { removeOut, acceptOut } from "../../../../../App/slices/out-plan.slice";
 import Button from "../button/button.component";
 
-import useAutosizeTextArea from "../../../../Hooks/useAutosizeTextArea";
-import { FixQuestContainer, FixLabel, TitleInput, TextArea, ButtonWrapper, DoneTitle } from './fix-quest.style';
+import useAutosizeTextArea from "../../../../../Hooks/useAutosizeTextArea";
+import { FixQuestContainer, FixLabel, TitleInput, TextArea, ButtonWrapper, DoneTitle } from './afd-quest.style';
 
-const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
+const AfdQuest = ({ quest, order, color, type, changeCountHandler }) => {
     const dispatch = useDispatch();
     const [state, setState] = useState(false);
     const { id, questName, description } = quest;
@@ -69,4 +69,4 @@ const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
     )
 }
 
-export default FixQuest;
+export default AfdQuest;

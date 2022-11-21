@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const QuestCardContainer = styled.div`
+const TodoCardStyle = styled.div`
     position: relative;
     width: 272px;
     height: auto;
@@ -8,7 +8,7 @@ export const QuestCardContainer = styled.div`
     border-radius: 25px;
 `;
 
-export const QuestTitle = styled.h3`
+const TodoCardTitle = styled.h3`
     border-radius: 20px 20px 0 0;
     background-color: ${props => props.color};
     height: 40px;
@@ -19,9 +19,14 @@ export const QuestTitle = styled.h3`
     align-items: center;
 `;
 
-export const ProgressBar = styled.div`
+const ProgressBar = styled.div`
     text-align: center;
     border-radius: 0 0 20px 20px;
 
     margin: 10px 0;
 `;
+
+TodoCardStyle.Title = TodoCardTitle;
+TodoCardStyle.Bar = ProgressBar;
+
+export default TodoCardStyle;
