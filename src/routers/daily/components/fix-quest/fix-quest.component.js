@@ -61,7 +61,7 @@ const FixQuest = ({ quest, order, color, type, changeCountHandler }) => {
                     </>
                     :
                     <DoneTitle>
-                        <h3 className="quest-title">{questName}</h3>
+                        <span className="quest-title">{questName}</span>
                         <Button name='fix' color='yellow' onClick={fixHandler} />
                     </DoneTitle>
             }

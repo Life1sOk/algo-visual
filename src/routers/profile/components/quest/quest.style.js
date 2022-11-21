@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const QuestWrapper = styled.div`
+const QuestStyle = styled.div`
+    position: relative;
     width: 100%;
     margin: 5px 0;
     border-bottom: .5px solid grey;
-    overflow: hidden;
 
     display: flex;
     flex-direction: column;
@@ -14,18 +14,19 @@ export const QuestContainer = styled.div`
     width: 90%;
     min-height: 40px;
     margin: 0 auto;
+    color: ${props => props.state ? 'rgb(255,98,0)' : 'initial'};
 
     display: flex;
     align-items: center;
 `;
 
-export const Label = styled.label`
+export const Label = styled.span`
+    font-size: 15px;
     margin: 0 auto;
     cursor: pointer;
 
     text-decoration-line: ${props => !props.done ? 'none' : 'line-through'};
     text-decoration-color: ${props => props.color};
-    text-decoration-thickness: 2.5px;
 `;
 
 export const Done = styled.h2`
@@ -36,13 +37,24 @@ export const Done = styled.h2`
     }
 `;
 
-export const DiscriptionBox = styled.textarea`
+const DiscriptionBox = styled.textarea`
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
     height: ${props => !props.state ? '0' : `${props.generatedHeight + 20}px`};
-    padding: ${props => !props.state ? '0 5px 0 25px' : '10px 5px 10px 25px'};
-    font-size: 16px;
+    background-color: white;
+    padding: 0 5px 0 25px;
+    font-size: 14px;
     font-style: italic;
-    opacity: .7;
+    z-index: 5;
     resize: none;
     border: none;
-    border-top: .5px solid grey;
+    border-bottom: ${props => !props.state ? 'none' : `5px solid rgb(255,98,0)`};
+    border-radius: 0 0 10px 10px;
+    transition: all .2s ease-in-out;
 `;
+
+QuestStyle.Discription = DiscriptionBox;
+
+export default QuestStyle;

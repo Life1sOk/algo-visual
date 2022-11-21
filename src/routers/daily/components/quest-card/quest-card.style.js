@@ -7,7 +7,7 @@ export const QuestCardWrapper = styled.div`
 `;
 
 export const QuestCardContainer = styled.div`
-    width: 322px;
+    width: 292px;
     height: auto;
     background-color: white;
     border: 3px solid ${props => props.color};
@@ -16,7 +16,7 @@ export const QuestCardContainer = styled.div`
 `;
 
 export const QuestCardBack = styled.div`
-    width: 322px;
+    width: 292px;
     height: 100%;
     color: white;
     background-color: ${props => props.color};
@@ -31,7 +31,7 @@ export const QuestCardBack = styled.div`
     align-items: center;
 `;
 
-export const QuestTitle = styled.h2`
+export const QuestTitle = styled.h3`
     background-color: ${props => props.color};
     height: 40px;
     color: white;

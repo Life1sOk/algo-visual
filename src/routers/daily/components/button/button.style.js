@@ -8,7 +8,7 @@ export const ButtonStyle = styled.button`
     border-radius: 3px;
     box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 550;
 
     border: 2px solid ${({ color }) =>
         color === 'green' ? 'rgb(51, 255, 51)' :

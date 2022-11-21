@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { QuestContainer, QuestWrapper, DiscriptionBox, Done, Label } from './quest.style.js';
+import { QuestContainer, Done, Label } from './quest.style.js';
+import QuestStyle from "./quest.style.js";
 
-const Quest = ({ quest, color }) => {
+const Quest = ({ quest, color, currentQuest, setCurrentQuest }) => {
     const { questName, description } = quest;
     const textAreaRef = useRef();
     const [generatedHeight, setGeneratedHeight] = useState(null);
@@ -14,23 +15,30 @@ const Quest = ({ quest, color }) => {
         setGeneratedHeight(scrollHeight);
     }, []);
 
+    useEffect(() => {
+        if (questName === currentQuest) setState(true);
+        if (questName !== currentQuest) setState(false);
+    }, [currentQuest, questName])
+
     const doneChangeHandler = () => {
         setDone(!done);
-        setState(false);
     }
 
     const stateChangeHandler = () => {
-        if (!done) return setState(!state);
+        if (state) return setCurrentQuest(null);
+        setCurrentQuest(questName);
     }
 
     return (
-        <QuestWrapper>
-            <QuestContainer>
+        <QuestStyle>
+            <QuestContainer state={state}>
                 <Done id="quest" color={color} onClick={doneChangeHandler}>D</Done>
                 <Label color={color} htmlFor="quest" onClick={stateChangeHandler} done={done}>{questName}</Label>
             </QuestContainer>
-            <DiscriptionBox ref={textAreaRef} state={state} generatedHeight={generatedHeight} readOnly disabled value={description} />
-        </QuestWrapper>
+            <div onClick={stateChangeHandler}>
+                <QuestStyle.Discription ref={textAreaRef} state={state} generatedHeight={generatedHeight} readOnly disabled value={description} />
+            </div>
+        </QuestStyle>
     )
 }
 

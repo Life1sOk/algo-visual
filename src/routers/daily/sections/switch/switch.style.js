@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Yellow = styled.div`
-    width: 322px;
+    width: 292px;
     height: 300px;
     padding: 15px;
     background-color: white;

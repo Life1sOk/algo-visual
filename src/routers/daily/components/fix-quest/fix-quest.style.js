@@ -4,7 +4,7 @@ export const FixQuestContainer = styled.div`
     position: relative;
     border: 1px solid ${props => props.color};
     margin: 25px 10px 10px 10px;
-    padding: 10px;
+    padding: 5px;
     background-color: ${props => props.state ? 'rgb(153, 255, 51)' : null};
 
     display: flex;
@@ -44,15 +44,16 @@ export const FixLabel = styled.div`
 `;
 
 export const TitleInput = styled.input`
-    padding: 5px;
-    font-size: 18.73px;
+    height: 30px;
+    padding: 7px;
+    font-size: 16px;
     border: none;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 `;
 
 export const TextArea = styled.textarea`
     padding: 5px;
-    font-size: 16px;
+    font-size: 14px;
     font-style: italic;
     opacity: .7;
     min-height: 110px;
