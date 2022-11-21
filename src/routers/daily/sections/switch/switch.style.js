@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const SwitchWrapper = styled.div`
+    position: sticky;
+    top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 export const Yellow = styled.div`
     width: 292px;
     height: 300px;

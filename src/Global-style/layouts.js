@@ -20,7 +20,6 @@ export const MainLayout = styled.div`
 `;
 
 export const AsideLayout = styled.div`
-    position: relative;
     width: auto;
     padding: 0 10px;
     border-right: 2px solid #30363d;

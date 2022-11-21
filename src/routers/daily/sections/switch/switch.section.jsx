@@ -8,7 +8,7 @@ import { selectFixPlan, drainDaily } from "../../../../App/slices/daily.slice";
 import { selectFixOutOfPlan, drainOutDaily } from "../../../../App/slices/out-plan.slice";
 //Components:
 import TodoCard from "../../components/daily-card/index";
-import { Yellow } from './switch.style';
+import { Yellow, SwitchWrapper } from './switch.style';
 import Switcher from "../../components/switcher/switcher.component";
 
 const colors = {
@@ -31,7 +31,7 @@ const SwitchSection = () => {
     const draitnOutDailyHandler = () => dispatch(drainOutDaily());
 
     return (
-        <>
+        <SwitchWrapper>
             <Switcher setDisplay={setDisplay} colors={colors} />
             {
                 display === 'main' ?
@@ -43,7 +43,7 @@ const SwitchSection = () => {
                         display === 'notes' ?
                             <Yellow>Notes</Yellow> : null
             }
-        </>
+        </SwitchWrapper>
     )
 }
 

@@ -19,7 +19,7 @@ const TodoCard = ({ title, color, quests, state }) => {
                     state === 'resolved' ?
                         quests &&
                         quests.map(quest =>
-                            <Todo key={quest.id} index={quest.id} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} />
+                            <Todo key={quest.id} index={quest.id + 1} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} />
                         )
                         :
                         state === 'rejected' ?

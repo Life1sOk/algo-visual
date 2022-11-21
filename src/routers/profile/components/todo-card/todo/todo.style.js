@@ -4,7 +4,7 @@ const TodoStyle = styled.div`
     position: relative;
     width: 100%;
     margin: 5px 0;
-    border-bottom: .5px solid grey;
+    /* border-bottom: .5px solid grey; */
 
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@ const DiscriptionBox = styled.textarea`
     width: 100%;
     height: ${props => !props.state ? '0' : `${props.generatedHeight + 10}px`};
     background-color: white;
-    padding: 5px 5px 0 10px;
+    padding: 5px 5px 0 20px;
     font-size: 14px;
     font-style: italic;
     z-index: ${props => 10/props.index };
