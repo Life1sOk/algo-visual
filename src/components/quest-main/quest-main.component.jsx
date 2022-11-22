@@ -1,15 +1,20 @@
 import React from "react";
 
-import { QuestMainContainer, QuestMainTitle, QuestRoad } from './quest-main.style';
+import { QuestMainContainer, QuestMainTitle, QuestRoad, QuestDisplayRoadLinks } from './quest-main.style';
 
-const QuestMain = ({ id, data }) => {
+const QuestMain = ({ id, data, area }) => {
     const { title, current, mainGoal, description } = data;
+    console.log(data)
 
     return (
         <QuestMainContainer>
+            <QuestDisplayRoadLinks>
+                <span>{area}</span>
+                <span>{data.part}</span>
+            </QuestDisplayRoadLinks>
             <QuestMainTitle>
                 <span className="quest-id">{id}</span>
-                <span className="quest-title">{title}</span>
+                <h3 className="quest-title">{title}</h3>
             </QuestMainTitle>
             <QuestRoad>
                 <p className="label">Current state:</p>
@@ -23,6 +28,7 @@ const QuestMain = ({ id, data }) => {
                 <p className="label">Why?</p>
                 <p>{description}</p>
             </QuestRoad>
+            <div className="progress">Progress Bar</div>
         </QuestMainContainer>
     )
 }

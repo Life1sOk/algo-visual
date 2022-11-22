@@ -1,25 +1,42 @@
 import styled from 'styled-components';
 
-export const QuestPointsContainer = styled.div`
-    width: 405px;
-    margin-top: 10px;
-    border-left: 2px solid grey;
-    border-right: 2px solid grey;
-
-    .quest-points {
-        text-align: center;
-        font-size: 30px;
-    }
-`;
+export const QuestPointsConteiner = styled.div`
+    display: flex;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+`; 
 
 export const QuestPointsDisplay = styled.div`
-    margin-top: 20px;
-    width: 100%;
+    width: 275px;
+    height: 315px;
+    padding: 20px 0;
 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 17px;
 
     overflow: scroll;
+`;
+
+export const PointsBallContainer = styled.div`
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+`;
+
+export const PointBall = styled.div`
+    width: 25px;
+    height: 25px;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 10px 5px 0 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;

@@ -44,11 +44,11 @@ const QuestDisplay = ({ page, title, data, questId, id }) => {
 
     return (
         <QuestDisplayWrapper>
-            <QuestDisplayRoadLinks>
+            {/* <QuestDisplayRoadLinks>
                 <span>{title}</span>
                 <span>{main.part}</span>
-            </QuestDisplayRoadLinks>
-            <QuestDisplayButtons>
+            </QuestDisplayRoadLinks> */}
+            {/* <QuestDisplayButtons>
                 <ButtonSd type='fix' />
                 <ButtonSd type='shrink' onClick={openChangeHandler} />
                 {
@@ -56,9 +56,9 @@ const QuestDisplay = ({ page, title, data, questId, id }) => {
                         <ButtonSd type='delete' onClick={deleteChangeHandler} /> :
                         null
                 }
-            </QuestDisplayButtons>
+            </QuestDisplayButtons> */}
             <QuestDisplayContainer open={open}>
-                <QuestMain id={questId} data={main} />
+                <QuestMain id={questId} data={main} area={title}/>
                 <QuestPoints data={achieve} questIndex={id - 1} questTitle={title} />
                 <QuestDaily createdTime={createdTime} data={daily} title={main.title} />
             </QuestDisplayContainer>

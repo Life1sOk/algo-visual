@@ -8,7 +8,7 @@ export const PointsWrapper = styled.div`
 
 export const PointsContainer = styled.div`
     position: relative;
-    width: 300px;
+    width: 250px;
     height: 130px;
     flex-shrink: 0;
     border-radius: 12px;
@@ -26,7 +26,7 @@ export const PointsContainer = styled.div`
 `;
 
 export const PointBack = styled.div`
-    width: 300px;
+    width: 250px;
     height: 130px;
     color: white;
     background-color: blue;

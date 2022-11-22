@@ -6,17 +6,19 @@ export const QuestDisplayWrapper = styled.div`
 `;
 
 export const QuestDisplayContainer = styled.div`
-    width: 988px;
-    height: ${props => props.open ? '407px' : '82px'};
-    padding: 15px;
-    border-radius: 20px;
+    /* width: 988px; */
+    /* height: ${props => props.open ? '407px' : '82px'}; */
+    /* padding: 15px; */
+    /* border-radius: 20px; */
     color: white;
-    background-color: rgb(20, 25, 50);
-    border: 1px solid white;
-    overflow: hidden;
+    /* background-color: rgb(20, 25, 50); */
+    /* border-bottom: 1px solid white; */
+    /* overflow: hidden; */
 
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 15px;
 `;
 
 export const QuestDisplayButtons = styled.div`
@@ -36,20 +38,20 @@ export const QuestDisplayButtons = styled.div`
     gap: 15px;
 `;
 
-export const QuestDisplayRoadLinks = styled.div`
-    position: absolute;
-    top: -20px;
-    left: 0px;
+// export const QuestDisplayRoadLinks = styled.div`
+//     position: absolute;
+//     top: -20px;
+//     left: 0px;
 
-    min-width: 260px;
-    border-top: 3px solid white;
-    border-left: 1px solid white;
-    border-radius: 20px 20px 0 0;
-    color: rgb(255, 98, 0);
-    background-color: rgb(20, 25, 50);
-    padding: 10px 15px;
-    z-index: 20;
+//     width: 300px;
+//     border-top: 3px solid white;
+//     /* border-left: 1px solid white; */
+//     border-radius: 20px 20px 0 0;
+//     color: rgb(255, 98, 0);
+//     background-color: rgb(20, 25, 50);
+//     padding: 10px 15px;
+//     z-index: 20;
 
-    display: flex;
-    justify-content: space-between;
-`;
+//     display: flex;
+//     justify-content: space-between;
+// `;

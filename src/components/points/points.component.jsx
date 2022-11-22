@@ -49,17 +49,17 @@ const Points = ({ data, show, questIndex, questTitle }) => {
                         <Main>{description}</Main>
                     </PointsContainer>
                     :
-                    <PointsWrapper activate={state}>
-                        <PointsContainer onClick={reverseHandler} status={status}>
-                            <PointsTitle>{title}</PointsTitle>
-                            <PointsDate>{`Date: ${untilTime}`}</PointsDate>
-                            <Main>{description}</Main>
-                        </PointsContainer>
-                        <PointBack onClick={reverseHandler}>
-                            <button onClick={() => setChangedPointStatus(true)}>Activate</button>
-                            <button onClick={() => setChangedPointStatus(false)}>Deactivate</button>
-                        </PointBack>
-                    </PointsWrapper>
+                        <PointsWrapper activate={state}>
+                            <PointsContainer onClick={reverseHandler} status={status}>
+                                <PointsTitle>{title}</PointsTitle>
+                                <PointsDate>{`Date: ${untilTime}`}</PointsDate>
+                                <Main>{description}</Main>
+                            </PointsContainer>
+                            <PointBack onClick={reverseHandler}>
+                                <button onClick={() => setChangedPointStatus(true)}>Activate</button>
+                                <button onClick={() => setChangedPointStatus(false)}>Deactivate</button>
+                            </PointBack>
+                        </PointsWrapper>
             }
         </>
     )

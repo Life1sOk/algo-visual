@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
 export const QuestDailyContainer = styled.div`
-    width: 253px;
+    /* width: 253px; */
+    height: 345px;
+    background-color: rgb(20, 25, 50);
+    /* margin-top: 10px; */
+    padding: 10px;
     flex-shrink: 0;
+    border-top: 3px solid white;
+    border-bottom: 1px solid white;
+    border-radius: 20px 20px 10px 10px;
 
     .quest-time {
         font-size: 24px;
