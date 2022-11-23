@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const QuestMainContainer = styled.div`
+const AboutStyle = styled.div`
     width: 300px;
     height: 345px;
     color: white;
@@ -23,7 +23,7 @@ export const QuestMainContainer = styled.div`
     }
 `;
 
-export const QuestMainTitle = styled.div`
+const Title = styled.div`
     position: relative;
     width: 100%;
 
@@ -52,24 +52,7 @@ export const QuestMainTitle = styled.div`
     }
 `;
 
-export const QuestRoad = styled.div`
-    width: 100%;
-    /* margin-top: 17px; */
-    ${'' /* margin-left: 34px; */}
-    font-size: 15px;
-
-    p {
-        padding: 3px;
-    }
-
-    .label {
-        font-size: 17px;
-        font-weight: 900;
-    }
-`;
-
-
-export const QuestDisplayRoadLinks = styled.div`
+const RoadLinks = styled.div`
     width: 100%;
     border-radius: 20px 20px 0 0;
     color: rgb(255, 98, 0);
@@ -79,3 +62,8 @@ export const QuestDisplayRoadLinks = styled.div`
     display: flex;
     justify-content: space-between;
 `;
+
+AboutStyle.Title = Title;
+AboutStyle.RoadLinks = RoadLinks;
+
+export default AboutStyle;

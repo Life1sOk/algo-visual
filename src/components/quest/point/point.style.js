@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const PointsWrapper = styled.div`
+const PointStyle = styled.div`
     transform-style: preserve-3d;
     transform: ${props => !props.activate ? 'rotateX(0deg)' : 'rotateX(180deg)'};
     transition: transform 0.4s ease-in-out;
 `;
 
-export const PointsContainer = styled.div`
+const Front = styled.div`
     position: relative;
     width: 230px;
     height: 130px;
@@ -25,7 +25,7 @@ export const PointsContainer = styled.div`
     }
 `;
 
-export const PointBack = styled.div`
+const Back = styled.div`
     width: 230px;
     height: 130px;
     color: white;
@@ -42,14 +42,14 @@ export const PointBack = styled.div`
     align-items: center;
 `;
 
-export const PointsTitle = styled.span`
+const Title = styled.span`
     width: 100%;
     font-size: 17px;
     padding: 4px 20px;
     background-color: blue;
 `;
 
-export const PointsDate = styled.span`
+const Date = styled.span`
     font-size: 14px;
     padding: 3px;
     border-bottom: 1px solid blue;
@@ -57,7 +57,7 @@ export const PointsDate = styled.span`
     margin: 0 10px;
 `;
 
-export const Main = styled.span`
+const Description = styled.span`
     padding: 5px;
     margin: auto 0;
     font-size: 15px;
@@ -67,8 +67,11 @@ export const Main = styled.span`
     color: blue;
 `;
 
-export const ButtonWrapper = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-`;
+PointStyle.Front = Front;
+PointStyle.Back = Back;
+PointStyle.Title = Title;
+PointStyle.Date = Date;
+PointStyle.Description = Description;
+
+
+export default PointStyle;

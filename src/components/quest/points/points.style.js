@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const QuestPointsConteiner = styled.div`
+const PointsStyle = styled.div`
     display: flex;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
 `; 
 
-export const QuestPointsDisplay = styled.div`
-    width: 275px;
+const Points = styled.div`
+    width: 249.5px;
     height: 315px;
     padding: 20px 0;
 
@@ -20,14 +20,14 @@ export const QuestPointsDisplay = styled.div`
     overflow: scroll;
 `;
 
-export const PointsBallContainer = styled.div`
+const Balls = styled.div`
     padding-top: 10px;
 
     display: flex;
     flex-direction: column;
 `;
 
-export const PointBall = styled.div`
+const PointBall = styled.div`
     width: 25px;
     height: 25px;
     background-color: blue;
@@ -40,3 +40,9 @@ export const PointBall = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+PointsStyle.Points = Points;
+PointsStyle.Balls = Balls;
+PointsStyle.PointBall = PointBall;
+
+export default PointsStyle;

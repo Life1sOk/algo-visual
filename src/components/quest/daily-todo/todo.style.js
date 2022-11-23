@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
-export const DailyAddWrapper = styled.div`
+const TodoStyle = styled.div`
     transform-style: preserve-3d;
     transform: ${props => !props.activate ? 'rotateY(0deg)' : 'rotateY(180deg)'};
     transition: transform 0.4s ease-in-out;
 `;
 
-export const DailyAddContainer = styled.div`
+const Front = styled.div`
     position: relative;
     width: 190px;
     height: 100px;
     flex-shrink: 0;
     border: 3px solid rgb(224,62,26);
     border-radius: 12px;
-    ${'' /* padding: 5px; */}
     text-align: center;
     background-color: white;
     color: black;
@@ -26,7 +25,7 @@ export const DailyAddContainer = styled.div`
     }
 `;
 
-export const DailyAddBack = styled.div`
+const Back = styled.div`
     width: 190px;
     height: 100px;
     color: white;
@@ -47,12 +46,12 @@ export const DailyAddBack = styled.div`
     }
 `;
 
-export const DailyAddTitle = styled.span`
+const Title = styled.span`
     font-size: 17px;
     padding: 5px 0 5px 0;
 `;
 
-export const DailyAddDescription = styled.span`
+const Description = styled.span`
     width: 100%;
     height: 100%;
     font-size: 15px;
@@ -64,8 +63,9 @@ export const DailyAddDescription = styled.span`
     justify-content: center;
 `;
 
-export const ButtonWrapper = styled.div`
-    position: absolute;
-    top: 0;
-    right: 3px;
-`;
+TodoStyle.Front = Front;
+TodoStyle.Back = Back;
+TodoStyle.Title = Title;
+TodoStyle.Description = Description;
+
+export default TodoStyle;

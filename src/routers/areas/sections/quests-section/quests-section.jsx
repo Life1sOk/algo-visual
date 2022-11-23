@@ -5,7 +5,7 @@ import { selectDisplaySection } from "../../../../App/slices/areas-slice";
 
 import { QuestsSectionContainer, QuestsSectionDisplay } from './quests-section.style';
 import PlanSection from "../plan-section/plan-section";
-import QuestDisplay from "../../../../Components/quest-display/quest-display.component";
+import Quest from "../../../../Components/quest/index";
 
 const QuestsSection = () => {
     const currentSection = useSelector(selectDisplaySection);
@@ -16,7 +16,7 @@ const QuestsSection = () => {
             <PlanSection title={title} />
             <QuestsSectionDisplay>
                 {
-                    quests?.map((quest, index) => <QuestDisplay page='areas' key={index} id={quest.id} title={title} data={quest.quest} questId={index + 1} />)
+                    quests?.map((quest, index) => <Quest page='areas' key={index} id={quest.id} title={title} data={quest.quest} questId={index + 1} />)
                 }
             </QuestsSectionDisplay>
         </QuestsSectionContainer>

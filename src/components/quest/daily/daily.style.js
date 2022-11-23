@@ -1,24 +1,17 @@
 import styled from 'styled-components';
 
-export const QuestDailyContainer = styled.div`
+const DailyStyle = styled.div`
     /* width: 253px; */
     height: 345px;
     background-color: rgb(20, 25, 50);
-    /* margin-top: 10px; */
     padding: 10px;
     flex-shrink: 0;
     border-top: 3px solid white;
     border-bottom: 1px solid white;
     border-radius: 20px 20px 10px 10px;
-
-    .quest-time {
-        font-size: 24px;
-        padding: 0 3px 3px 3px;
-        text-align: center;
-    }
 `;
 
-export const QuestDailyButton = styled.div`
+const ButtonWrapper = styled.div`
     width: 100%;
     height: 50px;
     
@@ -48,7 +41,7 @@ export const QuestDailyButton = styled.div`
     }
 `;
 
-export const QuestDailyDatas = styled.div`
+const ToDo = styled.div`
     margin-top: 16px;
 
     display: flex;
@@ -56,3 +49,8 @@ export const QuestDailyDatas = styled.div`
     align-items: center;
     gap: 10px;
 `;
+
+DailyStyle.ButtonWrapper = ButtonWrapper;
+DailyStyle.ToDo = ToDo;
+
+export default DailyStyle;
