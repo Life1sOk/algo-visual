@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const QuestStyle = styled.div`
     color: white;
     margin-top: 50px;
-    margin-left: 80px;
+    margin-left: 60px;
 
     display: flex;
     justify-content: center;

@@ -23,6 +23,6 @@ export const DescriptionTitleContainer = styled.h2`
 
 export const DescriptionCurrent = styled.div`
     display: flex;
-    justify-contenr: center;
+    justify-content: center;
     align-items: center;
 `;

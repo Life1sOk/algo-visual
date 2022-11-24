@@ -12,6 +12,7 @@ const DailyCardContainer = styled.div`
     background-color: white;
     border-bottom: 3px solid ${props => props.color};
     border-radius: 20px;
+    overflow: hidden;
 `;
 
 const DailyCardBackSide = styled.div`

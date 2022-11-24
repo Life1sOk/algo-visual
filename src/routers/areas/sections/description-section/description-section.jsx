@@ -28,8 +28,8 @@ const DescriptionSection = () => {
                 {
                     title === 'Health' ? <DescriptionHealth /> :
                         title === 'People' ? <DescriptionPeople /> :
-                            title === 'Environment' ? <DescriptionEnvironment /> :
                                 title === 'Growth' ? <DescriptionGrowth /> :
+                            title === 'Environment' ? <DescriptionEnvironment /> :
                                     null
                 }
             </DescriptionCurrent>

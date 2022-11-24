@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const PartsDisplayMainPartContainer = styled.div`
-    width: 290px;
-    height: 160px;
+    width: 100%;
+    height: 151px;
     border: 1px solid white;
     border-radius: 10px;
     padding: 15px;

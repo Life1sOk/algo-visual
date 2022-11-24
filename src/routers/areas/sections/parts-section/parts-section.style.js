@@ -4,6 +4,7 @@ export const PartsSectionContainer = styled.div`
     width: 93%;
     ${'' /* height: 300px; */}
     ${'' /* border: 2px solid lightcoral; */}
+    margin-top: 40px;
     
     display: flex;
     flex-direction: column;

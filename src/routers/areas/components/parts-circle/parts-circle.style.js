@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const PartsCircleContainer = styled.div`
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     margin: 5px;
     background-color: lightyellow;
     border-radius: 50%;
