@@ -1,36 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
 import { selectAllParts } from "../../../../App/slices/areas-slice";
 
-import PartsDisplayMain from "../../components/parts-display-main/parts-display-main.component";
-import PartsDisplayAdd from "../../components/parts-display-add/parts-display-add.component";
-import { PartsSectionContainer, PartsNav, PartsDisplayContainer } from './parts-section.style';
+// GLobal style 
+import { BlockLayout } from "../../../../Global-style/layouts";
+import BlackBoxWindow from "../../../../Components/black-box/black-box.component";
+
+import BlockHat from "../../../../Components/block-hat/block-hat.component";
+import PartsWindow from "../../components/parts-window+/index";
+import Part from '../../components/part+/part.component';
+import { PartsDisplay } from './parts-section.style';
 
 const PartsSection = () => {
-    const [activeSlide, setActiveSlide] = useState('main');
-    const totalParts = useSelector(selectAllParts);
+    const allPartsData = useSelector(selectAllParts);
+    const [window, setWindow] = useState(false);
 
-    useEffect(() => {
-        if (totalParts.length <= 0) return setActiveSlide('add');
-    }, [])
+    const openWindowHandler = () => setWindow(true);
+    const closeWindowHandler = () => setWindow(false);
 
     return (
-        <PartsSectionContainer>
-            <PartsNav>
-                <button onClick={() => setActiveSlide('main')}>Main</button>
-                <button onClick={() => setActiveSlide('add')}>Add</button>
-            </PartsNav>
-            <PartsDisplayContainer>
-                {
-                    activeSlide === 'main' ? <PartsDisplayMain />
-                        :
-                        activeSlide === 'add' ? <PartsDisplayAdd />
-                            :
-                            null
-                }
-            </PartsDisplayContainer>
-        </PartsSectionContainer>
+        <>  
+            {
+                window &&
+                <BlackBoxWindow handler={closeWindowHandler}>
+                    <PartsWindow />
+                </BlackBoxWindow>
+            }
+            <BlockLayout>
+                <BlockHat title='Parts' setting='Create next part' handler={openWindowHandler}/>
+                <PartsDisplay>
+                    {
+                        allPartsData.map(part => <Part key={allPartsData.indexOf(part)} data={part} />)
+                    }
+                </PartsDisplay>
+            </BlockLayout>
+        </>
     )
 }
 

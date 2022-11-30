@@ -1,27 +1,15 @@
 import styled from 'styled-components';
 
-export const PartsSectionContainer = styled.div`
-    width: 93%;
-    ${'' /* height: 300px; */}
-    ${'' /* border: 2px solid lightcoral; */}
-    margin-top: 40px;
-    
-    display: flex;
-    flex-direction: column;
+export const PartsDisplay = styled.div`
+    width: 100%;
+    /* height: 100%; */
+    padding:0 15px;
+    border-radius: 20px;
+    /* overflow-x: scroll; */
+
+    display: grid;
+    grid-template-columns: repeat(3, 290px);
+    justify-items: center;
     align-items: center;
-`;
-
-export const PartsNav = styled.nav`
-    height: 25px;
-    width: 70%;
-    border-bottom: 1px solid white;
-
-    display: flex;
-
-    gap: 15px;
-`;
-
-export const PartsDisplayContainer = styled.div`
-    /* width: 100%; */
-    color: white;
+    gap: 10px;
 `;

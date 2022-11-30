@@ -23,27 +23,27 @@ function App() {
       <Routes>
         <Route index element={<AuthorizationPage />} />
         <Route path='/' element={<Navigation />}>
-          <Route path='/profile' element={
+          <Route path='profile' element={
             <Protected isLoggedIn={loggedIn}>
               <ProfilePage />
             </Protected>
           } />
-          <Route path='/daily' element={
+          <Route path='daily' element={
             <Protected isLoggedIn={loggedIn}>
               <DailyPage />
             </Protected>
           } />
-          <Route path='/areas' element={
+          <Route path='areas/*' element={
             <Protected isLoggedIn={loggedIn}>
               <AreasPage />
             </Protected>
           } />
-          <Route path='/posts' element={
+          <Route path='posts' element={
             <Protected isLoggedIn={loggedIn}>
               <PostsPage />
             </Protected>
           } />
-          <Route path='/statistic' element={
+          <Route path='statistic' element={
             <Protected isLoggedIn={loggedIn}>
               <StatisticPage />
             </Protected>

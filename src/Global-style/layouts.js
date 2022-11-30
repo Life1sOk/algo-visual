@@ -15,7 +15,7 @@ export const MainLayout = styled.div`
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     /* gap: 40px; */
 `;
 
@@ -37,5 +37,17 @@ export const CenterLayout = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+`;
+
+export const BlockLayout = styled.div`
+    width: 920px;
+    color: white;
+    margin-top: 60px;
+    margin-left: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;
 

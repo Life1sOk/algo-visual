@@ -7,7 +7,7 @@ import { selectAuthUid } from "../../../../App/slices/auth.slice";
 import { selectFixPlan, drainDaily } from "../../../../App/slices/daily.slice";
 import { selectFixOutOfPlan, drainOutDaily } from "../../../../App/slices/out-plan.slice";
 //Components:
-import TodoCard from "../../components/daily-card/index";
+import DailyCard from "../../components/daily-card+/index";
 import { Yellow, SwitchWrapper } from './switch.style';
 import Switcher from "../../components/switcher/switcher.component";
 
@@ -35,10 +35,10 @@ const SwitchSection = () => {
             <Switcher setDisplay={setDisplay} colors={colors} />
             {
                 display === 'main' ?
-                    <TodoCard title='Will need to do!' color={colors.red} quests={questsFix} type='main'
+                    <DailyCard title='Will need to do!' color={colors.red} quests={questsFix} type='main'
                         addDatasServer={addDatasDailyServer} drainDatasHandler={drainDailyHandler} /> :
                     display === 'out' ?
-                        <TodoCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='out'
+                        <DailyCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='out'
                             addDatasServer={addDatasOutDailyServer} drainDatasHandler={draitnOutDailyHandler} /> :
                         display === 'notes' ?
                             <Yellow>Notes</Yellow> : null

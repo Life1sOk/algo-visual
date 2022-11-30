@@ -6,12 +6,16 @@ export const TextAreaContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    span {
+        font-size: 15px;
+    }
 `;
 
 export const TextAreaDescription = styled.textarea`
-    min-height: ${props => props.type === 'big' ? '87px' : '50px'};
-    padding: 5px;
-    font-size: 16px;
+    min-height: ${props => props.type === 'big' ? '87px' : '45px'};
+    padding: 3px;
+    font-size: 15px;
     font-style: italic;
     resize: none;
     border: none;

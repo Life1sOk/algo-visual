@@ -28,11 +28,11 @@ const Area = ({ area, state, setState }) => {
     };
 
     return (
-        <AreaContainer current={current} color={mainColor} onClick={changeSectionHandler} pageState={pageState}>
-            {current ? <img className="arrow" alt="arrow" src={arrow} /> : null}
-            {pageState ? <h3>{area}</h3> : null}
-            <AreaIcon alt="title" src={icon} />
-        </AreaContainer>
+            <AreaContainer current={current} color={mainColor} onClick={changeSectionHandler} pageState={pageState}>
+                {current ? <img className="arrow" alt="arrow" src={arrow} /> : null}
+                {pageState ? <h3>{area}</h3> : null}
+                <AreaIcon alt="title" src={icon} />
+            </AreaContainer>
     )
 }
 

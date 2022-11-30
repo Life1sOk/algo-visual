@@ -6,11 +6,15 @@ export const TitleInputContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    span {
+        font-size: 15px;
+    }
 `;
 
 export const TitleInput = styled.input`
-    padding: 5px;
-    font-size: 18px;
+    padding: 3px;
+    font-size: 15px;
     border: none;
     border-bottom: 1px solid grey;
     margin-bottom: 5px;

@@ -10,7 +10,7 @@ const NavLink = ({ name, to }) => {
     useEffect(() => {
         let currentPage = `/${name.toLowerCase()}`;
 
-        if (pathname === currentPage) return setActive(true);
+        if (pathname === currentPage || pathname.includes(currentPage)) return setActive(true);
         if (pathname !== currentPage) return setActive(false);
     }, [name, pathname]);
 

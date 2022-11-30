@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCombinedAll } from "../../../../App/slices/combined-areas.slice";
 
 // import QuestDisplay from "../../../../Components/quest-display/quest-display.component";
-import Quest from "../../../../Components/quest/index";
+import Quest from "../../../../Components/quest+/index";
 import { CombinedQuestsContainer } from './combined.style';
 
 const CombinedQuests = () => {

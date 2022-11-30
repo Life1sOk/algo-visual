@@ -48,7 +48,7 @@ const DiscriptionBox = styled.textarea`
     padding: 5px 5px 0 20px;
     font-size: 14px;
     font-style: italic;
-    z-index: ${props => 10/props.index };
+    z-index: ${props => 100 - props.index };
     resize: none;
     border: none;
     border-bottom: ${props => !props.state ? '5px solid rgba(255,98,0, 0)' : `5px solid rgb(255,98,0)`};
