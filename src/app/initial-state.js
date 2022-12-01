@@ -16,7 +16,6 @@ export const initialAreas = {
         mainColor: '',
         icon: '',
         previewImg: '',
-        quests: [],
         parts: {
             allParts: [],
             circle: {

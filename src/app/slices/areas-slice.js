@@ -30,21 +30,6 @@ export const areasSlice = createSlice({
         currentStateOpen: (state) => {
             state.displaySection.stateOpen = !state.displaySection.stateOpen;
         },
-        addNewQuest: (state, { payload }) => {
-            const { title } = payload;
-            state.displaySection.quests.push(payload);
-            state.sections[title].quests.push(payload);
-        },
-        deleteQuest: (state, { payload }) => {
-            const { title, id } = payload;
-            state.displaySection.quests = state?.displaySection?.quests?.filter(quest => quest.id !== id);
-            state.sections[title].quests = state?.sections[title]?.quests?.filter(quest => quest.id !== id);
-        },
-        updateQuestAction: (state, { payload }) => {
-            const { pointId, questIndex, status, data, questTitle } = payload;
-            state.sections[questTitle].quests[questIndex].quest.achieve = state.sections[questTitle].quests[questIndex].quest.achieve?.map(point => point.id === pointId ? { ...point, status } : point);
-            // state.displaySection.quests[questIndex].quest.achieve = state.displaySection.quests[questIndex].quest.achieve?.map(point => point.id === pointId ? { ...point, status } : point);
-        },
         changeStatusToReload: (state) => {
             state.status = 'reload';
         },
@@ -79,6 +64,7 @@ export const areasSlice = createSlice({
                 }
             });
             state.displaySection.parts.circle.datasets[0].data[activeIndex] = state.displaySection.parts.circle.datasets[0].data[activeIndex] + payload.count;
+            state.sections[payload.area] = state.displaySection;
         },
         deletePart: (state, { payload }) => {
             let totalParts = state.displaySection.parts.allParts.length;
@@ -127,10 +113,6 @@ export const areasSlice = createSlice({
 });
 
 export const selectAreas = (state) => state.areas.sections;
-export const selectAreaHealthQuests = (state) => state.areas.sections['Health'].quests;
-export const selectAreaGrowthQuests = (state) => state.areas.sections['Growth'].quests;
-export const selectAreaPeopleQuests = (state) => state.areas.sections['People'].quests;
-export const selectAreaEnvironmentQuests = (state) => state.areas.sections['Environment'].quests;
 
 export const selectDisplaySection = (state) => state.areas.displaySection;
 export const selectDisplayParts = (state) => state.areas.displaySection.parts;
@@ -143,6 +125,6 @@ export const selectToAddPartColor = (state) => state.areas.partToAdd.color;
 export const selectAllParts = (state) => state.areas.displaySection.parts.allParts;
 export const selectCircle = (state) => state.areas.displaySection.parts.circle;
 
-export const { changeDisplay, currentStateOpen, addNewQuest, changeStatusToReload, deleteQuest, updateQuestAction, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount } = areasSlice.actions;
 
 export default areasSlice.reducer;

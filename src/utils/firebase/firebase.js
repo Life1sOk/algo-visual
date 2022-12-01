@@ -207,21 +207,6 @@ export const getUsersDocsAreas = async (uid, type) => {
 
     return datas.data();
 }
-// change name
-export const setUsersDatasAreas = async (uid, type, datasToAdd) => {
-    if (!uid || !type) return;
-
-    const docRef = doc(db, 'users', uid, 'areas', type);
-
-    try {
-        await updateDoc(docRef, {
-            'quests': arrayUnion(datasToAdd)
-        });
-        console.log('done');
-    } catch (error) {
-        console.log('oops, here is some error', error);
-    }
-}
 
 export const deleteUsersDatasAreas = async (uid, type, datasToAdd) => {
     if (!uid || !type) return;

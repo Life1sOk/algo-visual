@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    state: true,
     reset: 'no',
     add: {
         createdTime: '',
@@ -15,9 +14,6 @@ export const createQuestSlice = createSlice({
     name: 'createQuest',
     initialState,
     reducers: {
-        setOpen: (state) => {
-            state.state = !state.state;
-        },
         setReset: (state, { payload }) => {
             state.reset = payload;
             state.add.achieve = [];
@@ -48,6 +44,6 @@ export const selectCreateQuestDaily = (state) => state.createQuest.add.daily;
 export const selectCreateQuestState = (state) => state.createQuest.state;
 export const selectCreateQuestReset = (state) => state.createQuest.reset;
 
-export const { mainAccept, addAchieve, addDaily, setOpen, setReset, deleteAchieve, deleteDaily } = createQuestSlice.actions;
+export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

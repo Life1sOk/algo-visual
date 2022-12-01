@@ -5,7 +5,6 @@ import dailyReducer from './slices/daily.slice';
 import areasReducer from './slices/areas-slice';
 import authReducer from './slices/auth.slice';
 import createQuestReducer from "./slices/create-quest.slice";
-import asideMenuReducer from "./slices/aside-menu.slice";
 import questSlidesReducer from "./slices/quest-slides";
 import combinedAreasReducer from "./slices/combined-areas.slice";
 
@@ -29,7 +28,6 @@ const store = configureStore({
         outPlan: outPlanReducer,
         areas: areasReducer,
         createQuest: createQuestReducer,
-        aside: asideMenuReducer,
         questSlide: questSlidesReducer,
         combined: combinedAreasReducer,
     }

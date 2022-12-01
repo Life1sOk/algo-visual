@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getDailyInitialData } from '../../App/slices/daily.slice.js';
 import { getOutInitialData } from "../../App/slices/out-plan.slice";
+import { getCombinedAreas } from '../../App/slices/combined-areas.slice';
 
 import { tryUpdateData } from "../../utils/firebase/firebase";
 
@@ -28,6 +29,7 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getDailyInitialData(current));
         dispatch(getOutInitialData(current));
+        dispatch(getCombinedAreas(current));
     }, [dispatch, current]);
 
     const checkHandler = async () => {

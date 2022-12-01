@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const AreaContainer = styled.div`
     position: relative;
-    width: ${props => props.pageState ? '260px' : '140px'};
+    width: 260px;
     min-height: 100px;
     padding: 14px 29px 14px 29px;
     background-color: ${props => props.color};

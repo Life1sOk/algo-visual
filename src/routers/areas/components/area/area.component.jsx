@@ -1,36 +1,34 @@
 import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { changeDisplay, selectAreas } from '../../../../App/slices/areas-slice';
-import { selectAreaState } from "../../../../App/slices/aside-menu.slice";
+import { changeDisplay, selectAreas, selectDisplaySection} from '../../../../App/slices/areas-slice';
 
 import { AreaContainer, AreaIcon } from './area.style';
 import arrow from '../../../../Asset/right-arrow.png';
 
-const Area = ({ area, state, setState }) => {
+const Area = ({ area }) => {
     const dispatch = useDispatch();
     const currentArea = useSelector(selectAreas);
-    const pageState = useSelector(selectAreaState);
-    const { title, mainColor, icon } = currentArea[area];
+    const {title} = useSelector(selectDisplaySection);
+    const { mainColor, icon } = currentArea[area];
     const [current, setCurrent] = useState(false);
 
     useEffect(() => {
-        if (state === title) {
+        if (title === area) {
             setCurrent(true);
         } else {
             setCurrent(false);
         }
-    }, [state, title]);
+    }, [title, area]);
 
     const changeSectionHandler = () => {
-        setState(title);
         dispatch(changeDisplay(area));
     };
 
     return (
-            <AreaContainer current={current} color={mainColor} onClick={changeSectionHandler} pageState={pageState}>
+            <AreaContainer current={current} color={mainColor} onClick={changeSectionHandler}>
                 {current ? <img className="arrow" alt="arrow" src={arrow} /> : null}
-                {pageState ? <h3>{area}</h3> : null}
+                <h3>{area}</h3>
                 <AreaIcon alt="title" src={icon} />
             </AreaContainer>
     )

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
 import { deleteAchieve } from "../../App/slices/create-quest.slice";
 import { chageQuestPoint } from '../../App/slices/combined-areas.slice';
-import { updateQuestAction, selectAreas } from "../../App/slices/areas-slice";
+import {  selectAreas } from "../../App/slices/areas-slice";
 import { setActivePoint, deleteActivePoint } from "../../utils/firebase/firebase";
 
 import { PointsContainer, Main, ButtonWrapper, PointsTitle, PointsDate, PointBack, PointsWrapper } from './points.style';
@@ -27,11 +27,9 @@ const Points = ({ data, show, questIndex, questTitle }) => {
         console.log(check[questTitle].quests[questIndex].quest.achieve)
         // if (status) {
         //     dispatch(chageQuestPoint(payload));
-        //     dispatch(updateQuestAction(payload));
         //     setActivePoint(uid, data);
         // } else {
-        //     dispatch(chageQuestPoint(payload));
-        //     dispatch(updateQuestAction(payload));
+        //     dispatch(chageQuestPoint(payload));s
         //     deleteActivePoint(uid, data);
         // }
     };

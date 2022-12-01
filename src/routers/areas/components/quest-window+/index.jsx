@@ -7,7 +7,6 @@ import { PlanSectionContainer } from './index.style';
 import SlideQuestOne from "./slide-quest-one/slide-quest-one.component";
 import SlideQuestTwo from "./slide-quest-two/slide-quest-two.component";
 import SlideQuestThree from "./slide-quest-three/slide-quest-three.component";
-import NavButtons from "../nav-buttons/nav-buttons.component";
 import Menu from "./menu/menu.component";
 
 const QuestWindow = ({ title }) => {
@@ -15,7 +14,6 @@ const QuestWindow = ({ title }) => {
 
     return (
         <PlanSectionContainer open={currentQuestState}>
-            {/* <NavButtons /> */}
             <SlideQuestOne />
             <SlideQuestTwo />
             <SlideQuestThree />

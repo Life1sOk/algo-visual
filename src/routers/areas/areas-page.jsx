@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import { useParams } from "react-router-dom";
-
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getAreasData, selectAreasStatus } from "../../App/slices/areas-slice";
@@ -27,9 +25,6 @@ const AreasPage = () => {
     const dispatch = useDispatch();
     const current = useSelector(selectAuthUid);
     const status = useSelector(selectAreasStatus);
-
-    const check = useParams();
-    console.log(check)
 
     useEffect(() => {
         if (status === 'reload') {
