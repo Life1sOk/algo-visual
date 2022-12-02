@@ -93,7 +93,9 @@ export const areasSlice = createSlice({
         },
         changePartStatusToReload: (state, { payload }) => {
             state.partStatus = payload;
-        }
+        },
+        // Statistic
+        
     },
     extraReducers: {
         [getAreasData.pending]: (state) => {
