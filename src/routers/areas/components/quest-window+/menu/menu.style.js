@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 export const PlanNavigation = styled.div`
     position: absolute;
-    bottom: 0;
+    top: -114px;
     right: 0;
 
     width: 811px;
-    height: 80px;
+    height: 114px;
     padding: 7px;
-    background-color: rgb(0,33,66);
-    border-left: 1px solid white;
+    /* background-color: rgb(0,33,66); */
     flex-shrink: 0;
     z-index: 10;
 
@@ -17,7 +16,7 @@ export const PlanNavigation = styled.div`
     /* flex-direction: column; */
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 80px;
 
     h2 {
         padding: 10px;

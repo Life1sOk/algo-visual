@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectSlideOne, oneDone, twoActive } from "../../../../../App/slices/quest-slides";
 import { mainAccept, selectCreateQuestReset } from "../../../../../App/slices/create-quest.slice";
 
-import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons } from './slide-quest-one.style';
+import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons, SlideTop } from './slide-quest-one.style';
 import Input from "../../input/input.component";
 import TextArea from "../../textarea/textarea.component";
 import Quote from "../../quote/quote.component";
 import Ulist from "../../u-list/u-list.component";
 import PartsOption from "../parts-option/parts-option.component";
+import Deadline from "../deadline/deadline.component";
 
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
@@ -22,10 +23,12 @@ const SlideQuestOne = () => {
     const goalCurrentStateRef = useRef();
     const goalWantToRef = useRef();
     const goalDesctiptionRef = useRef();
+    const deadline = useRef();
 
     const slideOneDoneHandler = () => {
         const goalSlideState = {
             part: pickPartRef.current.value,
+            deadline: deadline.current.value,
             title: goalTitleRef.current.value,
             current: goalCurrentStateRef.current.value,
             mainGoal: goalWantToRef.current.value,
@@ -52,14 +55,16 @@ const SlideQuestOne = () => {
             goalWantToRef.current.value = '';
             goalDesctiptionRef.current.value = '';
         }
-    }, [resetState])
+    }, [resetState]);
 
     return (
         <SlideSectionContainer active={active} done={done}>
-            {/* <h3>About quest:</h3> */}
             <SlideWrapper>
                 <SlideInContainer>
-                    <PartsOption ref={pickPartRef} />
+                    <SlideTop>
+                        <Deadline ref={deadline}/>
+                        <PartsOption ref={pickPartRef} />
+                    </SlideTop>
                     <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />
                     <TextArea type='normal' label='Current state:' readOnly={done} ref={goalCurrentStateRef} />
                     <TextArea type='normal' label='Want to:' readOnly={done} ref={goalWantToRef} />

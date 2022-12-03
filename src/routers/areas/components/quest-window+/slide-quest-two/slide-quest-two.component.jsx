@@ -9,6 +9,7 @@ import Quote from "../../quote/quote.component";
 import Input from "../../input/input.component";
 import TextArea from "../../textarea/textarea.component";
 import Points from "../../../../../Components/points/points.component";
+import Deadline from "../deadline/deadline.component";
 import { SlideSectionContainer, InDescWrapper, SlideIn, DisplayPoints, SlideDescription, Buttons, Date } from './slide-quest-two.style';
 
 import { reFormatTime } from "../../../../../Hooks/re-format-date";
@@ -57,19 +58,16 @@ const SlideQuestTwo = () => {
         }
     }
 
-    console.log(active)
-
     return (
         <SlideSectionContainer active={active} done={done}>
-            {/* <h3>Create Steps Points</h3> */}
             <InDescWrapper>
                 <SlideIn>
-                    <Input label='Point Title:' readOnly={done} required ref={pointTitleRef} />
+                    <Input label='Point Title:' readOnly={done} ref={pointTitleRef} />
                     <Date>
                         <span>Date:</span>
-                        <input type='date' readOnly={done} required ref={pointUntilTimeRef} />
+                        <Deadline ref={pointUntilTimeRef}/>
                     </Date>
-                    <TextArea type='normal' label='Need to do!' readOnly={done} required ref={pointDescriptionRef} />
+                    <TextArea type='normal' label='Need to do!' readOnly={done} ref={pointDescriptionRef} />
                     {
                         !done &&
                         <button onClick={addChangeHandler}>Add</button>

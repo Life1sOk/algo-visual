@@ -136,7 +136,7 @@ export const getAllQuests = async (uid) => {
     return datas.data();
 };
 
-export const setAllQuests = async (uid, datasToAdd) => {
+export const updateAllQuests = async (uid, datasToAdd) => {
     if (!uid) return;
 
     const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
@@ -151,50 +151,20 @@ export const setAllQuests = async (uid, datasToAdd) => {
     }
 };
 
-export const setActivePoint = async (uid, datasToAdd) => {
+export const deleteQuestCombined = async (uid, quest) => {
     if (!uid) return;
 
-    const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
+    const docRefComb = doc(db, 'users', uid, 'quests', 'combinedAreas');
 
     try {
-        await updateDoc(docRef, {
-            activePoints: arrayUnion(datasToAdd)
+        await updateDoc(docRefComb, {
+            all: arrayRemove(quest)
         });
-        console.log('datas combined points')
+        console.log('data deleted')
     } catch (error) {
         console.log('oops, here is some error', error);
     }
-};
-
-// export const deleteCurrentQuestCombined = async (uid, datasToAdd) => {
-// if (!uid) return;
-
-// const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
-
-// try {
-//     await updateDoc(docRef, {
-//         all: arrayRemove(datasToAdd)
-//     });
-//     console.log('data deleted')
-// } catch (error) {
-//     console.log('oops, here is some error', error);
-// }
-// };
-
-export const deleteActivePoint = async (uid, datasToAdd) => {
-    if (!uid) return;
-
-    const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
-
-    try {
-        await updateDoc(docRef, {
-            activePoints: arrayRemove(datasToAdd)
-        });
-        console.log('data deleted point')
-    } catch (error) {
-        console.log('oops, here is some error', error);
-    }
-};
+}
 
 // ---------------- ------------------ ---------------- //
 
@@ -208,41 +178,15 @@ export const getUsersDocsAreas = async (uid, type) => {
     return datas.data();
 }
 
-export const deleteUsersDatasAreas = async (uid, type, datasToAdd) => {
-    if (!uid || !type) return;
-
-    const docRef = doc(db, 'users', uid, 'areas', type);
-
-    try {
-        await updateDoc(docRef, {
-            'quests': arrayRemove(datasToAdd)
-        });
-        console.log('deleted');
-    } catch (error) {
-        console.log('oops, here is some error', error);
-    }
-
-    const docRefComb = doc(db, 'users', uid, 'quests', 'combinedAreas');
-
-    try {
-        await updateDoc(docRefComb, {
-            all: arrayRemove(datasToAdd)
-        });
-        console.log('data deleted')
-    } catch (error) {
-        console.log('oops, here is some error', error);
-    }
-}
-
 // Parts //
-export const setAreasParts = async (uid, area, datasToAdd) => {
+export const updateAreasPartsCircle = async (uid, area, datasToUp) => {
     if (!uid || !area) return;
 
     const docRef = doc(db, 'users', uid, 'areas', area);
 
     try {
         await updateDoc(docRef, {
-            parts: datasToAdd
+            parts: datasToUp
         });
         console.log('done digi don')
     } catch (error) {
@@ -250,6 +194,19 @@ export const setAreasParts = async (uid, area, datasToAdd) => {
     }
 }
 
+// Statistic //
+export const updateAreasStatistic = async (uid, area, datasToUp) => {
+    if(!uid || !area || !datasToUp) return;
+
+    const docRef = doc(db, 'users', uid, 'areas', area);
+
+    try {
+        await updateDoc(docRef, {statistic: datasToUp});
+        console.log('done digi don');
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+}
 
 // ---------------- ------------------ ---------------- //
 

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { setAllQuests, setAreasParts } from "../../../../../utils/firebase/firebase";
+import { updateAllQuests, updateAreasPartsCircle } from "../../../../../utils/firebase/firebase";
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../App/slices/quest-slides";
 import { selectCreateQuest, setReset } from "../../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
@@ -35,12 +35,12 @@ const Menu = () => {
 
     const readyHandler = () => {
         if (slidesCount === 3) {
-            const newQuest = { id: combinedAllCount + 1, title: currentAreaTitle, quest: currentQuest };
+            const newQuest = { id: combinedAllCount + 1, title: currentAreaTitle, quest: {...currentQuest, createdTime: new Date().toJSON().slice(0, 10)} };
             dispatch(partsQuestCount({ title: currentQuest.main.part, count: 1, area: currentAreaTitle }));
             dispatch(addQuestFromCurrentArea(newQuest));
             dispatch(resetAll());
             dispatch(setReset('yes'));
-            setAllQuests(uid, newQuest);
+            updateAllQuests(uid, newQuest);
 
             dispatch(changePartStatusToReload('reload'));
         } else {
@@ -54,17 +54,16 @@ const Menu = () => {
                 allParts,
                 circle: areasCircleData
             };
-            setAreasParts(uid, currentAreaTitle.toLowerCase(), dataToAdd);
+            updateAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), dataToAdd);
             dispatch(changePartStatusToReload(null));
         }
     }, [partStatus]);
 
     return(
         <PlanNavigation>
-                {/* <h2>Menu-navigation</h2> */}
-                <SlideSwitcher name='Main' active={oneState?.active} done={oneState?.done} onClick={oneSlideChangeHandler} />
-                <SlideSwitcher name='Points' active={twoState?.active} done={twoState?.done} onClick={twoSlideChangeHandler} />
-                <SlideSwitcher name='Daily' active={threeState?.active} done={threeState?.done} onClick={threeSlideChangeHandler} />
+                <SlideSwitcher name='Main' active={oneState?.active} done={oneState?.done} onClick={oneSlideChangeHandler} after/>
+                <SlideSwitcher name='Points' active={twoState?.active} done={twoState?.done} onClick={twoSlideChangeHandler} before after/>
+                <SlideSwitcher name='Daily' active={threeState?.active} done={threeState?.done} onClick={threeSlideChangeHandler} after/>
                 <BigButton onClick={readyHandler}>Ready To Go</BigButton>
         </PlanNavigation>
     )

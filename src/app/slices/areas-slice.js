@@ -127,6 +127,8 @@ export const selectToAddPartColor = (state) => state.areas.partToAdd.color;
 export const selectAllParts = (state) => state.areas.displaySection.parts.allParts;
 export const selectCircle = (state) => state.areas.displaySection.parts.circle;
 
+export const selectStatistic = (state) => state.areas.displaySection.statistic;
+
 export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount } = areasSlice.actions;
 
 export default areasSlice.reducer;

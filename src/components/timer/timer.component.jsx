@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import { useTimeDeadline } from '../../Hooks/useProgress';
 import { Progress } from './timer.style';
 
-const Timer = ({setTime}) => {
-  const createdTime = "2022-11-05";
-  const deadline = "2022-12-05";
+const Timer = ({deadline, createdTime, setTime}) => {
+  // const createdTime = "2022-11-05";
+  // const deadline = "2022-12-05";
 
   const [haveTo, setHaveTo] = useState(0);
   const [perSec, setPerSec] = useState(0);

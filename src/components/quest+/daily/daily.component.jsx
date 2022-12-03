@@ -6,7 +6,7 @@ import { addQuest } from "../../../App/slices/daily.slice";
 import Todo from "../daily-todo/todo.component";
 import DailyStyle from "./daily.style";
 
-const Daily = ({ createdTime, data, title }) => {
+const Daily = ({ data, title }) => {
     const dispatch = useDispatch();
 
     const addAllToDailyHandler = () => {

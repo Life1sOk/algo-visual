@@ -6,8 +6,8 @@ export const SlideSectionContainer = styled.div`
     left: 0;
     width: 811px;
     height: 100%;
-    border-right:2px solid rgba(255,255,102);
-    padding-top: 10px;
+    /* border-right:2px solid rgba(255,255,102); */
+    /* padding-top: 10px; */
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};
 
     display: ${props => !props.active ? 'none' : 'flex'};
@@ -19,6 +19,13 @@ export const SlideSectionContainer = styled.div`
 
     /* transform: ${props => props.active ? 'none' : 'translateX(1000px)'}; */
     transition: transform 1s ease-in-out;
+`;
+
+export const SlideTop = styled.div`
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
 `;
 
 export const SlideWrapper = styled.div`

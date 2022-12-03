@@ -14,10 +14,10 @@ const QuestWindow = ({ title }) => {
 
     return (
         <PlanSectionContainer open={currentQuestState}>
+            <Menu title={title}/>
             <SlideQuestOne />
             <SlideQuestTwo />
             <SlideQuestThree />
-            <Menu title={title}/>
         </PlanSectionContainer>
     )
 }

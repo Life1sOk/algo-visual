@@ -40,9 +40,8 @@ const SlideQuestThree = () => {
 
     return (
         <SlideSectionContainer active={active} done={done}>
-            {/* <h3>Hello</h3> */}
             <SlideWrapper>
-                <SlideInContainer>
+                {/* <SlideInContainer> */}
                     <SlideInWrapper>
                         <Input label='Title:' readOnly={done} ref={dailyTitleRef} />
                         <TextArea type='normal' label='Description:' readOnly={done} ref={dailyDescriptionRef} />
@@ -51,7 +50,7 @@ const SlideQuestThree = () => {
                             <button onClick={addChangeHandler}>Add</button>
                         }
                     </SlideInWrapper>
-                </SlideInContainer>
+                {/* </SlideInContainer> */}
                 <SlideDescription>
                     <Quote slide='three' />
                     <Ulist slide='three' />

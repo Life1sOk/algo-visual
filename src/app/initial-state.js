@@ -16,6 +16,15 @@ export const initialAreas = {
         mainColor: '',
         icon: '',
         previewImg: '',
+        statistic: {
+            parts: 0,
+            quests: {
+                total: 0,
+                active: 0,
+                finished: 0,
+                expired: 0,
+            },
+        },
         parts: {
             allParts: [],
             circle: {

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const PartsOptionSelect = styled.select`
+export const Deadstyle = styled.input`
     background-color: rgba(0,0,0, .2);
     padding: 7px;
     color: white;
@@ -15,6 +15,14 @@ export const PartsOptionSelect = styled.select`
     }
 
     &:hover {
-        cursor: pointer;
+        cursor: text;
     }
+
+    ::-webkit-calendar-picker-indicator {
+        background-color: white;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }   
 `;

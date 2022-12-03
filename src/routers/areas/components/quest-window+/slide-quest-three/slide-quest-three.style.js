@@ -4,7 +4,7 @@ export const SlideSectionContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    border-right: 2px solid rgba(255,255,102);
+    /* border-right: 2px solid rgba(255,255,102); */
     width: 811px;
     height: 100%;
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};
@@ -13,7 +13,6 @@ export const SlideSectionContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
-    /* transform: ${props => props.active ? 'none' : 'translateX(1000px)'}; */
     transition: transform 1s ease-in-out;
 
     h2 {
@@ -23,8 +22,8 @@ export const SlideSectionContainer = styled.div`
 
 export const SlideWrapper = styled.div`
     width: 100%;
-    ${'' /* height: 100%; */}
-    ${'' /* margin-top: 10px; */}
+    height: 208.5px;
+    margin-top: 10px;
 
     display: flex;
     justify-content: space-around;
@@ -59,10 +58,9 @@ export const SlideDescription = styled.div`
 export const DisplayPoints = styled.div`
     width: 90%;
     min-height: 152px;
-    margin-top: 15px;
-    padding: 7px 0;
+    margin-top: 10px;
+    padding: 10px 0;
     border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
     overflow: auto;
 
     display: flex;

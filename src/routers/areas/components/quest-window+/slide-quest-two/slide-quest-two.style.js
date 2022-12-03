@@ -4,9 +4,9 @@ export const SlideSectionContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    border-right: 2px solid rgba(255,255,102);
+    /* border-right: 2px solid rgba(255,255,102); */
     width: 811px;
-    height: 400px;
+    height: 100%;
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};
 
     display: ${props => !props.active ? 'none' : 'flex'};
@@ -27,6 +27,7 @@ export const InDescWrapper = styled.div`
     gap: 60px;
 
     width: 90%;
+    height: 208.5px;
     margin-top: 10px;
 `;
 
@@ -41,6 +42,7 @@ export const SlideIn = styled.div`
 
 export const Date = styled.div`
     width: 100%;
+    padding: 0 2px;
 
     display: flex;
     justify-content: space-between;
@@ -53,7 +55,6 @@ export const DisplayPoints = styled.div`
     margin-top: 10px;
     padding: 10px 0;
     border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
     overflow: auto;
 
     display: flex;

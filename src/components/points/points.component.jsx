@@ -5,7 +5,6 @@ import { selectAuthUid } from "../../App/slices/auth.slice";
 import { deleteAchieve } from "../../App/slices/create-quest.slice";
 import { chageQuestPoint } from '../../App/slices/combined-areas.slice';
 import {  selectAreas } from "../../App/slices/areas-slice";
-import { setActivePoint, deleteActivePoint } from "../../utils/firebase/firebase";
 
 import { PointsContainer, Main, ButtonWrapper, PointsTitle, PointsDate, PointBack, PointsWrapper } from './points.style';
 import ButtonSd from '../button-sd/button-sd.component';
@@ -54,8 +53,8 @@ const Points = ({ data, show, questIndex, questTitle }) => {
                                 <Main>{description}</Main>
                             </PointsContainer>
                             <PointBack onClick={reverseHandler}>
-                                <button onClick={() => setChangedPointStatus(true)}>Activate</button>
-                                <button onClick={() => setChangedPointStatus(false)}>Deactivate</button>
+                                <button onClick={() => {}}>Activate</button>
+                                <button onClick={() => {}}>Deactivate</button>
                             </PointBack>
                         </PointsWrapper>
             }

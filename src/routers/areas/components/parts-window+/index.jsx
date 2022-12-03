@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import { setAreasParts } from "../../../../utils/firebase/firebase";
+import { updateAreasPartsCircle } from "../../../../utils/firebase/firebase";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
@@ -53,7 +53,7 @@ const PartsWindow = () => {
                 allParts,
                 circle: areasCircleData
             };
-            setAreasParts(uid, currentAreaTitle.toLowerCase(), dataToAdd);
+            updateAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), dataToAdd);
             dispatch(changePartStatusToReload(null));
         }
     }, [partStatus]);
