@@ -5,7 +5,6 @@ import { AsideLayout, MainLayout, PageLayout } from "../../Global-style/layouts"
 
 // -------------  Top level React Components ------------------- //
 import TitlePage from "../../Components/title-page/title-page.component";
-import Timer from "../../Components/timer/timer.component";
 
 // ------------ Page's Sections ----------------- //
 import SwitchSection from "./sections/switch/switch.section";
@@ -21,7 +20,6 @@ const DailyPage = () => {
                 <SwitchSection />
             </AsideLayout>
             <MainLayout>
-                <Timer />
                 <CombinedQuests />
             </MainLayout>
         </PageLayout>

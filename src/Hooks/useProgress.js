@@ -1,9 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect} from "react";
 
-export const useTimeDeadline = (created, deadline) => {
-    const [currentTime, setCurrentTime] = useState(0);
-    const [perSec, setPerSec] = useState(0);
-
+export const useTimeDeadline = (created, deadline, setSec, setHaveTo) => {
     const reformDeadline = Date.parse(deadline) / 1000;
     const reformCreated = Date.parse(created) / 1000;
     const now = Math.floor(Date.now() / 1000);
@@ -11,16 +8,11 @@ export const useTimeDeadline = (created, deadline) => {
     const hundred = reformDeadline - reformCreated;
     const haveTime = reformDeadline - now;
 
-    const day = useMemo(() => Math.round(8640000 / hundred), [hundred]);
-    const time = useMemo(() => Math.round(haveTime * 100 / hundred), [haveTime, hundred])
+    const sec = () => 2000 / hundred;
+    const have = () => haveTime * 100 / hundred;
 
     useEffect(() => {
-        setPerSec(day);
-        setCurrentTime(time);
-    }, [day, time])
-
-    return {
-        currentTime,
-        perSec
-    }
+        setSec(sec);
+        setHaveTo(have);
+    }, [])
 }

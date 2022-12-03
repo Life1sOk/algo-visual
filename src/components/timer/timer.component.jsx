@@ -2,29 +2,25 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import { useTimeDeadline } from '../../Hooks/useProgress';
-import { TimerContainer, Progress } from './timer.style';
+import { Progress } from './timer.style';
 
-const Timer = () => {
+const Timer = ({setTime}) => {
   const createdTime = "2022-11-05";
   const deadline = "2022-12-05";
 
-  const {currentTime, perSec} = useTimeDeadline(createdTime, deadline);
-  const [have, setHave] = useState(0);
+  const [haveTo, setHaveTo] = useState(0);
+  const [perSec, setPerSec] = useState(0);
+
+  useTimeDeadline(createdTime, deadline, setPerSec, setHaveTo);
 
   useEffect(() => {
-    setHave(currentTime);
-  }, [])
-  
-  // useEffect(() => {
-  //   const interval = setInterval(() => setHave(), 1000);
-
-  //   return () => clearInterval(interval);
-  // }, [days]);
+    const interval = setInterval(() => setHaveTo(haveTo - perSec), 20000);
+    setTime(haveTo);
+    return () => clearInterval(interval);
+  }, [haveTo]);
 
   return (
-    <TimerContainer>
-      <Progress time={currentTime * 10000000}/>
-    </TimerContainer>
+    <Progress time={haveTo}/>
   );
 };
 
