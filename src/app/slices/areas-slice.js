@@ -104,8 +104,10 @@ export const areasSlice = createSlice({
         },
         [getAreasData.fulfilled]: (state, { payload }) => {
             state.status = 'resolved';
-            state.sections = payload;
-            state.displaySection = payload.Health;
+            if(payload.Health) {
+                state.sections = payload;
+                state.displaySection = payload.Health;
+            }
         },
         [getAreasData.rejected]: (state, { payload }) => {
             state.status = 'rejected';

@@ -5,7 +5,7 @@ import TodoStyle from "./todo.style.js";
 
 const Todo = ({ quest, color, currentQuest, setCurrentQuest, index }) => {
     const { questName, description } = quest;
-    const textAreaRef = useRef();
+    const textAreaRef = useRef(null);
     const [generatedHeight, setGeneratedHeight] = useState(null);
     const [state, setState] = useState(false);
     const [done, setDone] = useState(false);
@@ -13,7 +13,7 @@ const Todo = ({ quest, color, currentQuest, setCurrentQuest, index }) => {
     useEffect(() => {
         const scrollHeight = textAreaRef.current.scrollHeight;
         setGeneratedHeight(scrollHeight);
-    }, []);
+    }, [state]);
 
     useEffect(() => {
         if (questName === currentQuest) setState(true);

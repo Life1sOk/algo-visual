@@ -16,6 +16,11 @@ import SignInSection from "./sections/sign-in/sign-in.section";
 
 // ------------ Page's React Components ----------------- //
 
+const users = {
+    one: '123123123@gmail.com, 123123123',
+    two: 'qweqwe@gmail.com, qweqweqwe',
+}
+
 // ------------- Lego --------------- //
 const AuthorizationPage = () => {
     const dispatch = useDispatch();
@@ -39,8 +44,8 @@ const AuthorizationPage = () => {
     return (
         <CenterLayout>
             <SignInSection />
-            <button onClick={async () => await createUserWithEaP('123123123@gmail.com', 123123123)}>autho</button>
-            <button onClick={async () => await signInWithEaP('123123123@gmail.com', 123123123)}>sign in</button>
+            <button onClick={async () => await createUserWithEaP('qweqwe@gmail.com', 'qweqweqwe')}>registr</button>
+            <button onClick={async () => await signInWithEaP('qweqwe@gmail.com', 'qweqweqwe')}>sign in</button>
         </CenterLayout>
     )
 }

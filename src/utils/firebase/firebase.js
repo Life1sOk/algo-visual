@@ -133,7 +133,11 @@ export const getAllQuests = async (uid) => {
     const getDocRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
     const datas = await getDoc(getDocRef);
 
-    return datas.data();
+    if(datas.exists()) {
+        return datas.data();
+    } else {
+        return {activePoints: [], all: []}
+    }
 };
 
 export const updateAllQuests = async (uid, datasToAdd) => {
@@ -175,7 +179,9 @@ export const getUsersDocsAreas = async (uid, type) => {
     const getDocRef = doc(db, 'users', uid, 'areas', type);
     const datas = await getDoc(getDocRef);
 
-    return datas.data();
+    if(datas.exists()) {
+        return datas.data();
+    }
 }
 
 // Parts //

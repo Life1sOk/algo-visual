@@ -19,6 +19,18 @@ const TodoCardTitle = styled.h3`
     align-items: center;
 `;
 
+const NothingInHere = styled.div`
+    width: 100%;
+    height: 200px;
+    background-color: grey;
+    border: 1px solid white;
+    font-style: italic;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 const ProgressBar = styled.div`
     text-align: center;
     border-radius: 0 0 20px 20px;
@@ -27,6 +39,7 @@ const ProgressBar = styled.div`
 `;
 
 TodoCardStyle.Title = TodoCardTitle;
+TodoCardStyle.NothingInHere = NothingInHere;
 TodoCardStyle.Bar = ProgressBar;
 
 export default TodoCardStyle;
