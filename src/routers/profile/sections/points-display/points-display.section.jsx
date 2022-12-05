@@ -12,7 +12,7 @@ const PointsDisplay = () => {
     return (
         <PointsDisplayContainer>
             {
-                activePoints.map(point => <Points key={point.id} data={point} />)
+                activePoints?.map(point => <Points key={point.id} data={point} />)
             }
         </PointsDisplayContainer>
     )

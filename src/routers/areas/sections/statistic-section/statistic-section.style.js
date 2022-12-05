@@ -7,4 +7,5 @@ export const StatisticDisplay = styled.div`
 
     display: flex;
     gap: 30px;
+    justify-content: space-around;
 `;

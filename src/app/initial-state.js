@@ -1,6 +1,6 @@
 const sectionStatistic = {
     statistic: {
-        parts: 0,
+        parts: 3,
         quests: {
             total: 0,
             active: 0,
@@ -48,26 +48,26 @@ const partGrowth = {
     parts: {
         allParts: [
             {
-                title: 'Career Growth',
+                title: 'Career',
                 description: 'Career growth is the journey towards your big-picture career vision. It’s the way you move from your first job out of college to eventually leading your own team.',
                 color: 'rgb(255,255,102)',
                 totalQuests: 0,
             },
             {
-                title: 'Learning Growth',
+                title: 'Learning',
                 description: 'Every day we must be better than yesterday. To do this, we need to constantly develop and master new skills.',
                 color: 'rgb(102,102,255)',
                 totalQuests: 0,
             },
             {
-                title: 'Hobby Growth',
+                title: 'Hobby',
                 description: 'Even if the hobby is our recreation, we can grow in this particular area and perhaps turn it into a career in the future.',
                 color: 'rgb(255,102,255)',
                 totalQuests: 0,
             },
         ],
         circle: {
-            labels: ['Career Growth', 'Learning Growth', 'Hobby Growth'],
+            labels: ['Career', 'Learning', 'Hobby'],
             datasets: [{
                 label: 'My First Dataset',
                 data: [0,0,0],
@@ -82,26 +82,26 @@ const partHealth = {
     parts: {
         allParts: [
             {
-                title: 'Emotion and Spiritual Health',
+                title: 'Emotion and Spiritual',
                 description: 'Be mentally strong, confident, calm, and a good person.',
                 color: 'rgb(255,102,178)',
                 totalQuests: 0,
             },
             {
-                title: 'Financial Health',
+                title: 'Financial',
                 description: "The dynamic relationship of one's financial and economic resources as they are applied to or impact the state of physical, mental and social well-being.",
                 color: 'rgb(255,178,102)',
                 totalQuests: 0,
             },
             {
-                title: 'Physical Health',
-                description: 'Physical health is the well-being of the body and the proper functioning of the organism of individuals. Being able to live comfortably to do the things that you want to do.',
+                title: 'Physical',
+                description: 'Physical health is the well-being of the body and the proper functioning of the organism of individuals.',
                 color: 'rgb(102,255,102)',
                 totalQuests: 0,
             },
         ],
         circle: {
-            labels: ['Emotion and Spiritual Health', 'Financial Health', 'Physical Health'],
+            labels: ['Emotion and Spiritual', 'Financial', 'Physical'],
             datasets: [{
                 label: 'My First Dataset',
                 data: [0,0,0],

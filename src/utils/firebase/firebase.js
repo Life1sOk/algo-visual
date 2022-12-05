@@ -146,9 +146,9 @@ export const updateAllQuests = async (uid, datasToAdd) => {
     const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
 
     try {
-        await updateDoc(docRef, {
+        await setDoc(docRef, {
             all: arrayUnion(datasToAdd)
-        });
+        }, {merge: true});
         console.log('datas combined')
     } catch (error) {
         console.log('oops, here is some error', error);
@@ -191,9 +191,7 @@ export const updateAreasPartsCircle = async (uid, area, datasToUp) => {
     const docRef = doc(db, 'users', uid, 'areas', area);
 
     try {
-        await updateDoc(docRef, {
-            parts: datasToUp
-        });
+        await setDoc(docRef, datasToUp, {merge: true});
         console.log('done digi don')
     } catch (error) {
         console.log('oops, here is some error', error);

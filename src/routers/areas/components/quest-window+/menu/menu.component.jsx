@@ -6,7 +6,7 @@ import { updateAllQuests, updateAreasPartsCircle } from "../../../../../utils/fi
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../App/slices/quest-slides";
 import { selectCreateQuest, setReset } from "../../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
-import {  partsQuestCount, selectDisplaySectionTitle, selectCircle, selectAllParts, selectPartStatus, changePartStatusToReload } from "../../../../../App/slices/areas-slice";
+import {  partsQuestCount, selectDisplaySectionTitle, selectCircle, selectAllParts, selectPartStatus, changePartStatusToReload, selectStatistic, selectDisplaySection} from "../../../../../App/slices/areas-slice";
 import { addQuestFromCurrentArea, selectCombinedAll } from "../../../../../App/slices/combined-areas.slice";
 
 import {PlanNavigation, BigButton} from './menu.style';
@@ -25,9 +25,11 @@ const Menu = () => {
     const threeState = useSelector(selectSlideThree);
     const slidesCount = useSelector(selectSlidesCount);
 
+    const currentArea = useSelector(selectDisplaySection);
     const areasCircleData = useSelector(selectCircle);
     const partStatus = useSelector(selectPartStatus);
     const allParts = useSelector(selectAllParts);
+    const partStatistic = useSelector(selectStatistic);
 
     const oneSlideChangeHandler = () => dispatch(oneActive());
     const twoSlideChangeHandler = () => dispatch(twoActive());
@@ -50,11 +52,7 @@ const Menu = () => {
 
     useEffect(() => {
         if (partStatus === 'reload') {
-            const dataToAdd = {
-                allParts,
-                circle: areasCircleData
-            };
-            updateAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), dataToAdd);
+            updateAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), currentArea);
             dispatch(changePartStatusToReload(null));
         }
     }, [partStatus]);

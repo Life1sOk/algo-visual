@@ -5,21 +5,24 @@ import { useSelector } from "react-redux";
 import { selectCircle } from "../../../../App/slices/areas-slice";
 
 import NothingShow from "../../../../Components/nothing-show/nothing-show.component";
-import { PartsCircleContainer, BroCircle } from './parts-circle.style';
+import { PartsCircleContainer} from './parts-circle.style';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
 Chart.register(ArcElement, Tooltip, Legend);
 
 const pieSetting = {
-        plugins: {
-            legend: {
-                labels: {
-                    boxWidth: 30,
-                    font: {
-                        size: 14
-                    }
-                }
+    plugins: {
+        legend: {
+            labels: {
+                boxWidth: 28,
+                font: {
+                    size: 15,
+                },
+                color: 'rgb(255, 99, 132)',
+                usePointStyle: true,
+                pointStyle: 'circle',
             }
         }
+    }
 };
 
 const PartsCircle = () => {

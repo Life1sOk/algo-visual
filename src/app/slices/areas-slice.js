@@ -104,9 +104,19 @@ export const areasSlice = createSlice({
         },
         [getAreasData.fulfilled]: (state, { payload }) => {
             state.status = 'resolved';
-            if(payload.Health) {
-                state.sections = payload;
-                state.displaySection = payload.Health;
+            const { Health, People, Environment, Growth } = payload;
+            if(Health) {
+                state.sections.Health = Health;
+            }
+            if(People) {
+                state.sections.People = People;
+            }
+            if(Environment) {
+                state.sections.Environment = Environment;
+                state.displaySection = Environment;
+            }
+            if(Growth) {
+                state.sections.Growth = Growth;
             }
         },
         [getAreasData.rejected]: (state, { payload }) => {

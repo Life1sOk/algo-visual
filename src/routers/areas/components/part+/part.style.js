@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const PartStyle = styled.div`
     /* width: 100%; */
     width: 290px;
-    height: 141px;
+    height: 151px;
     border: 1px solid white;
     border-radius: 10px;
     padding: 10px;
@@ -12,12 +12,12 @@ const PartStyle = styled.div`
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 4px;
 `;
 
 const Title = styled.div`
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
 
     display: flex;
     justify-content: space-between;
@@ -38,8 +38,12 @@ const TotalQuests = styled.div`
 
 const Description = styled.div`
     width: 100%;
+    height: 71px;
     font-size: 14px;
     font-style: italic;
+    overflow: scroll;
+    padding-right: 5px;
+    border-right: 1px solid white;
 `;
 
 PartStyle.Title = Title;
