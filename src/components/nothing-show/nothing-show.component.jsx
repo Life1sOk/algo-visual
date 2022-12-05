@@ -2,9 +2,9 @@ import React from "react";
 
 import { NothingShowContainer } from './nothing-show.style';
 
-const NothingShow = ({ name }) => {
+const NothingShow = ({ name, height, width, color }) => {
     return (
-        <NothingShowContainer>{name}</NothingShowContainer>
+        <NothingShowContainer height={height} width={width} color={color}>{name}</NothingShowContainer>
     )
 }
 

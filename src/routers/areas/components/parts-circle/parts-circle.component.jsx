@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectCircle } from "../../../../App/slices/areas-slice";
 
 import NothingShow from "../../../../Components/nothing-show/nothing-show.component";
-import { PartsCircleContainer } from './parts-circle.style';
+import { PartsCircleContainer, BroCircle } from './parts-circle.style';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
 Chart.register(ArcElement, Tooltip, Legend);
 
