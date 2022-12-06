@@ -48,19 +48,33 @@ const Back = styled.div`
 
 const Title = styled.span`
     font-size: 16px;
-    padding: 5px 0 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid rgb(224,62,26);
+    text-overflow: ellipsis;
+    overflow: hidden;
 `;
 
 const Description = styled.span`
-    width: 100%;
+    /* width: 100%;
     height: 100%;
     font-size: 14px;
     font-style: italic;
-    border-top: 1px solid rgb(224,62,26);
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden; */
+    
+    padding: 5px;
+    margin: auto 0;
+    font-size: 14px;
+    font-style: italic;
+    background-color: initial;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 `;
 
 TodoStyle.Front = Front;

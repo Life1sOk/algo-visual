@@ -14,7 +14,7 @@ const Point = ({ data, show, questIndex, questTitle }) => {
     return (
         <PointStyle activate={state}>
             <PointStyle.Front onClick={reverseHandler} status={status}>
-                <PointStyle.Title>{title}</PointStyle.Title>
+                <PointStyle.Title title={title}>{title}</PointStyle.Title>
                 <PointStyle.Date>{`Date: ${untilTime}`}</PointStyle.Date>
                 <PointStyle.Description>{description}</PointStyle.Description>
             </PointStyle.Front>

@@ -20,20 +20,20 @@ const partEnvironment = {
                 totalQuests: 0,
             },
             {
-                title: 'Home Environment',
+                title: 'Home',
                 description: 'Everything you need to create your dream home.',
                 color: 'rgb(192,192,192)',
                 totalQuests: 0,
             },
             {
-                title: 'Work Environment',
+                title: 'Work',
                 description: 'There is a place where you can focus on your work and be as productive and successful as possible.',
                 color: 'rgb(0,128,255)',
                 totalQuests: 0,
             },
         ],
         circle: {
-            labels: ['Adventures', 'Home Environment', 'Work Environment'],
+            labels: ['Adventures', 'Home', 'Work'],
             datasets: [{
                 label: 'My First Dataset',
                 data: [0,0,0],
@@ -82,7 +82,7 @@ const partHealth = {
     parts: {
         allParts: [
             {
-                title: 'Emotion and Spiritual',
+                title: 'Mental',
                 description: 'Be mentally strong, confident, calm, and a good person.',
                 color: 'rgb(255,102,178)',
                 totalQuests: 0,
@@ -101,7 +101,7 @@ const partHealth = {
             },
         ],
         circle: {
-            labels: ['Emotion and Spiritual', 'Financial', 'Physical'],
+            labels: ['Mental', 'Financial', 'Physical'],
             datasets: [{
                 label: 'My First Dataset',
                 data: [0,0,0],
@@ -116,7 +116,7 @@ const partPeople = {
     parts: {
         allParts: [
             {
-                title: 'Home People',
+                title: 'Home',
                 description: 'Your connection to family and people around you at home.',
                 color: 'rgb(153, 255,255)',
                 totalQuests: 0,
@@ -128,14 +128,14 @@ const partPeople = {
                 totalQuests: 0,
             },
             {
-                title: 'Work People',
+                title: 'Work',
                 description: 'The people you have at work and building working relationships.',
                 color: 'rgb(255,102,102)',
                 totalQuests: 0,
             },
         ],
         circle: {
-            labels: ['Home People', 'Wider Community','Work People'],
+            labels: ['Home', 'Wider Community','Work'],
             datasets: [{
                 label: 'My First Dataset',
                 data: [0,0,0],

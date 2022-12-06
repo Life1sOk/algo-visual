@@ -35,6 +35,7 @@ const Title = styled.div`
         font-size: 17px;
         background-color: red;
         border-radius: 50%;
+        flex-shrink: 0;
 
         display: flex;
         justify-content: center;
@@ -43,6 +44,8 @@ const Title = styled.div`
 
     .quest-title {
         font-size: 22px;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 `;
 

@@ -17,7 +17,7 @@ const QuestWindow = ({ title }) => {
             <Menu title={title}/>
             <SlideQuestOne />
             <SlideQuestTwo />
-            <SlideQuestThree />
+            <SlideQuestThree /> 
         </PlanSectionContainer>
     )
 }

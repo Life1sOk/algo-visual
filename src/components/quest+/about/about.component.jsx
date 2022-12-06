@@ -14,7 +14,7 @@ const About = ({ id, data, area }) => {
             </AboutStyle.RoadLinks>
             <AboutStyle.Title>
                 <span className="quest-id">{id}</span>
-                <h3 className="quest-title">{title}</h3>
+                <h3 className="quest-title" title={title}>{title}</h3>
             </AboutStyle.Title>
             <Line label='Current state:' description={current}/>
             <Line label='Want to:' description={mainGoal}/>

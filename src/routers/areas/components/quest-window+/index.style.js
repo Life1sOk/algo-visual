@@ -12,9 +12,9 @@ export const PlanSectionContainer = styled.div`
     /* overflow: scroll; */
     /* transition: height 1.2s ease-in-out; */
 
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; */
     /* gap: 5px; */
 `;

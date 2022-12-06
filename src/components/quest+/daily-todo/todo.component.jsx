@@ -16,7 +16,7 @@ const Todo = ({ data, title }) => {
     return (
         <TodoStyle activate={open}>
             <TodoStyle.Front onClick={reverseHandler} hover={true}>
-                <TodoStyle.Title>{questName}</TodoStyle.Title>
+                <TodoStyle.Title title={questName}>{questName}</TodoStyle.Title>
                 <TodoStyle.Description>{description}</TodoStyle.Description>
             </TodoStyle.Front>
             <TodoStyle.Back onClick={reverseHandler}>

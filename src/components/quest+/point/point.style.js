@@ -47,6 +47,8 @@ const Title = styled.span`
     font-size: 16px;
     padding: 4px 20px;
     background-color: blue;
+    text-overflow: ellipsis;
+    overflow: hidden;
 `;
 
 const Date = styled.span`
@@ -65,6 +67,8 @@ const Description = styled.span`
     background-color: initial;
     text-align: center;
     color: blue;
+    text-overflow: ellipsis;
+    overflow: hidden;
 `;
 
 PointStyle.Front = Front;
