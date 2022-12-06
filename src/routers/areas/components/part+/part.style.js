@@ -28,6 +28,7 @@ const Title = styled.div`
 const TotalQuests = styled.div`
     width: 100%;
     font-size: 14px;
+      font-style: italic;
 
     .totalquest {
         margin-left: 10px;
@@ -40,7 +41,6 @@ const Description = styled.div`
     width: 100%;
     height: 71px;
     font-size: 14px;
-    font-style: italic;
     overflow: scroll;
     padding-right: 5px;
     border-right: 1px solid white;

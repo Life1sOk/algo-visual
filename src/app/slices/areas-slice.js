@@ -51,6 +51,9 @@ export const areasSlice = createSlice({
             state.displaySection.parts.circle.labels.push(title);
             state.displaySection.parts.circle.datasets[0].data.push(totalQuests);
             state.displaySection.parts.circle.datasets[0].backgroundColor.push(color);
+            // Statistic
+            state.displaySection.statistic.parts = state.displaySection.statistic.parts + 1;
+            // Merge
             state.sections[payload] = state.displaySection;
         },
         partsQuestCount: (state, { payload }) => {
@@ -64,6 +67,10 @@ export const areasSlice = createSlice({
                 }
             });
             state.displaySection.parts.circle.datasets[0].data[activeIndex] = state.displaySection.parts.circle.datasets[0].data[activeIndex] + payload.count;
+
+            state.displaySection.statistic.quests.active += 1;
+            state.displaySection.statistic.quests.total += 1;
+
             state.sections[payload.area] = state.displaySection;
         },
         deletePart: (state, { payload }) => {
@@ -89,13 +96,13 @@ export const areasSlice = createSlice({
             state.displaySection.parts.circle.labels = newCircleLabels;
             state.displaySection.totalParts -= 1;
 
+            state.displaySection.statistic.parts = state.displaySection.statistic.parts - 1;
+
             state.sections[payload.area] = state.displaySection;
         },
         changePartStatusToReload: (state, { payload }) => {
             state.partStatus = payload;
-        },
-        // Statistic
-        
+        },        
     },
     extraReducers: {
         [getAreasData.pending]: (state) => {

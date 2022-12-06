@@ -21,6 +21,8 @@ const Points = styled.div`
 `;
 
 const Balls = styled.div`
+    width: 35px;
+    height: 100%;
     padding-top: 10px;
 
     display: flex;

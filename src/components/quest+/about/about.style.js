@@ -24,18 +24,12 @@ const AboutStyle = styled.div`
 `;
 
 const Title = styled.div`
-    position: relative;
     width: 100%;
-
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
 
     .quest-id {
-        position: absolute;
-        top: 0px;
-        left: -5px;
-
         width: 30px;
         height: 30px;
         font-size: 17px;
@@ -48,7 +42,7 @@ const Title = styled.div`
     }
 
     .quest-title {
-        font-size: 24px;
+        font-size: 22px;
     }
 `;
 

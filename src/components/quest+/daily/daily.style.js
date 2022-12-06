@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const DailyStyle = styled.div`
-    /* width: 253px; */
+    width: 215px;
     height: 345px;
     background-color: rgb(20, 25, 50);
     padding: 10px;
