@@ -2,9 +2,9 @@ import React from "react";
 
 import { WindowContainer, BlackBox, Content } from './black-box.style';
 
-const BlackBoxWindow = ({children, handler}) => {
+const BlackBoxWindow = ({children, handler, state}) => {
     return(
-        <WindowContainer>
+        <WindowContainer state={state}>
             <BlackBox onClick={handler}/>
             <Content>
                 {children} 

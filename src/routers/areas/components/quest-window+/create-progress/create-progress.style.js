@@ -1,19 +1,16 @@
 import styled from 'styled-components';
 
 export const PlanNavigation = styled.div`
-    position: absolute;
-    top: -114px;
-    right: 0;
-
     width: 811px;
-    height: 114px;
+    /* height: 114px; */
     padding: 7px;
-    /* background-color: rgb(0,33,66); */
+    border-top: 1px solid white;
+    background-color: rgb(6,34,60);
+    border-radius: 0 0 20px 20px;
     flex-shrink: 0;
     z-index: 10;
 
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
     gap: 80px;
@@ -26,5 +23,4 @@ export const PlanNavigation = styled.div`
 export const BigButton = styled.button`
     width: 100px;
     height: 60px;
-    /* margin-bottom: 20px; */
 `;

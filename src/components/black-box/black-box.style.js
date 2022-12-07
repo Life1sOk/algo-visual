@@ -9,7 +9,7 @@ export const WindowContainer = styled.div`
     background-color: rgba(0,0,0, .7);
     z-index: 100;
 
-    display: flex;
+    display: ${props => props.state ? 'flex' : 'none'};
     justify-content: center;
     align-items: center;
 `;

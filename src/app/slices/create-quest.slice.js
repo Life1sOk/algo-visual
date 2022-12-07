@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     reset: 'no',
+    windowStateOpen: false,
     add: {
         createdTime: '',
         main: {},
@@ -33,17 +34,21 @@ export const createQuestSlice = createSlice({
         },
         deleteDaily: (state, { payload }) => {
             state.add.daily = state.add.daily.filter(daily => daily.id !== payload);
-        }
+        },
+        // Window open / close
+        windowHandler: (state, {payload}) => {
+            state.windowStateOpen = payload;
+        },
     }
 });
 
 export const selectCreateQuest = (state) => state.createQuest.add;
+export const selectWindowStateOpen = (state) => state.createQuest.windowStateOpen;
 export const selectCreateQuestMain = (state) => state.createQuest.add.main;
 export const selectCreateQuestAchieve = (state) => state.createQuest.add.achieve;
 export const selectCreateQuestDaily = (state) => state.createQuest.add.daily;
-export const selectCreateQuestState = (state) => state.createQuest.state;
 export const selectCreateQuestReset = (state) => state.createQuest.reset;
 
-export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily } = createQuestSlice.actions;
+export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily, windowHandler } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

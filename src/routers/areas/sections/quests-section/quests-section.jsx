@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { windowHandler } from "../../../../App/slices/create-quest.slice";
 import { selectDisplaySectionTitle } from "../../../../App/slices/areas-slice";
 import { selectCombinedAll } from "../../../../App/slices/combined-areas.slice";
 
 // Global style
 import { BlockLayout } from "../../../../Global-style/layouts";
-import BlackBoxWindow from "../../../../Components/black-box/black-box.component";
 
 import { QuestsSectionDisplay } from './quests-section.style';
 import QuestWindow from "../../components/quest-window+/index";
@@ -14,23 +14,16 @@ import BlockHat from "../../../../Components/block-hat/block-hat.component";
 import Quest from "../../../../Components/quest+/index";
 
 const QuestsSection = () => {
+    const dispatch = useDispatch();
     const title = useSelector(selectDisplaySectionTitle);
     const allQuests = useSelector(selectCombinedAll);
     const filteredQuests = allQuests?.filter(quest => quest.title === title);
-    
-    const [window, setWindow] = useState(false);
 
-    const openWindowHandler = () => setWindow(true);
-    const closeWindowHandler = () => setWindow(false);
+    const openWindowHandler = () => dispatch(windowHandler(true));
 
     return (
         <>
-        {
-            window && 
-            <BlackBoxWindow handler={closeWindowHandler}>
-                <QuestWindow title={title}/>
-            </BlackBoxWindow>
-        }
+        <QuestWindow title={title}/>
         <BlockLayout>
             <BlockHat title='Quests' setting='Add another quest' handler={openWindowHandler}/>
             <QuestsSectionDisplay>

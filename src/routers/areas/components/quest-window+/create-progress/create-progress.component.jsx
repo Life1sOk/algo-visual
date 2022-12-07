@@ -9,10 +9,10 @@ import { selectAuthUid } from "../../../../../App/slices/auth.slice";
 import {  partsQuestCount, selectDisplaySectionTitle, selectCircle, selectAllParts, selectPartStatus, changePartStatusToReload, selectStatistic, selectDisplaySection} from "../../../../../App/slices/areas-slice";
 import { addQuestFromCurrentArea, selectCombinedAll } from "../../../../../App/slices/combined-areas.slice";
 
-import {PlanNavigation, BigButton} from './menu.style';
+import {PlanNavigation, BigButton} from './create-progress.style';
 import SlideSwitcher from "../slide-switcher/slide-switcher.component";
 
-const Menu = () => {
+const CreateProgress = () => {
     const dispatch = useDispatch();
 
     const uid = useSelector(selectAuthUid);
@@ -67,4 +67,4 @@ const Menu = () => {
     )
 }
 
-export default Menu;
+export default CreateProgress;
