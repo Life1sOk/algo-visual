@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     reset: 'no',
     windowStateOpen: false,
+    whichOne: 'Add',
     add: {
         createdTime: '',
         main: {},
@@ -39,16 +40,21 @@ export const createQuestSlice = createSlice({
         windowHandler: (state, {payload}) => {
             state.windowStateOpen = payload;
         },
+        // Wich One state 
+        widnowSwitcher: (state, {payload}) => {
+            state.whichOne = payload;
+        },
     }
 });
 
 export const selectCreateQuest = (state) => state.createQuest.add;
 export const selectWindowStateOpen = (state) => state.createQuest.windowStateOpen;
+export const selectWichOne = (state) => state.createQuest.whichOne;
 export const selectCreateQuestMain = (state) => state.createQuest.add.main;
 export const selectCreateQuestAchieve = (state) => state.createQuest.add.achieve;
 export const selectCreateQuestDaily = (state) => state.createQuest.add.daily;
 export const selectCreateQuestReset = (state) => state.createQuest.reset;
 
-export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily, windowHandler } = createQuestSlice.actions;
+export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily, windowHandler, widnowSwitcher } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

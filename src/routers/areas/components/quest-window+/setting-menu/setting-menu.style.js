@@ -15,8 +15,7 @@ export const MenuSwitcher = styled.div`
     padding: 7px;
     color: white;
     background-color: rgb(6,34,60);
-    /* border: 1px solid rgb(6,34,60); */
-    border: 1px solid orange;
+    border: 2px solid ${props => props.active === props.title ? 'rgb(255,98,0)' : 'rgb(6,34,60)'};
     border-radius: 20px;
 
     display: flex;
@@ -26,12 +25,4 @@ export const MenuSwitcher = styled.div`
     &:hover {
         cursor: pointer;
     }
-`;
-
-export const BottomHat = styled.div`
-    width: 100%;
-    height: 20px;
-    background-color: rgb(6,34,60);
-
-    border-radius: 20px 20px 0 0;
 `;

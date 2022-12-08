@@ -1,16 +1,21 @@
 import React from "react";
 
-import { SettingMenuStyle, MenuSwitcher,BottomHat } from './setting-menu.style';
+import { useSelector, useDispatch } from "react-redux";
+import { selectWichOne, widnowSwitcher } from "../../../../../App/slices/create-quest.slice";
+
+import { SettingMenuStyle, MenuSwitcher} from './setting-menu.style';
 
 const SettingMenu = () => {
+    const dispatch = useDispatch();
+    const wichWindow = useSelector(selectWichOne);
+
+    const switchHandler = (wich) => dispatch(widnowSwitcher(wich))
+
     return(
-        <>
-            <SettingMenuStyle>
-                <MenuSwitcher>Add</MenuSwitcher>
-                <MenuSwitcher>Fix</MenuSwitcher>
-            </SettingMenuStyle>
-            <BottomHat />
-        </>
+        <SettingMenuStyle>
+            <MenuSwitcher onClick={() => switchHandler('Add')} active={wichWindow} title='Add'>Add</MenuSwitcher>
+            <MenuSwitcher onClick={() => switchHandler('Fix')} active={wichWindow} title='Fix'>Fix</MenuSwitcher>
+        </SettingMenuStyle>
     )
 }
 
