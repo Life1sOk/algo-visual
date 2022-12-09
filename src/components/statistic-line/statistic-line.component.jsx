@@ -2,10 +2,10 @@ import React from "react"
 
 import { LineContainer, LineTitle } from "./statistic-line.style";
 
-const StatisticLine = ({name, data, type}) => {
+const StatisticLine = ({name, data, type, size}) => {
     return(
-        <LineContainer type={type}>
-            <LineTitle>{name}</LineTitle>
+        <LineContainer type={type} size={size}>
+            <span>{name}</span>
             <span>{data}</span>
         </LineContainer>
     )
