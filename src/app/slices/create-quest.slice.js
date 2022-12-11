@@ -4,12 +4,14 @@ const initialState = {
     reset: 'no',
     windowStateOpen: false,
     whichOne: 'Add',
+    fixState: false,
     add: {
         createdTime: '',
         main: {},
         achieve: [],
         daily: [],
     },
+    storeOldQuest: {},
 }
 
 export const createQuestSlice = createSlice({
@@ -36,12 +38,21 @@ export const createQuestSlice = createSlice({
         deleteDaily: (state, { payload }) => {
             state.add.daily = state.add.daily.filter(daily => daily.id !== payload);
         },
+        // Fix quest
+        fixQuest: (state, {payload}) => {
+            const { quest } = payload;
+            state.add = quest;
+            state.storeOldQuest = payload;
+        },
+        fixState: (state, {payload}) => {
+            state.fixState = payload;
+        },
         // Window open / close
         windowHandler: (state, {payload}) => {
             state.windowStateOpen = payload;
         },
         // Wich One state 
-        widnowSwitcher: (state, {payload}) => {
+        windowSwitcher: (state, {payload}) => {
             state.whichOne = payload;
         },
     }
@@ -50,11 +61,13 @@ export const createQuestSlice = createSlice({
 export const selectCreateQuest = (state) => state.createQuest.add;
 export const selectWindowStateOpen = (state) => state.createQuest.windowStateOpen;
 export const selectWichOne = (state) => state.createQuest.whichOne;
+export const selectFixState = (state) => state.createQuest.fixState;
+export const selectOldFixQuest = (state) => state.createQuest.storeOldQuest;
 export const selectCreateQuestMain = (state) => state.createQuest.add.main;
 export const selectCreateQuestAchieve = (state) => state.createQuest.add.achieve;
 export const selectCreateQuestDaily = (state) => state.createQuest.add.daily;
 export const selectCreateQuestReset = (state) => state.createQuest.reset;
 
-export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily, windowHandler, widnowSwitcher } = createQuestSlice.actions;
+export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily, windowHandler, windowSwitcher, fixQuest, fixState } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

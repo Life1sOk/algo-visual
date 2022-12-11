@@ -164,11 +164,11 @@ export const deleteQuestCombined = async (uid, quest) => {
         await updateDoc(docRefComb, {
             all: arrayRemove(quest)
         });
-        console.log('data deleted')
+        console.log('data deleted');
     } catch (error) {
         console.log('oops, here is some error', error);
     }
-}
+};
 
 // ---------------- ------------------ ---------------- //
 

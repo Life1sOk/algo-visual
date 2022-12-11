@@ -12,12 +12,10 @@ const SlideQuestFix = () => {
     const allQuests = useSelector(selectCombinedAll);
     const filteredQuests = allQuests?.filter(quest => quest.title === title);
 
-    const check = [1,2,3,4,5,6,7]
-
     return(
         <SlideQuestFixContainer>
             {
-                filteredQuests.map((quest, index) => <QuestFix key={index} data={quest.quest}/>)
+                filteredQuests.map((quest, index) => <QuestFix key={index} data={quest}/>)
             }
         </SlideQuestFixContainer>
     )

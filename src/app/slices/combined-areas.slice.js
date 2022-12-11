@@ -26,9 +26,7 @@ const combinedAreasSlice = createSlice({
     initialState,
     reducers: {
         addQuestFromCurrentArea: (state, { payload }) => {
-            const { title, quest } = payload;
-            let generateNewId = state.all.length + 1;
-            state.all.push({ title, quest: { ...quest, id: generateNewId } });
+            state.all.push(payload);
             state.status = 'reload';
         },
         deleteQuestFromCombined: (state, { payload }) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideOne, oneDone, twoActive } from "../../../../../App/slices/quest-slides";
-import { mainAccept, selectCreateQuestReset } from "../../../../../App/slices/create-quest.slice";
+import { mainAccept, selectCreateQuestReset, selectFixState, selectCreateQuestMain } from "../../../../../App/slices/create-quest.slice";
 
 import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons, SlideTop } from './slide-quest-one.style';
 import Input from "../../input/input.component";
@@ -15,20 +15,24 @@ import Deadline from "../deadline/deadline.component";
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
     const resetState = useSelector(selectCreateQuestReset);
+
+    const fixState = useSelector(selectFixState);
+    const forFixMain = useSelector(selectCreateQuestMain);
+
     const slidesState = useSelector(selectSlideOne);
     const { active, done } = slidesState;
 
-    const pickPartRef = useRef();
-    const goalTitleRef = useRef();
-    const goalCurrentStateRef = useRef();
-    const goalWantToRef = useRef();
-    const goalDesctiptionRef = useRef();
-    const deadline = useRef();
+    const pickPartRef = useRef(null);
+    const goalTitleRef = useRef(null);
+    const goalCurrentStateRef = useRef(null);
+    const goalWantToRef = useRef(null);
+    const goalDesctiptionRef = useRef(null);
+    const deadlineRef = useRef(null);
 
     const slideOneDoneHandler = () => {
         const goalSlideState = {
             part: pickPartRef.current.value,
-            deadline: deadline.current.value,
+            deadline: deadlineRef.current.value,
             title: goalTitleRef.current.value,
             current: goalCurrentStateRef.current.value,
             mainGoal: goalWantToRef.current.value,
@@ -57,12 +61,26 @@ const SlideQuestOne = () => {
         }
     }, [resetState]);
 
+    useEffect(() => {
+        if(!fixState) return;
+        
+        const { deadline, part, title, current, mainGoal, description } = forFixMain;
+        
+        deadlineRef.current.value = deadline;
+        pickPartRef.current.value = part;
+        goalTitleRef.current.value = title;
+        goalCurrentStateRef.current.value = current;
+        goalWantToRef.current.value = mainGoal;
+        goalDesctiptionRef.current.value = description;
+        
+    } , [fixState])
+
     return (
         <SlideSectionContainer active={active} done={done}>
             <SlideWrapper>
                 <SlideInContainer>
                     <SlideTop>
-                        <Deadline ref={deadline}/>
+                        <Deadline ref={deadlineRef}/>
                         <PartsOption ref={pickPartRef} />
                     </SlideTop>
                     <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />

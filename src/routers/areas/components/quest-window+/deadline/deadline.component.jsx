@@ -1,8 +1,8 @@
 import React, {forwardRef} from "react";
 
-import {Deadstyle} from './deadline.style';
+import { Deadstyle } from './deadline.style';
 
-const Deadline = forwardRef((_props, ref) => {
+const Deadline = forwardRef((_, ref) => {
     let afterDate = new Date().toJSON().slice(0, 10);
 
     return(
