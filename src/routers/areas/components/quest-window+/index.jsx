@@ -28,7 +28,7 @@ const QuestWindow = ({ title }) => {
 
     const closeWindowHandler = () => {
         dispatch(windowHandler(false));
-        setAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), currentArea, true);
+        // setAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), currentArea, true);
     };
 
     return (

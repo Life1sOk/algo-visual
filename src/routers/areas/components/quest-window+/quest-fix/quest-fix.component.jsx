@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import { deleteQuestCombined } from "../../../../../utils/firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteQuestFromCombined } from '../../../../../App/slices/combined-areas.slice';
-import { partsQuestCount } from "../../../../../App/slices/areas-slice";
+import { partsQuestCount, changePartStatusToReload } from "../../../../../App/slices/areas-slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
 import { fixQuest, fixState, windowSwitcher } from "../../../../../App/slices/create-quest.slice";
 
@@ -17,7 +17,7 @@ const QuestFix = ({data}) => {
     const { main, achieve, daily, createdTime } = quest;
 
     const dispatch = useDispatch();
-    const uid = useSelector(selectAuthUid);
+    const uid = useSelector(selectAuthUid);;
 
     const createdTimeFormated = useMemo(() => reFormatTime(createdTime), [createdTime]);
     const deadlineFormated = useMemo(() => reFormatTime(main.deadline), [main.deadline]);
@@ -32,9 +32,10 @@ const QuestFix = ({data}) => {
     }
 
     const deleteCurrentQuestHandler = async () => {
-        dispatch(deleteQuestFromCombined(id));
         dispatch(partsQuestCount({ title: quest.main.part, count: -1, area: title }));
         deleteQuestCombined(uid, data);
+        dispatch(deleteQuestFromCombined(id));
+        dispatch(changePartStatusToReload('reload'));
     };
     
     return(
