@@ -58,22 +58,20 @@ const SlideQuestOne = () => {
             goalCurrentStateRef.current.value = '';
             goalWantToRef.current.value = '';
             goalDesctiptionRef.current.value = '';
+        } 
+        
+        if(fixState) {
+            const { deadline, part, title, current, mainGoal, description } = forFixMain;
+            
+            deadlineRef.current.value = deadline;
+            pickPartRef.current.value = part;
+            goalTitleRef.current.value = title;
+            goalCurrentStateRef.current.value = current;
+            goalWantToRef.current.value = mainGoal;
+            goalDesctiptionRef.current.value = description;
         }
-    }, [resetState]);
+    }, [resetState, fixState]);
 
-    useEffect(() => {
-        if(!fixState) return;
-        
-        const { deadline, part, title, current, mainGoal, description } = forFixMain;
-        
-        deadlineRef.current.value = deadline;
-        pickPartRef.current.value = part;
-        goalTitleRef.current.value = title;
-        goalCurrentStateRef.current.value = current;
-        goalWantToRef.current.value = mainGoal;
-        goalDesctiptionRef.current.value = description;
-        
-    } , [fixState])
 
     return (
         <SlideSectionContainer active={active} done={done}>
@@ -81,7 +79,7 @@ const SlideQuestOne = () => {
                 <SlideInContainer>
                     <SlideTop>
                         <Deadline ref={deadlineRef}/>
-                        <PartsOption ref={pickPartRef} />
+                        <PartsOption ref={pickPartRef} disabled={fixState}/>
                     </SlideTop>
                     <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />
                     <TextArea type='normal' label='Current state:' readOnly={done} ref={goalCurrentStateRef} />

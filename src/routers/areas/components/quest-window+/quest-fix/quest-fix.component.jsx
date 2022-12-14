@@ -1,8 +1,9 @@
-import React, {useMemo} from "react";
+import React, { useMemo } from "react";
 
 import { deleteQuestCombined } from "../../../../../utils/firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteQuestFromCombined } from '../../../../../App/slices/combined-areas.slice';
+import { partsQuestCount } from "../../../../../App/slices/areas-slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
 import { fixQuest, fixState, windowSwitcher } from "../../../../../App/slices/create-quest.slice";
 
@@ -12,7 +13,7 @@ import StatisticLine from "../../../../../Components/statistic-line/statistic-li
 import Button from "../../../../../Components/button/button.component";
 
 const QuestFix = ({data}) => {
-    const { id, quest } = data;
+    const { id, quest, title } = data;
     const { main, achieve, daily, createdTime } = quest;
 
     const dispatch = useDispatch();
@@ -30,12 +31,12 @@ const QuestFix = ({data}) => {
         dispatch(windowSwitcher('Add'));
     }
 
-    const deleteCurrentQuestHandler = () => {
-        // dispatch(deleteQuestFromCombined(id));
-        // deleteQuestCombined(uid, data);
-        console.log('just off for a moment')
+    const deleteCurrentQuestHandler = async () => {
+        dispatch(deleteQuestFromCombined(id));
+        dispatch(partsQuestCount({ title: quest.main.part, count: -1, area: title }));
+        deleteQuestCombined(uid, data);
     };
-
+    
     return(
         <QuestFixContainer>
             <Title>{main.title}</Title>

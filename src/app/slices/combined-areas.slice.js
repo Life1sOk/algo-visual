@@ -29,6 +29,9 @@ const combinedAreasSlice = createSlice({
             state.all.push(payload);
             state.status = 'reload';
         },
+        fixCurrentQuest: (state, {payload}) => {
+            state.all = state.all.map(quest => quest.id === payload.id ? payload : quest);
+        },
         deleteQuestFromCombined: (state, { payload }) => {
             state.all = state.all.filter(quest => quest.id !== payload);
         },
@@ -67,6 +70,6 @@ export const selectCombinedAll = (state) => state.combined.all;
 export const selectCombinedStatus = (state) => state.combined.status;
 export const selectActivePoints = (state) => state.combined.activePoints;
 
-export const { addQuestFromCurrentArea, chageQuestPoint, deleteQuestFromCombined, changeCombinedStatus } = combinedAreasSlice.actions;
+export const { addQuestFromCurrentArea, chageQuestPoint, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;

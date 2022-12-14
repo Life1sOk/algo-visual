@@ -5,11 +5,11 @@ import { selectAllParts } from "../../../../../App/slices/areas-slice";
 
 import { PartsOptionSelect } from './parts-option.style';
 
-const PartsOption = forwardRef((_props, ref) => {
+const PartsOption = forwardRef(({disabled}, ref) => {
     const allParts = useSelector(selectAllParts);
 
     return (
-            <PartsOptionSelect ref={ref}>
+            <PartsOptionSelect ref={ref} disabled={disabled}>
                 {
                     allParts.map(option => <option key={allParts.indexOf(option)} value={option.title}>{option.title}</option>)
                 }

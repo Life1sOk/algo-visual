@@ -185,18 +185,32 @@ export const getUsersDocsAreas = async (uid, type) => {
 }
 
 // Parts //
+export const setAreasPartsCircle = async (uid, area, datasToUp, merge) => {
+    if (!uid || !area) return;
+
+    const docRef = doc(db, 'users', uid, 'areas', area);
+
+    try {
+        await setDoc(docRef, datasToUp, {merge: merge});
+        console.log('done digi don')
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+}
+
 export const updateAreasPartsCircle = async (uid, area, datasToUp) => {
     if (!uid || !area) return;
 
     const docRef = doc(db, 'users', uid, 'areas', area);
 
     try {
-        await setDoc(docRef, datasToUp, {merge: true});
+        await updateDoc(docRef, { parts: datasToUp});
         console.log('done digi don')
     } catch (error) {
         console.log('oops, here is some error', error);
     }
 }
+
 
 // Statistic //
 export const updateAreasStatistic = async (uid, area, datasToUp) => {

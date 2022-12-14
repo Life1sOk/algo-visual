@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { updateAllQuests, updateAreasPartsCircle, deleteQuestCombined } from "../../../../../utils/firebase/firebase";
+import { updateAllQuests, setAreasPartsCircle, deleteQuestCombined } from "../../../../../utils/firebase/firebase";
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../App/slices/quest-slides";
-import { selectCreateQuest, setReset, selectFixState, fixState, selectOldFixQuest } from "../../../../../App/slices/create-quest.slice";
+import { selectCreateQuest, setReset, selectFixState, fixState, selectOldFixQuest, windowHandler } from "../../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
 import {  partsQuestCount, selectDisplaySectionTitle, selectCircle, selectAllParts, selectPartStatus, changePartStatusToReload, selectStatistic, selectDisplaySection} from "../../../../../App/slices/areas-slice";
-import { addQuestFromCurrentArea, selectCombinedAll } from "../../../../../App/slices/combined-areas.slice";
+import { addQuestFromCurrentArea, fixCurrentQuest, selectCombinedAll } from "../../../../../App/slices/combined-areas.slice";
 
 import {PlanNavigation, BigButton} from './create-progress.style';
 import SlideSwitcher from "../slide-switcher/slide-switcher.component";
@@ -44,6 +44,7 @@ const CreateProgress = () => {
             dispatch(addQuestFromCurrentArea(newQuest));
             dispatch(resetAll());
             dispatch(setReset('yes'));
+            dispatch(windowHandler(false));
             updateAllQuests(uid, newQuest);
 
             dispatch(changePartStatusToReload('reload'));
@@ -59,12 +60,16 @@ const CreateProgress = () => {
         deleteQuestCombined(uid, oldQuestData);
         updateAllQuests(uid, newQuest);
 
+        dispatch(fixCurrentQuest(newQuest));
+        dispatch(resetAll());
         dispatch(fixState(false));
+        dispatch(setReset('yes'));
+        dispatch(windowHandler(false));
     };
 
     useEffect(() => {
         if (partStatus === 'reload') {
-            updateAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), currentArea);
+            setAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), currentArea, true);
             dispatch(changePartStatusToReload(null));
         }
     }, [partStatus]);

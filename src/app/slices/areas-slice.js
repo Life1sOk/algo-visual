@@ -68,8 +68,8 @@ export const areasSlice = createSlice({
             });
             state.displaySection.parts.circle.datasets[0].data[activeIndex] = state.displaySection.parts.circle.datasets[0].data[activeIndex] + payload.count;
 
-            state.displaySection.statistic.quests.active += 1;
-            state.displaySection.statistic.quests.total += 1;
+            state.displaySection.statistic.quests.active += payload.count;
+            state.displaySection.statistic.quests.total += payload.count;
 
             state.sections[payload.area] = state.displaySection;
         },
@@ -147,6 +147,7 @@ export const selectAllParts = (state) => state.areas.displaySection.parts.allPar
 export const selectCircle = (state) => state.areas.displaySection.parts.circle;
 
 export const selectStatistic = (state) => state.areas.displaySection.statistic;
+export const selectParts = (state) => state.areas.displaySection.parts;
 
 export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount } = areasSlice.actions;
 

@@ -1,5 +1,9 @@
 import React from "react";
 
+import { setAreasPartsCircle } from "../../../../utils/firebase/firebase";
+import { selectAuthUid } from "../../../../App/slices/auth.slice";
+import { selectDisplaySection, selectDisplaySectionTitle } from "../../../../App/slices/areas-slice";
+
 import { useSelector, useDispatch } from "react-redux";
 import { selectWindowStateOpen, windowHandler, selectWichOne } from "../../../../App/slices/create-quest.slice";
 
@@ -14,10 +18,18 @@ import SettingMenu from "./setting-menu/setting-menu.component";
 
 const QuestWindow = ({ title }) => {
     const dispatch = useDispatch();
+    
+    const uid = useSelector(selectAuthUid);
+    const currentArea = useSelector(selectDisplaySection);
+    const currentAreaTitle = useSelector(selectDisplaySectionTitle);
+
     const stateOpen = useSelector(selectWindowStateOpen);
     const wichOne = useSelector(selectWichOne);
 
-    const closeWindowHandler = () => dispatch(windowHandler(false));
+    const closeWindowHandler = () => {
+        dispatch(windowHandler(false));
+        setAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), currentArea, true);
+    };
 
     return (
         <BlackBoxWindow state={stateOpen} handler={closeWindowHandler}>
