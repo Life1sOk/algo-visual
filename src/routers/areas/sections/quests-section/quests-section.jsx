@@ -23,15 +23,15 @@ const QuestsSection = () => {
 
     return (
         <>
-        <QuestWindow title={title}/>
-        <BlockLayout>
-            <BlockHat title='Quests' setting='Add another quest' handler={openWindowHandler}/>
-            <QuestsSectionDisplay>
-                {
-                    filteredQuests?.map((quest, index) => <Quest page='areas' key={index} id={quest.id} data={quest.quest} questId={index + 1} title={quest.title}/>)
-                }
-            </QuestsSectionDisplay>
-        </BlockLayout>
+            <QuestWindow title={title}/>
+            <BlockLayout>
+                <BlockHat title='Quests' setting='Add another quest' handler={openWindowHandler}/>
+                <QuestsSectionDisplay>
+                    {
+                        filteredQuests?.map((quest, index) => <Quest page='areas' key={index} id={quest.id} data={quest.quest} questId={index + 1} title={quest.title}/>)
+                    }
+                </QuestsSectionDisplay>
+            </BlockLayout>
         </>
     )
 }

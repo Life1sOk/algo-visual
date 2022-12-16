@@ -34,6 +34,9 @@ export const areasSlice = createSlice({
             state.status = 'reload';
         },
         //Parts//
+        partWindowOpenHandler: (state, {payload}) => {
+            state.partWindowOpen = payload;
+        },
         changeCurrentColor: (state, { payload }) => {
             state.partToAdd.color = payload;
         },
@@ -140,6 +143,7 @@ export const selectDisplayParts = (state) => state.areas.displaySection.parts;
 export const selectDisplaySectionTitle = (state) => state.areas.displaySection.title;
 export const selectAreasStatus = (state) => state.areas.status;
 
+export const selectPartWindowOpen = (state) => state.areas.partWindowOpen;
 export const selectPartStatus = (state) => state.areas.partStatus;
 export const selectToAddPart = (state) => state.areas.partToAdd;
 export const selectToAddPartColor = (state) => state.areas.partToAdd.color;
@@ -149,6 +153,6 @@ export const selectCircle = (state) => state.areas.displaySection.parts.circle;
 export const selectStatistic = (state) => state.areas.displaySection.statistic;
 export const selectParts = (state) => state.areas.displaySection.parts;
 
-export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount, partWindowOpenHandler } = areasSlice.actions;
 
 export default areasSlice.reducer;
