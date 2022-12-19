@@ -6,7 +6,6 @@ const initialState = {
     status: '',
     error: null,
     all: [],
-    activePoints: [],
 };
 
 export const getCombinedAreas = createAsyncThunk(
@@ -25,6 +24,7 @@ const combinedAreasSlice = createSlice({
     name: 'combined',
     initialState,
     reducers: {
+        // Quest CRUD
         addQuestFromCurrentArea: (state, { payload }) => {
             state.all.push(payload);
             state.status = 'reload';
@@ -35,19 +35,16 @@ const combinedAreasSlice = createSlice({
         deleteQuestFromCombined: (state, { payload }) => {
             state.all = state.all.filter(quest => quest.id !== payload);
         },
-        chageQuestPoint: (state, { payload }) => {
-            const { pointId, questIndex, status, data } = payload;
-            state.all[questIndex].quest.achieve = state.all[questIndex].quest.achieve.map(point =>
-                point.id === pointId ? { ...point, status } : point);
-            if (status) state.activePoints.push(data);
-            if (!status) state.activePoints = state.activePoints.filter(point => point.id !== data.id);
-        },
-        addPointToActiveAll: (state, { payload }) => {
-            state.all.push(payload);
-        },
         changeCombinedStatus: (state, { payload }) => {
             state.status = payload;
-        }
+        },
+        // Point CRUD
+        currentPointStatusChanger: (state, { payload }) => {
+            const { questIndex, pointId, action } = payload;
+            state.all[questIndex].quest.achieve = state.all[questIndex].quest.achieve.map(point => (
+                point.id === pointId ? {...point, status: action} : point
+            ));
+        },
     },
     extraReducers: {
         [getCombinedAreas.pending]: (state) => {
@@ -70,6 +67,6 @@ export const selectCombinedAll = (state) => state.combined.all;
 export const selectCombinedStatus = (state) => state.combined.status;
 export const selectActivePoints = (state) => state.combined.activePoints;
 
-export const { addQuestFromCurrentArea, chageQuestPoint, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest } = combinedAreasSlice.actions;
+export const { addQuestFromCurrentArea, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest, currentPointStatusChanger } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;

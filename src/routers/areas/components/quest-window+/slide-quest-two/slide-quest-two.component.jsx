@@ -8,7 +8,7 @@ import Ulist from "../../u-list/u-list.component";
 import Quote from "../../quote/quote.component";
 import Input from "../../input/input.component";
 import TextArea from "../../textarea/textarea.component";
-import Points from "../../../../../Components/points/points.component";
+import Point from "../../../../../Components/point/point.component";
 import Deadline from "../deadline/deadline.component";
 import { SlideSectionContainer, InDescWrapper, SlideIn, DisplayPoints, SlideDescription, Buttons, Date } from './slide-quest-two.style';
 
@@ -89,7 +89,7 @@ const SlideQuestTwo = () => {
             <DisplayPoints>
                 {
                     slideData[0] &&
-                    slideData.map(quest => <Points key={quest.id} data={quest} show />)
+                    slideData.map(quest => <Point key={quest.id} data={quest} show />)
                 }
             </DisplayPoints>
         </SlideSectionContainer>

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectActivePoints } from "../../../../App/slices/combined-areas.slice";
 
 import { PointsDisplayContainer } from './points-display.style';
-import Points from "../../../../Components/points/points.component";
+import Point from "../../../../Components/point/point.component";
 
 const PointsDisplay = () => {
     const activePoints = useSelector(selectActivePoints);
@@ -12,7 +12,7 @@ const PointsDisplay = () => {
     return (
         <PointsDisplayContainer>
             {
-                activePoints?.map(point => <Points key={point.id} data={point} />)
+                activePoints?.map(point => <Point key={point.id} data={point} />)
             }
         </PointsDisplayContainer>
     )

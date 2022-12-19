@@ -1,7 +1,7 @@
 import React from "react";
 
 import PointsStyle from "./points.style";
-import Point from "../point/point.component";
+import Point from "../../point/point.component";
 
 const Points = ({ data, questIndex, questTitle }) => {
 
@@ -10,7 +10,7 @@ const Points = ({ data, questIndex, questTitle }) => {
             <PointsStyle.Balls>
                 {
                     data?.map(point =>
-                        <PointsStyle.PointBall key={point.id}>{point.id}</PointsStyle.PointBall>
+                        <PointsStyle.PointBall key={point.id} status={point.status}>{point.id}</PointsStyle.PointBall>
                     )
                 }
             </PointsStyle.Balls>

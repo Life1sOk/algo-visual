@@ -15,7 +15,7 @@ const Front = styled.div`
     overflow: hidden;
     text-align: center;
     background-color: white;
-    border: ${props => props.status ? '5px solid lightgreen' : '5px solid blue'};
+    border: ${props => props.status ? '5px solid green' : '5px solid blue'};
 
     display: flex;
     flex-direction: column;
@@ -71,11 +71,17 @@ const Description = styled.span`
     overflow: hidden;
 `;
 
+const ButtonWrapper = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+`;
+
 PointStyle.Front = Front;
 PointStyle.Back = Back;
 PointStyle.Title = Title;
 PointStyle.Date = Date;
 PointStyle.Description = Description;
-
+PointStyle.ButtonWrapper = ButtonWrapper;
 
 export default PointStyle;

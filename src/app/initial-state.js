@@ -189,7 +189,7 @@ export const initialAreas = {
         ...sectionStatistic,
         ...partEnvironment,
     },
-}
+};
 
 export const initialPlan = {
     status: null,
@@ -200,7 +200,7 @@ export const initialPlan = {
         questName: '',
         description: ''
     }
-}
+};
 
 export const initialPlanOut = {
     status: null,
@@ -211,4 +211,4 @@ export const initialPlanOut = {
         questName: '',
         description: ''
     }
-}
+};

@@ -11,7 +11,7 @@ const Quest = ({ page, title, data, questId, id }) => {
 
     return (
             <QuestStyle>
-                <About id={questId} data={main} area={title}/>
+                <About id={questId} data={main} area={title} achieve={achieve}/>
                 <Points data={achieve} questIndex={id - 1} questTitle={title} />
                 <Daily data={daily} title={main.title} />
                 <TimerQuest deadline={main.deadline} createdTime={createdTime}/>

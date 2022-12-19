@@ -32,7 +32,7 @@ const Balls = styled.div`
 const PointBall = styled.div`
     width: 25px;
     height: 25px;
-    background-color: blue;
+    background-color: ${props => props.status ? 'green' : 'blue'};
     color: white;
     padding: 10px;
     border-radius: 50%;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const AboutStyle = styled.div`
     width: 300px;
     height: 345px;
-    color: white;
     flex-shrink: 0;
     background-color: rgb(20, 25, 50);
     padding: 0 15px 15px 15px;
@@ -13,14 +12,13 @@ const AboutStyle = styled.div`
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
+`;
 
-    .progress {
-        width: 100%;
-        text-align: center;
-        margin: 7px auto 0 auto;
-    }
+const AboutWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const Title = styled.div`
@@ -28,6 +26,7 @@ const Title = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 20px;
 
     .quest-id {
         width: 30px;
@@ -62,5 +61,6 @@ const RoadLinks = styled.div`
 
 AboutStyle.Title = Title;
 AboutStyle.RoadLinks = RoadLinks;
+AboutStyle.AboutWrapper = AboutWrapper;
 
 export default AboutStyle;
