@@ -7,6 +7,10 @@ import AboutStyle from "./about.style";
 const About = ({ id, data, area, achieve }) => {
     const { title, current, mainGoal, description } = data;
 
+    const checkHandler = () => {
+        console.log('hello')
+    }
+
     return (
         <AboutStyle>
             <AboutStyle.AboutWrapper>
@@ -22,7 +26,7 @@ const About = ({ id, data, area, achieve }) => {
                 <Line label='Want to:' description={mainGoal}/>
                 <Line label='Why?' description={description}/>
             </AboutStyle.AboutWrapper>
-            <ProgressBar achieve={achieve}/>
+            <ProgressBar achieve={achieve} action={checkHandler}/>
         </AboutStyle>
     )
 }

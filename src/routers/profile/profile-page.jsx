@@ -15,7 +15,6 @@ import { AsideLayout, MainLayout, PageLayout } from "../../Global-style/layouts"
 
 // ------------ Page's Sections ----------------- //
 import MainDisplaySection from "./sections/main-display/main-display.section";
-import PointsDisplay from "./sections/points-display/points-display.section";
 
 // ------------ Page's React Components ----------------- //
 import ProfileImg from "./components/profile-img/profile-img.component";
@@ -44,7 +43,6 @@ const ProfilePage = () => {
             </AsideLayout>
             <MainLayout>
                 <MainDisplaySection />
-                <PointsDisplay />
                 <button onClick={checkHandler}>Check</button>
             </MainLayout>
         </PageLayout>

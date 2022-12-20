@@ -140,14 +140,14 @@ export const getAllQuests = async (uid) => {
     }
 };
 
-export const updateAllQuests = async (uid, datasToAdd) => {
+export const addQuest = async (uid, datasToAdd) => {
     if (!uid) return;
 
     const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
 
     try {
         await setDoc(docRef, {
-            all: arrayUnion(datasToAdd)
+            active: arrayUnion(datasToAdd)
         }, {merge: true});
         console.log('datas combined')
     } catch (error) {
@@ -162,7 +162,7 @@ export const deleteQuestCombined = async (uid, quest) => {
 
     try {
         await updateDoc(docRefComb, {
-            all: arrayRemove(quest)
+            active: arrayRemove(quest)
         });
         console.log('data deleted');
     } catch (error) {

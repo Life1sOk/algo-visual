@@ -4,7 +4,7 @@ import { setAreasPartsCircle } from "../../../../../utils/firebase/firebase";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectDisplaySectionTitle, selectDisplaySection, selectPartStatus, changePartStatusToReload } from "../../../../../App/slices/areas-slice";
-import { selectCombinedAll } from "../../../../../App/slices/combined-areas.slice";
+import { selectCombinedActive } from "../../../../../App/slices/combined-areas.slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
 
 import QuestFix from "../quest-fix/quest-fix.component";
@@ -18,7 +18,7 @@ const SlideQuestFix = () => {
     const currentArea = useSelector(selectDisplaySection);
     const partStatus = useSelector(selectPartStatus);
 
-    const allQuests = useSelector(selectCombinedAll);
+    const allQuests = useSelector(selectCombinedActive);
     const filteredQuests = allQuests?.filter(quest => quest.title === title);
 
     useEffect(() => {

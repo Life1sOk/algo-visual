@@ -5,7 +5,10 @@ import { getAllQuests } from "../../utils/firebase/firebase";
 const initialState = {
     status: '',
     error: null,
-    all: [],
+    active: [],
+    done: [],
+    expired: [],
+    questFixPoint: {},
 };
 
 export const getCombinedAreas = createAsyncThunk(
@@ -26,14 +29,14 @@ const combinedAreasSlice = createSlice({
     reducers: {
         // Quest CRUD
         addQuestFromCurrentArea: (state, { payload }) => {
-            state.all.push(payload);
+            state.active.push(payload);
             state.status = 'reload';
         },
         fixCurrentQuest: (state, {payload}) => {
-            state.all = state.all.map(quest => quest.id === payload.id ? payload : quest);
+            state.active = state.active.map(quest => quest.id === payload.id ? payload : quest);
         },
         deleteQuestFromCombined: (state, { payload }) => {
-            state.all = state.all.filter(quest => quest.id !== payload);
+            state.active = state.active.filter(quest => quest.id !== payload);
         },
         changeCombinedStatus: (state, { payload }) => {
             state.status = payload;
@@ -41,9 +44,19 @@ const combinedAreasSlice = createSlice({
         // Point CRUD
         currentPointStatusChanger: (state, { payload }) => {
             const { questIndex, pointId, action } = payload;
-            state.all[questIndex].quest.achieve = state.all[questIndex].quest.achieve.map(point => (
+
+            state.active[questIndex].quest.achieve = state.active[questIndex].quest.achieve.map(point => (
                 point.id === pointId ? {...point, status: action} : point
             ));
+        },
+        fixCurrentQuestCopy: (state, { payload }) => {
+            state.questFixPoint = state.active[payload];
+        },
+        fixCurrentQuestCopyClear: (state) => {
+            state.questFixPoint = {};
+        },
+        // Quest transfer
+        doneQuest: (state, {payload}) => {
         },
     },
     extraReducers: {
@@ -53,8 +66,7 @@ const combinedAreasSlice = createSlice({
         },
         [getCombinedAreas.fulfilled]: (state, { payload }) => {
             state.status = 'resolved';
-            state.all = payload.all;
-            state.activePoints = payload.activePoints;
+            state.active = payload.active?.sort((a, b) => a.id - b.id);
         },
         [getCombinedAreas.rejected]: (state, { payload }) => {
             state.status = 'rejected';
@@ -63,10 +75,12 @@ const combinedAreasSlice = createSlice({
     }
 });
 
-export const selectCombinedAll = (state) => state.combined.all;
+export const selectCombinedActive = (state) => state.combined.active;
 export const selectCombinedStatus = (state) => state.combined.status;
-export const selectActivePoints = (state) => state.combined.activePoints;
+export const selectQuestFixPoint = (state) => state.combined.questFixPoint;
 
-export const { addQuestFromCurrentArea, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest, currentPointStatusChanger } = combinedAreasSlice.actions;
+export const selectCombinedDone = (state) => state.combined.done;
+
+export const { addQuestFromCurrentArea, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest, currentPointStatusChanger, fixCurrentQuestCopy, fixCurrentQuestCopyClear } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;

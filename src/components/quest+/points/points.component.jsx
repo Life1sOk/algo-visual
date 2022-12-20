@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { selectQuestFixPoint, fixCurrentQuestCopyClear } from "../../../App/slices/combined-areas.slice";
+import { selectAuthUid } from "../../../App/slices/auth.slice";
+import { addQuest, deleteQuestCombined } from "../../../utils/firebase/firebase";
+
 
 import PointsStyle from "./points.style";
 import Point from "../../point/point.component";
 
-const Points = ({ data, questIndex, questTitle }) => {
+const Points = ({ data, questIndex, currentQuest }) => {
+    const dispatch = useDispatch();
+    const questFixPoint = useSelector(selectQuestFixPoint);
+    const uid = useSelector(selectAuthUid);
+
+  
+    useEffect(() => {
+        if(questFixPoint.id === currentQuest.id) {
+            deleteQuestCombined(uid, questFixPoint);
+            addQuest(uid, currentQuest);
+            dispatch(fixCurrentQuestCopyClear());
+        }
+    }, [questFixPoint])
 
     return (
         <PointsStyle>
@@ -17,7 +35,7 @@ const Points = ({ data, questIndex, questTitle }) => {
             <PointsStyle.Points>
                 {
                     data?.map(point =>
-                        <Point key={point.id} data={point} questIndex={questIndex} questTitle={questTitle} />
+                        <Point key={point.id} data={point} questIndex={questIndex}/>
                     )
                 }
             </PointsStyle.Points>

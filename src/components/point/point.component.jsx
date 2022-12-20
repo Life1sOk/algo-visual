@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 
 import { useDispatch } from "react-redux";
 import { deleteAchieve } from "../../App/slices/create-quest.slice";
-import { currentPointStatusChanger } from "../../App/slices/combined-areas.slice";
+import { currentPointStatusChanger, fixCurrentQuestCopy } from "../../App/slices/combined-areas.slice";
+
 
 import ButtonSd from "../button-sd/button-sd.component";
 
 import PointStyle from "./point.style";
 
-const Point = ({ data, show, questIndex, questTitle }) => {
-    const dispatch = useDispatch();
+const Point = memo(({ data, show, questIndex}) => {
     const { title, id, untilTime, description, status } = data;
+
+    const dispatch = useDispatch();
+    
     const [state, setState] = useState(false);
 
     const reverseHandler = () => setState(!state);
 
     const deletePointHandler = () => dispatch(deleteAchieve(id));
 
-    const setChangedPointStatus = (action) => {
+    const changedPointStatus = (action) => {
         const pointData = { questIndex, pointId: id, action };
         
+        dispatch(fixCurrentQuestCopy(questIndex));
         dispatch(currentPointStatusChanger(pointData));
         reverseHandler();
     };
@@ -44,13 +48,13 @@ const Point = ({ data, show, questIndex, questTitle }) => {
                         <PointStyle.Description>{description}</PointStyle.Description>
                     </PointStyle.Front>
                     <PointStyle.Back>
-                        <button onClick={() => setChangedPointStatus(true)}>Activate</button>
-                        <button onClick={() => setChangedPointStatus(false)}>Deactivate</button>
+                        <button onClick={() => changedPointStatus(true)}>Activate</button>
+                        <button onClick={() => changedPointStatus(false)}>Deactivate</button>
                     </PointStyle.Back>
                 </PointStyle>
             }
         </>
     )
-}
+})
 
 export default Point;

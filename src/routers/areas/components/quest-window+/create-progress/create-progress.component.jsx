@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { updateAllQuests, setAreasPartsCircle, deleteQuestCombined } from "../../../../../utils/firebase/firebase";
+import { addQuest, setAreasPartsCircle, deleteQuestCombined } from "../../../../../utils/firebase/firebase";
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../App/slices/quest-slides";
 import { selectCreateQuest, setReset, selectFixState, fixState, selectOldFixQuest, windowHandler } from "../../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
 import {  partsQuestCount, selectDisplaySectionTitle, selectCircle, selectAllParts, selectPartStatus, changePartStatusToReload, selectStatistic, selectDisplaySection} from "../../../../../App/slices/areas-slice";
-import { addQuestFromCurrentArea, fixCurrentQuest, selectCombinedAll } from "../../../../../App/slices/combined-areas.slice";
+import { addQuestFromCurrentArea, fixCurrentQuest, selectCombinedActive } from "../../../../../App/slices/combined-areas.slice";
 
 import {PlanNavigation, BigButton} from './create-progress.style';
 import SlideSwitcher from "../slide-switcher/slide-switcher.component";
@@ -20,7 +20,7 @@ const CreateProgress = () => {
     const fixStatus = useSelector(selectFixState);
     const oldQuestData = useSelector(selectOldFixQuest); 
 
-    const combinedAllCount = useSelector(selectCombinedAll)?.length;
+    const combinedActiveCount = useSelector(selectCombinedActive)?.length;
     const currentQuest = useSelector(selectCreateQuest);
     const oneState = useSelector(selectSlideOne);
     const twoState = useSelector(selectSlideTwo);
@@ -39,13 +39,13 @@ const CreateProgress = () => {
 
     const readyHandler = () => {
         if (slidesCount === 3) {
-            const newQuest = { id: combinedAllCount + 1, title: currentAreaTitle, quest: {...currentQuest, createdTime: new Date().toJSON().slice(0, 10)} };
+            const newQuest = { id: combinedActiveCount + 1, title: currentAreaTitle, quest: {...currentQuest, createdTime: new Date().toJSON().slice(0, 10)} };
             dispatch(partsQuestCount({ title: currentQuest.main.part, count: 1, area: currentAreaTitle }));
             dispatch(addQuestFromCurrentArea(newQuest));
             dispatch(resetAll());
             dispatch(setReset('yes'));
             dispatch(windowHandler(false));
-            updateAllQuests(uid, newQuest);
+            addQuest(uid, newQuest);
 
             dispatch(changePartStatusToReload('reload'));
         } else {
@@ -58,7 +58,7 @@ const CreateProgress = () => {
         const newQuest = { id, title, quest: {...currentQuest, createdTime: quest.createdTime } };
 
         deleteQuestCombined(uid, oldQuestData);
-        updateAllQuests(uid, newQuest);
+        addQuest(uid, newQuest);
 
         dispatch(fixCurrentQuest(newQuest));
         dispatch(resetAll());

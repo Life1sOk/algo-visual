@@ -8,4 +8,8 @@ export const CombinedQuestsContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 40px;
+
+    h3 {
+        color: white;
+    }
 `;

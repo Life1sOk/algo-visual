@@ -9,18 +9,19 @@ const DailyStyle = styled.div`
     border-top: 3px solid white;
     border-bottom: 1px solid white;
     border-radius: 20px 20px 10px 10px;
+    overflow-y: scroll;
 `;
 
 const ButtonWrapper = styled.div`
     width: 100%;
-    height: 50px;
+    /* height: 50px; */
     
     display: flex;
     justify-content: center;
     align-items: center;
 
     button {
-        margin-top: 7px;
+        /* margin-top: 7px; */
         width: 80%;
         height: 36.6px;
         padding: 4px;
