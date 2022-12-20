@@ -11,13 +11,11 @@ const CombinedQuests = () => {
     const activeQuests = useSelector(selectCombinedActive);
     const doneQuests = useSelector(selectCombinedDone);
 
-    console.log(doneQuests)
-
     return (
         <CombinedQuestsContainer>
             <h3>{`Count: ${doneQuests.length}`}</h3>
             {
-                activeQuests.map((quest, index) => <Quest page='daily' key={index} currentQuest={quest}/>)
+                activeQuests.map((quest, index) => <Quest page='daily' key={index} currentQuest={quest} index={index}/>)
             }
         </CombinedQuestsContainer>
     )

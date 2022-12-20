@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectQuestFixPoint, fixCurrentQuestCopyClear } from "../../../App/slices/combined-areas.slice";
 import { selectAuthUid } from "../../../App/slices/auth.slice";
-import { addQuest, deleteQuestCombined } from "../../../utils/firebase/firebase";
+import { addQuestServer, deleteQuestServer } from "../../../utils/firebase/firebase";
 
 
 import PointsStyle from "./points.style";
@@ -17,8 +17,8 @@ const Points = ({ data, questIndex, currentQuest }) => {
   
     useEffect(() => {
         if(questFixPoint.id === currentQuest.id) {
-            deleteQuestCombined(uid, questFixPoint);
-            addQuest(uid, currentQuest);
+            deleteQuestServer(uid, questFixPoint, 'active');
+            addQuestServer(uid, currentQuest);
             dispatch(fixCurrentQuestCopyClear());
         }
     }, [questFixPoint])

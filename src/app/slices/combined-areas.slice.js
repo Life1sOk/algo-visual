@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getAllQuests } from "../../utils/firebase/firebase";
+import { getAllQuests, addQuestServer, deleteQuestServer } from "../../utils/firebase/firebase";
 
 const initialState = {
     status: '',
@@ -57,6 +57,16 @@ const combinedAreasSlice = createSlice({
         },
         // Quest transfer
         doneQuest: (state, {payload}) => {
+            const { id, uid } = payload;
+            state.active = state.active.filter(quest => {
+                if(quest.id === id) {
+                    state.done.push({...quest, id: 1000 + quest.id});
+                    // Server change 
+                    addQuestServer(uid, quest, 'done');
+                    deleteQuestServer(uid, quest, 'active');
+                }
+                return quest.id !== payload;
+            });
         },
     },
     extraReducers: {
@@ -81,6 +91,6 @@ export const selectQuestFixPoint = (state) => state.combined.questFixPoint;
 
 export const selectCombinedDone = (state) => state.combined.done;
 
-export const { addQuestFromCurrentArea, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest, currentPointStatusChanger, fixCurrentQuestCopy, fixCurrentQuestCopyClear } = combinedAreasSlice.actions;
+export const { addQuestFromCurrentArea, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest, currentPointStatusChanger, fixCurrentQuestCopy, fixCurrentQuestCopyClear, doneQuest } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { addQuest, setAreasPartsCircle, deleteQuestCombined } from "../../../../../utils/firebase/firebase";
+import { addQuestServer, setAreasPartsCircle, deleteQuestServer } from "../../../../../utils/firebase/firebase";
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../App/slices/quest-slides";
 import { selectCreateQuest, setReset, selectFixState, fixState, selectOldFixQuest, windowHandler } from "../../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
@@ -45,7 +45,7 @@ const CreateProgress = () => {
             dispatch(resetAll());
             dispatch(setReset('yes'));
             dispatch(windowHandler(false));
-            addQuest(uid, newQuest);
+            addQuestServer(uid, newQuest, 'active');
 
             dispatch(changePartStatusToReload('reload'));
         } else {
@@ -57,8 +57,8 @@ const CreateProgress = () => {
         const { id, quest, title } = oldQuestData;
         const newQuest = { id, title, quest: {...currentQuest, createdTime: quest.createdTime } };
 
-        deleteQuestCombined(uid, oldQuestData);
-        addQuest(uid, newQuest);
+        deleteQuestServer(uid, oldQuestData, 'active');
+        addQuestServer(uid, newQuest, 'active');
 
         dispatch(fixCurrentQuest(newQuest));
         dispatch(resetAll());

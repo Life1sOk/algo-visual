@@ -28,7 +28,7 @@ const QuestsSection = () => {
                 <BlockHat title='Quests' setting='Add another quest' handler={openWindowHandler}/>
                 <QuestsSectionDisplay>
                     {
-                        filteredQuests?.map((quest, index) => <Quest page='areas' key={index} currentQuest={quest}/>)
+                        filteredQuests?.map((quest, index) => <Quest page='areas' key={index} currentQuest={quest} index={index}/>)
                     }
                 </QuestsSectionDisplay>
             </BlockLayout>

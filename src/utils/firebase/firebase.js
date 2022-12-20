@@ -126,7 +126,7 @@ export const setUsersDatasOutDaily = async (uid, datasToAdd) => {
     }
 }
 
-// Combiend //
+// Quests //
 export const getAllQuests = async (uid) => {
     if (!uid) return;
 
@@ -140,30 +140,32 @@ export const getAllQuests = async (uid) => {
     }
 };
 
-export const addQuest = async (uid, datasToAdd) => {
+export const addQuestServer = async (uid, datasToAdd, type) => {
     if (!uid) return;
 
     const docRef = doc(db, 'users', uid, 'quests', 'combinedAreas');
 
     try {
-        await setDoc(docRef, {
-            active: arrayUnion(datasToAdd)
-        }, {merge: true});
+        if(type === 'active') await setDoc(docRef, {active: arrayUnion(datasToAdd)}, {merge: true});
+        if(type === 'done') await setDoc(docRef, {done: arrayUnion(datasToAdd)}, {merge: true});
+        if(type === 'expired') await setDoc(docRef, {expired: arrayUnion(datasToAdd)}, {merge: true});
+
         console.log('datas combined')
     } catch (error) {
         console.log('oops, here is some error', error);
     }
 };
 
-export const deleteQuestCombined = async (uid, quest) => {
+export const deleteQuestServer = async (uid, quest, type) => {
     if (!uid) return;
 
     const docRefComb = doc(db, 'users', uid, 'quests', 'combinedAreas');
 
     try {
-        await updateDoc(docRefComb, {
-            active: arrayRemove(quest)
-        });
+        if(type === 'active') await updateDoc(docRefComb, {active: arrayRemove(quest)});
+        if(type === 'done') await updateDoc(docRefComb, {done: arrayRemove(quest)});
+        if(type === 'expired') await updateDoc(docRefComb, {expired: arrayRemove(quest)});
+
         console.log('data deleted');
     } catch (error) {
         console.log('oops, here is some error', error);
