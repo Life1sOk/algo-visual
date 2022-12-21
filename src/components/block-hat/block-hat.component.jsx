@@ -1,12 +1,15 @@
 import React from "react";
 
-import {Hat, Line} from './block-hat.style';
+import { Hat, HatChildren, Line } from './block-hat.style';
 
-const BlockHat = ({title, setting, handler}) => {
+const BlockHat = ({title, setting, handler, children}) => {
     return(
         <>
             <Hat>
-                <span>{title}</span>
+                <HatChildren>
+                    <span>{title}</span>
+                    {children}
+                </HatChildren>
                 <span className="setting" onClick={handler}>{setting}</span>
             </Hat>
             <Line />

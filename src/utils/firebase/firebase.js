@@ -136,7 +136,7 @@ export const getAllQuests = async (uid) => {
     if(datas.exists()) {
         return datas.data();
     } else {
-        return {activePoints: [], all: []}
+        return {active: [], done: [], expired: []};
     }
 };
 

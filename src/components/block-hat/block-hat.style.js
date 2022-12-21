@@ -25,3 +25,8 @@ export const Line = styled.div`
     /* margin-bottom: 25px; */
     border-radius: 10px;
 `;
+
+export const HatChildren = styled.div`
+    display: flex;
+    gap: 10px;
+`;

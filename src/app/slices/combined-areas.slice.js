@@ -45,9 +45,8 @@ const combinedAreasSlice = createSlice({
         currentPointStatusChanger: (state, { payload }) => {
             const { questIndex, pointId, action } = payload;
 
-            state.active[questIndex].quest.achieve = state.active[questIndex].quest.achieve.map(point => (
-                point.id === pointId ? {...point, status: action} : point
-            ));
+            state.active[questIndex].quest.achieve = state.active[questIndex]?.quest.achieve.map(point => (
+                point.id === pointId ? {...point, status: action} : point));
         },
         fixCurrentQuestCopy: (state, { payload }) => {
             state.questFixPoint = state.active[payload];
@@ -57,16 +56,21 @@ const combinedAreasSlice = createSlice({
         },
         // Quest transfer
         doneQuest: (state, {payload}) => {
-            const { id, uid } = payload;
+            const { id, uid, from, to } = payload;
+
+            let fixQuest = {};
+
             state.active = state.active.filter(quest => {
                 if(quest.id === id) {
                     state.done.push({...quest, id: 1000 + quest.id});
-                    // Server change 
-                    addQuestServer(uid, quest, 'done');
-                    deleteQuestServer(uid, quest, 'active');
+                    fixQuest = {...quest, id: 1000 + quest.id};
                 }
-                return quest.id !== payload;
+                return quest.id !== id;
             });
+
+            // Server change 
+            deleteQuestServer(uid, fixQuest, from);
+            addQuestServer(uid, fixQuest, to);
         },
     },
     extraReducers: {
@@ -75,8 +79,11 @@ const combinedAreasSlice = createSlice({
             state.error = null;
         },
         [getCombinedAreas.fulfilled]: (state, { payload }) => {
+            const { active, done, expired } = payload;
             state.status = 'resolved';
-            state.active = payload.active?.sort((a, b) => a.id - b.id);
+            state.active = active?.sort((a, b) => a.id - b.id);
+            state.done = done?.sort((a, b) => a.id - b.id);
+            state.expired = expired?.sort((a, b) => a.id - b.id);
         },
         [getCombinedAreas.rejected]: (state, { payload }) => {
             state.status = 'rejected';
@@ -90,6 +97,7 @@ export const selectCombinedStatus = (state) => state.combined.status;
 export const selectQuestFixPoint = (state) => state.combined.questFixPoint;
 
 export const selectCombinedDone = (state) => state.combined.done;
+export const selectCombinedExpired = (state) => state.combined.expired;
 
 export const { addQuestFromCurrentArea, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest, currentPointStatusChanger, fixCurrentQuestCopy, fixCurrentQuestCopyClear, doneQuest } = combinedAreasSlice.actions;
 

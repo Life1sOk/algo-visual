@@ -11,6 +11,9 @@ const AreaStatistic = () => {
     const {parts, quests} = useSelector(selectStatistic);
     const title = useSelector(selectDisplaySectionTitle);
 
+    //active =[] done=[] expired=[];
+
+
     return(
         <AreaStatisticContainer>
             <h2>{title}</h2>

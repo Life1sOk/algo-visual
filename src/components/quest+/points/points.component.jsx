@@ -13,10 +13,9 @@ const Points = ({ data, questIndex, currentQuest }) => {
     const dispatch = useDispatch();
     const questFixPoint = useSelector(selectQuestFixPoint);
     const uid = useSelector(selectAuthUid);
-
   
     useEffect(() => {
-        if(questFixPoint.id === currentQuest.id) {
+        if(questFixPoint?.id === currentQuest.id) {
             deleteQuestServer(uid, questFixPoint, 'active');
             addQuestServer(uid, currentQuest);
             dispatch(fixCurrentQuestCopyClear());

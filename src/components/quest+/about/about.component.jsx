@@ -14,7 +14,7 @@ const About = ({ id, data, area, achieve, index }) => {
     const uid = useSelector(selectAuthUid);
 
     const checkHandler = () => {
-        const payload = { id, uid};
+        const payload = { id, uid, from: 'active', to: 'done'};
         dispatch(doneQuest(payload));
         console.log('hello');
     }
