@@ -81,9 +81,9 @@ const combinedAreasSlice = createSlice({
         [getCombinedAreas.fulfilled]: (state, { payload }) => {
             const { active, done, expired } = payload;
             state.status = 'resolved';
-            state.active = active?.sort((a, b) => a.id - b.id);
-            state.done = done?.sort((a, b) => a.id - b.id);
-            state.expired = expired?.sort((a, b) => a.id - b.id);
+            state.active = active ? active.sort((a, b) => a.id - b.id) : [];
+            state.done = done ? done.sort((a, b) => a.id - b.id) : [];
+            state.expired = expired ? expired.sort((a, b) => a.id - b.id) : [];
         },
         [getCombinedAreas.rejected]: (state, { payload }) => {
             state.status = 'rejected';

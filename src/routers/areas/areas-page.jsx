@@ -5,7 +5,7 @@ import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getAreasData, selectAreasStatus } from "../../App/slices/areas-slice";
 
 // ------------- Top level - Containers / Layouts -------------- //
-import { AsideLayout, CenterLayout, MainLayout, PageLayout } from "../../Global-style/layouts";
+import { AsideLayout, CenterLayout, PageLayout } from "../../Global-style/layouts";
 
 // -------------  Top level React Components ------------------- //
 import Spinner from "../../Components/spinner/spinner.component";
@@ -13,10 +13,8 @@ import TitlePage from "../../Components/title-page/title-page.component";
 
 // ------------ Page's Sections ----------------- //
 import AreasSection from "./sections/areas-section/areas-section";
-import StatisticSection from "./sections/statistic-section/statistic-section";
-import DescriptionSection from "./sections/description-section/description-section";
-import QuestsSection from "./sections/quests-section/quests-section";
-import PartsSection from "./sections/parts-section/parts-section";
+
+import AreasMain from "./areas-main";
 
 // ------------ Page's React Components ----------------- //
 
@@ -48,11 +46,7 @@ const AreasPage = () => {
                                 <TitlePage titleName='Areas' />
                                 <AreasSection />
                             </AsideLayout>
-                            <MainLayout>
-                                <StatisticSection />
-                                <PartsSection />
-                                <QuestsSection />
-                            </MainLayout>
+                            <AreasMain />
                         </PageLayout>
             }
         </>

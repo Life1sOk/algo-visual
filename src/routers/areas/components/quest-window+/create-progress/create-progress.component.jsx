@@ -6,7 +6,7 @@ import { addQuestServer, setAreasPartsCircle, deleteQuestServer } from "../../..
 import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../App/slices/quest-slides";
 import { selectCreateQuest, setReset, selectFixState, fixState, selectOldFixQuest, windowHandler } from "../../../../../App/slices/create-quest.slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
-import {  partsQuestCount, selectDisplaySectionTitle, selectCircle, selectAllParts, selectPartStatus, changePartStatusToReload, selectStatistic, selectDisplaySection} from "../../../../../App/slices/areas-slice";
+import {  partsQuestCount, selectDisplaySectionTitle, selectCircle, selectAllParts, selectPartStatus, changePartStatusToReload, selectDisplaySection} from "../../../../../App/slices/areas-slice";
 import { addQuestFromCurrentArea, fixCurrentQuest, selectCombinedActive } from "../../../../../App/slices/combined-areas.slice";
 
 import {PlanNavigation, BigButton} from './create-progress.style';
@@ -31,7 +31,6 @@ const CreateProgress = () => {
     const areasCircleData = useSelector(selectCircle);
     const partStatus = useSelector(selectPartStatus);
     const allParts = useSelector(selectAllParts);
-    const partStatistic = useSelector(selectStatistic);
 
     const oneSlideChangeHandler = () => dispatch(oneActive());
     const twoSlideChangeHandler = () => dispatch(twoActive());

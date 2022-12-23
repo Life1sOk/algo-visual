@@ -1,15 +1,3 @@
-const sectionStatistic = {
-    statistic: {
-        parts: 3,
-        quests: {
-            total: 0,
-            active: 0,
-            finished: 0,
-            expired: 0,
-        },
-    },
-}
-
 const partEnvironment = {
     parts: {
         allParts: [
@@ -155,25 +143,21 @@ export const initialAreas = {
         Environment: {
             title: 'Environment',
             id: 1500,
-            ...sectionStatistic,
             ...partEnvironment,
         },
         Growth: {
             title: 'Growth',
             id: 2000,
-            ...sectionStatistic,
             ...partGrowth,
         },
         Health: {
             title: 'Health',
             id: 500,
-            ...sectionStatistic,
             ...partHealth,
         },
         People: {
             title: 'People',
             id: 1000,
-            ...sectionStatistic,
             ...partPeople,
         },
     },
@@ -186,7 +170,6 @@ export const initialAreas = {
     displaySection: {
         title: 'Environment',
         id: 1500,
-        ...sectionStatistic,
         ...partEnvironment,
     },
 };

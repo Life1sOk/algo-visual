@@ -54,8 +54,6 @@ export const areasSlice = createSlice({
             state.displaySection.parts.circle.labels.push(title);
             state.displaySection.parts.circle.datasets[0].data.push(totalQuests);
             state.displaySection.parts.circle.datasets[0].backgroundColor.push(color);
-            // Statistic
-            state.displaySection.statistic.parts = state.displaySection.statistic.parts + 1;
             // Merge
             state.sections[payload] = state.displaySection;
         },
@@ -70,9 +68,6 @@ export const areasSlice = createSlice({
                 }
             });
             state.displaySection.parts.circle.datasets[0].data[activeIndex] = state.displaySection.parts.circle.datasets[0].data[activeIndex] + payload.count;
-
-            state.displaySection.statistic.quests.active += payload.count;
-            state.displaySection.statistic.quests.total += payload.count;
 
             state.sections[payload.area] = state.displaySection;
         },
@@ -98,8 +93,6 @@ export const areasSlice = createSlice({
             state.displaySection.parts.circle.datasets[0].backgroundColor = newCircleBackground;
             state.displaySection.parts.circle.labels = newCircleLabels;
             state.displaySection.totalParts -= 1;
-
-            state.displaySection.statistic.parts = state.displaySection.statistic.parts - 1;
 
             state.sections[payload.area] = state.displaySection;
         },
@@ -150,7 +143,6 @@ export const selectToAddPartColor = (state) => state.areas.partToAdd.color;
 export const selectAllParts = (state) => state.areas.displaySection.parts.allParts;
 export const selectCircle = (state) => state.areas.displaySection.parts.circle;
 
-export const selectStatistic = (state) => state.areas.displaySection.statistic;
 export const selectParts = (state) => state.areas.displaySection.parts;
 
 export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount, partWindowOpenHandler } = areasSlice.actions;
