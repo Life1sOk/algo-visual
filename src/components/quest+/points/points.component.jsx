@@ -1,26 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectQuestFixPoint, fixCurrentQuestCopyClear } from "../../../App/slices/combined-areas.slice";
+import { currentPointStatusChanger } from "../../../App/slices/combined-areas.slice";
 import { selectAuthUid } from "../../../App/slices/auth.slice";
-import { addQuestServer, deleteQuestServer } from "../../../utils/firebase/firebase";
 
 
 import PointsStyle from "./points.style";
 import Point from "../../point/point.component";
 
-const Points = ({ data, questIndex, currentQuest }) => {
+const Points = ({ data, questIndex }) => {
     const dispatch = useDispatch();
-    const questFixPoint = useSelector(selectQuestFixPoint);
     const uid = useSelector(selectAuthUid);
-  
-    useEffect(() => {
-        if(questFixPoint?.id === currentQuest.id) {
-            deleteQuestServer(uid, questFixPoint, 'active');
-            addQuestServer(uid, currentQuest);
-            dispatch(fixCurrentQuestCopyClear());
-        }
-    }, [questFixPoint])
+
+    const changedPointStatus = ({action, id}, reverseHandler) => {
+        const pointData = { questIndex, pointId: id, action, uid };
+        
+        dispatch(currentPointStatusChanger(pointData));
+        reverseHandler();
+    };
 
     return (
         <PointsStyle>
@@ -34,7 +31,7 @@ const Points = ({ data, questIndex, currentQuest }) => {
             <PointsStyle.Points>
                 {
                     data?.map(point =>
-                        <Point key={point.id} data={point} questIndex={questIndex}/>
+                        <Point key={point.id} data={point} changedPointStatus={changedPointStatus}/>
                     )
                 }
             </PointsStyle.Points>

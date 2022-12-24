@@ -57,15 +57,20 @@ export const areasSlice = createSlice({
             setAreasPartsCircle(payload, currentArea.title.toLowerCase(), currentArea, true);
         },
         partsQuestCount: (state, { payload }) => {
-            state.displaySection.parts = state.displaySection.parts.map((part, index) => {
-                if (part.title === payload.title) {
-                    return { ...part, totalQuests: Number(part.totalQuests += payload.count) }
+            const { title, count, uid, area } = payload;
+            const currentArea = state.displaySection;
+            // Make changes
+            state.displaySection.parts = state.displaySection.parts.map((part) => {
+                if (part.title === title) {
+                    return { ...part, totalQuests: Number(part.totalQuests += count) }
                 } else {
                     return part
                 }
             });
-
-            state.sections[payload.area] = state.displaySection;
+            // Merge states - Redux
+            state.sections[area] = state.displaySection;
+            // Server
+            setAreasPartsCircle(uid, area.toLowerCase(), currentArea, true);
         },
         deletePart: (state, { payload }) => {
             let totalParts = state.displaySection.parts.length;
@@ -80,15 +85,11 @@ export const areasSlice = createSlice({
             }
 
             state.displaySection.parts = newCirlceParts;
-            state.displaySection.totalParts -= 1;
 
             state.sections[currentArea.title] = state.displaySection;
 
             setAreasPartsCircle(payload.uid, currentArea.title.toLowerCase(), currentArea, true);
-        },
-        changePartStatusToReload: (state, { payload }) => {
-            state.partStatus = payload;
-        },        
+        },    
     },
     extraReducers: {
         [getAreasData.pending]: (state) => {
@@ -133,6 +134,6 @@ export const selectToAddPartColor = (state) => state.areas.partToAdd.color;
 
 export const selectParts = (state) => state.areas.displaySection.parts;
 
-export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, changePartStatusToReload, deletePart, partsQuestCount, partWindowOpenHandler } = areasSlice.actions;
+export const { changeDisplay, currentStateOpen, changeStatusToReload, changeCurrentColor, changeToAddData, addPart, deletePart, partsQuestCount, partWindowOpenHandler } = areasSlice.actions;
 
 export default areasSlice.reducer;

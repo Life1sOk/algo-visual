@@ -92,7 +92,6 @@ const partPeople = {
 
 export const initialAreas = {
     status: 'reload',
-    partStatus: '',
     partWindowOpen: false,
     error: null,
     sections: {

@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
 
-import { deleteQuestServer } from "../../../../../utils/firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteQuestFromCombined } from '../../../../../App/slices/combined-areas.slice';
-import { partsQuestCount, changePartStatusToReload } from "../../../../../App/slices/areas-slice";
+import { partsQuestCount } from "../../../../../App/slices/areas-slice";
 import { selectAuthUid } from "../../../../../App/slices/auth.slice";
 import { fixQuest, fixState, windowSwitcher } from "../../../../../App/slices/create-quest.slice";
 
@@ -31,11 +30,9 @@ const QuestFix = ({data}) => {
         dispatch(windowSwitcher('Add'));
     }
 
-    const deleteCurrentQuestHandler = async () => {
-        dispatch(partsQuestCount({ title: quest.main.part, count: -1, area: title }));
-        deleteQuestServer(uid, data, 'active');
-        dispatch(deleteQuestFromCombined(id));
-        dispatch(changePartStatusToReload('reload'));
+    const deleteCurrentQuestHandler = () => {
+        dispatch(partsQuestCount({ title: quest.main.part, count: -1, area: title, uid }));
+        dispatch(deleteQuestFromCombined({id, uid, data}));
     };
     
     return(

@@ -8,7 +8,6 @@ const initialState = {
     active: [],
     done: [],
     expired: [],
-    questFixPoint: {},
 };
 
 export const getCombinedAreas = createAsyncThunk(
@@ -27,34 +26,48 @@ const combinedAreasSlice = createSlice({
     name: 'combined',
     initialState,
     reducers: {
-        // Quest CRUD
+        // ------------------ Quest CRUD
         addQuestFromCurrentArea: (state, { payload }) => {
-            state.active.push(payload);
-            state.status = 'reload';
+            const { data, uid } = payload;
+            let countId = state.active.length + 1;
+
+            const sendData = { ...data, id: countId }
+            // Redux state
+            state.active.push(sendData);
+            // Server state
+            addQuestServer(uid, sendData, 'active');
         },
         fixCurrentQuest: (state, {payload}) => {
-            state.active = state.active.map(quest => quest.id === payload.id ? payload : quest);
+            const { newOne, oldOne, uid } = payload;
+            state.active = state.active.map(quest => quest.id === newOne.id ? newOne : quest);
+
+            deleteQuestServer(uid, oldOne, 'active');
+            addQuestServer(uid, newOne, 'active');
         },
         deleteQuestFromCombined: (state, { payload }) => {
-            state.active = state.active.filter(quest => quest.id !== payload);
+            const { id, uid, data } = payload;
+            // Redux
+            state.active = state.active.filter(quest => quest.id !== id);
+            // Server
+            deleteQuestServer(uid, data, 'active');
         },
-        changeCombinedStatus: (state, { payload }) => {
-            state.status = payload;
-        },
-        // Point CRUD
+        // ------------------------- Point CRUD
         currentPointStatusChanger: (state, { payload }) => {
-            const { questIndex, pointId, action } = payload;
+            const { questIndex, pointId, action, uid } = payload;
 
+            // Server - delete
+            let oldQuestToDelete = {...state.active[questIndex]};
+            deleteQuestServer(uid, oldQuestToDelete, 'active');
+
+            // Redux
             state.active[questIndex].quest.achieve = state.active[questIndex]?.quest.achieve.map(point => (
-                point.id === pointId ? {...point, status: action} : point));
+                point.id === pointId ? {...point, status: action} : point)
+            );
+
+            // Server - add
+            addQuestServer(uid, state.active[questIndex], 'active');
         },
-        fixCurrentQuestCopy: (state, { payload }) => {
-            state.questFixPoint = state.active[payload];
-        },
-        fixCurrentQuestCopyClear: (state) => {
-            state.questFixPoint = {};
-        },
-        // Quest transfer
+        // --------------------- Quest transfer
         doneQuest: (state, {payload}) => {
             const { id, uid, from, to } = payload;
 
@@ -94,11 +107,10 @@ const combinedAreasSlice = createSlice({
 
 export const selectCombinedActive = (state) => state.combined.active;
 export const selectCombinedStatus = (state) => state.combined.status;
-export const selectQuestFixPoint = (state) => state.combined.questFixPoint;
 
 export const selectCombinedDone = (state) => state.combined.done;
 export const selectCombinedExpired = (state) => state.combined.expired;
 
-export const { addQuestFromCurrentArea, deleteQuestFromCombined, changeCombinedStatus, fixCurrentQuest, currentPointStatusChanger, fixCurrentQuestCopy, fixCurrentQuestCopyClear, doneQuest } = combinedAreasSlice.actions;
+export const { addQuestFromCurrentArea, deleteQuestFromCombined, fixCurrentQuest, currentPointStatusChanger, doneQuest } = combinedAreasSlice.actions;
 
 export default combinedAreasSlice.reducer;
