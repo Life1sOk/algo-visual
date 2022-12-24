@@ -2,7 +2,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 import { selectCombinedActive, selectCombinedDone, selectCombinedExpired } from "../../App/slices/combined-areas.slice";
-import { selectDisplaySectionTitle, selectAllParts } from "../../App/slices/areas-slice";
+import { selectDisplaySectionTitle, selectParts } from "../../App/slices/areas-slice";
 
 import { MainLayout } from "../../Global-style/layouts";
 
@@ -12,7 +12,7 @@ import QuestsSection from "./sections/quests-section/quests-section";
 
 const AreasMain = () => {
     const displayTitle = useSelector(selectDisplaySectionTitle);
-    const partsCount = useSelector(selectAllParts).length;
+    const partsCount = useSelector(selectParts).length;
 
     const activeQuests = useSelector(selectCombinedActive);
     const filteredActiveQuests = activeQuests?.filter(quest => quest.title === displayTitle);

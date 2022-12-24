@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { initialAreas } from "../initial-state";
 
-import { getUsersDocsAreas } from "../../utils/firebase/firebase";
+import { getUsersDocsAreas, setAreasPartsCircle } from "../../utils/firebase/firebase";
 
 export const getAreasData = createAsyncThunk(
     'areaHealth/getHealthAreaData',
@@ -46,55 +46,45 @@ export const areasSlice = createSlice({
             state.partToAdd.description = description;
         },
         addPart: (state, { payload }) => {
+            let currentArea = state.displaySection;
+
             // Add to all parts array
-            let newId = state.displaySection.parts.allParts.length;
-            state.displaySection.parts.allParts.push({ ...state.partToAdd, id: newId });
-            // Add to circle data
-            const { title, color, totalQuests } = state.partToAdd;
-            state.displaySection.parts.circle.labels.push(title);
-            state.displaySection.parts.circle.datasets[0].data.push(totalQuests);
-            state.displaySection.parts.circle.datasets[0].backgroundColor.push(color);
+            let newId = state.displaySection.parts.length;
+            state.displaySection.parts.push({ ...state.partToAdd, id: newId });
             // Merge
-            state.sections[payload] = state.displaySection;
+            state.sections[currentArea.title] = state.displaySection;
+            // Server
+            setAreasPartsCircle(payload, currentArea.title.toLowerCase(), currentArea, true);
         },
         partsQuestCount: (state, { payload }) => {
-            let activeIndex = null;
-            state.displaySection.parts.allParts = state.displaySection.parts.allParts.map((part, index) => {
+            state.displaySection.parts = state.displaySection.parts.map((part, index) => {
                 if (part.title === payload.title) {
-                    activeIndex = index;
                     return { ...part, totalQuests: Number(part.totalQuests += payload.count) }
                 } else {
                     return part
                 }
             });
-            state.displaySection.parts.circle.datasets[0].data[activeIndex] = state.displaySection.parts.circle.datasets[0].data[activeIndex] + payload.count;
 
             state.sections[payload.area] = state.displaySection;
         },
         deletePart: (state, { payload }) => {
-            let totalParts = state.displaySection.parts.allParts.length;
+            let totalParts = state.displaySection.parts.length;
+            let currentArea = state.displaySection;
 
             const newCirlceParts = [];
-            const newCircleData = [];
-            const newCircleBackground = [];
-            const newCircleLabels = [];
 
             for (let i = 0; i < totalParts; i++) {
                 if (i !== payload.index) {
-                    newCirlceParts.push(state.displaySection.parts.allParts[i]);
-                    newCircleData.push(state.displaySection.parts.circle.datasets[0].data[i]);
-                    newCircleBackground.push(state.displaySection.parts.circle.datasets[0].backgroundColor[i]);
-                    newCircleLabels.push(state.displaySection.parts.circle.labels[i]);
+                    newCirlceParts.push(state.displaySection.parts[i]);
                 }
             }
 
-            state.displaySection.parts.allParts = newCirlceParts;
-            state.displaySection.parts.circle.datasets[0].data = newCircleData;
-            state.displaySection.parts.circle.datasets[0].backgroundColor = newCircleBackground;
-            state.displaySection.parts.circle.labels = newCircleLabels;
+            state.displaySection.parts = newCirlceParts;
             state.displaySection.totalParts -= 1;
 
-            state.sections[payload.area] = state.displaySection;
+            state.sections[currentArea.title] = state.displaySection;
+
+            setAreasPartsCircle(payload.uid, currentArea.title.toLowerCase(), currentArea, true);
         },
         changePartStatusToReload: (state, { payload }) => {
             state.partStatus = payload;
@@ -140,8 +130,6 @@ export const selectPartWindowOpen = (state) => state.areas.partWindowOpen;
 export const selectPartStatus = (state) => state.areas.partStatus;
 export const selectToAddPart = (state) => state.areas.partToAdd;
 export const selectToAddPartColor = (state) => state.areas.partToAdd.color;
-export const selectAllParts = (state) => state.areas.displaySection.parts.allParts;
-export const selectCircle = (state) => state.areas.displaySection.parts.circle;
 
 export const selectParts = (state) => state.areas.displaySection.parts;
 

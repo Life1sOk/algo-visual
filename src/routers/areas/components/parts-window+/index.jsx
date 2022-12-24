@@ -1,10 +1,8 @@
-import React, { useRef, useEffect } from "react";
-
-import { setAreasPartsCircle } from "../../../../utils/firebase/firebase";
+import React, { useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
-import { selectAllParts, selectDisplaySectionTitle, selectPartStatus, changeToAddData, addPart, changePartStatusToReload, deletePart, selectPartWindowOpen, partWindowOpenHandler, selectDisplaySection } from "../../../../App/slices/areas-slice";
+import { selectParts, changeToAddData, addPart, deletePart, selectPartWindowOpen, partWindowOpenHandler} from "../../../../App/slices/areas-slice";
 
 import BlackBoxWindow from "../../../../Components/black-box/black-box.component";
 import Input from '../input/input.component';
@@ -16,11 +14,8 @@ import Window from "./index.style";
 
 const PartsWindow = () => {
     const dispatch = useDispatch();
-    const allParts = useSelector(selectAllParts);
+    const allParts = useSelector(selectParts);
     const uid = useSelector(selectAuthUid);
-    const currentAreaTitle = useSelector(selectDisplaySectionTitle);
-    const partStatus = useSelector(selectPartStatus);
-    const currentArea = useSelector(selectDisplaySection);
     const partWindowOpen = useSelector(selectPartWindowOpen);
 
     const newPartTitleRef = useRef(null);
@@ -35,28 +30,13 @@ const PartsWindow = () => {
             description: newPartDescriptionRef.current.value
         }
         dispatch(changeToAddData(newPart));
-        dispatch(addPart(currentAreaTitle));
-        dispatch(changePartStatusToReload('reload'));
+        dispatch(addPart(uid));
 
         newPartTitleRef.current.value = '';
         newPartDescriptionRef.current.value = '';
     };
 
-    const deletePartHandler = (index) => {
-        const payload = {
-            area: currentAreaTitle,
-            index
-        }
-        dispatch(deletePart(payload));
-        dispatch(changePartStatusToReload('reload'));
-    };
-
-    useEffect(() => {
-        if (partStatus === 'reload') {
-            setAreasPartsCircle(uid, currentAreaTitle.toLowerCase(), currentArea, true);
-            dispatch(changePartStatusToReload(null));
-        }
-    }, [allParts]);
+    const deletePartHandler = (index) => dispatch(deletePart({uid, index}));
 
     return (
         <BlackBoxWindow state={partWindowOpen} handler={closeWindowHandler}>

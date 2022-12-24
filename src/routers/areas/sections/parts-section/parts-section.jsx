@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectAllParts, partWindowOpenHandler } from "../../../../App/slices/areas-slice";
+import { selectParts, partWindowOpenHandler } from "../../../../App/slices/areas-slice";
 
 // GLobal style 
 import { BlockLayout } from "../../../../Global-style/layouts";
@@ -13,7 +13,7 @@ import { PartsDisplay } from './parts-section.style';
 
 const PartsSection = () => {
     const dispatch = useDispatch();
-    const allPartsData = useSelector(selectAllParts);
+    const allPartsData = useSelector(selectParts);
 
     const openWindowHandler = () => dispatch(partWindowOpenHandler(true));
 

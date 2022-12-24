@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
-import { Pie, getElementAtEvent, getDatasetAtEvent } from 'react-chartjs-2';
+import React, { useState, useEffect } from "react";
+import { Pie } from 'react-chartjs-2';
 
 import { useSelector } from "react-redux";
-import { selectCircle } from "../../../../App/slices/areas-slice";
+import { selectParts } from "../../../../App/slices/areas-slice";
 
-import NothingShow from "../../../../Components/nothing-show/nothing-show.component";
 import { PartsCircleContainer} from './parts-circle.style';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
 Chart.register(ArcElement, Tooltip, Legend);
@@ -25,22 +24,48 @@ const pieSetting = {
     }
 };
 
+const circle = {
+    labels: [],
+    datasets: [{
+        label: 'Area parts statistic',
+        data: [],
+        backgroundColor: [],
+        hoverOffset: 0
+    }]
+}
+
 const PartsCircle = () => {
-    const circlePieData = useSelector(selectCircle);
-    const pie = useRef(null);
+    const [data, setData] = useState(circle);
+    const allParts = useSelector(selectParts);
 
-    const checkHandler = (e) => {
-        // const checker = getElementAtEvent(pie.current, e);
+    useEffect(() => {
+        let splitTitles = [];
+        let splitColors = [];
+        let splitCount = [];
 
-        // if (checker[0].index === 0) console.log('zero');
-        // if (checker[0].index === 1) console.log('one');
-        // if (checker[0].index === 2) console.log('two');
-        const checker = pie.current.options;
-    }
+        for(let i=0; i<allParts.length; i++) {
+            let { title, color, totalQuests } = allParts[i];
+
+            splitTitles.push(title);
+            splitColors.push(color);
+            splitCount.push(totalQuests);
+        }
+
+        setData({
+            labels: splitTitles,
+            datasets: [{
+                label: 'Area parts statistic',
+                data: splitCount,
+                backgroundColor: splitColors,
+                hoverOffset: 0
+            }]
+        })
+    }, [allParts])
+
 
     return (
         <PartsCircleContainer>
-            <Pie datasetIdKey='pie' data={circlePieData} options={pieSetting} ref={pie} onClick={checkHandler} />
+            <Pie datasetIdKey='pie' data={data} options={pieSetting} />
         </PartsCircleContainer>
     )
 }

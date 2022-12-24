@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 
 import { useSelector } from "react-redux";
-import { selectAllParts } from "../../../../../App/slices/areas-slice";
+import { selectParts } from "../../../../../App/slices/areas-slice";
 
 import { PartsOptionSelect } from './parts-option.style';
 
 const PartsOption = forwardRef(({disabled}, ref) => {
-    const allParts = useSelector(selectAllParts);
+    const allParts = useSelector(selectParts);
 
     return (
             <PartsOptionSelect ref={ref} disabled={disabled}>
