@@ -2,6 +2,7 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { doneQuest } from "../../../App/slices/combined-areas.slice";
+import { partsQuestCount } from "../../../App/slices/areas-slice";
 import { selectAuthUid } from "../../../App/slices/auth.slice";
 
 import Line from '../about-line/about-line.component';
@@ -14,10 +15,13 @@ const About = ({ id, data, area, achieve, index }) => {
     const uid = useSelector(selectAuthUid);
 
     const checkHandler = () => {
-        const payload = { id, uid, from: 'active', to: 'done'};
-        dispatch(doneQuest(payload));
-        console.log('hello');
+        const payloadQuest = { id, uid, from: 'active', to: 'done'};
+        const payloadPart = { title: data.part, count: -1, uid, area }
+
+        dispatch(partsQuestCount(payloadPart))
+        dispatch(doneQuest(payloadQuest));
     }
+
 
     return (
         <AboutStyle>

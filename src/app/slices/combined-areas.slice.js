@@ -71,19 +71,18 @@ const combinedAreasSlice = createSlice({
         doneQuest: (state, {payload}) => {
             const { id, uid, from, to } = payload;
 
-            let fixQuest = {};
-
             state.active = state.active.filter(quest => {
                 if(quest.id === id) {
-                    state.done.push({...quest, id: 1000 + quest.id});
-                    fixQuest = {...quest, id: 1000 + quest.id};
+                    let fixedQuest = {...quest, id: 1000 + quest.id};
+                    // Delete server
+                    deleteQuestServer(uid, quest, from);
+                    // Redux transfer to done
+                    state.done.push(fixedQuest);
+                    // Server change 
+                    addQuestServer(uid, fixedQuest, to);
                 }
                 return quest.id !== id;
             });
-
-            // Server change 
-            deleteQuestServer(uid, fixQuest, from);
-            addQuestServer(uid, fixQuest, to);
         },
     },
     extraReducers: {

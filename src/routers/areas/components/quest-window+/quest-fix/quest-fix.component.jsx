@@ -34,6 +34,8 @@ const QuestFix = ({data}) => {
         dispatch(partsQuestCount({ title: quest.main.part, count: -1, area: title, uid }));
         dispatch(deleteQuestFromCombined({id, uid, data}));
     };
+
+    console.log({ title: quest.main.part, count: -1, area: title, uid })
     
     return(
         <QuestFixContainer>
