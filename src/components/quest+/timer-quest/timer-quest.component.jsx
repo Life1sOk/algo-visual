@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { TimerContainer, QuestContainer, Percent } from "./timre-quest.style";
-import Timer from "../../timer/timer.component";
+import { QuestContainer, TimerWindow } from "./timre-quest.style";
+import useTimer from "../../../Hooks/useTimer";
 
-const TimerQuest = ({deadline, createdTime}) => {
-    const [ openInfo, setOpenInfo ] = useState(0);
+const TimerQuest = ({deadline}) => {
 
-    const takePercent = (have) => setOpenInfo(have);
-
-    // useEffect(() => {
-    //     console.log(openInfo);
-    // }, [openInfo])
+    const { days, hours, minutes, seconds } = useTimer(deadline);
 
     return(
         <QuestContainer>
-            <Percent>{Math.round(openInfo)}%</Percent>
-            <TimerContainer>
-                <Timer deadline={deadline} createdTime={createdTime} setTime={takePercent}/>
-            </TimerContainer>
+            <TimerWindow>{days} d</TimerWindow>
+            <TimerWindow>{hours} h</TimerWindow>
+            <TimerWindow>{minutes} m</TimerWindow>
+            <TimerWindow>{seconds} s</TimerWindow>
         </QuestContainer>
     )
 }

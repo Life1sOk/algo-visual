@@ -8,14 +8,14 @@ import TimerQuest from "./timer-quest/timer-quest.component";
 
 const Quest = ({ page, currentQuest, index }) => {
     const { id, quest, title } = currentQuest
-    const { main, createdTime, achieve, daily } = quest;
+    const { main, achieve, daily } = quest;
 
     return (
             <QuestStyle>
                 <About id={id} data={main} area={title} achieve={achieve} index={index}/>
                 <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
                 <Daily data={daily} title={main.title} />
-                <TimerQuest deadline={main.deadline} createdTime={createdTime}/>
+                <TimerQuest deadline={main.deadline}/>
             </QuestStyle>
     )
 }

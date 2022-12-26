@@ -7,21 +7,20 @@ export const QuestContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
 `;
 
-export const TimerContainer = styled.div`
-    height: 87%;
-    width: 10px;
-    background-color: white;
+export const TimerWindow = styled.div`
+    width: 50px;
+    height: 50px;
+    border: 1px solid orangered;
     border-radius: 10px;
-    overflow: hidden;
+    background-color: aliceblue;
+    color: orangered;
+    font-size: 14px;
 
     display: flex;
-    align-items: flex-end;
     justify-content: center;
-`;
-
-export const Percent = styled.div`
-
+    align-items: center;
 `;
