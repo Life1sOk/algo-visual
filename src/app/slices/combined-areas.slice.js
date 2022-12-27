@@ -70,19 +70,51 @@ const combinedAreasSlice = createSlice({
         // --------------------- Quest transfer
         doneQuest: (state, {payload}) => {
             const { id, uid, from, to } = payload;
-
-            state.active = state.active.filter(quest => {
-                if(quest.id === id) {
-                    let fixedQuest = {...quest, id: 1000 + quest.id};
-                    // Delete server
-                    deleteQuestServer(uid, quest, from);
-                    // Redux transfer to done
-                    state.done.push(fixedQuest);
-                    // Server change 
-                    addQuestServer(uid, fixedQuest, to);
-                }
-                return quest.id !== id;
-            });
+            if(from === 'active') {
+                state.active = state.active.filter(quest => {
+                    if(quest.id === id) {
+                        let fixedQuest = {...quest, id: 1000 + quest.id};
+                        // Delete server
+                        deleteQuestServer(uid, quest, from);
+                        // Redux transfer to done
+                        if(to === 'done') state.done.push(fixedQuest);
+                        if(to === 'expired') state.expired.push(fixedQuest);
+                        // Server change 
+                        addQuestServer(uid, fixedQuest, to);
+                    }
+                    return quest.id !== id;
+                });
+            };
+            if(from === 'done') {
+                state.done = state.done.filter(quest => {
+                    if(quest.id === id) {
+                        let fixedQuest = {...quest, id: 1000 + quest.id};
+                        // Delete server
+                        deleteQuestServer(uid, quest, from);
+                        // Redux transfer to done
+                        if(to === 'active') state.done.push(fixedQuest);
+                        if(to === 'expired') state.expired.push(fixedQuest);
+                        // Server change 
+                        addQuestServer(uid, fixedQuest, to);
+                    }
+                    return quest.id !== id;
+                });
+            };
+            if(from === 'expired') {
+                state.expired = state.expired.filter(quest => {
+                    if(quest.id === id) {
+                        let fixedQuest = {...quest, id: 1000 + quest.id};
+                        // Delete server
+                        deleteQuestServer(uid, quest, from);
+                        // Redux transfer to done
+                        if(to === 'done') state.done.push(fixedQuest);
+                        if(to === 'active') state.expired.push(fixedQuest);
+                        // Server change 
+                        addQuestServer(uid, fixedQuest, to);
+                    }
+                    return quest.id !== id;
+                });
+            }
         },
     },
     extraReducers: {

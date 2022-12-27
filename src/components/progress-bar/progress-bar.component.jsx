@@ -13,11 +13,13 @@ const ProgressBar = ({achieve, action}) => {
     
     let progress = done * 100 / total;
 
+    const actionHandler = () =>  action('active', 'done');
+
     return(
         <>
             {
                 progress === 100 ?
-                <button onClick={action} >Done</button> :
+                <button onClick={actionHandler} >Done</button> :
                 <ProgressBarContainer>
                     <ProgressBarTitle>Progress bar:</ProgressBarTitle>
                     <ProgressCount progress={progress} />
