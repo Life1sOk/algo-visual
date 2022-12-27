@@ -7,9 +7,9 @@ const TimerQuest = ({deadline, transferQuestHandler}) => {
     const { days, hours, minutes, seconds } = useTimer(deadline);
 
     useEffect(() => {
-        if(days === 0 && hours === 0 && minutes === 0 && seconds === 0) return transferQuestHandler('active', 'expired')
+        if(days === 0 && hours === 0 && minutes === 0 && seconds === 0) return transferQuestHandler('active', 'expired');
     }, [days, hours, minutes, seconds])
-
+    
     return(
         <QuestContainer>
             <TimerWindow>{days} d</TimerWindow>

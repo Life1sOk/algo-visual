@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const AboutStyle = styled.div`
-    width: 300px;
+    width: ${props => props.type === 'done' ? '265px' : '300px'};
     height: 345px;
     flex-shrink: 0;
     background-color: rgb(20, 25, 50);
@@ -59,8 +59,28 @@ const RoadLinks = styled.div`
     justify-content: space-between;
 `;
 
+const PointBalls = styled.div`
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+        width: 25px;
+        height: 25px;
+        background-color: green;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`;
+
 AboutStyle.Title = Title;
 AboutStyle.RoadLinks = RoadLinks;
 AboutStyle.AboutWrapper = AboutWrapper;
+AboutStyle.PointBalls = PointBalls;
 
 export default AboutStyle;

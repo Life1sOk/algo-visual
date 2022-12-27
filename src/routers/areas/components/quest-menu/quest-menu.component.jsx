@@ -1,14 +1,16 @@
 import React from "react";
 
-import { QuestMenuContainer } from './quest-menu.style';
+import { MenuContainer, P } from './quest-menu.style';
 
-const QuestMenu = ({action}) => {
+const QuestMenu = ({action, type}) => {
+    const options = ['Active', 'Done', 'Expired'];
+
     return(
-        <>
-            <p onClick={() => action('active')}>Active</p>
-            <p onClick={() => action('done')}>Done</p>
-            <p onClick={() => action('expired')}>Expired</p>
-        </>
+        <MenuContainer>
+            {
+                options.map((op, index) => <P active={type === op.toLowerCase()} onClick={() => action(op.toLowerCase())} key={index}>{op}</P>)
+            }
+        </MenuContainer>
     )
 }
 

@@ -15,15 +15,28 @@ import QuestMenu from "../../components/quest-menu/quest-menu.component";
 
 const QuestsSection = ({ displayTitle, fActive, fDone, fExpired}) => {
     const [type, setType] = useState([]);
+    const [activeType, setActiveType] = useState('active');
 
     const dispatch = useDispatch();
 
-    const openWindowHandler = () => dispatch(windowHandler(true));
+    const openWindowHandler = () => {
+        setActiveType('active');
+        dispatch(windowHandler(true));
+    };
 
     const changeTypeHandler = (type) => {
-        if(type === 'active') return setType(fActive);
-        if(type === 'done') return setType(fDone);
-        if(type === 'expired') return setType(fExpired);
+        if(type === 'active') {
+            setActiveType(type);
+            return setType(fActive);
+        }
+        if(type === 'done') {
+            setActiveType(type);
+            return setType(fDone)
+        };
+        if(type === 'expired') {
+            setActiveType(type)
+            return setType(fExpired)
+        };
     }
 
     useEffect(() => {
@@ -35,11 +48,11 @@ const QuestsSection = ({ displayTitle, fActive, fDone, fExpired}) => {
             <QuestWindow title={displayTitle}/>
             <BlockLayout>
                 <BlockHat title='Quests:' setting='Add another quest' handler={openWindowHandler}>
-                    <QuestMenu action={changeTypeHandler}/>
+                    <QuestMenu type={activeType} action={changeTypeHandler}/>
                 </BlockHat>
-                <QuestsSectionDisplay>
+                <QuestsSectionDisplay activeType={activeType}>
                     {
-                        type?.map((quest, index) => <Quest page='areas' key={index} currentQuest={quest} index={index}/>)
+                        type?.map((quest, index) => <Quest page='areas' key={index} currentQuest={quest} index={index} activeType={activeType}/>)
                     }
                 </QuestsSectionDisplay>
             </BlockLayout>

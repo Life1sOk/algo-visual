@@ -11,7 +11,7 @@ import Points from './points/points.component';
 import Daily from "./daily/daily.component";
 import TimerQuest from "./timer-quest/timer-quest.component";
 
-const Quest = ({ page, currentQuest, index, type }) => {
+const Quest = ({ currentQuest, index, activeType }) => {
     const { id, quest, title } = currentQuest
     const { main, achieve, daily } = quest;
     const dispatch = useDispatch();
@@ -26,12 +26,22 @@ const Quest = ({ page, currentQuest, index, type }) => {
     }
 
     return (
-            <QuestStyle>
-                <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler}/>
-                <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
-                <Daily data={daily} title={main.title} />
-                <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
-            </QuestStyle>
+        <>
+            {
+                activeType === 'done' ?
+                <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} type='done'/>
+                :
+                <QuestStyle>
+                    <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler}/>
+                    <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
+                    <Daily data={daily} title={main.title} />
+                    {
+                        activeType === 'active' &&
+                        <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
+                    }
+                </QuestStyle>
+            }
+        </>
     )
 }
 

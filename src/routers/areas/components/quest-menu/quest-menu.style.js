@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export const QuestMenuContainer = styled.div`
-    width: 100%;
-    height: 30px;
-    border: 1px solid orange;
-    color: aliceblue;
-
+export const MenuContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
+    justify-items: center;
+    gap: 10px;
+`;
 
-    p {
+export const P = styled.span`
+    font-size: 16px;
+    color: ${props => props.active ? 'rgb(255, 98, 0)' : 'null'};
+
+    &:hover {
         cursor: pointer;
     }
 `;

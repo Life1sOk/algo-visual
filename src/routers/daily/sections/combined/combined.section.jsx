@@ -13,7 +13,7 @@ const CombinedQuests = () => {
         <>
             <CombinedQuestsContainer>
                 {
-                    activeQuests?.map((quest, index) => <Quest page='daily' key={index} currentQuest={quest} index={index}/>)     
+                    activeQuests?.map((quest, index) => <Quest page='daily' key={index} currentQuest={quest} index={index} activeType={'active'}/>)     
                 }
             </CombinedQuestsContainer>
         </>

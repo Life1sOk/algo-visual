@@ -1,19 +1,14 @@
 import React from "react";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { doneQuest } from "../../../App/slices/combined-areas.slice";
-// import { partsQuestCount } from "../../../App/slices/areas-slice";
-// import { selectAuthUid } from "../../../App/slices/auth.slice";
-
 import Line from '../about-line/about-line.component';
 import ProgressBar from "../../progress-bar/progress-bar.component";
 import AboutStyle from "./about.style";
 
-const About = ({ data, area, achieve, index, transferQuestHandler }) => {
+const About = ({ data, area, achieve, index, transferQuestHandler, type }) => {
     const { title, current, mainGoal, description } = data;
 
     return (
-        <AboutStyle>
+        <AboutStyle type={type}>
             <AboutStyle.AboutWrapper>
                 <AboutStyle.RoadLinks>
                     <span>{area}</span>
@@ -27,7 +22,17 @@ const About = ({ data, area, achieve, index, transferQuestHandler }) => {
                 <Line label='Want to:' description={mainGoal}/>
                 <Line label='Why?' description={description}/>
             </AboutStyle.AboutWrapper>
-            <ProgressBar achieve={achieve} action={transferQuestHandler}/>
+            {
+                type === 'done' ?
+                    <AboutStyle.PointBalls>
+                        <p>Points:</p>
+                        {
+                            achieve.map((point, index) => <span key={index}>{point.id}</span>)
+                        }
+                    </AboutStyle.PointBalls>
+                :
+                <ProgressBar achieve={achieve} action={transferQuestHandler}/>
+            }
         </AboutStyle>
     )
 }
