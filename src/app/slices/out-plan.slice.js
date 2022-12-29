@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getUsersDocsOutPlan } from '../../utils/firebase/firebase';
+import { getUsersDocsDaily, deleteUsersData, addUsersData } from '../../utils/firebase/firebase';
 import { initialPlanOut } from "../initial-state";
 
 export const getOutInitialData = createAsyncThunk(
     'outPlan/getInitialData',
     async (uid, rejectWithValue) => {
         try {
-            const response = await getUsersDocsOutPlan(uid);
+            const response = await getUsersDocsDaily(uid);
             return response;
         } catch (error) {
             return rejectWithValue(error.messege);
@@ -40,11 +40,29 @@ export const outPlanSlice = createSlice({
                 return;
             }
 
-            state.fixOutOfPlan.push({ id: lastId + 1, ...state.blankQuest })
+            state.fixOutOfPlan.push({ id: lastId + 1, ...state.blankQuest });
         },
         removeOut: (state, { payload }) => {
             state.fixOutOfPlan = state.fixOutOfPlan.filter(quest => quest.id !== payload);
             state.outOfPlan = state.fixOutOfPlan;
+        },
+        changeStatusOut: (state, {payload}) => {
+            const { id, status, uid } = payload;
+
+            const updateNew = state.outOfPlan.map(toDo => {
+                if(toDo.id === id) {
+                    // Server delete
+                    deleteUsersData(uid, toDo, 'outDaily');
+                    // Server update
+                    let updatedToDo = {...toDo, status};
+                    addUsersData(uid, updatedToDo, 'outDaily');
+                    // Redux update
+                    return updatedToDo;
+                }
+                return toDo;
+            });
+
+            state.outOfPlan = updateNew.sort((a,b) => a.status - b.status)
         },
         drainOutDaily: (state) => {
             const drain = [...state.outOfPlan, ...state.fixOutOfPlan];
@@ -61,7 +79,7 @@ export const outPlanSlice = createSlice({
         },
         [getOutInitialData.fulfilled]: (state, { payload }) => {
             state.status = 'resolved';
-            state.outOfPlan = payload;
+            state.outOfPlan = payload.secondary;
         },
         [getOutInitialData.rejected]: (state, { payload }) => {
             state.status = 'rejected';
@@ -74,6 +92,6 @@ export const selectOutOfPlan = (state) => state.outPlan.outOfPlan;
 export const selectFixOutOfPlan = (state) => state.outPlan.fixOutOfPlan;
 export const selectOutStatus = (state) => state.outPlan.status;
 
-export const { remove, accept, addQuest, removeOut, acceptOut, addQuestOut, drainOutDaily } = outPlanSlice.actions;
+export const { remove, accept, addQuest, removeOut, acceptOut, addQuestOut, drainOutDaily, changeStatusOut } = outPlanSlice.actions;
 
 export default outPlanSlice.reducer;

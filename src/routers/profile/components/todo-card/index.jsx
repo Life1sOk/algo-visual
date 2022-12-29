@@ -4,25 +4,10 @@ import React, { useState } from "react";
 import TodoCardStyle from './index.style';
 
 import Todo from "./todo/todo.component";
-import Spinner from "../../../../Components/spinner/spinner.component";
 import NothingShow from '../../../../Components/nothing-show/nothing-show.component';
+import ProgressBar from "../../../../Components/progress-bar/progress-bar.component";
 
-// {
-//     state === 'loading' ?
-//         <Spinner />
-//         :
-//         state === 'resolved' ?
-//             quests?.map(quest =>
-//                 <Todo key={quest.id} index={quest.id + 1} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} />
-//             )
-//             :
-//             state === 'rejected' ?
-//                 <div>Error...</div>
-//                 :
-//                 null
-// }
-
-const TodoCard = ({ title, color, quests, state }) => {
+const TodoCard = ({ title, color, quests, state, doneChangeHandler }) => {
     const [currentQuest, setCurrentQuest] = useState(null);
 
     return (
@@ -30,12 +15,13 @@ const TodoCard = ({ title, color, quests, state }) => {
             <TodoCardStyle.Title color={color}>{title}</TodoCardStyle.Title>
                 {   
                     quests?.length > 0 ?
-                    quests?.map(quest => <Todo key={quest.id} index={quest.id + 1} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} />)
+                    quests?.map(quest => <Todo key={quest.id} index={quest.id + 1} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} doneChangeHandler={doneChangeHandler}/>)
                     :
-                    
                     <NothingShow name='nothing here' width='100%' height='200px'/>
                 }
-            <TodoCardStyle.Bar>Progress bar</TodoCardStyle.Bar>
+            <TodoCardStyle.Bar color={color}>
+                <ProgressBar achieve={quests}/>
+            </TodoCardStyle.Bar>
         </TodoCardStyle>
     )
 }

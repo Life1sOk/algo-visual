@@ -7,6 +7,8 @@ import AboutStyle from "./about.style";
 const About = ({ data, area, achieve, index, transferQuestHandler, type }) => {
     const { title, current, mainGoal, description } = data;
 
+    const transferQuest = () => transferQuestHandler('active', 'done');
+
     return (
         <AboutStyle type={type}>
             <AboutStyle.AboutWrapper>
@@ -31,7 +33,7 @@ const About = ({ data, area, achieve, index, transferQuestHandler, type }) => {
                         }
                     </AboutStyle.PointBalls>
                 :
-                <ProgressBar achieve={achieve} action={transferQuestHandler}/>
+                <ProgressBar achieve={achieve} action={transferQuest}/>
             }
         </AboutStyle>
     )

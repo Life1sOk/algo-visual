@@ -19,14 +19,21 @@ const TodoCardTitle = styled.h3`
     align-items: center;
 `;
 
-const ProgressBar = styled.div`
+const ProgressBarContainer = styled.div`
+    width: 100%;
+    height: 33px;
     text-align: center;
     border-radius: 0 0 20px 20px;
+    background-color: ${props => props.color};
+    padding: 0 10px;
+    margin-top: 5px;
 
-    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 TodoCardStyle.Title = TodoCardTitle;
-TodoCardStyle.Bar = ProgressBar;
+TodoCardStyle.Bar = ProgressBarContainer;
 
 export default TodoCardStyle;

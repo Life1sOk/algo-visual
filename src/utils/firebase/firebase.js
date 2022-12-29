@@ -45,7 +45,6 @@ export const onAuthStateChangedListener = (callback) => {
 }
 // ---------------- ------------------ ---------------- //
 
-
 // ---------------- Firebase Firestore ---------------- //
 const db = getFirestore(firebaseApp);
 
@@ -84,47 +83,51 @@ export const getUsersDocsDaily = async (uid) => {
     const getDocRef = doc(db, 'users', uid, 'quests', 'daily');
     const datas = await getDoc(getDocRef);
 
-    return datas.data().quests;
-}
+    return datas.data();
+};
 
-export const getUsersDocsOutPlan = async (uid) => {
+export const setUsersDatasDaily = async (uid, datasToAdd, type) => {
     if (!uid) return;
 
-    const getDocRef = doc(db, 'users', uid, 'quests', 'outDaily');
-    const datas = await getDoc(getDocRef);
-
-    return datas.data().quests;
-}
-
-export const setUsersDatasDaily = async (uid, datasToAdd) => {
-    if (!uid) return;
-
-    const docRef = (db, doc(db, 'users', uid, 'quests', 'daily'))
+    const docRef = (db, doc(db, 'users', uid, 'quests', 'daily'));
 
     try {
-        await setDoc(docRef, {
-            quests: datasToAdd,
-        });
+        if(type === 'main') await setDoc(docRef, { main: datasToAdd }, {merge: true});
+        if(type === 'secondary') await setDoc(docRef, { secondary: datasToAdd }, {merge: true});
+
         console.log('datas ready')
     } catch (error) {
         console.log('oops, here is some error', error);
     }
-}
+};
 
-export const setUsersDatasOutDaily = async (uid, datasToAdd) => {
+export const addUsersData = async (uid, datasToAdd, type) => {
     if (!uid) return;
 
-    const docRef = (db, doc(db, 'users', uid, 'quests', 'outDaily'))
+    const docRef = doc(db, 'users', uid, 'quests', type);
 
     try {
-        await setDoc(docRef, {
-            quests: datasToAdd,
-        });
-        console.log('datas ready')
+        await setDoc(docRef, {quests: arrayUnion(datasToAdd)}, {merge: true});
+
+        console.log('ToDo combined');
     } catch (error) {
         console.log('oops, here is some error', error);
     }
-}
+};
+
+export const deleteUsersData = async (uid, datasToDelete, type) => {
+    if (!uid) return;
+
+    const docRefComb = doc(db, 'users', uid, 'quests', type);
+
+    try {
+        await updateDoc(docRefComb, {quests: arrayRemove(datasToDelete)});
+
+        console.log('ToDo deleted');
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+};
 
 // Quests //
 export const getAllQuests = async (uid) => {

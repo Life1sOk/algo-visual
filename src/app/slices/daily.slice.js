@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getUsersDocsDaily } from '../../utils/firebase/firebase';
+import { getUsersDocsDaily, addUsersData, deleteUsersData } from '../../utils/firebase/firebase';
 import { initialPlan } from "../initial-state";
 
 export const getDailyInitialData = createAsyncThunk(
@@ -20,16 +20,17 @@ export const dailySlice = createSlice({
     initialState: initialPlan,
     reducers: {
         accept: (state, { payload }) => {
+            const { currentToDo, type } = payload;
+
             state.fixPlan = state.fixPlan.map(quest => {
-                if (quest.id === payload.id) {
-                    return quest = { ...payload };
+                if (quest.id === currentToDo.id) {
+                    return quest = { ...currentToDo };
                 }
                 return quest;
-            })
-
-            if (state.dailyPlan.length < state.fixPlan.length) {
-                state.dailyPlan.push(payload);
-            }
+            });
+            
+            // if (type === 'main' && state.mainPlan?.length < state.fixPlan.length) state.mainPlan.push(payload);
+            // if (type === 'secondary' && state.secondaryPlan?.length < state.fixPlan.length) state.secondaryPlan.push(payload);
         },
         addQuest: (state, { payload }) => {
             let lastId = state.fixPlan.length;
@@ -49,12 +50,29 @@ export const dailySlice = createSlice({
         },
         remove: (state, { payload }) => {
             state.fixPlan = state.fixPlan.filter(quest => quest.id !== payload);
-            state.tomorrowPlan = state.fixPlan;
+        },
+        changeStatus: (state, {payload}) => {
+            const { id, status, uid } = payload;
+
+            const updateNew = state.mainPlan.map(toDo => {
+                if(toDo.id === id) {
+                    // Server delete
+                    deleteUsersData(uid, toDo, 'daily');
+                    // Server update
+                    let updatedToDo = {...toDo, status};
+                    addUsersData(uid, updatedToDo, 'daily');
+                    // Redux update
+                    return updatedToDo;
+                }
+                return toDo;
+            });
+
+            state.mainPlan = updateNew.sort((a,b) => a.status - b.status)
         },
         drainDaily: (state) => {
-            const drain = [...state.dailyPlan, ...state.fixPlan];
-            const newId = drain.map(quest => {
-                return { ...quest, id: drain.indexOf(quest) };
+            const drain = [...state.mainPlan, ...state.fixPlan];
+            const newId = drain.map((quest, index) => {
+                return { ...quest, id: index };
             });
             state.fixPlan = newId;
         },
@@ -66,7 +84,8 @@ export const dailySlice = createSlice({
         },
         [getDailyInitialData.fulfilled]: (state, { payload }) => {
             state.status = 'resolved';
-            state.dailyPlan = payload;
+            state.mainPlan = payload.main;
+            state.secondary = payload.secondary;
         },
         [getDailyInitialData.rejected]: (state, { payload }) => {
             state.status = 'rejected';
@@ -75,10 +94,10 @@ export const dailySlice = createSlice({
     }
 });
 
-export const selectDaily = (state) => state.daily.dailyPlan;
+export const selectDaily = (state) => state.daily.mainPlan;
 export const selectFixPlan = (state) => state.daily.fixPlan;
 export const selectDailyState = (state) => state.daily.status;
 
-export const { remove, accept, addQuest, drainDaily } = dailySlice.actions;
+export const { remove, accept, addQuest, drainDaily, changeStatus } = dailySlice.actions;
 
 export default dailySlice.reducer;

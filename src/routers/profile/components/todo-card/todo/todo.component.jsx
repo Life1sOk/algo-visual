@@ -3,12 +3,11 @@ import React, { useState, useRef, useEffect } from "react";
 // Component Style //
 import TodoStyle from "./todo.style.js";
 
-const Todo = ({ quest, color, currentQuest, setCurrentQuest, index }) => {
-    const { questName, description } = quest;
+const Todo = ({ quest, color, currentQuest, setCurrentQuest, index, doneChangeHandler }) => {
+    const { questName, description, status, id } = quest;
     const textAreaRef = useRef(null);
     const [generatedHeight, setGeneratedHeight] = useState(null);
     const [state, setState] = useState(false);
-    const [done, setDone] = useState(false);
 
     useEffect(() => {
         const scrollHeight = textAreaRef.current.scrollHeight;
@@ -18,22 +17,20 @@ const Todo = ({ quest, color, currentQuest, setCurrentQuest, index }) => {
     useEffect(() => {
         if (questName === currentQuest) setState(true);
         if (questName !== currentQuest) setState(false);
-    }, [currentQuest, questName])
-
-    const doneChangeHandler = () => {
-        setDone(!done);
-    }
+    }, [currentQuest, questName]);
 
     const stateChangeHandler = () => {
         if (state) return setCurrentQuest(null);
         setCurrentQuest(questName);
     }
 
+    const doneChanger = () => doneChangeHandler(id, !status);
+
     return (
         <TodoStyle>
             <TodoStyle.Container state={state}>
-                <TodoStyle.Done id="todo" color={color} onClick={doneChangeHandler}>D</TodoStyle.Done>
-                <TodoStyle.Title color={color} htmlFor="todo" onClick={stateChangeHandler} done={done}>
+                <TodoStyle.Done id="todo" color={color} onClick={doneChanger}>D</TodoStyle.Done>
+                <TodoStyle.Title color={color} htmlFor="todo" onClick={stateChangeHandler} done={status}>
                     {questName}
                 </TodoStyle.Title>
             </TodoStyle.Container>

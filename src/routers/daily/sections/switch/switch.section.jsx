@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 //Firebase:
-import { setUsersDatasDaily, setUsersDatasOutDaily } from "../../../../utils/firebase/firebase";
+import { setUsersDatasDaily } from "../../../../utils/firebase/firebase";
 //Redux:
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
@@ -24,8 +24,8 @@ const SwitchSection = () => {
     const uid = useSelector(selectAuthUid);
     const [display, setDisplay] = useState('main');
 
-    const addDatasDailyServer = async () => await setUsersDatasDaily(uid, questsFix);
-    const addDatasOutDailyServer = async () => await setUsersDatasOutDaily(uid, questsFixOut);
+    const addDatasDailyServer = async () => await setUsersDatasDaily(uid, questsFix, 'main');
+    const addDatasOutDailyServer = async () => await setUsersDatasDaily(uid, questsFixOut, 'secondary');
 
     const drainDailyHandler = () => dispatch(drainDaily());
     const draitnOutDailyHandler = () => dispatch(drainOutDaily());
@@ -38,7 +38,7 @@ const SwitchSection = () => {
                     <DailyCard title='Will need to do!' color={colors.red} quests={questsFix} type='main'
                         addDatasServer={addDatasDailyServer} drainDatasHandler={drainDailyHandler} /> :
                     display === 'out' ?
-                        <DailyCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='out'
+                        <DailyCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='secondary'
                             addDatasServer={addDatasOutDailyServer} drainDatasHandler={draitnOutDailyHandler} /> :
                         display === 'notes' ?
                             <Yellow>Notes</Yellow> : null

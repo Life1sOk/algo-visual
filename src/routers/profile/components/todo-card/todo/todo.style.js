@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const TodoStyle = styled.div`
     position: relative;
     width: 100%;
-    margin: 5px 0;
+    /* margin: 5px 0; */
     /* border-bottom: .5px solid grey; */
 
     display: flex;
@@ -45,13 +45,13 @@ const DiscriptionBox = styled.textarea`
     width: 100%;
     height: ${props => !props.state ? '0' : `${props.generatedHeight + 10}px`};
     background-color: white;
-    padding: 5px 5px 0 20px;
+    padding: 0 5px 0 20px;
     font-size: 14px;
     font-style: italic;
     z-index: ${props => 100 - props.index };
     resize: none;
     border: none;
-    border-bottom: ${props => !props.state ? '5px solid rgba(255,98,0, 0)' : `5px solid rgb(255,98,0)`};
+    border-bottom: ${props => !props.state ? 'none' : `5px solid rgb(255,98,0)`};
     border-radius: 0 0 10px 10px;
     transition: all .2s ease-in-out;
 `;

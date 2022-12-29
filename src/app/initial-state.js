@@ -132,11 +132,13 @@ export const initialAreas = {
 export const initialPlan = {
     status: null,
     error: null,
-    dailyPlan: [],
+    mainPlan: [],
+    secondaryPlan: [],
     fixPlan: [],
     blankQuest: {
         questName: '',
-        description: ''
+        description: '',
+        status: false,
     }
 };
 
@@ -147,6 +149,7 @@ export const initialPlanOut = {
     fixOutOfPlan: [],
     blankQuest: {
         questName: '',
-        description: ''
+        description: '',
+        status: false,
     }
 };

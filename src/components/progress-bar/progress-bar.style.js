@@ -6,7 +6,7 @@ export const ProgressBarContainer = styled.div`
     height: 17px;
     border-radius: 20px;
     overflow: hidden;
-    background-color: lightyellow;
+    background-color: white;
 `;
 
 export const ProgressCount = styled.div`

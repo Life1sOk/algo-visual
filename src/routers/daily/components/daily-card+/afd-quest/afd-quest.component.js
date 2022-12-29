@@ -20,24 +20,25 @@ const AfdQuest = ({ quest, order, color, type, changeCountHandler }) => {
     useAutosizeTextArea(fixTextAreaRef.current, description);
 
     const acceptHandler = () => {
-        const blank = {
+        const currentToDo = {
             id,
             questName: fixQuestTitleRef.current.value,
             description: fixQuestDescriptionRef.current.value,
+            status: false,
         };
 
-        if (blank.questName.length < 3) return alert('very small quest title, should be 3+ symbols!');
-        if (blank.description.length < 10) return alert('pls add description!');
+        if (currentToDo.questName.length < 3) return alert('very small quest title, should be 3+ symbols!');
+        if (currentToDo.description.length < 10) return alert('pls add description!');
 
-        if (type === 'main') dispatch(accept(blank));
-        if (type === 'out') dispatch(acceptOut(blank));
+        if (type === 'main') dispatch(accept({currentToDo, type}));
+        if (type === 'secondary') dispatch(acceptOut(currentToDo));
         setState(!state);
         changeCountHandler('increase');
     }
 
     const deleteHandler = () => {
         if (type === 'main') dispatch(remove(id));
-        if (type === 'out') dispatch(removeOut(id));
+        if (type === 'secondary') dispatch(removeOut(id));
     }
 
     const fixHandler = () => {
