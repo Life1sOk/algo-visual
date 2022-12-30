@@ -5,7 +5,7 @@ import { selectAuthUid } from "../../../../App/slices/auth.slice";
 import { selectParts, changeToAddData, addPart, deletePart, selectPartWindowOpen, partWindowOpenHandler} from "../../../../App/slices/areas-slice";
 
 import BlackBoxWindow from "../../../../Components/black-box/black-box.component";
-import Input from '../input/input.component';
+import Input from '../../../../Components/input/input.component';
 import TextArea from '../textarea/textarea.component';
 import PartsBalls from "./parts-balls/parts-balls.component";
 import Line from "./part-line/part-line.component";

@@ -4,8 +4,7 @@ import { setUsersDatasDaily } from "../../../../utils/firebase/firebase";
 //Redux:
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
-import { selectFixPlan, drainDaily } from "../../../../App/slices/daily.slice";
-import { selectFixOutOfPlan, drainOutDaily } from "../../../../App/slices/out-plan.slice";
+import { selectFixPlan, drainDaily, selectSecondaryFixPlan } from "../../../../App/slices/daily.slice";
 //Components:
 import DailyCard from "../../components/daily-card+/index";
 import { Yellow, SwitchWrapper } from './switch.style';
@@ -20,15 +19,14 @@ const colors = {
 const SwitchSection = () => {
     const dispatch = useDispatch();
     const questsFix = useSelector(selectFixPlan);
-    const questsFixOut = useSelector(selectFixOutOfPlan);
+    const questSecodnary = useSelector(selectSecondaryFixPlan);
     const uid = useSelector(selectAuthUid);
     const [display, setDisplay] = useState('main');
 
     const addDatasDailyServer = async () => await setUsersDatasDaily(uid, questsFix, 'main');
-    const addDatasOutDailyServer = async () => await setUsersDatasDaily(uid, questsFixOut, 'secondary');
+    const addDatasOutDailyServer = async () => await setUsersDatasDaily(uid, questSecodnary, 'secondary');
 
-    const drainDailyHandler = () => dispatch(drainDaily());
-    const draitnOutDailyHandler = () => dispatch(drainOutDaily());
+    const drainDatas = (type) => dispatch(drainDaily({type}));
 
     return (
         <SwitchWrapper>
@@ -36,10 +34,10 @@ const SwitchSection = () => {
             {
                 display === 'main' ?
                     <DailyCard title='Will need to do!' color={colors.red} quests={questsFix} type='main'
-                        addDatasServer={addDatasDailyServer} drainDatasHandler={drainDailyHandler} /> :
-                    display === 'out' ?
-                        <DailyCard title='Others need to do!' color={colors.purple} quests={questsFixOut} type='secondary'
-                            addDatasServer={addDatasOutDailyServer} drainDatasHandler={draitnOutDailyHandler} /> :
+                        addDatasServer={addDatasDailyServer} drainDatas={drainDatas} /> :
+                    display === 'secondary' ?
+                        <DailyCard title='Others need to do!' color={colors.purple} quests={questSecodnary} type='secondary'
+                            addDatasServer={addDatasOutDailyServer} drainDatas={drainDatas} /> :
                         display === 'notes' ?
                             <Yellow>Notes</Yellow> : null
             }

@@ -36,7 +36,7 @@ const Switcher = ({ setDisplay, colors }) => {
     return (
         <SwitcherContainer>
             <Button state={on.red} color={red} type='left' onClick={() => switchHanlder('main')} name='Main' />
-            <Button state={on.purple} color={purple} type='middle' onClick={() => switchHanlder('out')} name='Out' />
+            <Button state={on.purple} color={purple} type='middle' onClick={() => switchHanlder('secondary')} name='Out' />
             <Button state={on.orange} color={orange} type='right' onClick={() => switchHanlder('notes')} name='Notes' />
         </SwitcherContainer>
     )

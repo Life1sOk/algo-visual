@@ -3,7 +3,6 @@ import React from "react";
 import { ProgressBarContainer, ProgressCount, ProgressBarTitle } from './progress-bar.style';
 
 const ProgressBar = ({achieve, action}) => {
-
     let total = achieve?.length;
     let done = 0;
 
@@ -17,7 +16,7 @@ const ProgressBar = ({achieve, action}) => {
         <>
             {
                 progress === 100 ?
-                <button onClick={action} >Done</button> :
+                <button onClick={action}>Done</button> :
                 <ProgressBarContainer>
                     <ProgressBarTitle>Progress bar:</ProgressBarTitle>
                     <ProgressCount progress={progress} />

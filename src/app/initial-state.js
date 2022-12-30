@@ -133,23 +133,13 @@ export const initialPlan = {
     status: null,
     error: null,
     mainPlan: [],
-    secondaryPlan: [],
     fixPlan: [],
+    secondaryPlan: [],
+    secondaryFixPlan: [],
     blankQuest: {
         questName: '',
         description: '',
         status: false,
-    }
-};
-
-export const initialPlanOut = {
-    status: null,
-    error: null,
-    outOfPlan: [],
-    fixOutOfPlan: [],
-    blankQuest: {
-        questName: '',
-        description: '',
-        status: false,
-    }
+    },
+    currentQuest: null,
 };

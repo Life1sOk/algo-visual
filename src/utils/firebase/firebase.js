@@ -104,10 +104,11 @@ export const setUsersDatasDaily = async (uid, datasToAdd, type) => {
 export const addUsersData = async (uid, datasToAdd, type) => {
     if (!uid) return;
 
-    const docRef = doc(db, 'users', uid, 'quests', type);
+    const docRef = doc(db, 'users', uid, 'quests', 'daily');
 
     try {
-        await setDoc(docRef, {quests: arrayUnion(datasToAdd)}, {merge: true});
+        if(type === 'main') await setDoc(docRef, { main: arrayUnion(datasToAdd) }, {merge: true});
+        if(type === 'secondary') await setDoc(docRef, { secondary: arrayUnion(datasToAdd) }, {merge: true});
 
         console.log('ToDo combined');
     } catch (error) {
@@ -118,10 +119,11 @@ export const addUsersData = async (uid, datasToAdd, type) => {
 export const deleteUsersData = async (uid, datasToDelete, type) => {
     if (!uid) return;
 
-    const docRefComb = doc(db, 'users', uid, 'quests', type);
+    const docRefComb = doc(db, 'users', uid, 'quests', 'daily');
 
     try {
-        await updateDoc(docRefComb, {quests: arrayRemove(datasToDelete)});
+        if(type === 'main') await updateDoc(docRefComb, {main: arrayRemove(datasToDelete)});
+        if(type === 'secondary') await updateDoc(docRefComb, {secondary: arrayRemove(datasToDelete)});
 
         console.log('ToDo deleted');
     } catch (error) {

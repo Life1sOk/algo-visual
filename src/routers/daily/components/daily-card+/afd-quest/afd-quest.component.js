@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 
 import { useDispatch } from "react-redux";
 import { remove, accept } from "../../../../../App/slices/daily.slice";
-import { removeOut, acceptOut } from "../../../../../App/slices/out-plan.slice";
 import Button from "../../button/button.component";
 
 import useAutosizeTextArea from "../../../../../Hooks/useAutosizeTextArea";
@@ -30,16 +29,12 @@ const AfdQuest = ({ quest, order, color, type, changeCountHandler }) => {
         if (currentToDo.questName.length < 3) return alert('very small quest title, should be 3+ symbols!');
         if (currentToDo.description.length < 10) return alert('pls add description!');
 
-        if (type === 'main') dispatch(accept({currentToDo, type}));
-        if (type === 'secondary') dispatch(acceptOut(currentToDo));
+        dispatch(accept({currentToDo, type}));
         setState(!state);
         changeCountHandler('increase');
     }
 
-    const deleteHandler = () => {
-        if (type === 'main') dispatch(remove(id));
-        if (type === 'secondary') dispatch(removeOut(id));
-    }
+    const deleteHandler = () => dispatch(remove({id, type}));
 
     const fixHandler = () => {
         setState(!state)

@@ -7,7 +7,7 @@ import AfdQuest from "./afd-quest/afd-quest.component";
 import AddQuest from './add-quest/add-quest.component';
 import Button from "../button/button.component";
 
-const DailyCard = ({ title, color, quests, type, addDatasServer, drainDatasHandler }) => {
+const DailyCard = ({ title, color, quests, type, addDatasServer, drainDatas }) => {
     const [cardReady, setCardReady] = useState(false);
     const [questCount, setQuestCount] = useState(0);
 
@@ -24,6 +24,8 @@ const DailyCard = ({ title, color, quests, type, addDatasServer, drainDatasHandl
             return alert('need Accept/Add all quests')
         };
     }
+
+    const drainDatasHandler = () => drainDatas(type);
 
     return (
         <DailyStyle cardReady={cardReady}>

@@ -8,7 +8,7 @@ export const TextAreaContainer = styled.div`
     gap: 5px;
 
     span {
-        font-size: 15px;
+        font-size: 13px;
         margin-left: 3px;
     }
 `;

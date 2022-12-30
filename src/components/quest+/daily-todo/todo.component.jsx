@@ -11,7 +11,7 @@ const Todo = ({ data, title }) => {
     const [open, setOpen] = useState(false);
 
     const reverseHandler = () => setOpen(!open);
-    const sendToDailyPlan = () => dispatch(addQuest({ ...data, questName: `${title} - ${questName}` }));
+    const sendToDailyPlan = () => dispatch(addQuest({data: { ...data, questName: `${title} - ${questName}` }, type: 'main'}));
 
     return (
         <TodoStyle activate={open}>

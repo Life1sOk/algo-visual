@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
 import { getDailyInitialData } from '../../App/slices/daily.slice.js';
-import { getOutInitialData } from "../../App/slices/out-plan.slice";
 import { getCombinedAreas } from '../../App/slices/combined-areas.slice';
 
 // ------------- Top level - Containers / Layouts -------------- //
@@ -13,6 +12,7 @@ import { AsideLayout, MainLayout, PageLayout } from "../../Global-style/layouts"
 
 // ------------ Page's Sections ----------------- //
 import MainDisplaySection from "./sections/main-display/main-display.section";
+import LinksBlock from './sections/links-block/links-block.section';
 
 // ------------ Page's React Components ----------------- //
 import ProfileImg from "./components/profile-img/profile-img.component";
@@ -25,7 +25,6 @@ const ProfilePage = () => {
 
     useEffect(() => {
         dispatch(getDailyInitialData(current));
-        dispatch(getOutInitialData(current));
         dispatch(getCombinedAreas(current));
     }, [dispatch, current]);
 
@@ -38,6 +37,7 @@ const ProfilePage = () => {
         <PageLayout>
             <AsideLayout>
                 <ProfileImg />
+                <LinksBlock />
                 <UserInfo />
             </AsideLayout>
             <MainLayout>

@@ -6,7 +6,7 @@ import { selectCreateQuestAchieve, addAchieve } from "../../../../../App/slices/
 
 import Ulist from "../../u-list/u-list.component";
 import Quote from "../../quote/quote.component";
-import Input from "../../input/input.component";
+import Input from "../../../../../Components/input/input.component";
 import TextArea from "../../textarea/textarea.component";
 import Point from "../../../../../Components/point/point.component";
 import Deadline from "../deadline/deadline.component";

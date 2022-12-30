@@ -5,7 +5,7 @@ import { selectSlideOne, oneDone, twoActive } from "../../../../../App/slices/qu
 import { mainAccept, selectCreateQuestReset, selectFixState, selectCreateQuestMain } from "../../../../../App/slices/create-quest.slice";
 
 import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons, SlideTop } from './slide-quest-one.style';
-import Input from "../../input/input.component";
+import Input from "../../../../../Components/input/input.component";
 import TextArea from "../../textarea/textarea.component";
 import Quote from "../../quote/quote.component";
 import Ulist from "../../u-list/u-list.component";

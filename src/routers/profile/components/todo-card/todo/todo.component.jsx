@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 // Component Style //
 import TodoStyle from "./todo.style.js";
 
-const Todo = ({ quest, color, currentQuest, setCurrentQuest, index, doneChangeHandler }) => {
+const Todo = ({ quest, color, currentQuest, setCurrentQuest, index, doneChangeHandler, type }) => {
     const { questName, description, status, id } = quest;
     const textAreaRef = useRef(null);
     const [generatedHeight, setGeneratedHeight] = useState(null);
@@ -22,9 +22,9 @@ const Todo = ({ quest, color, currentQuest, setCurrentQuest, index, doneChangeHa
     const stateChangeHandler = () => {
         if (state) return setCurrentQuest(null);
         setCurrentQuest(questName);
-    }
+    };
 
-    const doneChanger = () => doneChangeHandler(id, !status);
+    const doneChanger = () => doneChangeHandler(id, !status, type);
 
     return (
         <TodoStyle>

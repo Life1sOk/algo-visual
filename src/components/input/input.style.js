@@ -5,10 +5,10 @@ export const TitleInputContainer = styled.div`
 
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 3px;
 
     span {
-        font-size: 15px;
+        font-size: 13px;
         margin-left: 3px;
     }
 `;

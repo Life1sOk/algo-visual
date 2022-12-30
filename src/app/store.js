@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './slices/user.slice';
-import outPlanReducer from './slices/out-plan.slice';
 import dailyReducer from './slices/daily.slice';
 import areasReducer from './slices/areas-slice';
 import authReducer from './slices/auth.slice';
 import createQuestReducer from "./slices/create-quest.slice";
 import questSlidesReducer from "./slices/quest-slides";
 import combinedAreasReducer from "./slices/combined-areas.slice";
+import linksReducer from './slices/links-slice';
 
 const store = configureStore({
     middleware: (getDefaultMiddleware) =>
@@ -25,11 +25,11 @@ const store = configureStore({
         auth: authReducer,
         user: userReducer,
         daily: dailyReducer,
-        outPlan: outPlanReducer,
         areas: areasReducer,
         createQuest: createQuestReducer,
         questSlide: questSlidesReducer,
         combined: combinedAreasReducer,
+        links: linksReducer,
     }
 })
 

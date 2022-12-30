@@ -12,7 +12,7 @@ const Daily = ({ data, title }) => {
     const addAllToDailyHandler = () => {
         for (let i = 0; i < data.length; i++) {
             const { questName } = data[i];
-            dispatch(addQuest({ ...data[i], questName: `${title} - ${questName}` }))
+            dispatch(addQuest({data: { ...data[i], questName: `${title} - ${questName}` }, type: 'main'}))
         }
     };
 
