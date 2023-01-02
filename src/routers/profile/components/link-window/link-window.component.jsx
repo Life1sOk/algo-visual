@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectWindow, linkOpen, addNewLink } from "../../../../App/slices/links-slice";
+import { selectAuthUid } from "../../../../App/slices/auth.slice";
 
 import { LinkWindowContainer, WindowTitle, LinksWrapper, ButtonsContainer } from './link-window.style';
 import BlackBoxWindow from "../../../../Components/black-box/black-box.component";
@@ -11,6 +12,7 @@ import ButtonClassic from "../../../../Components/button-classic/button-classic.
 const LinkWindow = () => {
     const dispatch = useDispatch();
     const linkWindowState = useSelector(selectWindow);
+    const uid = useSelector(selectAuthUid);
 
     const linkNameRef = useRef(null);
     const linkUrlRef = useRef(null);
@@ -30,7 +32,7 @@ const LinkWindow = () => {
         if(linkForm.name.length <= 0) return alert('pls add name');
         if(linkForm.url.length <= 0) return alert('pls add url');
 
-        dispatch(addNewLink(linkForm));
+        dispatch(addNewLink({uid, data: linkForm}));
     }
 
     return(

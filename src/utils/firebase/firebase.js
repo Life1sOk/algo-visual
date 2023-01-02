@@ -15,8 +15,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-// ---------------- Firebase Authentication ---------------- //
+// Var
 const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
+
+// ---------------- Firebase Authentication ---------------- //
 
 export const createUserWithEaP = async (email, password) => {
     try {
@@ -40,13 +43,10 @@ export const signInWithEaP = async (email, password) => {
 
 export const signOutHandler = async () => await signOut(auth);
 
-export const onAuthStateChangedListener = (callback) => {
-    return onAuthStateChanged(auth, callback)
-}
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
 // ---------------- ------------------ ---------------- //
 
 // ---------------- Firebase Firestore ---------------- //
-const db = getFirestore(firebaseApp);
 
 // Auth //
 export const createUsersDocumentsFromAuth = async (userAuth) => {
@@ -75,7 +75,7 @@ export const createUsersDocumentsFromAuth = async (userAuth) => {
 }
 // ---------------- ------------------ ---------------- //
 
-// Plan //
+// Quests daily //
 
 export const getUsersDocsDaily = async (uid) => {
     if (!uid) return;
@@ -130,8 +130,9 @@ export const deleteUsersData = async (uid, datasToDelete, type) => {
         console.log('oops, here is some error', error);
     }
 };
+// ---------------- ------------------ ---------------- //
 
-// Quests //
+// Quests combinedAreas//
 export const getAllQuests = async (uid) => {
     if (!uid) return;
 
@@ -189,9 +190,8 @@ export const getUsersDocsAreas = async (uid, type) => {
     if(datas.exists()) {
         return datas.data();
     }
-}
+};
 
-// Parts //
 export const setAreasPartsCircle = async (uid, area, datasToUp, merge) => {
     if (!uid || !area) return;
 
@@ -203,53 +203,33 @@ export const setAreasPartsCircle = async (uid, area, datasToUp, merge) => {
     } catch (error) {
         console.log('oops, here is some error', error);
     }
-}
-
-export const updateAreasPartsCircle = async (uid, area, datasToUp) => {
-    if (!uid || !area) return;
-
-    const docRef = doc(db, 'users', uid, 'areas', area);
-
-    try {
-        await updateDoc(docRef, { parts: datasToUp});
-        console.log('done digi don')
-    } catch (error) {
-        console.log('oops, here is some error', error);
-    }
-}
-
-
-// Statistic //
-export const updateAreasStatistic = async (uid, area, datasToUp) => {
-    if(!uid || !area || !datasToUp) return;
-
-    const docRef = doc(db, 'users', uid, 'areas', area);
-
-    try {
-        await updateDoc(docRef, {statistic: datasToUp});
-        console.log('done digi don');
-    } catch (error) {
-        console.log('oops, here is some error', error);
-    }
-}
-
+};
 // ---------------- ------------------ ---------------- //
 
-// Update //
+// Main extra //
 
-export const tryUpdateData = async (uid) => {
-    if (!uid) return;
+export const getMainExtraLinks = async (uid) => {
+    if(!uid) return;
 
-    const getDocRef = doc(db, 'users', uid);
-    const datas = await getDoc(getDocRef);
+    const docRef = doc(db, 'users', uid, 'main', 'links');
+    const datas = await getDoc(docRef);
 
-    // await updateDoc(getDocRef, {
-    //     'all': arrayRemove({ bay: 1232, hello: '123' })
-    // });
+    if(datas.exists()) {
+        return datas.data();
+    }
+};
 
-    // await updateDoc(getDocRef, {
-    //     'check': arrayUnion({ hello: 'hello' }, { bay: 'bay' })
-    // });
+export const setMainExtraLinks = async (uid, datasToAdd) => {
+    if(!uid) return;
 
-    console.log(datas.data());
-}
+    const docRef = doc(db, 'users', uid, 'main', 'links');
+
+    try {
+        await setDoc(docRef, {data: arrayUnion(datasToAdd)}, { merge: true });
+        console.log('links done');
+    } catch(error) {
+        console.log('some links error', error);
+    }
+};
+
+// ---------------- ------------------ ---------------- //

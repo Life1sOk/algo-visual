@@ -1,13 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+import { getMainExtraLinks, setMainExtraLinks } from "../../utils/firebase/firebase";
 
 const initialState = {
+    state: '',
     linkWindowState: false, 
-    all: [
-        { name: 'Check 1', url: 'https://www.google.com/'},
-        { name: 'Check 2', url: 'https://www.google.com/'},
-        { name: 'Check 3', url: 'https://www.google.com/'},
-    ],
+    links: [],
 };
+
+export const getMainLinksData = createAsyncThunk(
+    'links/getMainLinksData',
+    async (uid, rejectWithValue) => {
+        try {
+            const response = await getMainExtraLinks(uid);
+            return response;
+        } catch (error) {
+            return rejectWithValue(error.messege);
+        }
+    }
+)
 
 const linksSlice = createSlice({
     name: 'links',
@@ -17,13 +28,31 @@ const linksSlice = createSlice({
             state.linkWindowState = payload;
         },
         addNewLink: (state, { payload }) => {
-            state.all.push(payload);
+            const { data, uid } = payload;
+            // Redux + link + window(close)
+            state.links.push(data);
             state.linkWindowState = false;
+            // Server add
+            setMainExtraLinks(uid, data);
+        },
+    },
+    extraReducers: {
+        [getMainLinksData.pending]: (state) => {
+            state.status = 'loading';
+            state.error = null;
+        },
+        [getMainLinksData.fulfilled]: (state, { payload }) => {
+            state.status = 'resolved';
+            if(payload) state.links = payload.data;
+        },
+        [getMainLinksData.rejected]: (state, {payload}) => {
+            state.status = 'rejected';
+            state.error = payload;
         },
     }
 });
 
-export const selectLinks = (state) => state.links.all;
+export const selectLinks = (state) => state.links.links;
 export const selectWindow = (state) => state.links.linkWindowState;
 
 export const { addNewLink, linkOpen } = linksSlice.actions;
