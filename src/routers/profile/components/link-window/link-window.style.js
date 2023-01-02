@@ -4,7 +4,7 @@ export const LinkWindowContainer = styled.div`
     width: 600px;
     /* height: 400px; */
     border: 1px solid white;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: rgb(64,64,64);
     color: white;
 
@@ -23,6 +23,7 @@ export const LinksWrapper = styled.div`
 
 export const ButtonsContainer = styled.div`
     padding: 24px 16px 16px;
+    margin-top: 20px;
 
     display: flex;
     justify-content: flex-end;

@@ -13,7 +13,7 @@ const Part = ({ data }) => {
                 <ColorBall color={color} />
             </PartStyle.Title>
             <PartStyle.TotalQuests>
-                <span>Total quests:</span>
+                <span>Active quests:</span>
                 <span className="totalquest">{totalQuests}</span>
             </PartStyle.TotalQuests>
             <PartStyle.Description>

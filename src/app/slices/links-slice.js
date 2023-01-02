@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     linkWindowState: false, 
     all: [
-        { title: 'Check 1', link: 'https://www.google.com/'},
-        { title: 'Check 2', link: 'https://www.google.com/'},
-        { title: 'Check 3', link: 'https://www.google.com/'},
+        { name: 'Check 1', url: 'https://www.google.com/'},
+        { name: 'Check 2', url: 'https://www.google.com/'},
+        { name: 'Check 3', url: 'https://www.google.com/'},
     ],
 };
 
@@ -18,6 +18,7 @@ const linksSlice = createSlice({
         },
         addNewLink: (state, { payload }) => {
             state.all.push(payload);
+            state.linkWindowState = false;
         },
     }
 });

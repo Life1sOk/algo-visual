@@ -15,7 +15,7 @@ export const  ButtonContainer = styled.button`
                         props.type === 'delete' ? 'rgb(255,51,51)' : null};
     background-color: ${props => props.type === 'accept' ? 'rgb(51, 255, 51)' : 
                         props.type === 'fix' ? 'rgb(255,255,51)' :
-                        props.type === 'delete' ? 'rgb(255,51,51)' : null};;
+                        props.type === 'delete' ? 'rgb(255,51,51)' : null};
 
     &:hover {
         color: rgb(68, 61, 61);

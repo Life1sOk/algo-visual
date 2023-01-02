@@ -3,11 +3,11 @@ import React from "react";
 import { LinkAnch } from './link.style';
 
 const Link = ({data}) => {
-    const { title, link } = data;
+    const { name, url } = data;
 
     return(
-        <LinkAnch href={link} target='_blank'>
-            {title}
+        <LinkAnch href={url} target='_blank'>
+            {name}
         </LinkAnch>
     )
 }
