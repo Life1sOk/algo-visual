@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getMainExtraLinks, setMainExtraLinks } from "../../utils/firebase/firebase";
+import { getMainExtraLinks, setMainExtraLinks, deleteMainExtraLinks } from "../../utils/firebase/firebase";
 
 const initialState = {
     state: '',
@@ -35,6 +35,14 @@ const linksSlice = createSlice({
             // Server add
             setMainExtraLinks(uid, data);
         },
+        deleteLink: (state, { payload }) => {
+            const { data, uid } = payload;
+
+            // Redux - link
+            state.links = state.links.filter(link => link.id !== data.id);
+            // Server delete
+            deleteMainExtraLinks(uid, data);
+        },
     },
     extraReducers: {
         [getMainLinksData.pending]: (state) => {
@@ -55,6 +63,6 @@ const linksSlice = createSlice({
 export const selectLinks = (state) => state.links.links;
 export const selectWindow = (state) => state.links.linkWindowState;
 
-export const { addNewLink, linkOpen } = linksSlice.actions;
+export const { addNewLink, linkOpen, deleteLink } = linksSlice.actions;
 
 export default linksSlice.reducer;

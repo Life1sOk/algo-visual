@@ -232,4 +232,17 @@ export const setMainExtraLinks = async (uid, datasToAdd) => {
     }
 };
 
+export const deleteMainExtraLinks = async (uid, toDelete) => {
+    if(!uid) return;
+
+    const docRef = doc(db, 'users', uid, 'main', 'links');
+
+    try {
+        await updateDoc(docRef, {data: arrayRemove(toDelete)});
+        console.log('deleted link! ok');
+    } catch (error) {
+        console.log('fail link delete')
+    };
+};
+
 // ---------------- ------------------ ---------------- //

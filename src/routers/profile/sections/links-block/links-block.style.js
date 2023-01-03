@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const LinksBlockContainer = styled.div`
+    max-width: 300px;
     position: relative;
     width: 100%;
     min-height: 120px;
@@ -21,4 +22,16 @@ export const OpenWindow = styled.button`
 
     width: 20px;
     height: 20px;
+`;
+
+export const LinksWrapper = styled.div`
+    /* height: 100px; */
+    /* border: 1px solid white; */
+    margin: 10px 10px 0 0;
+
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 `;

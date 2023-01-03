@@ -1,14 +1,20 @@
 import React from "react";
 
-import { LinkAnch } from './link.style';
+import { LinkContainer, LinkStyle, DeleteButton } from './link.style';
 
-const Link = ({data}) => {
+const Link = ({data, type, action}) => {
     const { name, url } = data;
 
+    const checkHandler = () => action(data);
+
     return(
-        <LinkAnch href={url} target='_blank'>
-            {name}
-        </LinkAnch>
+        <LinkContainer type={type}>
+            <LinkStyle href={url} target='_blank'>{name}</LinkStyle>
+            {
+                type === 'main' ? null :
+                <DeleteButton onClick={checkHandler}>x</DeleteButton>
+            }
+        </LinkContainer>
     )
 }
 
