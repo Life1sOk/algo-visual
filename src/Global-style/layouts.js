@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageLayout = styled.div`
-    width: 1380px;
+    width: 1316px;
     height: 100%;
     margin: 7px auto 0 auto;
 

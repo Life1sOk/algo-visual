@@ -18,6 +18,7 @@ import LinksBlock from './sections/links-block/links-block.section';
 // ------------ Page's React Components ----------------- //
 import ProfileImg from "./components/profile-img/profile-img.component";
 import UserInfo from "./components/user-info/user-info.component";
+import Calendar from "./components/calendar";
 
 // ------------- Lego --------------- //
 const ProfilePage = () => {
@@ -33,12 +34,14 @@ const ProfilePage = () => {
     //'Lq20Jf6vpTXXHXrCVSdN79qWdSJ3' - uid
 
     const checkHandler = async () => {
+        console.log('check')
     }
 
     return (
         <PageLayout>
             <AsideLayout>
-                <ProfileImg />
+                {/* <ProfileImg /> */}
+                <Calendar />
                 <LinksBlock />
                 <UserInfo />
             </AsideLayout>
