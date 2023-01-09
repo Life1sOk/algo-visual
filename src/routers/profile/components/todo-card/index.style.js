@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 const TodoCardStyle = styled.div`
     position: relative;
-    width: 272px;
+    /* width: 272px; */
     height: auto;
+    width: 470px;
+    /* height: 400px; */
     background-color: white;
     border-radius: 25px;
 `;

@@ -34,9 +34,9 @@ const Todo = ({ quest, color, currentQuest, setCurrentQuest, index, doneChangeHa
                     {questName}
                 </TodoStyle.Title>
             </TodoStyle.Container>
-            <div onClick={stateChangeHandler}>
-                <TodoStyle.Discription ref={textAreaRef} state={state} generatedHeight={generatedHeight} readOnly disabled value={description} index={index}/>
-            </div>
+            <TodoStyle.DescriptionWrapper state={state} generatedHeight={generatedHeight} index={index}>
+                <TodoStyle.Discription ref={textAreaRef} readOnly disabled value={description}/>
+            </TodoStyle.DescriptionWrapper>
         </TodoStyle>
     )
 }

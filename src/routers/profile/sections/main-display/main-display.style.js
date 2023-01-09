@@ -7,6 +7,7 @@ export const DisplaySection = styled.section`
     border: 2px solid #30363d;
 
     display: flex;
+    /* flex-direction: column; */
     align-items: flex-start;
     gap: 10px;
 `;
