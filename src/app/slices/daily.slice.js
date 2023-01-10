@@ -52,7 +52,7 @@ export const dailySlice = createSlice({
                     return;
                 }
     
-                if (data == null) {
+                if (data !== null) {
                     state.fixPlan.push({ ...data, id: lastId + 1 });
                     return;
                 }
@@ -139,6 +139,12 @@ export const dailySlice = createSlice({
                 state.secondaryFixPlan = newId;
             }
         },
+        changeCurrentDay: (state, {payload}) => {
+            state.currentDay = payload;
+        },
+        changeActivePlanDay: (state, {payload}) => {
+            state.activePlanDay = payload;
+        },
     },
     extraReducers: {
         [getDailyInitialData.pending]: (state) => {
@@ -162,7 +168,9 @@ export const selectFixPlan = (state) => state.daily.fixPlan;
 export const selectSecondaryPlan = (state) => state.daily.secondaryPlan;
 export const selectSecondaryFixPlan = (state) => state.daily.secondaryFixPlan;
 export const selectDailyState = (state) => state.daily.status;
+export const selectCurrantDay = (state) => state.daily.currentDay;
+export const selectActiveDay = (state) => state.daily.activePlanDay;
 
-export const { remove, accept, addQuest, drainDaily, changeStatus } = dailySlice.actions;
+export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay } = dailySlice.actions;
 
 export default dailySlice.reducer;

@@ -1,9 +1,10 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
-import { signOutHandler } from "../../utils/firebase/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrantDay } from "../../App/slices/daily.slice";
 
+import { signOutHandler } from "../../utils/firebase/firebase";
 import { signOut } from "../../App/slices/auth.slice";
 
 import './navigation.style.scss';
@@ -40,6 +41,9 @@ const navigation = [
 const Navigation = () => {
     const dispatch = useDispatch();
 
+    const currentDay = useSelector(selectCurrantDay);
+    const { number, monthStr, year } = currentDay;
+
     const signOutHanlder = () => {
         signOutHandler();
         dispatch(signOut());
@@ -49,7 +53,10 @@ const Navigation = () => {
         <>
             <div className="nav-wrapper">
                 <div className="next-wrapper">
-                    <div className="left"></div>
+                    <div className="left">
+                        <p>Current display:</p>
+                        <p>{`${number} ${monthStr} ${year}`}</p>
+                    </div>
                     <nav className="nav-container">
                         {
                             navigation.map(link => <NavLink key={link.id} to={link.to} id={link.id} name={link.name} />)

@@ -132,6 +132,8 @@ export const initialAreas = {
 export const initialPlan = {
     status: null,
     error: null,
+    currentDay: '',
+    activePlanDay: '',
     mainPlan: [],
     fixPlan: [],
     secondaryPlan: [],
