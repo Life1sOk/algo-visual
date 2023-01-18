@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideOne, oneDone, twoActive } from "../../../../../App/slices/quest-slides";
-import { mainAccept, selectCreateQuestReset, selectFixState, selectCreateQuestMain } from "../../../../../App/slices/create-quest.slice";
+import { mainAccept, selectCreateQuestReset, selectFixState, selectCreateQuestMain, setReset } from "../../../../../App/slices/create-quest.slice";
 
 import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons, SlideTop } from './slide-quest-one.style';
 import Input from "../../../../../Components/input/input.component";
@@ -58,8 +58,12 @@ const SlideQuestOne = () => {
             goalCurrentStateRef.current.value = '';
             goalWantToRef.current.value = '';
             goalDesctiptionRef.current.value = '';
+
+            dispatch(setReset('no'));
         } 
-        
+    }, [resetState, dispatch]);
+    
+    useEffect(() => {
         if(fixState) {
             const { deadline, part, title, current, mainGoal, description } = forFixMain;
             
@@ -70,7 +74,7 @@ const SlideQuestOne = () => {
             goalWantToRef.current.value = mainGoal;
             goalDesctiptionRef.current.value = description;
         }
-    }, [resetState, fixState]);
+    }, [fixState])
 
 
     return (

@@ -9,9 +9,9 @@ const Days = ({currentDay, currentDayHandler}) => {
   let weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
 
-  for (let day = 0; day < 42; day++) {
+  for (let day = 0; day < 35; day++) {
       if (day === 0 && weekdayOfFirstDay === 0) {
-        firstDayOfMonth.setDate(firstDayOfMonth.getDate() - 7);
+        firstDayOfMonth.setDate(firstDayOfMonth.getDate());
       } else if (day === 0) {
         firstDayOfMonth.setDate(firstDayOfMonth.getDate() + (day - weekdayOfFirstDay));
       } else {

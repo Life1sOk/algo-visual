@@ -10,6 +10,7 @@ import { getMainLinksData } from "../../App/slices/links-slice";
 import { AsideLayout, MainLayout, PageLayout } from "../../Global-style/layouts";
 
 // ------------- Top level React Components ------------------- //
+import TitlePage from "../../Components/title-page/title-page.component";
 
 // ------------ Page's Sections ----------------- //
 import MainDisplaySection from "./sections/main-display/main-display.section";
@@ -41,6 +42,7 @@ const ProfilePage = () => {
         <PageLayout>
             <AsideLayout>
                 {/* <ProfileImg /> */}
+                <TitlePage titleName='Today toDo' />
                 <Calendar />
                 <LinksBlock />
                 <UserInfo />

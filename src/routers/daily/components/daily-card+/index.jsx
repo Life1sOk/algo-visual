@@ -31,12 +31,12 @@ const DailyCard = ({ title, color, quests, type, addDatasServer, drainDatas }) =
         <DailyStyle cardReady={cardReady}>
             <DailyStyle.Container color={color}>
                 <DailyStyle.Title color={color}>{title} {`${questCount}/${quests?.length}`}</DailyStyle.Title>
-                {
-                    quests &&
-                    quests.map(quest =>
-                        <AfdQuest key={quest.id} quest={quest} order={quests.indexOf(quest)} color={color} type={type} changeCountHandler={changeCountHandler} />
-                    )
-                }
+                    {
+                        quests &&
+                        quests.map(quest =>
+                            <AfdQuest key={quest.id} quest={quest} order={quests.indexOf(quest)} color={color} type={type} changeCountHandler={changeCountHandler} />
+                        )
+                    }
                 <AddQuest type={type} />
                 <DailyStyle.Buttons>
                     <Button name='Ready' color='green' onClick={addDatasHandler} />

@@ -16,7 +16,7 @@ const DailyPage = () => {
     return (
         <PageLayout>
             <AsideLayout>
-                <TitlePage titleName='Tomorrow' />
+                <TitlePage titleName='Planning' />
                 <SwitchSection />
             </AsideLayout>
             <MainLayout>

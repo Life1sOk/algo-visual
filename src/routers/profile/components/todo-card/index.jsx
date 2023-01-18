@@ -23,10 +23,4 @@ const TodoCard = ({ title, color, quests, doneChangeHandler, type }) => {
     )
 }
 
-// {   
-//     quests?.length > 0 ?
-//     quests?.map(quest => <Todo key={quest.id} index={quest.id + 1} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} doneChangeHandler={doneChangeHandler} type={type}/>)
-//     :
-//     <NothingShow name='nothing here' width='100%' height='200px'/>
-// }
 export default TodoCard;

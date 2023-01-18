@@ -27,7 +27,7 @@ const AfdQuest = ({ quest, order, color, type, changeCountHandler }) => {
         };
 
         if (currentToDo.questName.length < 3) return alert('very small quest title, should be 3+ symbols!');
-        if (currentToDo.description.length < 10) return alert('pls add description!');
+        if (currentToDo.description.length < 3) return alert('pls add description!');
 
         dispatch(accept({currentToDo, type}));
         setState(!state);
