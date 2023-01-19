@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { DaysContainer } from './days.style';
 import Day from "../day/day.component";
 
-const Days = ({currentDay, currentDayHandler}) => {
+const Days = memo(({currentDay, currentDayHandler, later}) => {
 
-  let firstDayOfMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
+  let firstDayOfMonth = new Date(currentDay.year, currentDay.month, 1);
   let weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
 
@@ -19,11 +19,11 @@ const Days = ({currentDay, currentDayHandler}) => {
       }
     
         let calendarDay = {
-          currentMonth: (firstDayOfMonth.getMonth() === currentDay.getMonth()),
+          currentMonth: (firstDayOfMonth.getMonth() === currentDay.month),
           date: (new Date(firstDayOfMonth)),
           month: firstDayOfMonth.getMonth(),
           number: firstDayOfMonth.getDate(),
-          selected: (firstDayOfMonth.toDateString() === currentDay.toDateString()),
+          selected: (firstDayOfMonth.toDateString() === currentDay.str),
           year: firstDayOfMonth.getFullYear(),
         }
             
@@ -33,10 +33,10 @@ const Days = ({currentDay, currentDayHandler}) => {
   return(
     <DaysContainer>
       {
-        currentDays?.map((day, index) => <Day key={index} day={day} currentDayHandler={currentDayHandler}/>)
+        currentDays?.map((day, index) => <Day key={index} day={day} currentDayHandler={currentDayHandler} later={later}/>)
       }
     </DaysContainer>
   )
-}
+})
 
 export default Days;

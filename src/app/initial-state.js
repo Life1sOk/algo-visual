@@ -133,6 +133,7 @@ export const initialPlan = {
     status: null,
     error: null,
     currentDay: '',
+    nextDay: '',
     activePlanDay: '',
     mainPlan: [],
     fixPlan: [],

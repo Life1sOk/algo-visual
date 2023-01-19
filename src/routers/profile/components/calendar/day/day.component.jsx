@@ -1,31 +1,40 @@
 import React, { useEffect, useState, memo } from "react";
 
 import { useSelector } from "react-redux";
-import { selectCurrantDay } from "../../../../../App/slices/daily.slice";
+import { selectActiveDay } from "../../../../../App/slices/daily.slice";
 
 import { OneDay } from './day.style';
 
-const Day = memo(({day, currentDayHandler}) => {
-    const currentDayDisplay = useSelector(selectCurrantDay);
+const Day = memo(({day, currentDayHandler, later}) => {
+    const currentActiveDay = useSelector(selectActiveDay);
 
     const { currentMonth, selected, number, month, year } = day;
     const [activeByUser, setActiveByUser] = useState(false);
+    const [ laterDay, setLaterDay ] = useState(false);
 
+    const dayActivateHandler = () => {
+        if(!laterDay) currentDayHandler(day)
+    };
+    
     useEffect(() => {
-        if(selected) currentDayHandler(day, true);
-    }, []);
-
-    useEffect(() => {
-        if(currentDayDisplay.number === number && currentDayDisplay.month === month && currentDayDisplay.year === year) {
-            return setActiveByUser(true);
-        } else {
-            return setActiveByUser(false);
+        if(later) {
+            let laterTrue = ((month + 1) * 100 + number < (new Date().getMonth() + 1) * 100 + new Date().getDate());
+    
+            if(laterTrue) setLaterDay(laterTrue);
+            if(!laterTrue) setLaterDay(false);
         }
-    }, [currentDayDisplay]);
+    }, [month, number, later])
 
+    useEffect(() => {
+        if(currentActiveDay.number === number && currentActiveDay.month === month && currentActiveDay.year === year) {
+            setActiveByUser(true);
+        } else {
+            setActiveByUser(false);
+        }
+    }, [currentActiveDay, month]);
 
     return(
-        <OneDay currentMonth={currentMonth} selected={selected} onClick={() => currentDayHandler(day)} activeByUser={activeByUser}>
+        <OneDay currentMonth={currentMonth} selected={selected} laterDay={laterDay} onClick={dayActivateHandler} activeByUser={activeByUser}>
             <p>{number}</p>
         </OneDay>
     )

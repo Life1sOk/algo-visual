@@ -7,8 +7,13 @@ export const OneDay = styled.div`
     border-radius: 30%;
     color: ${props => props.currentMonth ? 'black' : 'grey'};
     background-color: ${props => props.selected ? 'rgb(255,98,0)' : !props.currentMonth ? 'none' : 'white'};
+    opacity: ${props => props.laterDay ? '.5' : null};
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:hover {
+        cursor: ${props => props.laterDay ? null : 'pointer'};
+    }
 `;

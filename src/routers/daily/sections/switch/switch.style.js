@@ -14,3 +14,14 @@ export const Yellow = styled.div`
     border: 5px solid rgb(255, 153, 51);
     border-radius: 20px;
 `;
+
+export const Setting = styled.div`
+    position: relative;
+    
+    width: 100%;
+    padding: 0 10px 10px 10px;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+`;

@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { changeCurrentDay, changeActivePlanDay } from "../../../../App/slices/daily.slice";
 
-import { CalendarContainer, CalendarTable, Weekday, CalendarHeader } from './index.style';
+import { CalendarContainer, CalendarTable, Weekday, CalendarHeader, Arrow, BlankArrow, CalendarFooter } from './index.style';
 import Days from "./days/days.component";
+import Legend from "./legend/legend.component";
 
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const Calendar = () => {
-    const dispatch = useDispatch();
-    const [currentDay] = useState(new Date());
+const date = {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    str: new Date().toDateString(),
+    day: new Date().getDate(),
+};
 
-    const currentDayHandler = (currentDay, selected) => {
+const calendarLegend = [
+    { status: 'today', background: 'rgb(255,98,0)', title: 'current day'},
+    { status: 'activeDay', border: 'rgb(255,98,0)', title: 'active day'},
+    { status: 'planned', border: 'rgb(127, 0, 255)', title: 'planned day'},
+    { status: 'completed', background: 'rgb(128, 255, 0)', title: 'completed day'},
+    { status: 'failed', background: 'rgb(255,51,51)', title: 'failed day'},
+]
+
+const Calendar = ({legend, later, window}) => {
+    const dispatch = useDispatch();
+    const [current, setCurrent] = useState(date);
+
+    const currentDayHandler = (currentDay) => {
         const { number, month, year } = currentDay;
 
         let payload = {
@@ -23,15 +39,36 @@ const Calendar = () => {
             year,
         }
 
-        if(selected) dispatch(changeCurrentDay(payload));
-
         dispatch(changeActivePlanDay(payload));
     };
 
+    const nextMonthHandler = () => {
+        if(current.month < 11) setCurrent({...current, month: current.month + 1});
+    };
+    
+    const laterMonthHandler = () => {
+        if(current.month > 0) setCurrent({...current, month: current.month - 1});
+    };
+
+    useEffect(() => {
+        const { day, month, year } = date;
+
+        let payload = {
+            number: day,
+            month,
+            monthStr: months[month],
+            year
+        }
+        dispatch(changeCurrentDay(payload));
+        dispatch(changeActivePlanDay(payload));
+    }, [date])
+
     return(
-        <CalendarContainer>
+        <CalendarContainer window={window}>
             <CalendarHeader>
-                <h3>{months[currentDay.getMonth()]} {currentDay.getFullYear()}</h3>
+                {current.month > 0 ? <Arrow onClick={laterMonthHandler}>&#60;</Arrow> : <BlankArrow />}
+                <h3>{months[current.month]} {current.year}</h3>
+                {current.month < 11 ? <Arrow onClick={nextMonthHandler}>&#62;</Arrow> : <BlankArrow />}
             </CalendarHeader>
             <div className="calendar-body">
                 <CalendarTable>
@@ -39,8 +76,13 @@ const Calendar = () => {
                         weekdays.map((weekday) => <Weekday key={weekday}><p>{weekday}</p></Weekday>)
                     }
                 </CalendarTable>
-                <Days currentDay={currentDay} currentDayHandler={currentDayHandler}/>
+                <Days currentDay={current} currentDayHandler={currentDayHandler} later={later}/>
             </div>
+            <CalendarFooter>
+                {   legend &&
+                    calendarLegend.map((l, index) => <Legend key={index} data={l}/>)
+                }
+            </CalendarFooter>
         </CalendarContainer>
     )
 }

@@ -43,7 +43,7 @@ const ProfilePage = () => {
             <AsideLayout>
                 {/* <ProfileImg /> */}
                 <TitlePage titleName='Today toDo' />
-                <Calendar />
+                <Calendar legend/>
                 <LinksBlock />
                 <UserInfo />
             </AsideLayout>
