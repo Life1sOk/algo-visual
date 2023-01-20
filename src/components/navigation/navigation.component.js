@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrantDay } from "../../App/slices/daily.slice";
+import { selectCurrentDay } from "../../App/slices/daily.slice";
 
 import { signOutHandler } from "../../utils/firebase/firebase";
 import { signOut } from "../../App/slices/auth.slice";
@@ -41,7 +41,7 @@ const navigation = [
 const Navigation = () => {
     const dispatch = useDispatch();
 
-    const currentDay = useSelector(selectCurrantDay);
+    const currentDay = useSelector(selectCurrentDay);
     const { number, monthStr, year } = currentDay;
 
     const signOutHanlder = () => {

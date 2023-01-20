@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
-import { changeCurrentDay, changeActivePlanDay } from "../../../../App/slices/daily.slice";
-
 import { CalendarContainer, CalendarTable, Weekday, CalendarHeader, Arrow, BlankArrow, CalendarFooter } from './index.style';
 import Days from "./days/days.component";
 import Legend from "./legend/legend.component";
 
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const date = {
     year: new Date().getFullYear(),
@@ -25,8 +22,7 @@ const calendarLegend = [
     { status: 'failed', background: 'rgb(255,51,51)', title: 'failed day'},
 ]
 
-const Calendar = ({legend, later, window}) => {
-    const dispatch = useDispatch();
+const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowState, type}) => {
     const [current, setCurrent] = useState(date);
 
     const currentDayHandler = (currentDay) => {
@@ -39,7 +35,7 @@ const Calendar = ({legend, later, window}) => {
             year,
         }
 
-        dispatch(changeActivePlanDay(payload));
+        if(dayHandler) dayHandler(payload);
     };
 
     const nextMonthHandler = () => {
@@ -59,12 +55,12 @@ const Calendar = ({legend, later, window}) => {
             monthStr: months[month],
             year
         }
-        dispatch(changeCurrentDay(payload));
-        dispatch(changeActivePlanDay(payload));
+
+        if(buildingHandler) buildingHandler(payload);
     }, [date])
 
     return(
-        <CalendarContainer window={window}>
+        <CalendarContainer window={window} windowState={windowState}>
             <CalendarHeader>
                 {current.month > 0 ? <Arrow onClick={laterMonthHandler}>&#60;</Arrow> : <BlankArrow />}
                 <h3>{months[current.month]} {current.year}</h3>
@@ -76,7 +72,7 @@ const Calendar = ({legend, later, window}) => {
                         weekdays.map((weekday) => <Weekday key={weekday}><p>{weekday}</p></Weekday>)
                     }
                 </CalendarTable>
-                <Days currentDay={current} currentDayHandler={currentDayHandler} later={later}/>
+                <Days currentDay={current} currentDayHandler={currentDayHandler} later={later} type={type}/>
             </div>
             <CalendarFooter>
                 {   legend &&

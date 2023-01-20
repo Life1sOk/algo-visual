@@ -13,7 +13,8 @@ export const CalendarContainer = styled.div`
     padding: 0 10px 10px 10px;
     color: white;
 
-    z-index: ${props => props.window ? '123' : 'initial'};;
+    opacity: ${props => props.windowState == null ? '1' : props.windowState ? '1' : '0'};
+    z-index: ${props => props.window ? '123' : 'initial'};
 `;
 
 export const CalendarHeader = styled.div`

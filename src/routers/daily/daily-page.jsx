@@ -9,6 +9,7 @@ import TitlePage from "../../Components/title-page/title-page.component";
 // ------------ Page's Sections ----------------- //
 import SwitchSection from "./sections/switch/switch.section";
 import CombinedQuests from "./sections/combined/combined.section";
+import SettingSection from "./sections/setting/setting.section";
 
 // ------------- Lego --------------- //
 const DailyPage = () => {
@@ -17,6 +18,7 @@ const DailyPage = () => {
         <PageLayout>
             <AsideLayout>
                 <TitlePage titleName='Planning' />
+                <SettingSection />
                 <SwitchSection />
             </AsideLayout>
             <MainLayout>

@@ -26,7 +26,7 @@ const MainDisplaySection = () => {
             <p>{`${number} ${monthStr} ${year}`}</p>
         <DisplaySection>
             <TodoCard title='Today' color='rgb(224, 62, 26)' quests={tomorrowQuests} type={'main'} doneChangeHandler={doneTodayHandler}/>
-            {/* <TodoCard title='Out plan' color='rgb(138, 56, 245)' quests={secondaryPlan} type={'secondary'} doneChangeHandler={doneTodayHandler}/> */}
+            <TodoCard title='Out plan' color='rgb(138, 56, 245)' quests={secondaryPlan} type={'secondary'} doneChangeHandler={doneTodayHandler}/>
         </DisplaySection>
         </>
     )

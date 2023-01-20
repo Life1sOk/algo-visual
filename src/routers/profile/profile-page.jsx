@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
-import { getDailyInitialData } from '../../App/slices/daily.slice.js';
+import { getDailyInitialData, changeActivePlanDay, changeCurrentDay } from '../../App/slices/daily.slice.js';
 import { getCombinedAreas } from '../../App/slices/combined-areas.slice';
 import { getMainLinksData } from "../../App/slices/links-slice";
 
@@ -19,18 +19,18 @@ import LinksBlock from './sections/links-block/links-block.section';
 // ------------ Page's React Components ----------------- //
 import ProfileImg from "./components/profile-img/profile-img.component";
 import UserInfo from "./components/user-info/user-info.component";
-import Calendar from "./components/calendar";
+import Calendar from "../../Components/calendar";
 
 // ------------- Lego --------------- //
 const ProfilePage = () => {
     const dispatch = useDispatch();
-    const current = useSelector(selectAuthUid);
+    const uid = useSelector(selectAuthUid);
 
     useEffect(() => {
-        dispatch(getDailyInitialData(current));
-        dispatch(getCombinedAreas(current));
-        dispatch(getMainLinksData(current));
-    }, [dispatch, current]);
+        dispatch(getDailyInitialData(uid));
+        dispatch(getCombinedAreas(uid));
+        dispatch(getMainLinksData(uid));
+    }, [dispatch, uid]);
 
     //'Lq20Jf6vpTXXHXrCVSdN79qWdSJ3' - uid
 
@@ -38,12 +38,19 @@ const ProfilePage = () => {
         console.log('check')
     }
 
+    const calendarDayHandler = (payload) => dispatch(changeActivePlanDay(payload));
+
+    const calendarBuildingHandler = (payload) => {
+        dispatch(changeCurrentDay(payload));
+        dispatch(changeActivePlanDay(payload));
+    }
+
     return (
         <PageLayout>
             <AsideLayout>
                 {/* <ProfileImg /> */}
                 <TitlePage titleName='Today toDo' />
-                <Calendar legend/>
+                <Calendar legend dayHandler={calendarDayHandler} buildingHandler={calendarBuildingHandler} type={'main'}/>
                 <LinksBlock />
                 <UserInfo />
             </AsideLayout>

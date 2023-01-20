@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { DaysContainer } from './days.style';
 import Day from "../day/day.component";
 
-const Days = memo(({currentDay, currentDayHandler, later}) => {
+const Days = memo(({currentDay, currentDayHandler, later, type}) => {
 
   let firstDayOfMonth = new Date(currentDay.year, currentDay.month, 1);
   let weekdayOfFirstDay = firstDayOfMonth.getDay();
@@ -33,7 +33,7 @@ const Days = memo(({currentDay, currentDayHandler, later}) => {
   return(
     <DaysContainer>
       {
-        currentDays?.map((day, index) => <Day key={index} day={day} currentDayHandler={currentDayHandler} later={later}/>)
+        currentDays?.map((day, index) => <Day key={index} day={day} currentDayHandler={currentDayHandler} later={later} type={type}/>)
       }
     </DaysContainer>
   )

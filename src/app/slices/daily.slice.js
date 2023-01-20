@@ -145,6 +145,9 @@ export const dailySlice = createSlice({
         changeActivePlanDay: (state, {payload}) => {
             state.activePlanDay = payload;
         },
+        changeNextDay: (state, {payload}) => {
+            state.nextDay = payload;
+        },
     },
     extraReducers: {
         [getDailyInitialData.pending]: (state) => {
@@ -168,9 +171,10 @@ export const selectFixPlan = (state) => state.daily.fixPlan;
 export const selectSecondaryPlan = (state) => state.daily.secondaryPlan;
 export const selectSecondaryFixPlan = (state) => state.daily.secondaryFixPlan;
 export const selectDailyState = (state) => state.daily.status;
-export const selectCurrantDay = (state) => state.daily.currentDay;
+export const selectCurrentDay = (state) => state.daily.currentDay;
 export const selectActiveDay = (state) => state.daily.activePlanDay;
+export const selectNextDay = (state) => state.daily.nextDay;
 
-export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay } = dailySlice.actions;
+export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay, changeNextDay } = dailySlice.actions;
 
 export default dailySlice.reducer;
