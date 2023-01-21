@@ -22,20 +22,18 @@ const Day = memo(({day, currentDayHandler, later, type}) => {
     };
     
     useEffect(() => {
-        if(later) {
             let laterTrue = ((month + 1) * 100 + number < (new Date().getMonth() + 1) * 100 + new Date().getDate());
     
             if(laterTrue) setLaterDay(laterTrue);
             if(!laterTrue) setLaterDay(false);
-        }
     }, [month, number, later]);
 
     useEffect(() => {
         if( type === 'main' && currentActiveDay.number === number && currentActiveDay.month === month && currentActiveDay.year === year) {
-           return setActiveByUser(true);
+            return setActiveByUser(true);
         }
-        
         setActiveByUser(false);
+        
     }, [currentActiveDay, month, number, year, type]);
 
     useEffect(() => {
@@ -51,7 +49,7 @@ const Day = memo(({day, currentDayHandler, later, type}) => {
             if(allDays[i].day === number && allDays[i].month === month && allDays[i].year === year) {
                return setPlannedDay(true);
             }
-            setPlannedDay(false)
+            setPlannedDay(false);
         }
     }, [allDays, number, month, year]);
 

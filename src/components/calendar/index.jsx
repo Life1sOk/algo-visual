@@ -47,7 +47,7 @@ const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowSta
     };
 
     useEffect(() => {
-        const { day, month, year } = current;
+        const { day, month, year } = date;
 
         let payload = {
             number: day,
@@ -57,7 +57,7 @@ const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowSta
         }
 
         if(buildingHandler) buildingHandler(payload);
-    }, [current])
+    }, [date])
 
     return(
         <CalendarContainer window={window} windowState={windowState}>

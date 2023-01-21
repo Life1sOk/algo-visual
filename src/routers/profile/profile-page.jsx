@@ -43,6 +43,7 @@ const ProfilePage = () => {
         const dataServer = { uid, calendarDay: payload };
         dispatch(getDailyInitialDataCalendar(dataServer));
 
+        dispatch(changeActivePlanDay(payload));
         dispatch(changeCurrentDay(payload));
     };
 

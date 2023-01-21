@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getUsersDocsDaily, getUsersDocsDailyCalendar, addUsersData, deleteUsersData } from '../../utils/firebase/firebase';
+import { getUsersDocsDaily, getUsersDocsDailyCalendar, addUsersData, deleteUsersData, setUsersDatasDaily } from '../../utils/firebase/firebase';
 import { initialPlan } from "../initial-state";
 
 export const getDailyInitialData = createAsyncThunk(
@@ -164,6 +164,24 @@ export const dailySlice = createSlice({
         changeNextDay: (state, {payload}) => {
             state.nextDay = payload;
         },
+        addQuestsServer: (state, {payload}) => {
+            const { type, uid } = payload;
+            const { year, monthStr, number, month } = state.nextDay;
+
+            const datas = {
+                type,
+                datas: type === 'main' ? state.fixPlan : state.secondaryFixPlan, 
+                year, 
+                month,
+                monthStr,
+                number
+            }
+
+            setUsersDatasDaily(uid, datas);
+
+            if(type === 'main') state.fixPlan = [];
+            if(type === 'secondary') state.secondaryFixPlan = [];
+        },
     },
     extraReducers: {
         [getDailyInitialData.pending]: (state) => {
@@ -204,6 +222,6 @@ export const selectActiveDay = (state) => state.daily.activePlanDay;
 export const selectNextDay = (state) => state.daily.nextDay;
 export const selectCalendarDays = (state) => state.daily.calendarDays;
 
-export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay, changeNextDay } = dailySlice.actions;
+export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay, changeNextDay, addQuestsServer } = dailySlice.actions;
 
 export default dailySlice.reducer;

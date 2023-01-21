@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-//Firebase:
-import { setUsersDatasDaily } from "../../../../utils/firebase/firebase";
+
 //Redux:
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
-import { selectFixPlan, drainDaily, selectSecondaryFixPlan, selectNextDay } from "../../../../App/slices/daily.slice";
+import { selectFixPlan, drainDaily, selectSecondaryFixPlan, addQuestsServer } from "../../../../App/slices/daily.slice";
 //Components:
 import DailyCard from "../../components/daily-card+/index";
 import { Yellow, SwitchWrapper } from './switch.style';
@@ -22,27 +21,13 @@ const SwitchSection = () => {
     const questsFix = useSelector(selectFixPlan);
     const questSecodnary = useSelector(selectSecondaryFixPlan);
 
-    const planningDayFor = useSelector(selectNextDay);
-    const { year, monthStr, number, month } = planningDayFor;
-
     const [display, setDisplay] = useState('main');
 
     const addDatasDailyServer = async (type) => {
-        const datas = {
-            type,
-            datas: type === 'main' ? questsFix : questSecodnary, 
-            year, 
-            month,
-            monthStr,
-            number
-        }
+        const payload = { type, uid };
 
-        await setUsersDatasDaily(uid, datas);
+        dispatch(addQuestsServer(payload));
     };
-
-    // const addDatasOutDailyServer = async () => {
-    //     await setUsersDatasDaily(uid, questSecodnary, 'secondary');
-    // }
 
     const drainDatas = (type) => dispatch(drainDaily({type}));
 
