@@ -15,7 +15,7 @@ const Day = memo(({day, currentDayHandler, later, type}) => {
     const [ activeByUser, setActiveByUser ] = useState(false);
     const [ laterDay, setLaterDay ] = useState(false);
     const [ nextDay, setNextDay ] = useState(false);
-    const [ plannedDay, setPlannedDay ] = useState(false);
+    const [ plannedDay, setPlannedDay ] = useState('');
 
     const dayActivateHandler = () => {
         if(!laterDay) currentDayHandler(day)
@@ -46,10 +46,10 @@ const Day = memo(({day, currentDayHandler, later, type}) => {
 
     useEffect(() => {
         for( let i=0; i < allDays?.length; i++) {
-            if(allDays[i].day === number && allDays[i].month === month && allDays[i].year === year) {
-               return setPlannedDay(true);
+            if(allDays[i].day === number && allDays[i].month === month && allDays[i].year === year && allDays[i].status) {
+               return setPlannedDay(allDays[i].status);
             }
-            setPlannedDay(false);
+            setPlannedDay('');
         }
     }, [allDays, number, month, year]);
 

@@ -6,8 +6,14 @@ export const DisplaySection = styled.section`
     ${'' /* background-color: lightyellow; */}
     border: 2px solid #30363d;
 
-    display: flex;
-    /* flex-direction: column; */
+    /* display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px; */
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
     align-items: flex-start;
     gap: 10px;
 `;

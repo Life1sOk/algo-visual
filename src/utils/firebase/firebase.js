@@ -109,7 +109,7 @@ export const setUsersDatasDaily = async (uid, datasToAdd) => {
     const docRefDatas = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, `${number}`));
     const docRefCalendar = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, 'calendar'));
 
-    const calendarDay = { day: number, month, monthStr, year };
+    const calendarDay = { day: number, month, monthStr, year, status: 'planned' };
 
     try {
         if(type === 'main') {

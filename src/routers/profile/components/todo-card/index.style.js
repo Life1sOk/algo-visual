@@ -4,7 +4,7 @@ const TodoCardStyle = styled.div`
     position: relative;
     /* width: 272px; */
     height: auto;
-    width: 470px;
+    width: 100%;
     /* height: 400px; */
     background-color: white;
     border-radius: 25px;

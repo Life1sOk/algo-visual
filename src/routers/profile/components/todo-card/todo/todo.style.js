@@ -43,7 +43,7 @@ const DescriptionWrapper = styled.div`
     left: 0; */
     width: 100%;
     /* margin: 0 auto; */
-    height: ${props => props.state ? '0' : `${props.generatedHeight + 16}px`}; 
+    height: ${props => !props.state ? '0' : `${props.generatedHeight + 16}px`}; 
     z-index: ${props => 100 - props.index };
     background-color: white;
     border-bottom: ${props => !props.state ? 'none' : `3px solid rgb(255,98,0)`};

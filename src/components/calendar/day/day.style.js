@@ -5,8 +5,8 @@ export const OneDay = styled.div`
     height: 30px;
     border: 2px solid ${props => props.activeByUser ? 'rgb(255,98,0)' : props.nextDay ? 'rgb(127,0,255)' : 'black'};
     border-radius: 30%;
-    color: ${props => props.plannedDay ? 'white' : props.currentMonth ? 'black' : 'grey'};
-    background-color: ${props => props.selected ? 'rgb(255,98,0)' : !props.currentMonth ? 'none' : props.plannedDay ? 'rgb(127,0,255)' : 'white'};
+    color: ${props => props.plannedDay === 'planned' ? 'white' : props.currentMonth ? 'black' : 'grey'};
+    background-color: ${props => props.selected ? 'rgb(255,98,0)' : props.plannedDay === 'planned' ? 'rgb(127,0,255)' : !props.currentMonth ? 'none' : 'white'};
     opacity: ${props => props.laterDay ? '.5' : null};
 
     display: flex;
