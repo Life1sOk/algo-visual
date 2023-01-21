@@ -77,23 +77,49 @@ export const createUsersDocumentsFromAuth = async (userAuth) => {
 
 // Quests daily //
 
-export const getUsersDocsDaily = async (uid) => {
-    if (!uid) return;
+export const getUsersDocsDailyCalendar = async (uid, currentDay) => {
+    if (!uid || !currentDay) return;
 
-    const getDocRef = doc(db, 'users', uid, 'quests', 'daily');
+    const { monthStr, year } = currentDay;
+
+    const getDocRef = doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, `calendar`);
+
     const datas = await getDoc(getDocRef);
 
     return datas.data();
 };
 
-export const setUsersDatasDaily = async (uid, datasToAdd, type) => {
+export const getUsersDocsDaily = async (uid, currentDay) => {
+    if (!uid || !currentDay) return;
+
+    const { monthStr, year, number } = currentDay;
+
+    const getDocRef = doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, `${number}`);
+
+    const datas = await getDoc(getDocRef);
+
+    return datas.data();
+};
+
+export const setUsersDatasDaily = async (uid, datasToAdd) => {
     if (!uid) return;
 
-    const docRef = (db, doc(db, 'users', uid, 'quests', 'daily'));
+    const { type, year, month, monthStr, number, datas } = datasToAdd;
+
+    const docRefDatas = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, `${number}`));
+    const docRefCalendar = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, 'calendar'));
+
+    const calendarDay = { day: number, month, monthStr, year };
 
     try {
-        if(type === 'main') await setDoc(docRef, { main: datasToAdd }, {merge: true});
-        if(type === 'secondary') await setDoc(docRef, { secondary: datasToAdd }, {merge: true});
+        if(type === 'main') {
+            await setDoc(docRefDatas, { main: datas }, {merge: true});
+            await setDoc(docRefCalendar, { days: arrayUnion(calendarDay)} , {merge: true});
+        }
+        if(type === 'secondary') {
+            await setDoc(docRefDatas, { secondary: datas }, {merge: true});
+            await setDoc(docRefCalendar, { days: arrayUnion(calendarDay)}, {merge: true});
+        }
 
         console.log('datas ready')
     } catch (error) {
@@ -156,7 +182,7 @@ export const addQuestServer = async (uid, datasToAdd, type) => {
         if(type === 'done') await setDoc(docRef, {done: arrayUnion(datasToAdd)}, {merge: true});
         if(type === 'expired') await setDoc(docRef, {expired: arrayUnion(datasToAdd)}, {merge: true});
 
-        console.log('datas combined')
+        console.log('datas combined');
     } catch (error) {
         console.log('oops, here is some error', error);
     }

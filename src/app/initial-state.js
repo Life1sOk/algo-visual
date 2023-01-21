@@ -135,6 +135,7 @@ export const initialPlan = {
     currentDay: {},
     nextDay: {},
     activePlanDay: {},
+    calendarDays: [],
     mainPlan: [],
     fixPlan: [],
     secondaryPlan: [],

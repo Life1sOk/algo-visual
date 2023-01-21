@@ -4,7 +4,7 @@ import { setUsersDatasDaily } from "../../../../utils/firebase/firebase";
 //Redux:
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
-import { selectFixPlan, drainDaily, selectSecondaryFixPlan } from "../../../../App/slices/daily.slice";
+import { selectFixPlan, drainDaily, selectSecondaryFixPlan, selectNextDay } from "../../../../App/slices/daily.slice";
 //Components:
 import DailyCard from "../../components/daily-card+/index";
 import { Yellow, SwitchWrapper } from './switch.style';
@@ -22,10 +22,27 @@ const SwitchSection = () => {
     const questsFix = useSelector(selectFixPlan);
     const questSecodnary = useSelector(selectSecondaryFixPlan);
 
+    const planningDayFor = useSelector(selectNextDay);
+    const { year, monthStr, number, month } = planningDayFor;
+
     const [display, setDisplay] = useState('main');
 
-    const addDatasDailyServer = async () => await setUsersDatasDaily(uid, questsFix, 'main');
-    const addDatasOutDailyServer = async () => await setUsersDatasDaily(uid, questSecodnary, 'secondary');
+    const addDatasDailyServer = async (type) => {
+        const datas = {
+            type,
+            datas: type === 'main' ? questsFix : questSecodnary, 
+            year, 
+            month,
+            monthStr,
+            number
+        }
+
+        await setUsersDatasDaily(uid, datas);
+    };
+
+    // const addDatasOutDailyServer = async () => {
+    //     await setUsersDatasDaily(uid, questSecodnary, 'secondary');
+    // }
 
     const drainDatas = (type) => dispatch(drainDaily({type}));
 
@@ -38,7 +55,7 @@ const SwitchSection = () => {
                         addDatasServer={addDatasDailyServer} drainDatas={drainDatas} /> :
                     display === 'secondary' ?
                         <DailyCard title='Others need to do!' color={colors.purple} quests={questSecodnary} type='secondary'
-                            addDatasServer={addDatasOutDailyServer} drainDatas={drainDatas} /> :
+                            addDatasServer={addDatasDailyServer} drainDatas={drainDatas} /> :
                         display === 'notes' ?
                             <Yellow>Notes</Yellow> : null
             }

@@ -1,19 +1,35 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getUsersDocsDaily, addUsersData, deleteUsersData } from '../../utils/firebase/firebase';
+import { getUsersDocsDaily, getUsersDocsDailyCalendar, addUsersData, deleteUsersData } from '../../utils/firebase/firebase';
 import { initialPlan } from "../initial-state";
 
 export const getDailyInitialData = createAsyncThunk(
     'daily/getDailyInitialData',
-    async (uid, rejectWithValue) => {
+    async (data, rejectWithValue) => {
+        const { uid, calendarDay} = data;
+
         try {
-            const response = await getUsersDocsDaily(uid);
+            const response = await getUsersDocsDaily(uid, calendarDay);
             return response;
         } catch (error) {
             return rejectWithValue(error.messege);
         }
     }
-)
+);
+
+export const getDailyInitialDataCalendar = createAsyncThunk(
+    'daily/getDailyInitialDataCalendar',
+    async (data, rejectWithValue) => {
+        const { uid, calendarDay } = data;
+
+        try {
+            const response = await getUsersDocsDailyCalendar(uid, calendarDay);
+            return response;
+        } catch (error) {
+            return rejectWithValue(error.messege);
+        }
+    }
+);
 
 export const dailySlice = createSlice({
     name: 'daily',
@@ -156,10 +172,22 @@ export const dailySlice = createSlice({
         },
         [getDailyInitialData.fulfilled]: (state, { payload }) => {
             state.status = 'resolved';
-            state.mainPlan = payload.main;
-            state.secondaryPlan = payload.secondary;
+            state.mainPlan = payload?.main;
+            state.secondaryPlan = payload?.secondary;
         },
         [getDailyInitialData.rejected]: (state, { payload }) => {
+            state.status = 'rejected';
+            state.error = payload;
+        },
+        [getDailyInitialDataCalendar.pending]: (state) => {
+            state.status = 'loading';
+            state.error = null;
+        },
+        [getDailyInitialDataCalendar.fulfilled]: (state, { payload }) => {
+            state.status = 'resolved';
+            state.calendarDays = payload?.days;
+        },
+        [getDailyInitialDataCalendar.rejected]: (state, { payload }) => {
             state.status = 'rejected';
             state.error = payload;
         }
@@ -174,6 +202,7 @@ export const selectDailyState = (state) => state.daily.status;
 export const selectCurrentDay = (state) => state.daily.currentDay;
 export const selectActiveDay = (state) => state.daily.activePlanDay;
 export const selectNextDay = (state) => state.daily.nextDay;
+export const selectCalendarDays = (state) => state.daily.calendarDays;
 
 export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay, changeNextDay } = dailySlice.actions;
 

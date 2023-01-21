@@ -17,7 +17,7 @@ const date = {
 const calendarLegend = [
     { status: 'today', background: 'rgb(255,98,0)', title: 'current day'},
     { status: 'activeDay', border: 'rgb(255,98,0)', title: 'active day'},
-    { status: 'planned', border: 'rgb(127, 0, 255)', title: 'planned day'},
+    { status: 'planned', background: 'rgb(127, 0, 255)', title: 'planned day'},
     { status: 'completed', background: 'rgb(128, 255, 0)', title: 'completed day'},
     { status: 'failed', background: 'rgb(255,51,51)', title: 'failed day'},
 ]
@@ -47,7 +47,7 @@ const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowSta
     };
 
     useEffect(() => {
-        const { day, month, year } = date;
+        const { day, month, year } = current;
 
         let payload = {
             number: day,
@@ -57,7 +57,7 @@ const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowSta
         }
 
         if(buildingHandler) buildingHandler(payload);
-    }, [date])
+    }, [current])
 
     return(
         <CalendarContainer window={window} windowState={windowState}>

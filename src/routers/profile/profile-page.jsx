@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
-import { getDailyInitialData, changeActivePlanDay, changeCurrentDay } from '../../App/slices/daily.slice.js';
+import { getDailyInitialData, changeActivePlanDay, changeCurrentDay, getDailyInitialDataCalendar } from '../../App/slices/daily.slice.js';
 import { getCombinedAreas } from '../../App/slices/combined-areas.slice';
 import { getMainLinksData } from "../../App/slices/links-slice";
 
@@ -26,24 +26,30 @@ const ProfilePage = () => {
     const dispatch = useDispatch();
     const uid = useSelector(selectAuthUid);
 
+    //'Lq20Jf6vpTXXHXrCVSdN79qWdSJ3' - uid
+    
+    const checkHandler = async () => {
+        console.log('checker')
+    };
+
+    const calendarDayHandler = (payload) => {
+        const dataServer = { uid, calendarDay: payload };
+        
+        dispatch(changeActivePlanDay(payload));
+        dispatch(getDailyInitialData(dataServer));
+    };
+    
+    const calendarBuildingHandler = (payload) => {
+        const dataServer = { uid, calendarDay: payload };
+        dispatch(getDailyInitialDataCalendar(dataServer));
+
+        dispatch(changeCurrentDay(payload));
+    };
+
     useEffect(() => {
-        dispatch(getDailyInitialData(uid));
         dispatch(getCombinedAreas(uid));
         dispatch(getMainLinksData(uid));
     }, [dispatch, uid]);
-
-    //'Lq20Jf6vpTXXHXrCVSdN79qWdSJ3' - uid
-
-    const checkHandler = async () => {
-        console.log('check')
-    }
-
-    const calendarDayHandler = (payload) => dispatch(changeActivePlanDay(payload));
-
-    const calendarBuildingHandler = (payload) => {
-        dispatch(changeCurrentDay(payload));
-        dispatch(changeActivePlanDay(payload));
-    }
 
     return (
         <PageLayout>
@@ -60,6 +66,6 @@ const ProfilePage = () => {
             </MainLayout>
         </PageLayout>
     )
-}
+};
 
 export default ProfilePage;

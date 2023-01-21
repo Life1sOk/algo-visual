@@ -19,7 +19,7 @@ const DailyCard = ({ title, color, quests, type, addDatasServer, drainDatas }) =
     const addDatasHandler = () => {
         if (questCount === quests.length && quests.length > 0) {
             setCardReady(!cardReady);
-            return addDatasServer()
+            return addDatasServer(type)
         } else {
             return alert('need Accept/Add all quests')
         };
