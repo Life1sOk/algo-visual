@@ -18,3 +18,10 @@ export const LegendBox = styled.div`
 export const LegendTitle = styled.span`
     font-size: 14px;
 `;
+
+export const LegendStar = styled.span`
+    width: 10px;
+    height: 10px;
+    background-color: rgb(138,56,245);
+    border-radius: 50%;
+`;

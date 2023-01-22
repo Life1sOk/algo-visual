@@ -103,14 +103,24 @@ export const dailySlice = createSlice({
         changeStatus: (state, {payload}) => {
             const { id, status, uid, type } = payload;
 
+            const { year, monthStr, number, month } = state.currentDay;
+
             if(type === 'main') {
                 const updateNew = state.mainPlan.map(toDo => {
                     if(toDo.id === id) {
-                        // Server delete
-                        deleteUsersData(uid, toDo, type);
-                        // Server update
                         let updatedToDo = {...toDo, status};
-                        addUsersData(uid, updatedToDo, type);
+                        const datas = {
+                            type,
+                            year, 
+                            month,
+                            monthStr,
+                            number
+                        };
+
+                        // Server delete
+                        deleteUsersData(uid, datas, toDo);
+                        // Server update
+                        addUsersData(uid, datas, updatedToDo);
                         // Redux update
                         return updatedToDo;
                     }
@@ -123,11 +133,18 @@ export const dailySlice = createSlice({
             if(type === 'secondary') {
                 const updateNew = state.secondaryPlan.map(toDo => {
                     if(toDo.id === id) {
-                        // Server delete
-                        deleteUsersData(uid, toDo, type);
-                        // Server update
                         let updatedToDo = {...toDo, status};
-                        addUsersData(uid, updatedToDo, type);
+                        const datas = {
+                            type,
+                            year, 
+                            month,
+                            monthStr,
+                            number
+                        };
+                        // Server delete
+                        deleteUsersData(uid, datas, toDo);
+                        // Server update
+                        addUsersData(uid, datas, updatedToDo);
                         // Redux update
                         return updatedToDo;
                     }
@@ -177,8 +194,6 @@ export const dailySlice = createSlice({
                 monthStr,
                 number
             };
-
-            console.log(datas)
 
             setUsersDatasDaily(uid, datas);
 

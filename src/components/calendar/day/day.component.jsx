@@ -3,7 +3,7 @@ import React, { useEffect, useState, memo } from "react";
 import { useSelector } from "react-redux";
 import { selectActiveDay, selectNextDay, selectCalendarDays } from "../../../App/slices/daily.slice";
 
-import { OneDay } from './day.style';
+import { OneDay, LegendStar  } from './day.style';
 
 const Day = memo(({day, currentDayHandler, later, type}) => {
     const { currentMonth, selected, number, month, year } = day;
@@ -15,7 +15,8 @@ const Day = memo(({day, currentDayHandler, later, type}) => {
     const [ activeByUser, setActiveByUser ] = useState(false);
     const [ laterDay, setLaterDay ] = useState(false);
     const [ nextDay, setNextDay ] = useState(false);
-    const [ plannedDay, setPlannedDay ] = useState('');
+    const [ plannedDay, setPlannedDay ] = useState({});
+    const [ failed, setFailed ] = useState(false);
 
     const dayActivateHandler = () => {
         if(!laterDay) currentDayHandler(day)
@@ -46,16 +47,21 @@ const Day = memo(({day, currentDayHandler, later, type}) => {
 
     useEffect(() => {
         for( let i=0; i < allDays?.length; i++) {
-            if(allDays[i].day === number && allDays[i].month === month && allDays[i].year === year && allDays[i].status) {
-               return setPlannedDay(allDays[i].status);
+            if(allDays[i].day === number && allDays[i].month === month && allDays[i].year === year && allDays[i].main) {
+               return setPlannedDay(allDays[i]);
             }
-            setPlannedDay('');
+            setPlannedDay({});
         }
     }, [allDays, number, month, year]);
 
+    useEffect(() => {
+        if(laterDay && plannedDay?.main) setFailed(true);
+    }, [laterDay, plannedDay.main])
+
     return(
-        <OneDay currentMonth={currentMonth} selected={selected} plannedDay={plannedDay} laterDay={laterDay} nextDay={nextDay} onClick={dayActivateHandler} activeByUser={activeByUser}>
+        <OneDay currentMonth={currentMonth} failed={failed} selected={selected} plannedDay={plannedDay?.main} laterDay={laterDay} nextDay={nextDay} onClick={dayActivateHandler} activeByUser={activeByUser}>
             <p>{number}</p>
+            { plannedDay?.secondary ? <LegendStar /> : null }
         </OneDay>
     )
 })

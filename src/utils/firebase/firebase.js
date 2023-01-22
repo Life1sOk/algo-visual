@@ -109,7 +109,7 @@ export const setUsersDatasDaily = async (uid, datasToAdd) => {
     const docRefDatas = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, `${number}`));
     const docRefCalendar = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, 'calendar'));
 
-    const calendarDay = { day: number, month, monthStr, year, status: 'planned' };
+    const calendarDay = { day: number, month, monthStr, year, main: 'planned', secondary: false };
 
     try {
         if(type === 'main') {
@@ -127,14 +127,16 @@ export const setUsersDatasDaily = async (uid, datasToAdd) => {
     }
 };
 
-export const addUsersData = async (uid, datasToAdd, type) => {
+export const addUsersData = async (uid, datasToAdd, uppdated) => {
     if (!uid) return;
 
-    const docRef = doc(db, 'users', uid, 'quests', 'daily');
+    const { type, year, monthStr, number } = datasToAdd;
+
+    const docRef = doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, `${number}`);
 
     try {
-        if(type === 'main') await setDoc(docRef, { main: arrayUnion(datasToAdd) }, {merge: true});
-        if(type === 'secondary') await setDoc(docRef, { secondary: arrayUnion(datasToAdd) }, {merge: true});
+        if(type === 'main') await setDoc(docRef, { main: arrayUnion(uppdated) }, {merge: true});
+        if(type === 'secondary') await setDoc(docRef, { secondary: arrayUnion(uppdated) }, {merge: true});
 
         console.log('ToDo combined');
     } catch (error) {
@@ -142,14 +144,16 @@ export const addUsersData = async (uid, datasToAdd, type) => {
     }
 };
 
-export const deleteUsersData = async (uid, datasToDelete, type) => {
+export const deleteUsersData = async (uid, datasToDelete, old) => {
     if (!uid) return;
 
-    const docRefComb = doc(db, 'users', uid, 'quests', 'daily');
+    const { type, year, monthStr, number } = datasToDelete;
+
+    const docRefComb = doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, `${number}`);
 
     try {
-        if(type === 'main') await updateDoc(docRefComb, {main: arrayRemove(datasToDelete)});
-        if(type === 'secondary') await updateDoc(docRefComb, {secondary: arrayRemove(datasToDelete)});
+        if(type === 'main') await updateDoc(docRefComb, {main: arrayRemove(old)});
+        if(type === 'secondary') await updateDoc(docRefComb, {secondary: arrayRemove(old)});
 
         console.log('ToDo deleted');
     } catch (error) {

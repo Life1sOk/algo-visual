@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
+export const DisplaySectionContainer = styled.div`
+    width: 100%;
+    color: white;
+    border: 2px solid #30363d;
+`;
+
 export const DisplaySection = styled.section`
     width: 100%;
     padding: 10px;
     ${'' /* background-color: lightyellow; */}
-    border: 2px solid #30363d;
 
     /* display: flex;
     flex-direction: column;

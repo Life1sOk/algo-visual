@@ -15,11 +15,12 @@ const date = {
 };
 
 const calendarLegend = [
-    { status: 'today', background: 'rgb(255,98,0)', title: 'current day'},
-    { status: 'activeDay', border: 'rgb(255,98,0)', title: 'active day'},
-    { status: 'planned', background: 'rgb(127, 0, 255)', title: 'planned day'},
-    { status: 'completed', background: 'rgb(128, 255, 0)', title: 'completed day'},
-    { status: 'failed', background: 'rgb(255,51,51)', title: 'failed day'},
+    { background: 'rgb(255,98,0)', title: 'current day'},
+    { border: 'rgb(255,98,0)', title: 'active day'},
+    { background: 'rgb(127, 0, 255)', title: 'planned day'},
+    { background: 'rgb(128, 255, 0)', title: 'completed main'},
+    { star: 'rgb(127, 0, 255)', title: 'completed secondary' },
+    { background: 'rgb(255,51,51)', title: 'failed day'},
 ]
 
 const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowState, type}) => {
@@ -57,7 +58,7 @@ const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowSta
         }
 
         if(buildingHandler) buildingHandler(payload);
-    }, [date])
+    }, [date, current]);
 
     return(
         <CalendarContainer window={window} windowState={windowState}>

@@ -7,7 +7,7 @@ import Todo from "./todo/todo.component";
 import NothingShow from '../../../../Components/nothing-show/nothing-show.component';
 import ProgressBar from "../../../../Components/progress-bar/progress-bar.component";
 
-const TodoCard = ({ title, color, quests, doneChangeHandler, type }) => {
+const TodoCard = ({ title, color, quests, doneChangeHandler, type, finishDay }) => {
     const [currentQuest, setCurrentQuest] = useState(null);
 
     const parts = [];
@@ -31,6 +31,10 @@ const TodoCard = ({ title, color, quests, doneChangeHandler, type }) => {
         }
     };
 
+    const checkerAfterDone = () => {
+        finishDay();
+    };
+
     return (
         <TodoCardStyle color={color}>
             <TodoCardStyle.Title color={color}>{title}</TodoCardStyle.Title>
@@ -43,7 +47,7 @@ const TodoCard = ({ title, color, quests, doneChangeHandler, type }) => {
                     </TodoCardStyle.Group>)
                }
             <TodoCardStyle.Bar color={color}>
-                <ProgressBar achieve={quests}/>
+                <ProgressBar achieve={quests} action={checkerAfterDone}/>
             </TodoCardStyle.Bar>
         </TodoCardStyle>
     )

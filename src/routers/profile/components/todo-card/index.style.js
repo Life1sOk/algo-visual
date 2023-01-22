@@ -36,9 +36,9 @@ const ProgressBarContainer = styled.div`
 `;
 
 const GroupWrapper = styled.div`
-    margin: 10px 5px 5px 5px;
+    margin: 15px 5px 5px 5px;
     padding-bottom: 10px;
-    border-right: 5px solid ${({lineColor}) => lineColor ? lineColor : 'rgb(255, 98, 0)'};
+    border-left: 5px solid ${({lineColor}) => lineColor ? lineColor : 'rgb(255, 98, 0)'};
     /* border-bottom: 2px solid purple; */
     /* border: 2px solid purple; */
     background-color: white;
