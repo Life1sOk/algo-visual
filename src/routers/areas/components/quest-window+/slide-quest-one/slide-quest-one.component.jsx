@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideOne, oneDone, twoActive } from "../../../../../App/slices/quest-slides";
 import { mainAccept, selectCreateQuestReset, selectFixState, selectCreateQuestMain, setReset } from "../../../../../App/slices/create-quest.slice";
+import { selectParts } from '../../../../../App/slices/areas-slice.js';
 
 import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons, SlideTop } from './slide-quest-one.style';
 import Input from "../../../../../Components/input/input.component";
@@ -15,6 +16,7 @@ import Deadline from "../deadline/deadline.component";
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
     const resetState = useSelector(selectCreateQuestReset);
+    const parts = useSelector(selectParts);
 
     const fixState = useSelector(selectFixState);
     const forFixMain = useSelector(selectCreateQuestMain);
@@ -30,6 +32,8 @@ const SlideQuestOne = () => {
     const deadlineRef = useRef(null);
 
     const slideOneDoneHandler = () => {
+        let pickedPart = parts.find(({title}) => title === pickPartRef.current.value);
+
         const goalSlideState = {
             part: pickPartRef.current.value,
             deadline: deadlineRef.current.value,
@@ -37,6 +41,7 @@ const SlideQuestOne = () => {
             current: goalCurrentStateRef.current.value,
             mainGoal: goalWantToRef.current.value,
             description: goalDesctiptionRef.current.value,
+            color: pickedPart?.color,
         }
         const { title, current, mainGoal, description } = goalSlideState;
 

@@ -23,7 +23,7 @@ const Quest = ({ currentQuest, index, activeType }) => {
 
         dispatch(partsQuestCount(payloadPart))
         dispatch(doneQuest(payloadQuest));
-    }
+    };
 
     return (
         <>
@@ -34,7 +34,7 @@ const Quest = ({ currentQuest, index, activeType }) => {
                 <QuestStyle>
                     <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler}/>
                     <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
-                    <Daily data={daily} title={main.title} />
+                    <Daily data={daily} title={main.title} part={main.part} area={title} mainColor={main.color}/>
                     {
                         activeType === 'active' &&
                         <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>

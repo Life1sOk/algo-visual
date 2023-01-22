@@ -6,7 +6,7 @@ const TodoCardStyle = styled.div`
     height: auto;
     width: 100%;
     /* height: 400px; */
-    background-color: white;
+    background-color: rgb(224,224,224);
     border-radius: 25px;
 `;
 
@@ -35,7 +35,17 @@ const ProgressBarContainer = styled.div`
     align-items: center;
 `;
 
+const GroupWrapper = styled.div`
+    margin: 10px 5px 5px 5px;
+    padding-bottom: 10px;
+    border-right: 5px solid ${({lineColor}) => lineColor ? lineColor : 'rgb(255, 98, 0)'};
+    /* border-bottom: 2px solid purple; */
+    /* border: 2px solid purple; */
+    background-color: white;
+`;
+
 TodoCardStyle.Title = TodoCardTitle;
 TodoCardStyle.Bar = ProgressBarContainer;
+TodoCardStyle.Group = GroupWrapper;
 
 export default TodoCardStyle;

@@ -30,6 +30,14 @@ export const DoneTitle = styled.div`
     }
 `;
 
+export const ComeFrom = styled.div`
+    font-size: 12px;
+
+    position: absolute;
+    left: 10px;
+    top: -18px;
+`;
+
 export const FixLabel = styled.div`
     color: white;
     padding: 4px 17px;

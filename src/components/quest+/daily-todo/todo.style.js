@@ -9,7 +9,7 @@ const TodoStyle = styled.div`
 const Front = styled.div`
     position: relative;
     width: 190px;
-    height: 100px;
+    height: 85px;
     flex-shrink: 0;
     border: 3px solid rgb(224,62,26);
     border-radius: 12px;
@@ -27,7 +27,7 @@ const Front = styled.div`
 
 const Back = styled.div`
     width: 190px;
-    height: 100px;
+    height: 85px;
     color: white;
     background-color: rgb(224,62,26);
     border-radius: 12px;

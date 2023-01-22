@@ -143,6 +143,8 @@ export const initialPlan = {
     blankQuest: {
         questName: '',
         description: '',
+        part: 'no',
+        area: 'no',
         status: false,
     },
     currentQuest: null,

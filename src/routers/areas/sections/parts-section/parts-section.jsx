@@ -24,7 +24,7 @@ const PartsSection = () => {
                 <BlockHat title='Parts' setting='Create next part' handler={openWindowHandler}/>
                 <PartsDisplay>
                     {
-                        allPartsData.map(part => <Part key={allPartsData.indexOf(part)} data={part} />)
+                        allPartsData.map((part, index) => <Part key={index} data={part} />)
                     }
                 </PartsDisplay>
             </BlockLayout>

@@ -5,13 +5,13 @@ import { addQuest } from "../../../App/slices/daily.slice";
 
 import TodoStyle from './todo.style';
 
-const Todo = ({ data, title }) => {
+const Todo = ({ data, title, part, area, mainColor }) => {
     const dispatch = useDispatch();
     const { questName, description } = data;
     const [open, setOpen] = useState(false);
 
     const reverseHandler = () => setOpen(!open);
-    const sendToDailyPlan = () => dispatch(addQuest({data: { ...data, questName: `${title} - ${questName}` }, type: 'main'}));
+    const sendToDailyPlan = () => dispatch(addQuest({data: { ...data, questName: `${title} - ${questName}`, part, area, color: mainColor }, type: 'main'}));
 
     return (
         <TodoStyle activate={open}>

@@ -5,7 +5,7 @@ import { remove, accept } from "../../../../../App/slices/daily.slice";
 import Button from "../../button/button.component";
 
 import useAutosizeTextArea from "../../../../../Hooks/useAutosizeTextArea";
-import { FixQuestContainer, FixLabel, TitleInput, TextArea, ButtonWrapper, DoneTitle } from './afd-quest.style';
+import { FixQuestContainer, FixLabel, TitleInput, TextArea, ButtonWrapper, DoneTitle, ComeFrom } from './afd-quest.style';
 
 const AfdQuest = ({ quest, order, color, type, changeCountHandler }) => {
     const dispatch = useDispatch();
@@ -23,6 +23,9 @@ const AfdQuest = ({ quest, order, color, type, changeCountHandler }) => {
             id,
             questName: fixQuestTitleRef.current.value,
             description: fixQuestDescriptionRef.current.value,
+            part: quest.part ? quest.part : 'no',
+            area: quest.area ? quest.area : 'no',
+            color: quest.color ? quest.color : 'rgb(255, 98, 0)',
             status: false,
         };
 
@@ -44,6 +47,12 @@ const AfdQuest = ({ quest, order, color, type, changeCountHandler }) => {
     return (
         <FixQuestContainer state={state} color={color}>
             <FixLabel color={color}> quest {order + 1} </FixLabel>
+            { 
+                quest.area == null || quest.part === 'no' ?  
+                    null :
+                    <ComeFrom>{`${quest?.area} > ${quest.part}`}</ComeFrom>
+                    
+            }
             {
                 !state ?
                     <>

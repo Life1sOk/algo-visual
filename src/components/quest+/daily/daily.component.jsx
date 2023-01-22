@@ -6,13 +6,13 @@ import { addQuest } from "../../../App/slices/daily.slice";
 import Todo from "../daily-todo/todo.component";
 import DailyStyle from "./daily.style";
 
-const Daily = ({ data, title }) => {
+const Daily = ({ data, title, part, area, mainColor }) => {
     const dispatch = useDispatch();
 
     const addAllToDailyHandler = () => {
         for (let i = 0; i < data.length; i++) {
             const { questName } = data[i];
-            dispatch(addQuest({data: { ...data[i], questName: `${title} - ${questName}` }, type: 'main'}))
+            dispatch(addQuest({data: { ...data[i], questName: `${title} - ${questName}`, part, area, color: mainColor }, type: 'main'}))
         }
     };
 
@@ -24,7 +24,7 @@ const Daily = ({ data, title }) => {
             <DailyStyle.ToDo>
                 {
                     data?.map(day =>
-                        <Todo key={day.id} data={day} title={title} />)
+                        <Todo key={day.id} data={day} title={title} part={part} area={area} mainColor={mainColor}/>)
                 }
             </DailyStyle.ToDo>
         </DailyStyle>

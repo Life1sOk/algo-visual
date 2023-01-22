@@ -70,11 +70,12 @@ export const dailySlice = createSlice({
     
                 if (data !== null) {
                     state.fixPlan.push({ ...data, id: lastId + 1 });
+                    console.log({ ...data, id: lastId + 1 })
                     return;
                 }
     
                 state.fixPlan.push({ id: lastId + 1, ...state.blankQuest });
-            }
+            };
 
             if(type === 'secondary') {
                 let lastId = state.secondaryFixPlan.length;
@@ -91,7 +92,7 @@ export const dailySlice = createSlice({
                 }
     
                 state.secondaryFixPlan.push({ id: lastId + 1, ...state.blankQuest });
-            }
+            };
         },
         remove: (state, { payload }) => {
             const { id, type } = payload;
@@ -175,7 +176,9 @@ export const dailySlice = createSlice({
                 month,
                 monthStr,
                 number
-            }
+            };
+
+            console.log(datas)
 
             setUsersDatasDaily(uid, datas);
 
