@@ -21,7 +21,7 @@ const calendarLegend = [
     { background: 'rgb(128, 255, 0)', title: 'completed main'},
     { star: 'rgb(127, 0, 255)', title: 'completed secondary' },
     { background: 'rgb(255,51,51)', title: 'failed day'},
-]
+];
 
 const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowState, type}) => {
     const [current, setCurrent] = useState(date);

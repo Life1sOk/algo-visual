@@ -55,8 +55,12 @@ const Day = memo(({day, currentDayHandler, later, type}) => {
     }, [allDays, number, month, year]);
 
     useEffect(() => {
-        if(laterDay && plannedDay?.main) setFailed(true);
-    }, [laterDay, plannedDay.main])
+        if(laterDay && plannedDay?.main) {
+            setFailed(true);
+        } else {
+            setFailed(false);
+        }
+    }, [laterDay, plannedDay.main]);
 
     return(
         <OneDay currentMonth={currentMonth} failed={failed} selected={selected} plannedDay={plannedDay?.main} laterDay={laterDay} nextDay={nextDay} onClick={dayActivateHandler} activeByUser={activeByUser}>

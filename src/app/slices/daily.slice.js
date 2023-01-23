@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getUsersDocsDaily, getUsersDocsDailyCalendar, addUsersData, deleteUsersData, setUsersDatasDaily } from '../../utils/firebase/firebase';
+import { getUsersDocsDaily, getUsersDocsDailyCalendar, addUsersData, deleteUsersData, setUsersDatasDaily, addNewCalendarDay, deleteCalendarDay } from '../../utils/firebase/firebase';
 import { initialPlan } from "../initial-state";
 
 export const getDailyInitialData = createAsyncThunk(
@@ -103,7 +103,7 @@ export const dailySlice = createSlice({
         changeStatus: (state, {payload}) => {
             const { id, status, uid, type } = payload;
 
-            const { year, monthStr, number, month } = state.currentDay;
+            const { year, monthStr, number, month } = state.activePlanDay;
 
             if(type === 'main') {
                 const updateNew = state.mainPlan.map(toDo => {
@@ -200,6 +200,32 @@ export const dailySlice = createSlice({
             if(type === 'main') state.fixPlan = [];
             if(type === 'secondary') state.secondaryFixPlan = [];
         },
+        changeMainStatus: (state, {payload}) => {
+            const { uid, type } = payload
+            const { number, month, year, monthStr } = state.activePlanDay;
+
+            state.calendarDays = state.calendarDays.map(day => {
+                if(day.day === number && day.month === month && day.year === year) {
+                    const newDayStatus = {...day, main: 'completed'};
+                    const newDaySec = {...day, secondary: true};
+                    // Server delete old
+                    deleteCalendarDay(uid, {monthStr, year}, day);
+                    // Server add uppdated
+                    if(type === 'main') {
+                        addNewCalendarDay(uid, {monthStr, year}, newDayStatus);
+                        // Redux
+                        return newDayStatus;
+                    }
+                    if(type === 'secondary') {
+                        addNewCalendarDay(uid, {monthStr, year}, newDaySec);
+                        // Redux
+                        return newDaySec;
+                    }
+                }
+                return day;
+            })
+
+        },
     },
     extraReducers: {
         [getDailyInitialData.pending]: (state) => {
@@ -240,6 +266,6 @@ export const selectActiveDay = (state) => state.daily.activePlanDay;
 export const selectNextDay = (state) => state.daily.nextDay;
 export const selectCalendarDays = (state) => state.daily.calendarDays;
 
-export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay, changeNextDay, addQuestsServer } = dailySlice.actions;
+export const { remove, accept, addQuest, drainDaily, changeStatus, changeCurrentDay, changeActivePlanDay, changeNextDay, addQuestsServer, changeMainStatus } = dailySlice.actions;
 
 export default dailySlice.reducer;

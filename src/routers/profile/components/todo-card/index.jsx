@@ -42,7 +42,7 @@ const TodoCard = ({ title, color, quests, doneChangeHandler, type, finishDay }) 
                 groups.map((group, index) => 
                     <TodoCardStyle.Group key={index} lineColor={group.color}>
                         {
-                            group.objects.map(quest => <Todo key={quest.id} index={quest.id + 1} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} doneChangeHandler={doneChangeHandler} type={type}/>)
+                            group.objects.map((quest, index) => <Todo key={quest.id} index={index} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} doneChangeHandler={doneChangeHandler} type={type}/>)
                         }
                     </TodoCardStyle.Group>)
                }

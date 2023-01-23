@@ -160,6 +160,36 @@ export const deleteUsersData = async (uid, datasToDelete, old) => {
         console.log('oops, here is some error', error);
     }
 };
+
+export const addNewCalendarDay = async (uid, findMonth, uppdated) => {
+    if (!uid) return;
+
+    const { monthStr, year } = findMonth;
+
+    const docRefCalendar = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, 'calendar'));
+
+    try {
+        await setDoc(docRefCalendar, { days: arrayUnion(uppdated) }, {merge: true});
+        console.log('day uppdated');
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+};
+
+export const deleteCalendarDay = async (uid, findMonth, old) => {
+    if (!uid) return;
+
+    const { monthStr, year } = findMonth;
+
+    const docRefCalendar = (db, doc(db, 'users', uid, 'quests', 'daily', `${monthStr} ${year}`, 'calendar'));
+
+    try {
+        await updateDoc(docRefCalendar, { days: arrayRemove(old)});
+        console.log('day old');
+    } catch (error) {
+        console.log('oops, here is some error', error);
+    }
+};
 // ---------------- ------------------ ---------------- //
 
 // Quests combinedAreas//

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { getDailyInitialData } from "../../../../App/slices/daily.slice";
 import { useSelector, useDispatch } from "react-redux";
-import { selectDaily, changeStatus, selectSecondaryPlan, selectActiveDay, selectCurrentDay, selectCalendarDays } from "../../../../App/slices/daily.slice";
+import { selectDaily, changeStatus, selectSecondaryPlan, selectActiveDay, selectCurrentDay, changeMainStatus } from "../../../../App/slices/daily.slice";
 import { selectAuthUid } from "../../../../App/slices/auth.slice";
 
 import { DisplaySectionContainer, DisplaySection } from './main-display.style';
@@ -15,8 +15,6 @@ const MainDisplaySection = () => {
     const secondaryPlan = useSelector(selectSecondaryPlan);
     const currentDay = useSelector(selectCurrentDay);
 
-    const activeDays = useSelector(selectCalendarDays);
-
     const activeDay = useSelector(selectActiveDay);
     const { number, monthStr, year } = activeDay;
 
@@ -26,12 +24,13 @@ const MainDisplaySection = () => {
     };
 
     const mainToDoDone = () => {
-        console.log(activeDay, 'main');
-        console.log(activeDays)
+        const payload = {uid, type: 'main'};
+        dispatch(changeMainStatus(payload));
     };
 
     const secondaryToDoDone = () => {
-        console.log('secondary');
+        const payload = {uid, type: 'secondary'};
+        dispatch(changeMainStatus(payload));
     };
 
     useEffect(() => {
