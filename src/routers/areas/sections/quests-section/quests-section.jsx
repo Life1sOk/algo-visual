@@ -50,7 +50,7 @@ const QuestsSection = ({ displayTitle, fActive, fDone, fExpired}) => {
                 <BlockHat title='Quests:' setting='Add another quest' handler={openWindowHandler}>
                     <QuestMenu type={activeType} action={changeTypeHandler}/>
                 </BlockHat>
-                <QuestsSectionDisplay activeType={activeType}>
+                <QuestsSectionDisplay>
                     {
                         type?.map((quest, index) => <Quest page='areas' key={index} currentQuest={quest} index={index} activeType={activeType}/>)
                     }

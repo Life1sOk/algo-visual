@@ -32,7 +32,7 @@ export const InDescWrapper = styled.div`
 `;
 
 export const SlideIn = styled.div`
-    width: 200px;
+    width: 250px;
 
     display: flex;
     flex-direction: column;
@@ -50,10 +50,10 @@ export const Date = styled.div`
 `;
 
 export const DisplayPoints = styled.div`
-    width: 90%;
+    width: 95%;
     min-height: 152px;
     margin: 10px 0;
-    padding: 10px 0;
+    padding: 10px 10px;
     /* border-top: 1px solid grey; */
     background-color: rgba(255,255,255, .1);
     overflow: auto;

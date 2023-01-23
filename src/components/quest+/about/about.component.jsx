@@ -4,13 +4,13 @@ import Line from '../about-line/about-line.component';
 import ProgressBar from "../../progress-bar/progress-bar.component";
 import AboutStyle from "./about.style";
 
-const About = ({ data, area, achieve, index, transferQuestHandler, type }) => {
+const About = ({ data, area, achieve, index, transferQuestHandler, type, color }) => {
     const { title, current, mainGoal, description } = data;
 
     const transferQuest = () => transferQuestHandler('active', 'done');
 
     return (
-        <AboutStyle type={type}>
+        <AboutStyle type={type} color={color}>
             <AboutStyle.AboutWrapper>
                 <AboutStyle.RoadLinks>
                     <span>{area}</span>

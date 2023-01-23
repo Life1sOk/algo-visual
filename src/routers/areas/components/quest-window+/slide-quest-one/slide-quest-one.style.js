@@ -4,20 +4,16 @@ export const SlideSectionContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 811px;
+    width: 100%;
     height: 100%;
-    /* border-right:2px solid rgba(255,255,102); */
-    /* padding-top: 10px; */
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};
 
-    display: ${props => !props.active ? 'none' : 'flex'};
-    /* display: flex; */
-    flex-direction: column;
-    ${'' /* justify-content: center; */}
-    align-items: center;
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
     gap: 8px;
 
-    /* transform: ${props => props.active ? 'none' : 'translateX(1000px)'}; */
     transition: transform 1s ease-in-out;
 `;
 
@@ -30,7 +26,6 @@ export const SlideTop = styled.div`
 
 export const SlideWrapper = styled.div`
     width: 100%;
-    /* margin-top: 10px; */
     padding: 10px;
 
     display: flex;
@@ -46,7 +41,7 @@ export const SlideInContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 7px;
+    gap: 15px;
 `;
 
 export const SlideDescription = styled.div`

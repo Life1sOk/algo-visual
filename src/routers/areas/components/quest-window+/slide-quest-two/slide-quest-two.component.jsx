@@ -47,7 +47,7 @@ const SlideQuestTwo = () => {
         pointTitleRef.current.value = '';
         pointUntilTimeRef.current.value = '';
         pointDescriptionRef.current.value = '';
-    }
+    };
 
     const slideTwoDoneHandler = (type) => {
         if (type === 'done') {
@@ -88,8 +88,7 @@ const SlideQuestTwo = () => {
             </InDescWrapper>
             <DisplayPoints>
                 {
-                    slideData[0] &&
-                    slideData.map(quest => <Point key={quest.id} data={quest} show />)
+                    slideData?.map(quest => <Point key={quest.id} data={quest} show />)
                 }
             </DisplayPoints>
         </SlideSectionContainer>

@@ -6,9 +6,11 @@ const AboutStyle = styled.div`
     flex-shrink: 0;
     background-color: rgb(20, 25, 50);
     padding: 0 15px 15px 15px;
-    border-top: 3px solid white;
-    border-bottom: 1px solid white;
+    border-top: 3px solid ${({color}) => color};
+    border-bottom: 1px solid ${({color}) => color};
     border-radius: 20px 20px 10px 10px;
+    color: white;
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;

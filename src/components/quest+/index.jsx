@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthUid } from "../../App/slices/auth.slice";
 import { partsQuestCount } from "../../App/slices/areas-slice";
 import { doneQuest } from "../../App/slices/combined-areas.slice";
 
-import { QuestStyle } from './index.style';
+import { QuestStyle, QuestContainer, AboutAnimationWrapper } from './index.style';
 import About from './about/about.component';
 import Points from './points/points.component';
 import Daily from "./daily/daily.component";
 import TimerQuest from "./timer-quest/timer-quest.component";
+import BlackBoxWindow from "../black-box/black-box.component";
 
 const Quest = ({ currentQuest, index, activeType }) => {
+    const [openFull, setOpenFull] = useState(false);
+
     const { id, quest, title } = currentQuest
     const { main, achieve, daily } = quest;
     const dispatch = useDispatch();
@@ -25,14 +28,24 @@ const Quest = ({ currentQuest, index, activeType }) => {
         dispatch(doneQuest(payloadQuest));
     };
 
+    const openFullHandler = () => {
+        setOpenFull(!openFull);
+    }
+
     return (
         <>
-            {
-                activeType === 'done' ?
-                <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} type='done'/>
-                :
+            <QuestContainer color={main.color} onClick={openFullHandler}>
+                <AboutAnimationWrapper color={main.color}>
+                    <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} color={main.color}/>
+                </AboutAnimationWrapper>
+                {
+                    activeType === 'active' &&
+                    <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
+                }
+            </QuestContainer>
+            <BlackBoxWindow handler={openFullHandler} state={openFull}>
                 <QuestStyle>
-                    <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler}/>
+                    <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} color={main.color}/>
                     <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
                     <Daily data={daily} title={main.title} part={main.part} area={title} mainColor={main.color}/>
                     {
@@ -40,9 +53,24 @@ const Quest = ({ currentQuest, index, activeType }) => {
                         <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
                     }
                 </QuestStyle>
-            }
+            </BlackBoxWindow>
         </>
     )
-}
+};
+
+// {
+//     activeType === 'done' ?
+//     <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} type='done'/>
+//     :
+    // <QuestStyle>
+    //     <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler}/>
+    //     <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
+    //     <Daily data={daily} title={main.title} part={main.part} area={title} mainColor={main.color}/>
+    //     {
+    //         activeType === 'active' &&
+    //         <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
+    //     }
+    // </QuestStyle>
+// }
 
 export default Quest;

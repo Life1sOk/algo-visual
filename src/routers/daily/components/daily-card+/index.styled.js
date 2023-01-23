@@ -7,7 +7,7 @@ const DailyStyle = styled.div`
 `;
 
 const DailyCardContainer = styled.div`
-    width: 292px;
+    width: 332px;
     height: auto;
     background-color: white;
     border-bottom: 3px solid ${props => props.color};
@@ -16,7 +16,7 @@ const DailyCardContainer = styled.div`
 `;
 
 const DailyCardBackSide = styled.div`
-    width: 292px;
+    width: 332px;
     height: 100%;
     color: white;
     background-color: ${props => props.color};

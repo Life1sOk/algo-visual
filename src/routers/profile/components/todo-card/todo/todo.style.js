@@ -39,7 +39,7 @@ const Done = styled.h2`
 
 const DescriptionWrapper = styled.div`
     width: 100%;
-    height: ${props => props.state ? '0' : `${props.generatedHeight + 16}px`}; 
+    height: ${props => !props.state ? '0' : `${props.generatedHeight + 16}px`}; 
     z-index: ${props => 100 - props.index };
     background-color: white;
     border-bottom: ${props => !props.state ? 'none' : `3px solid rgb(255,98,0)`};

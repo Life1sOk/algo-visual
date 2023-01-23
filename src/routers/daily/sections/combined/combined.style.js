@@ -5,8 +5,10 @@ export const CombinedQuestsContainer = styled.div`
     padding: 60px 0px 0px 40px;
 
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
     gap: 40px;
 
     h3 {

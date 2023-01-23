@@ -18,7 +18,7 @@ const ProgressBar = ({achieve, action}) => {
                 progress === 100 ?
                 <button onClick={action}>Done</button> :
                 <ProgressBarContainer>
-                    <ProgressBarTitle>Progress bar:</ProgressBarTitle>
+                    <ProgressBarTitle>Progress</ProgressBarTitle>
                     <ProgressCount progress={progress} />
                 </ProgressBarContainer>
             }

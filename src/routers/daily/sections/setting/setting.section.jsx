@@ -39,8 +39,8 @@ const SettingSection = () => {
         <SettingContainer>
             <div>{`Day for: ${number} ${monthStr} ${year}`}</div>
             <div onClick={windowHandler}>&#10003;</div>
-            {
-                <Calendar later window dayHandler={calendarDayHandler} buildingHandler={calendarBuildingHandler} windowState={window} type={'planner'}/>
+            {   
+                <Calendar later window dayHandler={calendarDayHandler} buildingHandler={calendarBuildingHandler} type={'planner'} windowStatus={window}/>
             }
         </SettingContainer>
     )

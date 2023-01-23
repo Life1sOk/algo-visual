@@ -23,7 +23,7 @@ const calendarLegend = [
     { background: 'rgb(255,51,51)', title: 'failed day'},
 ];
 
-const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowState, type}) => {
+const Calendar = ({legend, later, window, dayHandler, buildingHandler, type, windowStatus}) => {
     const [current, setCurrent] = useState(date);
 
     const currentDayHandler = (currentDay) => {
@@ -60,8 +60,10 @@ const Calendar = ({legend, later, window, dayHandler, buildingHandler, windowSta
         if(buildingHandler) buildingHandler(payload);
     }, [date, current]);
 
+    console.log('render')
+
     return(
-        <CalendarContainer window={window} windowState={windowState}>
+        <CalendarContainer window={window} windowStatus={windowStatus}>
             <CalendarHeader>
                 {current.month > 0 ? <Arrow onClick={laterMonthHandler}>&#60;</Arrow> : <BlankArrow />}
                 <h3>{months[current.month]} {current.year}</h3>

@@ -8,7 +8,6 @@ export const QuestsSectionDisplay = styled.div`
     padding: 0 0 25px 15px;
 
     display: flex;
-    flex-direction: ${props => props.activeType === 'done' ? 'raw' : 'column'};
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: ${props => props.activeType === 'done' ? '40px' : '40px'};
 `;
