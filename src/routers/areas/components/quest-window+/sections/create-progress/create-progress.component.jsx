@@ -2,14 +2,14 @@ import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../App/slices/quest-slides";
-import { selectCreateQuest, setReset, selectFixState, fixState, selectOldFixQuest, windowHandler } from "../../../../../App/slices/create-quest.slice";
-import { selectAuthUid } from "../../../../../App/slices/auth.slice";
-import { partsQuestCount, selectDisplaySectionTitle } from "../../../../../App/slices/areas-slice";
-import { addQuestFromCurrentArea, fixCurrentQuest } from "../../../../../App/slices/combined-areas.slice";
+import { oneActive, twoActive, threeActive, selectSlideOne, selectSlideTwo, selectSlideThree, selectSlidesCount, resetAll } from "../../../../../../App/slices/quest-slides";
+import { selectCreateQuest, setReset, selectFixState, fixState, selectOldFixQuest, windowHandler } from "../../../../../../App/slices/create-quest.slice";
+import { selectAuthUid } from "../../../../../../App/slices/auth.slice";
+import { partsQuestCount, selectDisplaySectionTitle } from "../../../../../../App/slices/areas-slice";
+import { addQuestFromCurrentArea, fixCurrentQuest } from "../../../../../../App/slices/combined-areas.slice";
 
 import {PlanNavigation, BigButton} from './create-progress.style';
-import SlideSwitcher from "../slide-switcher/slide-switcher.component";
+import SlideSwitcher from "../../components/slide-switcher/slide-switcher.component";
 
 const CreateProgress = () => {
     const dispatch = useDispatch();

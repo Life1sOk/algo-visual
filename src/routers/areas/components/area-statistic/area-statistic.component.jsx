@@ -1,7 +1,7 @@
 import React from "react";
 
 import { AreaStatisticContainer, StatisticBlock, QuoteBlock } from './area-statistic.style';
-import Quote from "../quote/quote.component";
+import Quote from "../quest-window+/components/quote/quote.component";
 import StatisticLine from "../../../../Components/statistic-line/statistic-line.component";
 
 const AreaStatistic = ({areaStatistic}) => {

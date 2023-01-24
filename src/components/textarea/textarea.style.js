@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const TextAreaContainer = styled.div`
     width: 100%;
+    flex-shrink: 0;
 
     display: flex;
     flex-direction: column;

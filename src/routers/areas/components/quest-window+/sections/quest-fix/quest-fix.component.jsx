@@ -1,15 +1,16 @@
 import React, { useMemo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { deleteQuestFromCombined } from '../../../../../App/slices/combined-areas.slice';
-import { partsQuestCount } from "../../../../../App/slices/areas-slice";
-import { selectAuthUid } from "../../../../../App/slices/auth.slice";
-import { fixQuest, fixState, windowSwitcher } from "../../../../../App/slices/create-quest.slice";
+import { deleteQuestFromCombined } from "../../../../../../App/slices/combined-areas.slice";
+import { partsQuestCount } from "../../../../../../App/slices/areas-slice";
+import { selectAuthUid } from "../../../../../../App/slices/auth.slice";
+import { fixQuest, fixState, windowSwitcher } from "../../../../../../App/slices/create-quest.slice";
 
-import { reFormatTime } from "../../../../../Hooks/re-format-date";
+import { reFormatTime } from "../../../../../../Hooks/re-format-date";
+
 import { QuestFixContainer, ButtonsContaint, Title, StatisticContainer } from './quest-fix.style';
-import StatisticLine from "../../../../../Components/statistic-line/statistic-line.component";
-import Button from "../../../../../Components/button/button.component";
+import StatisticLine from "../../../../../../Components/statistic-line/statistic-line.component";
+import Button from "../../../../../../Components/button/button.component";
 
 const QuestFix = ({data}) => {
     const { id, quest, title } = data;

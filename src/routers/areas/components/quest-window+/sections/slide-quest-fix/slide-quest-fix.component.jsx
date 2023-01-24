@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { selectDisplaySectionTitle} from "../../../../../App/slices/areas-slice";
-import { selectCombinedActive } from "../../../../../App/slices/combined-areas.slice";
+import { selectDisplaySectionTitle } from "../../../../../../App/slices/areas-slice";
+import { selectCombinedActive } from "../../../../../../App/slices/combined-areas.slice";
 
 import QuestFix from "../quest-fix/quest-fix.component";
 

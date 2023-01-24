@@ -6,8 +6,9 @@ export const WindowContainer = styled.div`
 
 export const PlanSectionContainer = styled.div`
     position: relative;
-    width: 811px;
+    width: 981px;
     height: 494.5px;
+    border-top: 2px solid white;
     border-radius: 20px 20px 0 0;
     color: white;
     background-color: rgb(6,34,60);

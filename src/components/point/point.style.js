@@ -8,7 +8,7 @@ const PointStyle = styled.div`
 
 const Front = styled.div`
     position: relative;
-    width: 230px;
+    width: 200px;
     height: 130px;
     flex-shrink: 0;
     border-radius: 12px;
@@ -26,7 +26,7 @@ const Front = styled.div`
 `;
 
 const Back = styled.div`
-    width: 230px;
+    width: 200px;
     height: 130px;
     color: white;
     background-color: blue;

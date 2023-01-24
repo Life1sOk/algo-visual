@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectWindowStateOpen, windowHandler, selectWichOne } from "../../../../App/slices/create-quest.slice";
 
 import { PlanSectionContainer, WindowContainer, FixSectionContainer } from './index.style';
-import SlideQuestOne from "./slide-quest-one/slide-quest-one.component";
-import SlideQuestTwo from "./slide-quest-two/slide-quest-two.component";
-import SlideQuestThree from "./slide-quest-three/slide-quest-three.component";
-import SlideQiestFix from "./slide-quest-fix/slide-quest-fix.component";
-import CreateProgress from "./create-progress/create-progress.component";
+import SlideQuestOne from "./sections/slide-quest-one/slide-quest-one.component";
+import SlideQuestTwo from "./sections/slide-quest-two/slide-quest-two.component";
+import SlideQuestThree from "./sections/slide-quest-three/slide-quest-three.component";
+import SlideQiestFix from "./sections/slide-quest-fix/slide-quest-fix.component";
+import CreateProgress from "./sections/create-progress/create-progress.component";
 import BlackBoxWindow from "../../../../Components/black-box/black-box.component";
-import SettingMenu from "./setting-menu/setting-menu.component";
+import SettingMenu from "./components/setting-menu/setting-menu.component";
 
 const QuestWindow = ({ title }) => {
     const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectWichOne, windowSwitcher } from "../../../../../App/slices/create-quest.slice";
+import { selectWichOne, windowSwitcher } from "../../../../../../App/slices/create-quest.slice";
 
 import { SettingMenuStyle, MenuSwitcher} from './setting-menu.style';
 

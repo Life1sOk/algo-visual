@@ -30,9 +30,9 @@ const Point = memo(({ data, show, changedPointStatus}) => {
                     <PointStyle.ButtonWrapper>
                         <ButtonSd type='delete' background='white' onClick={deletePointHandler} />
                     </PointStyle.ButtonWrapper>
-                    <PointStyle.Title title={title}>{title}</PointStyle.Title>
+                    {/* <PointStyle.Title title={title}>{title}</PointStyle.Title> */}
                     <PointStyle.Date>{`Date: ${untilTime}`}</PointStyle.Date>
-                    <PointStyle.Description>{description}</PointStyle.Description>
+                    <PointStyle.Description>{title}</PointStyle.Description>
                 </PointStyle.Front>
                 :
                 <PointStyle activate={state}>

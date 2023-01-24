@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const PlanNavigation = styled.div`
-    width: 811px;
-    /* height: 114px; */
+    /* width: 811px; */
+    height: 100%;
     padding: 7px;
-    border-top: 1px solid white;
+    /* border-top: 1px solid white; */
     background-color: rgb(6,34,60);
     border-radius: 0 0 20px 20px;
     flex-shrink: 0;

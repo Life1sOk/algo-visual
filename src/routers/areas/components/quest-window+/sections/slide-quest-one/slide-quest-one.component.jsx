@@ -1,17 +1,28 @@
 import React, { useEffect, useRef } from "react";
 
+// Redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectSlideOne, oneDone, twoActive } from "../../../../../App/slices/quest-slides";
-import { mainAccept, selectCreateQuestReset, selectFixState, selectCreateQuestMain, setReset } from "../../../../../App/slices/create-quest.slice";
-import { selectParts } from '../../../../../App/slices/areas-slice.js';
+import { selectSlideOne, oneDone, twoActive } from "../../../../../../App/slices/quest-slides";
+import { mainAccept, selectCreateQuestReset, selectFixState, selectCreateQuestMain, setReset } from "../../../../../../App/slices/create-quest.slice";
+import { selectParts } from '../../../../../../App/slices/areas-slice.js';
 
-import { SlideSectionContainer, SlideInContainer, SlideDescription, SlideWrapper, Buttons, SlideTop } from './slide-quest-one.style';
-import Input from "../../../../../Components/input/input.component";
-import TextArea from "../../textarea/textarea.component";
-import Quote from "../../quote/quote.component";
-import Ulist from "../../u-list/u-list.component";
-import PartsOption from "../parts-option/parts-option.component";
-import Deadline from "../deadline/deadline.component";
+//Componenets
+import Input from "../../../../../../Components/input/input.component";
+import TextArea from "../../../../../../Components/textarea/textarea.component";
+
+import ButtonQW from "../../components/button-qw/button-qw.component";
+import Node from "../../components/node/node.component";
+import Ulist from '../../components/u-list/u-list.component';
+import Quote from '../../components/quote/quote.component';
+import PartsOption from "../../components/parts-option/parts-option.component";
+import Deadline from '../../components/deadline/deadline.component';
+
+// Styles
+import { SlideWrapperLayout, MainContainerLayout, FlexSpaceBetweenWrapper } from "../../layout";
+
+import { SlideInContainer } from './slide-quest-one.style';
+
+// -----------------------------------------------------------//
 
 const SlideQuestOne = () => {
     const dispatch = useDispatch();
@@ -81,34 +92,30 @@ const SlideQuestOne = () => {
         }
     }, [fixState])
 
-
     return (
-        <SlideSectionContainer active={active} done={done}>
-            <SlideWrapper>
+        <SlideWrapperLayout active={active} done={done}>
                 <SlideInContainer>
-                    <SlideTop>
+                    <FlexSpaceBetweenWrapper>
                         <Deadline ref={deadlineRef}/>
-                        <PartsOption ref={pickPartRef} disabled={fixState}/>
-                    </SlideTop>
+                        <PartsOption ref={pickPartRef} disabled={fixState} options={parts}/>
+                    </FlexSpaceBetweenWrapper>
                     <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />
                     <TextArea type='normal' label='Current state:' readOnly={done} ref={goalCurrentStateRef} />
                     <TextArea type='normal' label='Want to:' readOnly={done} ref={goalWantToRef} />
                     <TextArea type='big' label='Description / Why?:' readOnly={done} ref={goalDesctiptionRef} />
+                    {
+                        !done ?
+                            <ButtonQW title='Next step' onClick={() => slideOneDoneHandler()} />
+                            :
+                            <ButtonQW title='Fix' onClick={() => slideOneFixHandler()} />
+                    }
                 </SlideInContainer>
-                <SlideDescription>
-                    <Quote slide='one' />
+                <MainContainerLayout width={60}>
+                    <Node />
                     <Ulist slide='one' />
-                    <Buttons>
-                        {
-                            !done ?
-                                <button onClick={() => slideOneDoneHandler()}>Accepte</button>
-                                :
-                                <button onClick={() => slideOneFixHandler()}>Fix</button>
-                        }
-                    </Buttons>
-                </SlideDescription>
-            </SlideWrapper>
-        </SlideSectionContainer>
+                    <Quote slide='one' />
+                </MainContainerLayout>
+        </SlideWrapperLayout>
     )
 }
 
