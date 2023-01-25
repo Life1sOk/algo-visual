@@ -63,8 +63,8 @@ const CreateProgress = () => {
     return(
         <PlanNavigation>
                 <SlideSwitcher name='Main' active={oneState?.active} done={oneState?.done} onClick={oneSlideChangeHandler} after/>
-                <SlideSwitcher name='Points' active={twoState?.active} done={twoState?.done} onClick={twoSlideChangeHandler} before after/>
-                <SlideSwitcher name='Daily' active={threeState?.active} done={threeState?.done} onClick={threeSlideChangeHandler} after/>
+                <SlideSwitcher name='Steps' active={twoState?.active} done={twoState?.done} onClick={twoSlideChangeHandler} before after/>
+                <SlideSwitcher name='Points' active={threeState?.active} done={threeState?.done} onClick={threeSlideChangeHandler} after/>
                 {
                     !fixStatus ? 
                     <BigButton onClick={readyHandler}>Ready To Go</BigButton>

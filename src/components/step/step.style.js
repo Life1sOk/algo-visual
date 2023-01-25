@@ -8,8 +8,22 @@ export const StepContainer = styled.div`
     text-align: center;
     border-radius: 12px;
     background-color: white;
-    border: ${props => props.status ? '5px solid green' : '5px solid rgb(86,0,173)'};
-    color: rgb(86,0,173);
+    border: ${props => props.active ? '2px solid rgb(255,98,0)' : '2px solid rgb(86,0,173)'};
+    color: ${props => props.active ? 'rgb(255,98,0)' : 'rgb(86,0,173)'};
+    transition: all .2s linear;
+
+
+    ${({show}) => show ? 
+        `
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.025);
+            box-shadow: 1px 0px 27px -6px rgb(255,98,0);
+            -webkit-box-shadow: 1px 0px 27px -6px rgb(255,98,0);
+            -moz-box-shadow: 1px 0px 27px -6px rgb(255,98,0);
+        }`
+        : 'null'
+    }
 `;
 
 export const StepDescription = styled.div`
@@ -35,8 +49,9 @@ export const StepDeadline = styled.div`
     width: 100%;
     height: 21px;
     font-size: 12px;
+    border-radius: 12px 12px 0 0;
     padding: 3px;
-    background-color: rgb(86,0,173);
+    background-color: ${props => props.active ? 'rgb(255,98,0)' : 'rgb(86,0,173)'};
     color: white;
 `;
 

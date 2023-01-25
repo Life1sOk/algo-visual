@@ -4,8 +4,11 @@ export const SlideInContainer = styled.div`
     width: 300px;
     height: fit-content;
     padding: 15px;
-    border: 1px solid rgb(86,0,173);
     background-color: rgb(20,25,50);
+    transition: all .3s linear;
+    border-top: 3px solid ${({color}) => color};
+    border-bottom: 1px solid ${({color}) => color};
+    border-radius: 20px;
     
     flex-shrink: 0;
     display: flex;
@@ -14,7 +17,8 @@ export const SlideInContainer = styled.div`
     align-items: center;
     gap: 10px;
 
-    box-shadow: 1px 0px 27px -6px rgb(178,102,255);
-    -webkit-box-shadow: 1px 0px 27px -6px rgb(178,102,255);
-    -moz-box-shadow: 1px 0px 27px -6px rgb(178,102,255);
+    box-shadow: 1px 0px 27px -6px ${({color}) => color};
+    -webkit-box-shadow: 1px 0px 27px -6px ${({color}) => color};
+    -moz-box-shadow: 1px 0px 27px -6px ${({color}) => color};
+    
 `;

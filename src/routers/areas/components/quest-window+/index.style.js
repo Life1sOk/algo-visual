@@ -5,7 +5,6 @@ export const WindowContainer = styled.div`
 `;
 
 export const PlanSectionContainer = styled.div`
-    position: relative;
     width: 981px;
     height: 494.5px;
     border-top: 2px solid white;

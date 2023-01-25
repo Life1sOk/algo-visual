@@ -28,16 +28,8 @@ export const AboutAnimationWrapper = styled.div`
     &:hover {
         cursor: pointer;
         transform: scale(1.025);
-        /* box-shadow: 1px 0px 50px 2px ${({color}) => color};
-        -webkit-box-shadow: 1px 0px 50px 2px ${({color}) => color};
-        -moz-box-shadow: 1px 0px 50px 2px ${({color}) => color}; */
-
         box-shadow: 1px 0px 27px -6px ${({color}) => color};
-        -webkit-box-shadow: 1px 0px 27px -6px rgb(255,98,0);
+        -webkit-box-shadow: 1px 0px 27px -6px ${({color}) => color};
         -moz-box-shadow: 1px 0px 27px -6px ${({color}) => color};
-
-        /* box-shadow: 1px 0px 30px -2px ${({color}) => color};
-        -webkit-box-shadow: 1px 0px 30px -2px ${({color}) => color};
-        -moz-box-shadow: 1px 0px 30px -2px ${({color}) => color}; */
     }
 `;

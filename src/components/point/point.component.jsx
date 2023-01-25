@@ -2,7 +2,7 @@ import React, { useState, memo } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { deleteAchieve } from "../../App/slices/create-quest.slice";
+import { deleteSteps } from "../../App/slices/create-quest.slice";
 
 
 import ButtonSd from "../button-sd/button-sd.component";
@@ -17,7 +17,7 @@ const Point = memo(({ data, show, changedPointStatus}) => {
 
     const reverseHandler = () => setState(!state);
 
-    const deletePointHandler = () => dispatch(deleteAchieve(id));
+    const deletePointHandler = () => dispatch(deleteSteps(id));
     
     const forTrueHandler = {action: true, id};
     const forFalseHandler = {action: false, id};

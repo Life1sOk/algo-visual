@@ -8,9 +8,9 @@ const initialState = {
     add: {
         createdTime: '',
         main: {},
-        achieve: [],
-        daily: [],
+        steps: [],
     },
+    activeStep: 0,
     storeOldQuest: {},
 }
 
@@ -20,23 +20,31 @@ export const createQuestSlice = createSlice({
     reducers: {
         setReset: (state, { payload }) => {
             state.reset = payload;
-            state.add.achieve = [];
+            state.add.steps = [];
             state.add.daily = [];
         },
         mainAccept: (state, { payload }) => {
             state.add.main = { ...payload };
         },
-        addAchieve: (state, { payload }) => {
-            state.add.achieve.push(payload);
+        // Steps
+        activeStepHandler: (state, {payload}) => {
+            state.activeStep = payload;
         },
-        addDaily: (state, { payload }) => {
-            state.add.daily.push(payload);
+        addSteps: (state, { payload }) => {
+            state.add.steps.push(payload);
         },
-        deleteAchieve: (state, { payload }) => {
-            state.add.achieve = state.add.achieve.filter(quest => quest.id !== payload);
+        deleteSteps: (state, { payload }) => {
+            state.add.steps = state.add.steps.filter(quest => quest.id !== payload);
         },
-        deleteDaily: (state, { payload }) => {
-            state.add.daily = state.add.daily.filter(daily => daily.id !== payload);
+        // Points
+        addPoints: (state, { payload }) => {
+            let index = state.activeStep;
+            const generateId = state.add.steps[index].points.length;
+            state.add.steps[index].points.push({...payload, id: generateId});
+        },
+        deletePoints: (state, { payload }) => {
+            let index = state.activeStep;
+            state.add.steps[index].points = state.add.steps[index].points.filter(point => point.id !== payload);
         },
         // Fix quest
         fixQuest: (state, {payload}) => {
@@ -63,11 +71,11 @@ export const selectWindowStateOpen = (state) => state.createQuest.windowStateOpe
 export const selectWichOne = (state) => state.createQuest.whichOne;
 export const selectFixState = (state) => state.createQuest.fixState;
 export const selectOldFixQuest = (state) => state.createQuest.storeOldQuest;
+export const selectActiveStep = (state) => state.createQuest.activeStep;
 export const selectCreateQuestMain = (state) => state.createQuest.add.main;
-export const selectCreateQuestAchieve = (state) => state.createQuest.add.achieve;
-export const selectCreateQuestDaily = (state) => state.createQuest.add.daily;
+export const selectCreateQuestSteps = (state) => state.createQuest.add.steps;
 export const selectCreateQuestReset = (state) => state.createQuest.reset;
 
-export const { mainAccept, addAchieve, addDaily, setReset, deleteAchieve, deleteDaily, windowHandler, windowSwitcher, fixQuest, fixState } = createQuestSlice.actions;
+export const { mainAccept, addSteps, addPoints, setReset, deleteSteps, deletePoints, windowHandler, windowSwitcher, fixQuest, fixState, activeStepHandler } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

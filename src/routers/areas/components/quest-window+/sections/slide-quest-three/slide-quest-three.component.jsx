@@ -3,70 +3,79 @@ import React, { useRef } from "react";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideThree, threeDone } from "../../../../../../App/slices/quest-slides";
-import { selectCreateQuestDaily, addDaily } from "../../../../../../App/slices/create-quest.slice";
+import { addPoints, selectCreateQuestSteps, activeStepHandler, selectActiveStep } from "../../../../../../App/slices/create-quest.slice";
 
 // Components
-import Input from "../../../../../../Components/input/input.component";
 import TextArea from "../../../../../../Components/textarea/textarea.component";
-import DailyAdd from "../../../../../../Components/daily-add/daily-add.component";
+import Step from "../../../../../../Components/step/step.component";
 
+import ButtonQW from "../../components/button-qw/button-qw.component";
+import Points from "../../components/points/points.components";
 import Node from "../../components/node/node.component";
 import Ulist from "../../components/u-list/u-list.component";
 import Quote from "../../components/quote/quote.component";
 
 // Style
-import { SlideWrapperLayout, PointsLayout, MainContainerLayout } from "../../layout";
+import { SlideWrapperLayout, StepsLayout, MainContainerLayout, DoneWindow } from "../../layout";
 
-import { SlideWrapper, SlideForm, Points } from './slide-quest-three.style';
+import { SlideWrapper, SlideForm } from './slide-quest-three.style';
 
 // ----------------------------------------------------------- //
 
 const SlideQuestThree = () => {
     const dispatch = useDispatch();
 
-    const slideData = useSelector(selectCreateQuestDaily);
+    const steps = useSelector(selectCreateQuestSteps);
+    const activeStep = useSelector(selectActiveStep);
     const slidesState = useSelector(selectSlideThree);
     const { active, done } = slidesState;
 
-    const dailyTitleRef = useRef();
-    const dailyDescriptionRef = useRef();
+    const dailyDescriptionRef = useRef(null);
 
     const addChangeHandler = () => {
-        const dailySlideState = {
-            questName: dailyTitleRef.current.value,
+        const pointSlideState = {
+            status: false,
             description: dailyDescriptionRef.current.value,
         }
-        const { questName, description } = dailySlideState;
+        const { description } = pointSlideState;
 
-        if (questName.length < 1) return alert('add title');
         if (description.length < 1) return alert('add description');
 
-        let generateId = slideData.length + 1;
-        dispatch(addDaily({ ...dailySlideState, id: generateId }));
+        dispatch(addPoints(pointSlideState));
 
-        dailyTitleRef.current.value = '';
         dailyDescriptionRef.current.value = '';
+    };
+
+    const slideThreeDoneHandler = (type) => {
+        if (type === 'done') {
+            dispatch(threeDone('done'));
+        } else if (type === 'fix') {
+            dispatch(threeDone('fix'));
+        }
     }
 
+    const pickCurrentStepHandler = (index) => dispatch(activeStepHandler(index));
+
     return (
-        <SlideWrapperLayout active={active} done={done}>
-            <PointsLayout width={25}>
+        <SlideWrapperLayout active={active}>
+            <DoneWindow state={done}/>
+            <StepsLayout width={25}>
                 {
-                    slideData[0] &&
-                    slideData.map(toDo => <DailyAdd key={toDo.id} data={toDo} show />)
+                    steps?.map((toDo, index) => <Step key={toDo.id} data={toDo} index={index} active={activeStep === index} windowActionHandler={pickCurrentStepHandler}/>)
                 }
-            </PointsLayout>
+            </StepsLayout>
             <SlideWrapper>
                 <SlideForm>
-                    {/* <Input label='Title:' readOnly={done} ref={dailyTitleRef} /> */}
-                    <TextArea type='big' label='Description:' readOnly={done} ref={dailyDescriptionRef} />
-                    {
-                        !done &&
-                        <button onClick={addChangeHandler}>Add</button>
-                    }
+                    <TextArea type='big' label='Description:' ref={dailyDescriptionRef} />
+                    <button onClick={addChangeHandler}>Add</button>
                 </SlideForm>
-                <Points>
-
+                <Points steps={steps}>
+                    {
+                        !done ?
+                            <ButtonQW absolute onClick={() => slideThreeDoneHandler('done')} title='Next step'/>
+                            :
+                            <ButtonQW absolute onClick={() => slideThreeDoneHandler('fix')} title='Fix' zindex={13}/>
+                    }
                 </Points>
             </SlideWrapper>
             <MainContainerLayout width={40}>

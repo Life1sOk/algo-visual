@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ import PartsOption from "../../components/parts-option/parts-option.component";
 import Deadline from '../../components/deadline/deadline.component';
 
 // Styles
-import { SlideWrapperLayout, MainContainerLayout, FlexSpaceBetweenWrapper } from "../../layout";
+import { SlideWrapperLayout, MainContainerLayout, FlexSpaceBetweenWrapper, DoneWindow } from "../../layout";
 
 import { SlideInContainer } from './slide-quest-one.style';
 
@@ -28,12 +28,14 @@ const SlideQuestOne = () => {
     const dispatch = useDispatch();
     const resetState = useSelector(selectCreateQuestReset);
     const parts = useSelector(selectParts);
-
+    
     const fixState = useSelector(selectFixState);
     const forFixMain = useSelector(selectCreateQuestMain);
-
+    
     const slidesState = useSelector(selectSlideOne);
     const { active, done } = slidesState;
+    
+    const [pickedPart, setPickedPart] = useState(parts[0]);
 
     const pickPartRef = useRef(null);
     const goalTitleRef = useRef(null);
@@ -42,9 +44,12 @@ const SlideQuestOne = () => {
     const goalDesctiptionRef = useRef(null);
     const deadlineRef = useRef(null);
 
-    const slideOneDoneHandler = () => {
-        let pickedPart = parts.find(({title}) => title === pickPartRef.current.value);
+    const changePickedPart = (current) => {
+        let newPart = parts.find(({title}) => title === current);
+        setPickedPart(newPart);
+    }
 
+    const slideOneDoneHandler = () => {
         const goalSlideState = {
             part: pickPartRef.current.value,
             deadline: deadlineRef.current.value,
@@ -53,7 +58,7 @@ const SlideQuestOne = () => {
             mainGoal: goalWantToRef.current.value,
             description: goalDesctiptionRef.current.value,
             color: pickedPart?.color,
-        }
+        };
         const { title, current, mainGoal, description } = goalSlideState;
 
         if (title.length < 1) return alert('need add title');
@@ -90,24 +95,25 @@ const SlideQuestOne = () => {
             goalWantToRef.current.value = mainGoal;
             goalDesctiptionRef.current.value = description;
         }
-    }, [fixState])
+    }, [fixState]);
 
     return (
-        <SlideWrapperLayout active={active} done={done}>
-                <SlideInContainer>
+        <SlideWrapperLayout active={active}>
+            <DoneWindow state={done}/>
+                <SlideInContainer color={pickedPart?.color}>
                     <FlexSpaceBetweenWrapper>
                         <Deadline ref={deadlineRef}/>
-                        <PartsOption ref={pickPartRef} disabled={fixState} options={parts}/>
+                        <PartsOption ref={pickPartRef} disabled={fixState} options={parts} pickPartHandler={changePickedPart}/>
                     </FlexSpaceBetweenWrapper>
-                    <Input label='Goal Title:' readOnly={done} ref={goalTitleRef} defaultValue='' />
-                    <TextArea type='normal' label='Current state:' readOnly={done} ref={goalCurrentStateRef} />
-                    <TextArea type='normal' label='Want to:' readOnly={done} ref={goalWantToRef} />
-                    <TextArea type='big' label='Description / Why?:' readOnly={done} ref={goalDesctiptionRef} />
+                    <Input label='Goal Title:' ref={goalTitleRef} defaultValue='' />
+                    <TextArea type='normal' label='Current state:' ref={goalCurrentStateRef} />
+                    <TextArea type='normal' label='Want to:' ref={goalWantToRef} />
+                    <TextArea type='big' label='Description / Why?:' ref={goalDesctiptionRef} />
                     {
                         !done ?
                             <ButtonQW title='Next step' onClick={() => slideOneDoneHandler()} />
                             :
-                            <ButtonQW title='Fix' onClick={() => slideOneFixHandler()} />
+                            <ButtonQW title='Fix' onClick={() => slideOneFixHandler()} zindex={13}/>
                     }
                 </SlideInContainer>
                 <MainContainerLayout width={60}>

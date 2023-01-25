@@ -60,7 +60,6 @@ const Calendar = ({legend, later, window, dayHandler, buildingHandler, type, win
         if(buildingHandler) buildingHandler(payload);
     }, [date, current]);
 
-    console.log('render')
 
     return(
         <CalendarContainer window={window} windowStatus={windowStatus}>

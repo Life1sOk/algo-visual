@@ -12,8 +12,10 @@ export const SlideFormContainer = styled.div`
 export const SlideForm = styled.div`
     width: 230px;
     padding: 20px;
-    border: 1px solid rgb(86,0,173);
     background-color: rgb(20,25,50);
+    border-top: 3px solid rgb(86,0,173);
+    border-bottom: 1px solid rgb(86,0,173);
+    border-radius: 13px;
 
     display: flex;
     flex-direction: column;

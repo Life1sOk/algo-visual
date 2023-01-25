@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const SlideWrapperLayout = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 100%;
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};
@@ -23,7 +21,7 @@ export const MainContainerLayout = styled.div`
     justify-content: space-between;
 `;
 
-export const PointsLayout = styled.div`
+export const StepsLayout = styled.div`
     position: relative;
     width: ${({width}) => width ? `${width}%` : '30%'};
     height: 100%;
@@ -54,4 +52,16 @@ export const FlexSpaceBetweenWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+`;
+
+export const DoneWindow = styled.div`
+    display: ${({state}) => !state ? 'none' : 'initial'};
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .2);
+    z-index: 10;
 `;
