@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const QuestContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: ${({direction}) => direction ? direction : 'initial'};
     align-items: center;
     justify-content: center;
     gap: 20px;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const AboutStyle = styled.div`
-    width: ${props => props.type === 'done' ? '265px' : '300px'};
+    width: ${props => props.type === 'done' ? '265px' : '275px'};
     height: 345px;
     flex-shrink: 0;
     background-color: rgb(20, 25, 50);

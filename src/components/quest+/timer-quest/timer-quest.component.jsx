@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { QuestContainer, TimerWindow } from "./timre-quest.style";
 import useTimer from "../../../Hooks/useTimer";
 
-const TimerQuest = ({deadline, transferQuestHandler}) => {
+const TimerQuest = ({deadline, transferQuestHandler, direction}) => {
     const { days, hours, minutes, seconds } = useTimer(deadline);
 
     useEffect(() => {
@@ -11,7 +11,7 @@ const TimerQuest = ({deadline, transferQuestHandler}) => {
     }, [days, hours, minutes, seconds])
     
     return(
-        <QuestContainer>
+        <QuestContainer direction={direction}>
             <TimerWindow>{days} d</TimerWindow>
             <TimerWindow>{hours} h</TimerWindow>
             <TimerWindow>{minutes} m</TimerWindow>

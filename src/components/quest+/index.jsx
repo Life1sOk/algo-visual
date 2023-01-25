@@ -5,7 +5,9 @@ import { selectAuthUid } from "../../App/slices/auth.slice";
 import { partsQuestCount } from "../../App/slices/areas-slice";
 import { doneQuest } from "../../App/slices/combined-areas.slice";
 
-import { QuestStyle, QuestContainer, AboutAnimationWrapper } from './index.style';
+import { QuestStyle, QuestMain } from './index.style';
+
+import QuestCard from "./sections/quest-card/quest-card.section";
 import About from './about/about.component';
 import Points from './points/points.component';
 import Daily from "./daily/daily.component";
@@ -34,43 +36,14 @@ const Quest = ({ currentQuest, index, activeType }) => {
 
     return (
         <>
-            <QuestContainer color={main.color} onClick={openFullHandler}>
-                <AboutAnimationWrapper color={main.color}>
-                    <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} color={main.color}/>
-                </AboutAnimationWrapper>
-                {
-                    activeType === 'active' &&
-                    <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
-                }
-            </QuestContainer>
+            <QuestCard direction='column' animation={true} main={main} area={title} achieve={achieve} index={index} color={main.color} openFullHandler={openFullHandler} transferQuestHandler={transferQuestHandler} activeType={activeType}/>
             <BlackBoxWindow handler={openFullHandler} state={openFull}>
                 <QuestStyle>
-                    <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} color={main.color}/>
-                    <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
-                    <Daily data={daily} title={main.title} part={main.part} area={title} mainColor={main.color}/>
-                    {
-                        activeType === 'active' &&
-                        <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
-                    }
+                    <QuestCard direction='raw' main={main} area={title} achieve={achieve} index={index} color={main.color} transferQuestHandler={transferQuestHandler} activeType={activeType}/>
                 </QuestStyle>
             </BlackBoxWindow>
         </>
     )
 };
-
-// {
-//     activeType === 'done' ?
-//     <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler} type='done'/>
-//     :
-    // <QuestStyle>
-    //     <About data={main} area={title} achieve={achieve} index={index} transferQuestHandler={transferQuestHandler}/>
-    //     <Points data={achieve} questIndex={index} currentQuest={currentQuest}/>
-    //     <Daily data={daily} title={main.title} part={main.part} area={title} mainColor={main.color}/>
-    //     {
-    //         activeType === 'active' &&
-    //         <TimerQuest deadline={main.deadline} transferQuestHandler={transferQuestHandler}/>
-    //     }
-    // </QuestStyle>
-// }
 
 export default Quest;

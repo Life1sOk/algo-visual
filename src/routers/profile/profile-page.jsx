@@ -55,7 +55,6 @@ const ProfilePage = () => {
     return (
         <PageLayout>
             <AsideLayout>
-                {/* <ProfileImg /> */}
                 <TitlePage titleName='Today toDo' />
                 <Calendar legend dayHandler={calendarDayHandler} buildingHandler={calendarBuildingHandler} type={'main'} windowStatus={true}/>
                 <LinksBlock />
