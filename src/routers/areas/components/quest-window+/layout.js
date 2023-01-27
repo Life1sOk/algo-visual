@@ -23,7 +23,8 @@ export const MainContainerLayout = styled.div`
 
 export const StepsLayout = styled.div`
     position: relative;
-    width: ${({width}) => width ? `${width}%` : '30%'};
+    /* width: ${({width}) => width ? `${width}%` : '30%'}; */
+    width: 210px;
     height: 100%;
     padding: 20px 10px 10px 10px;
     background-color: rgb(20,25,50);

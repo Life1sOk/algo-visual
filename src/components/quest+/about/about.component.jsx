@@ -4,7 +4,7 @@ import Line from '../about-line/about-line.component';
 import ProgressBar from "../../progress-bar/progress-bar.component";
 import AboutStyle from "./about.style";
 
-const About = ({ data, area, achieve, index, transferQuestHandler, type, color }) => {
+const About = ({ data, area, index, steps, transferQuestHandler, type, color }) => {
     const { title, current, mainGoal, description } = data;
 
     const transferQuest = () => transferQuestHandler('active', 'done');
@@ -29,11 +29,11 @@ const About = ({ data, area, achieve, index, transferQuestHandler, type, color }
                     <AboutStyle.PointBalls>
                         <p>Points:</p>
                         {
-                            achieve.map((point, index) => <span key={index}>{point.id}</span>)
+                            steps.map((point, index) => <span key={index}>{point.id}</span>)
                         }
                     </AboutStyle.PointBalls>
                 :
-                <ProgressBar achieve={achieve} action={transferQuest}/>
+                <ProgressBar achieve={steps} action={transferQuest}/>
             }
         </AboutStyle>
     )

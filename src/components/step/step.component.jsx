@@ -8,11 +8,11 @@ const Step = ({data, stepActionHandler, windowActionHandler, index, show, active
     const { id, untilTime, description, status } = data;
 
     const deleteStepHandler = () => {
-        if(stepActionHandler) stepActionHandler(id)
+        if(stepActionHandler) stepActionHandler(id);
     };
 
     const windowAction = () => {
-        if(windowActionHandler) windowActionHandler(index)
+        if(windowActionHandler) windowActionHandler(index);
     };
 
     return(

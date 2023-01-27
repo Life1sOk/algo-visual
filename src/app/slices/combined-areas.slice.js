@@ -38,6 +38,7 @@ const combinedAreasSlice = createSlice({
             addQuestServer(uid, sendData, 'active');
         },
         fixCurrentQuest: (state, {payload}) => {
+            // Check ?
             const { newOne, oldOne, uid } = payload;
             state.active = state.active.map(quest => quest.id === newOne.id ? newOne : quest);
 
@@ -53,19 +54,24 @@ const combinedAreasSlice = createSlice({
         },
         // ------------------------- Point CRUD
         currentPointStatusChanger: (state, { payload }) => {
-            const { questIndex, pointId, action, uid } = payload;
+            // const { questIndex, pointId, action, uid } = payload;
+            const {uid, questIndex, pointId, status, stepIndex} = payload;
+
+            for( let i=0; i<state.active.length; i++) {
+
+            };
 
             // Server - delete
-            let oldQuestToDelete = {...state.active[questIndex]};
-            deleteQuestServer(uid, oldQuestToDelete, 'active');
+            // let oldQuestToDelete = {...state.active[questIndex]};
+            // deleteQuestServer(uid, oldQuestToDelete, 'active'); //
 
             // Redux
-            state.active[questIndex].quest.achieve = state.active[questIndex]?.quest.achieve.map(point => (
-                point.id === pointId ? {...point, status: action} : point)
-            );
+            state.active[questIndex].quest.steps[stepIndex].points = state.active[questIndex].quest.steps[stepIndex].points.map(point => (
+                point.id === pointId ? {...point, status} : point)
+            ).sort((a,b) => a.status - b.status);
 
             // Server - add
-            addQuestServer(uid, state.active[questIndex], 'active');
+            // addQuestServer(uid, state.active[questIndex], 'active');
         },
         // --------------------- Quest transfer
         doneQuest: (state, {payload}) => {

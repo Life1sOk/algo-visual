@@ -6,7 +6,7 @@ const AboutStyle = styled.div`
     flex-shrink: 0;
     background-color: rgb(20, 25, 50);
     padding: 0 15px 15px 15px;
-    border-top: 3px solid ${({color}) => color};
+    border-top: 2px solid ${({color}) => color};
     border-bottom: 1px solid ${({color}) => color};
     border-radius: 20px 20px 10px 10px;
     color: white;
@@ -15,6 +15,10 @@ const AboutStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    /* box-shadow: ${({color}) => `1px 0px 27px -6px ${color}`};
+    -webkit-box-shadow: ${({color}) => `1px 0px 17px -6px ${color}`};
+    -moz-box-shadow: ${({color}) =>`1px 0px 27px -6px ${color}`}; */
 `;
 
 const AboutWrapper = styled.div`

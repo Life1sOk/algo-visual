@@ -127,7 +127,7 @@ export const dailySlice = createSlice({
                     return toDo;
                 });
     
-                state.mainPlan = updateNew.sort((a,b) => a.status - b.status)
+                state.mainPlan = updateNew.sort((a,b) => a.status - b.status);
             }
 
             if(type === 'secondary') {
