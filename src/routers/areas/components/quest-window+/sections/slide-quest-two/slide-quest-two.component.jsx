@@ -85,7 +85,7 @@ const SlideQuestTwo = () => {
                 </SlideFormContainer>
                 <Quote slide='two' />
             </MainContainerLayout>
-            <StepsLayout side='left'>
+            {/* <StepsLayout side='left'>
                 {
                     !done ?
                         <ButtonQW absolute onClick={() => slideTwoDoneHandler('done')} title='Next step'/>
@@ -95,7 +95,7 @@ const SlideQuestTwo = () => {
                 {
                     steps?.map(quest => <Step key={quest.id} data={quest} show stepActionHandler={deleteChangeHandler}/>)
                 }
-            </StepsLayout>
+            </StepsLayout> */}
         </SlideWrapperLayout>
     )
 }

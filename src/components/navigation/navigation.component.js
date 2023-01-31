@@ -28,9 +28,14 @@ const navigation = [
     },
     {
         id: 4,
-        to: '/posts',
-        name: 'Posts',
+        to: '/goal',
+        name: 'Goal',
     },
+    // {
+    //     id: 5,
+    //     to: '/posts',
+    //     name: 'Posts',
+    // },
     {
         id: 5,
         to: '/statistic',

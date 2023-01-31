@@ -12,6 +12,7 @@ import AreasPage from './Routers/areas/areas-page';
 import PostsPage from './Routers/posts/posts-page';
 import StatisticPage from './Routers/statistic/statistic-page';
 import ProfilePage from './Routers/profile/profile-page';
+import GoalPage from './Routers/goal/goal-page';
 import AuthorizationPage from './Routers/authorization/authorization.page';
 import Navigation from './Components/navigation/navigation.component';
 
@@ -36,6 +37,11 @@ function App() {
           <Route path='areas/*' element={
             <Protected isLoggedIn={loggedIn}>
               <AreasPage />
+            </Protected>
+          } />
+           <Route path='goal' element={
+            <Protected isLoggedIn={loggedIn}>
+              <GoalPage />
             </Protected>
           } />
           <Route path='posts' element={

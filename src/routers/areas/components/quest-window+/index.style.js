@@ -11,7 +11,9 @@ export const PlanSectionContainer = styled.div`
     border-radius: 20px 20px 0 0;
     color: white;
     background-color: rgb(6,34,60);
-    overflow: hidden;
+    overflow-y: scroll;
+
+    display: flex;
 `;
 
 export const FixSectionContainer = styled.div`

@@ -20,5 +20,4 @@ export const SlideInContainer = styled.div`
     box-shadow: 1px 0px 27px -6px ${({color}) => color};
     -webkit-box-shadow: 1px 0px 27px -6px ${({color}) => color};
     -moz-box-shadow: 1px 0px 27px -6px ${({color}) => color};
-    
 `;

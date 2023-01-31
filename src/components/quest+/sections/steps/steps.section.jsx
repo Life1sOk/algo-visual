@@ -6,64 +6,81 @@ import { currentPointStatusChanger } from "../../../../App/slices/combined-areas
 import Step from '../../../step/step.component';
 import Point from "../../../point-one/point.component";
 
-import { StepsWrapper, StepsContainer, PointsContainer, PointsWrapper, PointsButton } from './steps.style';
+import { StepsWrapper, StepsContainer, PointsContainer, PointsWrapper, PointsButton, AnimationWrapper } from './steps.style';
 
 const StepsSection = ({steps, color, questIndex, uid}) => {
     const dispatch = useDispatch();
 
     const [ currentPoints, setCurrentPoints ] = useState([]);
-    const [pickedId, setPickedId] = useState(null);
+    const [ activeStep, setActiveStep ] = useState(null);
 
     const pickStepHandler = (pickedStep) => {
+        setActiveStep(pickedStep.id);
         setCurrentPoints([]);
-        setPickedId(pickedStep.id)
-    };
+    }
 
     const pointStatusChangeHandler = (checked, id) => {
         const payload = {
             uid,
             questIndex,
             // stepId: pickedId,
-            stepIndex: pickedId - 1,
+            stepIndex: activeStep - 1,
             pointId: id,
-            status: checked
+            status: checked,
         };
 
         dispatch(currentPointStatusChanger(payload));
     };
-    
+
     useEffect(() => {
-        for (let i=0; i<steps.length; i++) {
-            if(steps[i]?.status === false) {
-                setPickedId(steps[i].id);
-                return setCurrentPoints(steps[i].points);
-            }
+        if(activeStep == null) {
+            for (let i=0; i<steps.length; i++) {
+                if(steps[i]?.status === false) {
+                    setActiveStep(steps[i].id);
+                    return setCurrentPoints(steps[i].points);
+                };
+            };
+        };
+
+        if(activeStep !== null) {
+            for (let i=0; i<steps.length; i++) {
+                if(steps[i]?.id === activeStep) {
+                    setActiveStep(steps[i].id);
+                    return setCurrentPoints(steps[i].points);
+                };
+            };
         };
     }, [steps]);
 
     useEffect(() => {
         for (let i=0; i<steps.length; i++) {
-            if(steps[i]?.id === pickedId) return setCurrentPoints(steps[i].points);
+            if(steps[i]?.id === activeStep) {
+                setCurrentPoints(steps[i].points);
+            }
         };
-    }, [currentPoints])
+    }, [activeStep]);
 
     return(
         <StepsWrapper>
-            <StepsContainer color={color}>
-                {
-                    steps?.map((step, index) => <Step data={step} key={index} active={pickedId === step.id} windowActionHandler={() => pickStepHandler(step)}/>)
-                }
-            </StepsContainer>
             <PointsWrapper>
                 <PointsContainer>
-                    {
-                        currentPoints?.map((point, index) => <Point data={point} key={index} pointStatusChangeHandler={pointStatusChangeHandler} pickedId={pickedId}/>)
-                    }
+                    <AnimationWrapper>
+                        {
+                            currentPoints?.map((point, index) => <Point data={point} key={index} pointStatusChangeHandler={pointStatusChangeHandler}/>)
+                        }
+                    </AnimationWrapper>
                 </PointsContainer>
                 <PointsButton>
-                    <button>Changes</button>
+                    {
+                        [1,2,3,4].map(num => <span key={num}>{num}</span>)
+                    }
                 </PointsButton>
             </PointsWrapper>
+            <StepsContainer color={color}>
+                {
+                    steps?.map((step, index) => <Step data={step} key={index} active={activeStep === step.id} windowActionHandler={() => pickStepHandler(step)}/>)
+                }
+            </StepsContainer>
         </StepsWrapper>
     )
 }

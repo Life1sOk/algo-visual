@@ -6,9 +6,11 @@ export const SlideWrapperLayout = styled.div`
     height: 100%;
     background-color: ${props => !props.done ? 'rgb(6, 34, 60)' : 'rgba(0,93,0)'};
 
-    display: ${props => !props.active ? 'none' : 'flex'};
+    /* display: ${props => !props.active ? 'none' : 'flex'}; */
+    display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-shrink: 0;
 `;
 
 export const MainContainerLayout = styled.div`

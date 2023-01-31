@@ -46,6 +46,11 @@ export const createQuestSlice = createSlice({
             let index = state.activeStep;
             state.add.steps[index].points = state.add.steps[index].points.filter(point => point.id !== payload);
         },
+        fixPointsHeight: (state, {payload}) => {
+            const {id, height} = payload;
+            let index = state.activeStep;
+            state.add.steps[index].points = state.add.steps[index].points.map(point => point.id === id ? {...point, height} : point)
+        },
         // Fix quest
         fixQuest: (state, {payload}) => {
             const { quest } = payload;
@@ -76,6 +81,6 @@ export const selectCreateQuestMain = (state) => state.createQuest.add.main;
 export const selectCreateQuestSteps = (state) => state.createQuest.add.steps;
 export const selectCreateQuestReset = (state) => state.createQuest.reset;
 
-export const { mainAccept, addSteps, addPoints, setReset, deleteSteps, deletePoints, windowHandler, windowSwitcher, fixQuest, fixState, activeStepHandler } = createQuestSlice.actions;
+export const { mainAccept, addSteps, addPoints, setReset, deleteSteps, deletePoints, windowHandler, windowSwitcher, fixQuest, fixState, activeStepHandler, fixPointsHeight } = createQuestSlice.actions;
 
 export default createQuestSlice.reducer;

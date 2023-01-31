@@ -52,6 +52,7 @@ const Quest = ({ currentQuest, index, activeType }) => {
                     <SvgWrapper type='one'><Splat ref={splatRefOne}/></SvgWrapper>
                     <SvgWrapper type='two'><Splat ref={splatRefTwo}/></SvgWrapper>
                 </Background>
+            <StepsSection steps={steps} color={main.color} questIndex={index} uid={uid}/>
             <Wrapper>
             {
                 activeType === 'active' &&
@@ -59,7 +60,6 @@ const Quest = ({ currentQuest, index, activeType }) => {
             }
             <About data={main} area={title} index={index} steps={steps} transferQuestHandler={transferQuestHandler} color={main.color}/>
             </Wrapper>
-            <StepsSection steps={steps} color={main.color} questIndex={index} uid={uid}/>
         </QuestStyle>
     )
 };

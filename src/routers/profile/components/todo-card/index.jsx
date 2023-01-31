@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { useAutoAnimate } from '@formkit/auto-animate/react';
-
 // Component Style //
 import TodoCardStyle from './index.style';
 
@@ -11,7 +9,6 @@ import ProgressBar from "../../../../Components/progress-bar/progress-bar.compon
 
 const TodoCard = ({ title, color, quests, doneChangeHandler, type, finishDay }) => {
     const [currentQuest, setCurrentQuest] = useState(null);
-    const [parent] = useAutoAnimate(/* optional config */);
 
     const parts = [];
     const groups = [];
@@ -43,7 +40,7 @@ const TodoCard = ({ title, color, quests, doneChangeHandler, type, finishDay }) 
             <TodoCardStyle.Title color={color}>{title}</TodoCardStyle.Title>
                {
                 groups.map((group, index) => 
-                    <TodoCardStyle.Group key={index} lineColor={group.color} ref={parent}>
+                    <TodoCardStyle.Group key={index} lineColor={group.color}>
                         {
                             group.objects.map((quest, index) => <Todo key={quest.id} index={index} quest={quest} color={color} currentQuest={currentQuest} setCurrentQuest={setCurrentQuest} doneChangeHandler={doneChangeHandler} type={type}/>)
                         }

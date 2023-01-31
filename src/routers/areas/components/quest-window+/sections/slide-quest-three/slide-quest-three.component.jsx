@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { selectSlideThree, threeDone } from "../../../../../../App/slices/quest-slides";
-import { addPoints, selectCreateQuestSteps, activeStepHandler, selectActiveStep, deletePoints } from "../../../../../../App/slices/create-quest.slice";
+import { addPoints, selectCreateQuestSteps, activeStepHandler, selectActiveStep, deletePoints, fixPointsHeight } from "../../../../../../App/slices/create-quest.slice";
 
 // Components
 import TextArea from "../../../../../../Components/textarea/textarea.component";
@@ -30,8 +30,6 @@ const SlideQuestThree = () => {
     const { active, done } = slidesState;
     
     const dailyDescriptionRef = useRef(null);
-
-    console.log(dailyDescriptionRef?.current?.value)
     
     const addChangeHandler = () => {
         const pointSlideState = {
@@ -57,6 +55,7 @@ const SlideQuestThree = () => {
     
     const pickCurrentStepHandler = (index) => dispatch(activeStepHandler(index));
     const deletePoint = (index) => dispatch(deletePoints(index));
+    const sendPointHeightHandler = (payload) => dispatch(fixPointsHeight(payload));
 
     return (
         <SlideWrapperLayout active={active}>
@@ -79,7 +78,7 @@ const SlideQuestThree = () => {
                             <ButtonQW absolute onClick={() => slideThreeDoneHandler('fix')} title='Fix' zindex={13}/>
                     }
                     {
-                        steps[activeStepIndex]?.points?.map((point, index) => <Point key={index} data={point} deleteHandler={deletePoint}/>)
+                        steps[activeStepIndex]?.points?.map((point, index) => <Point key={index} data={point} deleteHandler={deletePoint} sendPointHeightHandler={sendPointHeightHandler}/>)
                     }
                 </PointsContainer>
             </SlideWrapper>

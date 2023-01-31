@@ -6,6 +6,7 @@ export const QuestStyle = styled.div`
     background-color: rgb(6,34,60);
     border-radius: 15px;
     padding: 10px 20px;
+    border-left: 2px solid ${({color}) => color};
     border-right: 2px solid ${({color}) => color};
 
     display: flex;
