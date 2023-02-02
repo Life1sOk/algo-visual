@@ -12,3 +12,13 @@ export const SectionWrapper = styled.div`
     align-items: center;
     gap: 20px;
 `;
+
+export const GridTwoWrapper = styled.div`
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    grid-gap: 20px;
+`;

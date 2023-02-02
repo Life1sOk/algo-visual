@@ -6,28 +6,28 @@ import TitleSection from "../../components/title-section/title-section.component
 import Node from "../../components/node/node.component";
 import SlideSwitcher from '../../components/slide-switcher/slide-switcher.component';
 
-import { SectionWrapper } from "../../goal-layout";
-import { AnalyzeMain, DotsWrapper, DotsContainer } from './analyze.style';
+import { SectionWrapper, GridTwoWrapper } from "../../goal-layout";
+import { DotsWrapper } from './dots.style';
 
-const AnalyzeSection = () => {
+const DotsSection = () => {
     return(
         <SectionWrapper>
             <TitleSection title='Find your dots:'/>
-            <AnalyzeMain>
+            <GridTwoWrapper>
                 <DotsWrapper>
-                    <DotsContainer>
+                    {/* <GridTwoWrapper>
                         <SlideSwitcher name='S' after/>
                         <SlideSwitcher name='E' before/>
-                    </DotsContainer>
-                    <DotsContainer>
-                        <TextArea type='big' />
-                        <TextArea type='big'/>
-                    </DotsContainer>
+                    </GridTwoWrapper> */}
+                    <GridTwoWrapper>
+                        <TextArea type='big' label='Resources u have:'/>
+                        <TextArea type='big' label='Tools u need:'/>
+                    </GridTwoWrapper>
                 </DotsWrapper>
                 <Node />
-            </AnalyzeMain>
+            </GridTwoWrapper>
         </SectionWrapper>
     )
 };
 
-export default AnalyzeSection;
+export default DotsSection;

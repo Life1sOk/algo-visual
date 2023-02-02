@@ -26,6 +26,7 @@ const SetGoalSection = () => {
                         <PartsOption options={[]}/>
                     </FlexBetweenWrapper>
                     <Input label='Your goal:'/>
+                    <TextArea type='big' label='Make it more specific'/>
                     <TextArea type='big' label='Why?'/>
                 </FrontCardContainer>
                 <Ulist slide='one' />

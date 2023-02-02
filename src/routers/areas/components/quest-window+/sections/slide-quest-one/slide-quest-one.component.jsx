@@ -106,8 +106,8 @@ const SlideQuestOne = () => {
                         <PartsOption ref={pickPartRef} disabled={fixState} options={parts} pickPartHandler={changePickedPart}/>
                     </FlexSpaceBetweenWrapper>
                     <Input label='Goal Title:' ref={goalTitleRef} defaultValue='' />
-                    {/* <TextArea type='normal' label='Current state:' ref={goalCurrentStateRef} />
-                    <TextArea type='normal' label='Want to:' ref={goalWantToRef} /> */}
+                    <TextArea type='normal' label='Current state:' ref={goalCurrentStateRef} />
+                    <TextArea type='normal' label='Want to:' ref={goalWantToRef} />
                     <TextArea type='big' label='Description / Why?:' ref={goalDesctiptionRef} />
                     {
                         !done ?

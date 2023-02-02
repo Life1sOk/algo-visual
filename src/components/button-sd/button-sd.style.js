@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const ButtonSdDelete = styled.button`
+export const ButtonSdPlus = styled.button`
     position: relative;
     width: 25px;
     height: 25px;
-    background-color: ${props => props.background ? props.background : 'rgb(255, 51, 51)'};
+    background-color: ${props => props.background ? props.background : 'rgb(51, 255, 51)'};
     border: none;
     padding: 0;
     border-radius: 50%;
@@ -25,7 +25,7 @@ export const ButtonSdDelete = styled.button`
         height: 2px;
         background-color: ${props => props.color ? props.color : 'black'};
         border-radius: 5px;
-        transform: rotate(45deg);
+        /* transform: rotate(45deg); */
 
         position: absolute;
         top: 11.5px;
@@ -38,11 +38,57 @@ export const ButtonSdDelete = styled.button`
         height: 2px;
         background-color: ${props => props.color ? props.color : 'black'};
         border-radius: 5px;
-        transform: rotate(-45deg);
+        transform: rotate(-90deg);
 
         position: absolute;
         top: 11.5px;
         left: 5px;
+    }
+`;
+
+export const ButtonSdDelete = styled.button`
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background-color: ${props => props.background ? props.background : 'rgb(255, 51, 51)'};
+    border: none;
+    padding: 0;
+    border: 1px solid ${props => props.color ? props.color : 'black'};
+    border-radius: 50%;
+    transform: ${props => props.scale ? `scale(.${props.scale})` : 'scale(.9)'};
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        opacity: .5;
+    }
+
+    &::after {
+        content: '';
+        width: 15px;
+        height: 2px;
+        background-color: ${props => props.color ? props.color : 'black'};
+        border-radius: 5px;
+        transform: rotate(45deg);
+
+        position: absolute;
+        top: 10.5px;
+        left: 4px;
+    }
+
+    &::before {
+        content: '';
+        width: 15px;
+        height: 2px;
+        background-color: ${props => props.color ? props.color : 'black'};
+        border-radius: 5px;
+        transform: rotate(-45deg);
+
+        position: absolute;
+        top: 10.5px;
+        left: 4px;
     }
 `;
 
@@ -120,5 +166,24 @@ export const ButtonSdFix = styled.button`
         position: absolute;
         top: 2px;
         left: 0;
+    }
+`;
+
+export const ButtonSdReplace = styled.img`
+    position: relative;
+    width: 25px;
+    height: 25px;
+    /* background-color: ${props => props.background ? props.background : 'rgb(51, 255, 51)'}; */
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    transform: ${props => props.scale ? `scale(.${props.scale})` : 'scale(.9)'};
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        opacity: .5;
     }
 `;

@@ -20,8 +20,8 @@ const About = ({ data, area, index, steps, transferQuestHandler, type, color }) 
                     <span className="quest-id">{index + 1}</span>
                     <h3 className="quest-title" title={title}>{title}</h3>
                 </AboutStyle.Title>
-                <Line label='Current state:' description={current}/>
-                <Line label='Want to:' description={mainGoal}/>
+                {/* <Line label='Current state:' description={current}/>
+                <Line label='Want to:' description={mainGoal}/> */}
                 <Line label='Why?' description={description}/>
             </AboutStyle.AboutWrapper>
             {

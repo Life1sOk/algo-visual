@@ -9,7 +9,8 @@ import TitlePage from "../../Components/title-page/title-page.component";
 // ------------- Page sections ------------------- //
 import GoalProgressSection from "./sections/goal-progress/goal-progress.section";
 import SetGoalSection from "./sections/set-goal/set-goal.section";
-import AnalyzeSection from "./sections/analyze/analyze.section";
+import DotsSection from "./sections/dots/dots.section";
+import PathSection from "./sections/path/path.section";
 
 // ------------- Lego --------------- //
 const GoalPage = () => {
@@ -21,7 +22,8 @@ const GoalPage = () => {
             </AsideLayout>
             <MainLayout>
                 <SetGoalSection />
-                <AnalyzeSection />
+                <DotsSection />
+                <PathSection />
             </MainLayout>
         </PageLayout>
     )
